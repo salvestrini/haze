@@ -76,6 +76,10 @@ AX_PATH_MISSING([WGET],           [wget])
 AX_PATH_MISSING([DNT],            [dnt])
 AX_PATH_MISSING([DEVTODO_TO_DNT], [devtodo-to-dnt])
 
+AC_CHECK_CURL([7.19.4],,[
+        AC_MSG_ERROR([Your system lacks on libcurl >= 7.19.4 ])
+])
+
 #
 # Check for execinfo.h, backtrace() and backtrace_symbols(). They may be useful
 #
