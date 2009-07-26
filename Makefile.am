@@ -26,7 +26,6 @@ SUBDIRS =					\
 	tools					\
 	src					\
 	docs					\
-	tests					\
 	site
 
 ##
