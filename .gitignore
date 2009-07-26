@@ -24,8 +24,7 @@ configure.ac
 config.log
 config.status
 
-src/fcp
-src/fcp2dot
+src/mexife
 src/config.h
 src/config.h.in
 src/stamp-h1
@@ -54,37 +53,6 @@ tools/autotools/compile
 tools/autotools/depcomp
 tools/autotools/config.guess
 tools/autotools/config.sub
-
-tests/defs
-tests/testSubDir-*
-tests/test-fail
-tests/test-success
-tests/test-debug
-tests/test-verbose
-tests/test-dump-01
-tests/test-transformation-01
-tests/test-parse-01
-tests/test-parse-02
-tests/test-parse-03
-tests/test-parse-04
-tests/test-rules-01
-tests/test-rules-02
-tests/test-execution-01
-tests/test-execution-02
-tests/test-execution-03
-tests/test-execution-04
-tests/test-execution-05
-tests/test-execution-06
-tests/test-hint-01
-tests/test-multiline-01
-tests/test-antiloop-01
-tests/test-multipath-01
-tests/test-samefile-01
-tests/test-include-01
-tests/test-include-02
-
-docs/man/fcp.1
-docs/info/fcp.info
 
 site/in/.sitetool
 site/in/site.stamp
