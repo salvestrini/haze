@@ -76,8 +76,8 @@ AX_PATH_MISSING([WGET],           [wget])
 AX_PATH_MISSING([DNT],            [dnt])
 AX_PATH_MISSING([DEVTODO_TO_DNT], [devtodo-to-dnt])
 
-AC_CHECK_CURL([7.19.4],,[
-        AC_MSG_ERROR([Your system lacks on libcurl >= 7.19.4 ])
+AX_LIB_CURL([7.19.4],,[
+        AC_MSG_ERROR([Your system lacks of libcurl >= 7.19.4])
 ])
 
 #
