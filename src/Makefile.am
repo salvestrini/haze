@@ -33,6 +33,10 @@ bin_PROGRAMS =					\
 
 mexife_SOURCES =				\
 	mexife.c
+
+mexife_CFLAGS = $(CURL_CFLAGS)
+mexife_LDADD  = $(CURL_LIBS)
+
 ##
 ## Maintainer related targets
 ##
