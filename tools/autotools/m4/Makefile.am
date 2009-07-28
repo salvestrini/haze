@@ -30,11 +30,13 @@ EXTERNAL =					\
 	ax_missing_prog.m4			\
 	ax_path_missing.m4			\
         ax_cxxcpp_check_flag.m4			\
-	ac_path_generic.m4
+	ac_path_generic.m4			\
+	ax_compare_version.m4
 
 INTERNAL =					\
 	gnulib-cache.m4				\
-	ax_lib_curl.m4
+	ax_lib_curl.m4				\
+	ax_path_generic.m4
 
 MACROS =					\
 	$(EXTERNAL)				\
