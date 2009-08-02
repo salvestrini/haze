@@ -19,6 +19,8 @@
 #       AC_MSG_ERROR([Your system lacks of libcurl >= 7.19.4])
 #     ])
 #
+#   This macro is a rearranged version of AC_LIB_CURL from Akos Maroy.
+#
 # LICENSE
 #
 #   Copyright (c) 2009 Francesco Salvestrini <salvestrini@users.sourceforge.net>
@@ -28,5 +30,5 @@
 #   and this notice are preserved.
 
 AC_DEFUN([AX_LIB_CURL], [
-  AC_PATH_GENERIC([curl],[$1],[$2],[$3])
+  AX_PATH_GENERIC([curl],[$1],'s/^libcurl\ \+//',[$2],[$3])
 ])
