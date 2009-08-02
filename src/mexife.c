@@ -21,6 +21,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+
 #include <getopt.h>
 #include <assert.h>
 
@@ -31,25 +32,25 @@
 
 void version(void)
 {
-	printf("%s (%s) %s\n", PROGRAM_NAME, PACKAGE_NAME, PACKAGE_VERSION);
+        printf("%s (%s) %s\n", PROGRAM_NAME, PACKAGE_NAME, PACKAGE_VERSION);
         printf("\n");
-        printf("Copyright (C) 2008, 2009 Francesco Salvestrini\n");
+        printf("Copyright (C) 2009 Francesco Salvestrini\n");
         printf("\n");
-	printf("This is free software.  You may redistribute copies of it under the terms of\n");
+        printf("This is free software.  You may redistribute copies of it under the terms of\n");
         printf("the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.\n");
         printf("There is NO WARRANTY, to the extent permitted by law.\n");
 }
 
 void help(void)
 {
-	printf("Usage: %s [OPTION]...\n", PROGRAM_NAME);
+        printf("Usage: %s [OPTION]...\n", PROGRAM_NAME);
         printf("\n");
-	printf("Options:\n");
-	printf("  -d, --debug             enable debugging traces\n");
+        printf("Options:\n");
+        printf("  -d, --debug             enable debugging traces\n");
         printf("  -v, --verbose           verbosely report processing\n");
-	printf("  -h, --help              print this help, then exit\n");
-	printf("  -V, --version           print version number, then exit\n");
-	printf("\n");
+        printf("  -h, --help              print this help, then exit\n");
+        printf("  -V, --version           print version number, then exit\n");
+        printf("\n");
         printf("Report bugs to <%s>\n", PACKAGE_BUGREPORT);
 }
 
@@ -57,7 +58,7 @@ void hint(const char * message)
 {
         BUG_ON(message);
 
-	printf("%s\n");
+        printf("%s\n");
         printf("Try `%s -h' for more information.",  PROGRAM_NAME);
 }
 
