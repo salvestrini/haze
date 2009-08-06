@@ -23,7 +23,7 @@ include $(top_srcdir)/Makefile.sub
 ##
 ## Maintainer related targets
 ##
-HOST = "http://git.savannah.gnu.org/cgit/autoconf-archive.git/plain"
+HOST = "http://git.savannah.gnu.org/cgit/autoconf-archive.git/plain/m4"
 
 EXTERNAL =					\
 	ax_split_version.m4			\
