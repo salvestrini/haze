@@ -37,8 +37,6 @@ mexife_SOURCES =				\
 mexife_CFLAGS = $(CURL_CFLAGS)
 mexife_LDADD  = $(CURL_LIBS)
 
-all_SRCS = $(mexife_SOURCES)
-
 ##
 ## Maintainer related targets
 ##
@@ -55,5 +53,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 		fi ; \
 	done
 
-maintainer-check-local: Makefile maintainer-check-parameters
-	$(WHITESPACE_DETECT) $(all_SRCS)
+maintainer-check-whitespaces: Makefile
+	$(WHITESPACE_DETECT) $(mexife_SOURCES)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
