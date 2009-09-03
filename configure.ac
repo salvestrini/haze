@@ -20,7 +20,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-AC_INIT([Massive EXIF Extractor],[@VERSION@],[salvestrini@gmail.com],[mexife])
+AC_INIT([Massive EXIF Extractor],
+        m4_esyscmd([tools/maint/git-version-gen .tarball-version]),
+        [salvestrini@gmail.com],
+        [mexife],
+        [http://github.com/salvestrini/mexife])
 
 # Check for a recent version of autoconf
 AC_PREREQ([2.64])
