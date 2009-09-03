@@ -15,7 +15,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libgnu --source-base=./src/gnulib --m4-base=./tools/autotools/m4 --doc-base=doc --tests-base=tests --aux-dir=./tools/autotools --lgpl --no-libtool --macro-prefix=GNULIB --no-vc-files getopt getopt-posix mkdtemp
+#   gnulib-tool --import --dir=. --lib=libgnu --source-base=./src/gnulib --m4-base=./tools/autotools/m4 --doc-base=doc --tests-base=tests --aux-dir=./tools/maint --lgpl --no-libtool --macro-prefix=GNULIB --no-vc-files getopt getopt-posix mkdtemp
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
