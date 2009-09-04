@@ -24,8 +24,7 @@ ACLOCAL_AMFLAGS = -I tools/autotools/m4
 
 SUBDIRS =					\
 	tools					\
-	src					\
-	site
+	src
 
 ##
 ## NOTE:
