@@ -169,9 +169,6 @@ announcement:
 	  --gpg-key-id=TEST			\
 	  --url-dir=TEST
 
-site: all
-	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
-
 update-local: Makefile
 
 maintainer-check-local: Makefile
