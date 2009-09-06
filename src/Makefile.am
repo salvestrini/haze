@@ -53,7 +53,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 		fi ; \
 	done
 
-maintainer-check-whitespaces: Makefile
+maintainer-check-whitespaces: Makefile $(mexife_SOURCES)
 	$(WHITESPACE_DETECT) $(mexife_SOURCES)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
