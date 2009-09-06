@@ -28,14 +28,8 @@ Makefile
 /src/config.h.in
 /src/stamp-h1
 
-/src/gnulib/sys/stat.h
-/src/gnulib/alloca.h
-/src/gnulib/charset.alias
-/src/gnulib/configmake.h
-/src/gnulib/ref-add.sed
-/src/gnulib/ref-del.sed
-/src/gnulib/stdlib.h
-/src/gnulib/unistd.h
+/src/gnulib/*
+!/src/gnulib/Makefile.am
 
 /tools/autotools/link-warning.h
 
