@@ -302,7 +302,51 @@ extern int rpl_lstat (const char *name, struct stat *buf);
    lstat (p, b))
 #endif
 
-#if defined FCHDIR_REPLACEMENT && REPLACE_OPEN_DIRECTORY
+
+#if @GNULIB_FCHMODAT@
+# if !@HAVE_FCHMODAT@
+extern int fchmodat (int fd, char const *file, mode_t mode, int flag);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef fchmodat
+# define fchmodat(d,n,m,f)                         \
+    (GL_LINK_WARNING ("fchmodat is not portable - " \
+                      "use gnulib module openat for portability"), \
+     fchmodat (d, n, m, f))
+#endif
+
+
+#if @GNULIB_FSTATAT@
+# if @REPLACE_FSTATAT@
+#  undef fstatat
+#  define fstatat rpl_fstatat
+# endif
+# if !@HAVE_FSTATAT@ || @REPLACE_FSTATAT@
+extern int fstatat (int fd, char const *name, struct stat *st, int flags);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef fstatat
+# define fstatat(d,n,s,f)                         \
+    (GL_LINK_WARNING ("fstatat is not portable - " \
+                      "use gnulib module openat for portability"), \
+     fstatat (d, n, s, f))
+#endif
+
+
+#if @GNULIB_MKDIRAT@
+# if !@HAVE_MKDIRAT@
+extern int mkdirat (int fd, char const *file, mode_t mode);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef mkdirat
+# define mkdirat(d,n,m)                         \
+    (GL_LINK_WARNING ("mkdirat is not portable - " \
+                      "use gnulib module openat for portability"), \
+     mkdirat (d, n, m))
+#endif
+
+
+#if @REPLACE_FCHDIR@
 # define fstat rpl_fstat
 extern int fstat (int fd, struct stat *buf);
 #endif
