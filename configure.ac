@@ -89,6 +89,7 @@ AX_LIB_CURL([7.19.4],,[
 AC_CHECK_HEADERS([execinfo.h])
 AC_CHECK_FUNCS([backtrace backtrace_symbols])
 
+AX_SPLIT_VERSION($PACKAGE_VERSION, AX_MAJOR_VERSION, AX_MINOR_VERSION, AX_MICRO_VERSION, AX_EXTRA_VERSION)
 #
 # The API version is the base version.  We must guarantee
 # compatibility for all releases with the same API version.
@@ -100,7 +101,6 @@ AC_CHECK_FUNCS([backtrace backtrace_symbols])
 # * Prereleases on the trunk are all incompatible -- 1.5b and 1.5c
 #   aren't the same.
 #
-AX_SPLIT_VERSION($PACKAGE_VERSION)
 API_VERSION="${AX_MAJOR_VERSION}.${AX_MINOR_VERSION}"
 AC_SUBST(API_VERSION)
 
