@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <root><entry priority="veryhigh" start="1248624104">
         0.1.0
+        <entry priority="veryhigh" start="1252443475">
+            Rearrange the build-related code (macros, makefiles, bootstrap, gnulib-use)
+        </entry>
     </entry>
     <entry priority="high" start="1248624106">
         0.2.0
