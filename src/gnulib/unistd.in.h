@@ -208,7 +208,7 @@ ssize_t readlinkat (int fd, char const *file, char *buf, size_t len);
 #elif defined GNULIB_POSIXCHECK
 # undef readlinkat
 # define readlinkat(d,n,b,l)			     \
-    (GL_LINK_WARNING ("faccessat is not portable - " \
+    (GL_LINK_WARNING ("readlinkat is not portable - " \
                       "use gnulib module symlinkat for portability"), \
      readlinkat (d, n, b, l))
 #endif
@@ -595,11 +595,14 @@ extern int lchown (char const *file, uid_t owner, gid_t group);
 
 
 #if @GNULIB_LINK@
+# if @REPLACE_LINK@
+#  define link rpl_link
+# endif
 /* Create a new hard link for an existing file.
    Return 0 if successful, otherwise -1 and errno set.
    See POSIX:2001 specification
    <http://www.opengroup.org/susv3xsh/link.html>.  */
-# if !@HAVE_LINK@
+# if !@HAVE_LINK@ || @REPLACE_LINK@
 extern int link (const char *path1, const char *path2);
 # endif
 #elif defined GNULIB_POSIXCHECK
