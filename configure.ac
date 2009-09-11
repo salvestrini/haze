@@ -73,12 +73,14 @@ AX_CXXCPP_CHECK_FLAG([-Werror],[],[],[ TEMP_FLAGS="$TEMP_FLAGS -Werror"])
 AC_SUBST([EXTRA_CPPFLAGS],$TEMP_FLAGS)
 
 
-AX_PATH_MISSING([PERL],           [perl])
-AX_PATH_MISSING([HELP2MAN],       [help2man])
-AX_PATH_MISSING([WGET],           [wget])
-AX_PATH_MISSING([DNT],            [dnt])
-AX_PATH_MISSING([DEVTODO_TO_DNT], [devtodo-to-dnt])
+AX_PATH_MISSING([PERL],     [perl])
+AX_PATH_MISSING([HELP2MAN], [help2man])
+AX_PATH_MISSING([WGET],     [wget])
+AX_PATH_MISSING([DNT],      [dnt])
 
+#
+# Check for require libraries
+#
 AX_LIB_CURL([7.19.4],,[
         AC_MSG_ERROR([Your system lacks of libcurl >= 7.19.4])
 ])
