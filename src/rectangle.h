@@ -21,6 +21,9 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#include "object.h"
+#include "point.h"
+
 namespace HAZE {
 
         class Rectangle : public Object {
@@ -31,9 +34,8 @@ namespace HAZE {
                 Rectangle(const Point & p,
                           unsigned int  w = 0,
                           unsigned int  h = 0) :
-                        p1_(p)
-                        p2_(p.x() + w,
-                            p.y() + h) {
+                        p1_(p),
+                        p2_(p.x() + w, p.y() + h) {
                 };
 
                 Rectangle(const Point & p1,
@@ -45,7 +47,8 @@ namespace HAZE {
                 void draw() {
                 }
 
-        protectd:
+        protected:
+
         private:
                 Point p1_;
                 Point p2_;

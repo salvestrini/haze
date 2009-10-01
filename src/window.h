@@ -21,6 +21,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include "rectangle.h"
+
 namespace HAZE {
 
         class Window : public Rectangle {
@@ -29,7 +31,7 @@ namespace HAZE {
                         Rectangle(r) {
                 }
 
-        protectd:
+        protected:
 
         private:
         };

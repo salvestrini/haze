@@ -18,24 +18,9 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#include "haze.h"
 
-namespace HAZE {
-
-        class Object {
-        public:
-                Object() {                        
-                }
-                ~Object();
-
-                virtual void draw() = 0;
-
-        protected:
-
-        private:
-        };
-
+int main(int argc, char argv[])
+{
+        return 0;
 }
-
-#endif // OBJECT_H

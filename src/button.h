@@ -28,7 +28,7 @@ namespace HAZE {
                 Button();
                 ~Button();
 
-        protectd:
+        protected:
         private:
         };
 

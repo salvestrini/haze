@@ -18,24 +18,31 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef SCREEN_H
+#define SCREEN_H
+
+#include <list>
+
+#include "object.h"
+#include "rectangle.h"
 
 namespace HAZE {
 
-        class Object {
+        class Screen : public Rectangle {
         public:
-                Object() {                        
-                }
-                ~Object();
+                Screen();
+                ~Screen();
 
-                virtual void draw() = 0;
+                void add(const Object & o);
+                void remove(const Object & o);
+                void draw();
 
         protected:
 
         private:
+                std::list<const Object &> objects_;
         };
 
 }
 
-#endif // OBJECT_H
+#endif // SCREEN_H

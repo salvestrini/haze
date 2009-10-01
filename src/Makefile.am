@@ -36,6 +36,8 @@ libhaze_la_SOURCES =				\
 	haze.c++				\
 	point.h					\
 	rectangle.h				\
+	screen.h				\
+	screen.c++				\
 	object.h				\
 	window.h				\
 	button.h

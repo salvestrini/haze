@@ -18,24 +18,27 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#include "config.h"
+#include "screen.h"
+#include "object.h"
 
-namespace HAZE {
+using namespace HAZE;
 
-        class Object {
-        public:
-                Object() {                        
-                }
-                ~Object();
-
-                virtual void draw() = 0;
-
-        protected:
-
-        private:
-        };
-
+void add(const Object & o)
+{
 }
 
-#endif // OBJECT_H
+void remove(const Object & o)
+{
+}
+
+void Screen::draw()
+{
+        std::list<const Object &>::const_iterator iter;
+        
+        for (iter  = objects_.begin();
+             iter != objects_.end();
+             iter++) {
+                (iter).draw();
+        }
+}

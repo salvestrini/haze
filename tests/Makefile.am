@@ -22,6 +22,22 @@ include $(top_srcdir)/Makefile.sub
 
 EXTRA_DIST =
 
+TESTS =						\
+	test
+
+check_PROGRAMS =				\
+	test
+
+
+TEST_CFLAGS   =  -I$(top_srcdir)/inc -I$(top_builddir)/inc
+TEST_CPPFLAGS = -I$(top_srcdir)/inc -I$(top_builddir)/inc
+
+test_SOURCES       = test.c++
+test_CFLAGS        =
+test_CXXFLAGS      =
+test_CPPFLAGS      = $(TEST_CFLAGS)
+test_LDADD         =
+
 ##
 ## Maintainer related targets
 ##
