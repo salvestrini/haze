@@ -36,13 +36,13 @@ namespace HAZE {
                           unsigned int  h = 0) :
                         p1_(p),
                         p2_(p.x() + w, p.y() + h) {
-                };
+                }
 
                 Rectangle(const Point & p1,
                           const Point & p2) :
                         p1_(p1),
                         p2_(p2) {
-                };
+                }
 
                 void draw() {
                 }

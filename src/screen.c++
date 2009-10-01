@@ -39,6 +39,6 @@ void Screen::draw()
         for (iter  = objects_.begin();
              iter != objects_.end();
              iter++) {
-                (iter).draw();
+                (* iter).draw();
         }
 }

@@ -30,27 +30,18 @@ namespace HAZE {
                 Point(const Point & p) :
                         x_(p.x_),
                         y_(p.y_) {
-                };
+                }
 
                 Point(unsigned int x = 0,
                       unsigned int y = 0) :
                         x_(x),
                         y_(y) {
-                };
-
-                unsigned int x() {
-                        return x_;
-                }
-                unsigned int y() {
-                        return y_;
                 }
 
-                unsigned int x(unsigned int v) {
-                        x_ = v;
-                }
-                unsigned int y(unsigned int v) {
-                        y_ = v;
-                }
+                unsigned int x() const         { return x_; }
+                unsigned int y() const         { return y_; }
+                unsigned int x(unsigned int v) { x_ = v; }
+                unsigned int y(unsigned int v) { y_ = v; }
 
                 virtual void draw() {
                 }

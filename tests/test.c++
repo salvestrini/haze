@@ -22,5 +22,16 @@
 
 int main(int argc, char argv[])
 {
+        HAZE::Screen screen_0();
+        HAZE::Screen screen_1();
+
+        HAZE::WIndow window_0();
+        HAZE::WIndow window_1();
+
+        screen_0.add(window_0);
+        screen_1.add(window_1);
+
+        screen_0.draw();
+
         return 0;
 }
