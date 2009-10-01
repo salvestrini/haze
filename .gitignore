@@ -25,8 +25,8 @@ Makefile
 /config.status
 
 /src/.libs
-/src/*.lo
-/src/*.la
+*.lo
+*.la
 /src/config.h
 /src/config.h.in
 /src/stamp-h1
