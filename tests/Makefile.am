@@ -28,15 +28,14 @@ TESTS =						\
 check_PROGRAMS =				\
 	test
 
-
-TEST_CFLAGS   = -I$(top_srcdir)/src -I$(top_builddir)/src
 TEST_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src
 
 test_SOURCES  = test.c++
-test_CFLAGS   =
-test_CXXFLAGS =
-test_CPPFLAGS = $(TEST_CFLAGS)
-test_LIBADD   = $(top_srcdir)/src/libhaze.la
+
+test_c___CPPFLAGS = $(TEST_CPPFLAGS)
+test_c___CFLAGS   =
+test_c___CXXFLAGS =
+test_c___LDADD    = $(top_srcdir)/src/libhaze.la
 
 ##
 ## Maintainer related targets

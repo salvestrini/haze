@@ -22,16 +22,20 @@
 
 int main(int argc, char argv[])
 {
-        HAZE::Screen screen_0;
-        HAZE::Screen screen_1;
+        {
+                using namespace HAZE;
 
-        HAZE::Window window_0;
-        HAZE::Window window_1;
+                Screen screen_0;
+                Screen screen_1;
 
-        screen_0.add(window_0);
-        screen_1.add(window_1);
+                Window window_0;
+                Window window_1;
 
-        screen_0.draw();
+                screen_0.add(window_0);
+                screen_1.add(window_1);
+
+                screen_0.draw();
+        }
 
         return 0;
 }
