@@ -27,6 +27,9 @@ namespace HAZE {
 
         class Window : public Rectangle {
         public:
+                Window() {
+                }
+
                 Window(const Rectangle & r) :
                         Rectangle(r) {
                 }
