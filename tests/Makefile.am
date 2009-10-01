@@ -29,8 +29,8 @@ check_PROGRAMS =				\
 	test
 
 
-TEST_CFLAGS   =  -I$(top_srcdir)/inc -I$(top_builddir)/inc
-TEST_CPPFLAGS = -I$(top_srcdir)/inc -I$(top_builddir)/inc
+TEST_CFLAGS   = -I$(top_srcdir)/src -I$(top_builddir)/src
+TEST_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src
 
 test_SOURCES       = test.c++
 test_CFLAGS        =
