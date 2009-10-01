@@ -28,14 +28,22 @@ EXTRA_DIST =
 
 ## Programs
 
-bin_PROGRAMS =					\
-	mexife
+lib_LTLIBRARIES =				\
+	libhaze.la
 
-mexife_SOURCES =				\
-	mexife.c
+libhaze_la_SOURCES =				\
+	haze.h					\
+	haze.c++				\
+	point.h					\
+	rectangle.h				\
+	object.h				\
+	window.h				\
+	button.h
 
-mexife_CFLAGS = $(CURL_CFLAGS)
-mexife_LDADD  = $(CURL_LIBS)
+libhaze_la_CPPFLAGS =
+libhaze_la_CFLAGS   =
+libhaze_la_CXXFLAGS =
+libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@
 
 ##
 ## Maintainer related targets

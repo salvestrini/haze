@@ -20,20 +20,25 @@
 
 include $(top_srcdir)/Makefile.sub
 
-MOSTLYCLEANFILES   =
-noinst_LIBRARIES   =
-noinst_LTLIBRARIES =
-BUILT_SOURCES      =
-EXTRA_DIST         =
-CLEANFILES         =
-SUFFIXES           =
-MOSTLYCLEANDIRS    =
-
-include Makefile.gnulib
+EXTRA_DIST =
 
 ##
 ## Maintainer related targets
 ##
 update-local: Makefile
 
-maintainer-check-local: Makefile
+maintainer-check-parameters: Makefile $(bin_PROGRAMS)
+	for i in $(bin_PROGRAMS) ; do \
+		echo @ECHO_N@ "Checking standard parameters for $$i... " ; \
+		if ( ./$$i -h 2>&1 > /dev/null ) ; then \
+			echo "@ECHO_T@ok" ; \
+		else \
+			echo "@ECHO_T@error" ; \
+			exit 1 ; \
+		fi ; \
+	done
+
+maintainer-check-whitespaces: Makefile $(mexife_SOURCES)
+	$(WHITESPACE_DETECT) $(mexife_SOURCES)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters

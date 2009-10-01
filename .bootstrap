@@ -1,8 +1,8 @@
-GUILE_TOOLS="`required guile-tools`"               || \
+GUILE_TOOLS="`optional guile-tools`"               || \
     { echo "Missing tool: guile-tools"; exit 1; }
-PYTHON_AUTOFRISK="`required python-autofrisk`"     || \
+PYTHON_AUTOFRISK="`optional python-autofrisk`"     || \
     { echo "Missing tool: python-autofrisk"; exit 1; }
-PERL_AUTOFRISK="`required perl-autofrisk`"         || \
+PERL_AUTOFRISK="`optional perl-autofrisk`"         || \
     { echo "Missing tool: perl-autofrisk"; exit 1; }
 
 BOOTSTRAPS=""

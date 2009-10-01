@@ -32,10 +32,8 @@ AC_DEFUN([GNULIB_EARLY],
 # "Check for header files, types and library functions".
 AC_DEFUN([GNULIB_INIT],
 [
-  AM_CONDITIONAL([GL_COND_LIBTOOL], [false])
-  gl_cond_libtool=false
-  gl_libdeps=
-  gl_ltlibdeps=
+  AM_CONDITIONAL([GL_COND_LIBTOOL], [true])
+  gl_cond_libtool=true
   m4_pushdef([AC_LIBOBJ], m4_defn([GNULIB_LIBOBJ]))
   m4_pushdef([AC_REPLACE_FUNCS], m4_defn([GNULIB_REPLACE_FUNCS]))
   m4_pushdef([AC_LIBSOURCES], m4_defn([GNULIB_LIBSOURCES]))
@@ -131,10 +129,6 @@ AC_DEFUN([GNULIB_INIT],
     AC_SUBST([GNULIBtests_LIBOBJS], [$GNULIBtests_libobjs])
     AC_SUBST([GNULIBtests_LTLIBOBJS], [$GNULIBtests_ltlibobjs])
   ])
-  LIBGNU_LIBDEPS="$gl_libdeps"
-  AC_SUBST([LIBGNU_LIBDEPS])
-  LIBGNU_LTLIBDEPS="$gl_ltlibdeps"
-  AC_SUBST([LIBGNU_LTLIBDEPS])
 ])
 
 # Like AC_LIBOBJ, except that the module name goes

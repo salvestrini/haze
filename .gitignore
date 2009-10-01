@@ -23,7 +23,6 @@ Makefile
 /config.log
 /config.status
 
-/src/mexife
 /src/config.h
 /src/config.h.in
 /src/stamp-h1
@@ -46,11 +45,3 @@ Makefile
 /tools/autotools/depcomp
 /tools/autotools/config.guess
 /tools/autotools/config.sub
-
-/site/in/.sitetool
-/site/in/site.stamp
-/site/in/todos.sxml
-/site/in/todos.dump
-/site/in/news.sxml
-/site/in/news.dump
-/site/out/*

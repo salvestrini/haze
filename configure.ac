@@ -20,11 +20,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-AC_INIT([Massive EXIF Extractor],
+AC_INIT([HAZE],
         m4_esyscmd([tools/maint/git-version-gen .tarball-version]),
         [salvestrini@gmail.com],
-        [mexife],
-        [http://github.com/salvestrini/mexife])
+        [haze],
+        [http://github.com/salvestrini/haze])
 
 # Check for a recent version of autoconf
 AC_PREREQ([2.64])
@@ -32,7 +32,7 @@ AC_PREREQ([2.64])
 # Place/find all autotools related files in the following directories
 AC_CONFIG_AUX_DIR([tools/autotools])
 AC_CONFIG_MACRO_DIR([tools/autotools/m4])
-AC_CONFIG_SRCDIR([src/mexife.c])
+AC_CONFIG_SRCDIR([src/haze.h])
 
 #
 # For automake options (AM_INIT_AUTOMAKE options) see Makefile.am
@@ -57,7 +57,12 @@ AC_PROG_SED
 AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_CXX_C_O
-AC_PROG_RANLIB
+AC_PROG_LIBTOOL
+
+LIBTOOL_VERSION_CURRENT=0
+LIBTOOL_VERSION_REVISION=0
+LIBTOOL_VERSION_AGE=0
+AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISION:$LIBTOOL_VERSION_AGE])
 
 #
 # gnulib related
@@ -116,6 +121,7 @@ AC_CONFIG_FILES([
 
 	src/Makefile
 	src/gnulib/Makefile
+	tests/Makefile
 
 	tools/Makefile
 	tools/maint/Makefile
