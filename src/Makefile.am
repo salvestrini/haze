@@ -31,7 +31,15 @@ EXTRA_DIST =
 lib_LTLIBRARIES =				\
 	libhaze.la
 
-libhaze_la_SOURCES =				\
+libhaze_la_SOURCES =
+
+## SDL Backend
+libhaze_la_SOURCES +=				\
+	backends/sdl.c++			\
+	backends/sdl.h
+
+## Core
+libhaze_la_SOURCES +=				\
 	haze.h					\
 	haze.c++				\
 	point.h					\
