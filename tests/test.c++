@@ -35,6 +35,13 @@ int main(int argc, char argv[])
                 screen_1.add(window_1);
 
                 screen_0.draw();
+                screen_1.draw();
+
+                screen_0.remove(window_0);
+                screen_1.remove(window_1);
+
+                screen_0.draw();
+                screen_1.draw();
         }
 
         return 0;
