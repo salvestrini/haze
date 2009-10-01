@@ -30,6 +30,9 @@ namespace HAZE {
 
         class Screen : public Rectangle {
         public:
+                Screen()  {}
+                ~Screen() {}
+
                 void add(const Object & o);
                 void remove(const Object & o);
                 void draw();

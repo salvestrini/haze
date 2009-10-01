@@ -25,9 +25,8 @@ namespace HAZE {
 
         class Object {
         public:
-                Object() {                        
-                }
-                ~Object();
+                Object()  { }
+                ~Object() { }
 
                 virtual void draw() = 0;
 

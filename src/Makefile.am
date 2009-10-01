@@ -40,6 +40,7 @@ libhaze_la_SOURCES =				\
 	screen.c++				\
 	object.h				\
 	window.h				\
+	window.c++				\
 	button.h
 
 libhaze_la_CPPFLAGS =
