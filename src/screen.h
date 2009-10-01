@@ -35,7 +35,7 @@ namespace HAZE {
 
                 void add(const Object & o);
                 void remove(const Object & o);
-                void draw();
+                virtual void draw();
 
         protected:
 

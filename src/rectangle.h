@@ -44,7 +44,7 @@ namespace HAZE {
                         p2_(p2) {
                 }
 
-                void draw() {
+                virtual void draw() {
                 }
 
         protected:
