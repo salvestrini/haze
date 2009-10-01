@@ -24,21 +24,21 @@
 
 using namespace HAZE;
 
-void add(const Object & o)
+void Screen::add(const Object & o)
 {
 }
 
-void remove(const Object & o)
+void Screen::remove(const Object & o)
 {
 }
 
 void Screen::draw()
 {
-        std::list<const Object &>::const_iterator iter;
+        std::list<Object *>::iterator iter;
         
         for (iter  = objects_.begin();
              iter != objects_.end();
              iter++) {
-                (* iter).draw();
+                (* iter)->draw();
         }
 }
