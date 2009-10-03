@@ -21,18 +21,14 @@
 #ifndef HAZE_WINDOW_H
 #define HAZE_WINDOW_H
 
+#include "widget.h"
 #include "rectangle.h"
-#include "object.h"
 
 namespace HAZE {
 
-        class Window : public Object {
+        class Window : public Widget {
         public:
-                Window() { }
-
-                Window(const Rectangle & r) :
-                        borders_(r) {
-                }
+                Window(const Rectangle & r) : Widget(r) { }
 
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & p);
@@ -41,7 +37,6 @@ namespace HAZE {
         protected:
 
         private:
-                Rectangle borders_;
         };
 
 }
