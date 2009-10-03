@@ -18,27 +18,32 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "config.h"
+#include <list>
+
 #include "screen.h"
 #include "object.h"
 
-using namespace HAZE;
+namespace HAZE {
 
-void Screen::add(const Object & o)
-{
-}
-
-void Screen::remove(const Object & o)
-{
-}
-
-void Screen::draw()
-{
-        std::list<Object *>::iterator iter;
-        
-        for (iter  = objects_.begin();
-             iter != objects_.end();
-             iter++) {
-                (* iter)->draw();
+        void Screen::add(Object & o)
+        {
+                objects_.push_front(&o);
         }
+
+        void Screen::remove(Object & o)
+        {
+                objects_.remove(&o);
+        }
+
+        void Screen::draw(const Rectangle & clipping)
+        {
+                std::list<Object *>::iterator iter;
+
+                for (iter  = objects_.begin();
+                     iter != objects_.end();
+                     iter++) {
+                        (* iter)->draw(borders_);
+                }
+        }
+
 }

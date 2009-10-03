@@ -26,21 +26,33 @@
 #include "object.h"
 #include "rectangle.h"
 
+#define SCREEN_DEFAULT_WIDTH  640
+#define SCREEN_DEFAULT_HEIGHT 320
+
 namespace HAZE {
 
-        class Screen : public Rectangle {
+        class Screen : public Object {
         public:
-                Screen()  {}
-                ~Screen() {}
+                Screen(unsigned int width  = SCREEN_DEFAULT_WIDTH,
+                       unsigned int height = SCREEN_DEFAULT_HEIGHT) :
+                        borders_(0, 0, width, height) {
+                }
 
-                void add(const Object & o);
-                void remove(const Object & o);
-                virtual void draw();
+                ~Screen() { }
+
+                void add(Object & o);
+                void remove(Object & o);
+
+                void draw() { draw(borders_); }
+
+                virtual void draw(const Rectangle & clipping);
+                virtual void move(const Point & where) { }
 
         protected:
 
         private:
                 std::list<Object *> objects_;
+                Rectangle           borders_;
         };
 
 }
