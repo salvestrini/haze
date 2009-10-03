@@ -24,7 +24,7 @@ Makefile
 /config.log
 /config.status
 
-/src/.libs
+.libs
 *.lo
 *.la
 /src/config.h
@@ -49,3 +49,5 @@ Makefile
 /tools/autotools/depcomp
 /tools/autotools/config.guess
 /tools/autotools/config.sub
+
+tests/test
