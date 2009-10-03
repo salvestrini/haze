@@ -71,10 +71,17 @@ namespace HAZE {
 
                 void move(const Point & p);
 
-                int x()      { return p1_.x();           }
-                int y()      { return p1_.y();           }
-                int width()  { return p2_.x() - p1_.x(); }
-                int height() { return p2_.y() - p1_.y(); }
+                int x()               { return p1_.x();           }
+                int y()               { return p1_.y();           }
+
+                unsigned int width()  { return p2_.x() - p1_.x(); }
+                unsigned int height() { return p2_.y() - p1_.y(); }
+
+                void x(int v) { p2_.x(v + p2_.x() - p1_.x()); p1_.x(v); }
+                void y(int v) { p2_.x(v + p2_.y() - p1_.y()); p1_.x(v); }
+
+                void width(unsigned int v)  { p2_.x(p1_.x() + v); }
+                void height(unsigned int v) { p2_.y(p1_.y() + v); }
 
         protected:
 

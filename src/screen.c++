@@ -50,10 +50,10 @@ namespace HAZE {
         {
                 borders_ = box;
 
-                borders_.x() < 0 ? borders_.x(0) : 0;
-                borders_.y() < 0 ? borders_.y(0) : 0;
+                if (borders_.x() < 0) borders_.x(0);
+                if (borders_.y() < 0) borders_.y(0);
 
-                draw(borders_);
+                changed_ = true;
         }
 
 }
