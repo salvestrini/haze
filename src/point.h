@@ -21,11 +21,9 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include "object.h"
-
 namespace HAZE {
 
-        class Point : public Object {
+        class Point {
         public:
                 Point(const Point & p) :
                         x_(p.x_),
@@ -38,13 +36,12 @@ namespace HAZE {
                         y_(y) {
                 }
 
+                ~Point() { }
+
                 unsigned int x() const         { return x_; }
                 unsigned int y() const         { return y_; }
                 unsigned int x(unsigned int v) { x_ = v; }
                 unsigned int y(unsigned int v) { y_ = v; }
-
-                virtual void draw() {
-                }
 
         protected:
 
