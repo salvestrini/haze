@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef PEN_H
-#define PEN_H
+#ifndef HAZE_PEN_H
+#define HAZE_PEN_H
 
 #include "color.h"
 
@@ -42,4 +42,4 @@ namespace HAZE {
 
 }
 
-#endif // PEN_H
+#endif // HAZE_PEN_H

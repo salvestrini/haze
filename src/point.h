@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef POINT_H
-#define POINT_H
+#ifndef HAZE_POINT_H
+#define HAZE_POINT_H
 
 #include <utility>
 
@@ -46,4 +46,4 @@ namespace HAZE {
 
 }
 
-#endif // POINT_H
+#endif // HAZE_POINT_H
