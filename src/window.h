@@ -22,21 +22,29 @@
 #define WINDOW_H
 
 #include "rectangle.h"
+#include "object.h"
 
 namespace HAZE {
 
-        class Window : public Rectangle {
+        class Window : public Object {
         public:
                 Window() {
                 }
 
                 Window(const Rectangle & r) :
-                        Rectangle(r) {
+                        borders_(r) {
                 }
+
+                ~Window() {
+                }
+
+                virtual void draw(const Rectangle & clipping);
+                virtual void move(const Point & p);
 
         protected:
 
         private:
+                Rectangle borders_;
         };
 
 }
