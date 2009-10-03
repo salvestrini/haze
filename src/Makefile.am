@@ -38,10 +38,13 @@ libhaze_la_SOURCES +=				\
 	backends/sdl.c++			\
 	backends/sdl.h
 
-## Core
+## Base
 libhaze_la_SOURCES +=				\
 	haze.h					\
-	haze.c++				\
+	haze.c++
+
+## Widget
+libhaze_la_SOURCES +=				\
 	color.h					\
 	color.c++				\
 	pen.h					\
@@ -49,11 +52,16 @@ libhaze_la_SOURCES +=				\
 	point.h					\
 	point.c++				\
 	rectangle.h				\
-	rectangle.c++				\
-	screen.h				\
-	screen.c++				\
+	rectangle.c++
+
+## Core
+libhaze_la_SOURCES +=				\
 	object.h				\
 	object.c++				\
+	screen.h				\
+	screen.c++				\
+	widget.h				\
+	widget.c++				\
 	window.h				\
 	window.c++				\
 	button.h				\
