@@ -18,22 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef BUTTON_H
-#define BUTTON_H
-
-#include "rectangle.h"
-
-namespace HAZE {
-
-        class Button : public Rectangle {
-        public:
-                Button();
-                ~Button();
-
-        protected:
-        private:
-        };
-
-}
-
-#endif // BUTTON_H
+#include "button.h"
