@@ -42,13 +42,18 @@ namespace HAZE {
                 for (iter  = objects_.begin();
                      iter != objects_.end();
                      iter++) {
-                        (* iter)->draw(borders_);
+                        (* iter)->draw(clipping);
                 }
         }
 
         void Screen::resize(const Rectangle & box)
         {
                 borders_ = box;
+
+                borders_.x() < 0 ? borders_.x(0) : 0;
+                borders_.y() < 0 ? borders_.y(0) : 0;
+
+                draw(borders_);
         }
 
 }
