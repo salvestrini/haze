@@ -21,30 +21,73 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include "object.h"
 #include "point.h"
 
 namespace HAZE {
 
-        class Rectangle : public Object {
+        class Rectangle {
         public:
-                Rectangle() {
+                Rectangle(unsigned int  x = 0,
+                          unsigned int  y = 0,
+                          unsigned int  w = 0,
+                          unsigned int  h = 0) :
+                        p1_(x, y),
+                        p2_(x + w, y + h) {
                 }
 
                 Rectangle(const Point & p,
                           unsigned int  w = 0,
                           unsigned int  h = 0) :
-                        p1_(p),
-                        p2_(p.x() + w, p.y() + h) {
+                        p1_(p) {
+                        p2_.x(p.x() + w);
+                        p2_.y(p.y() + h);
                 }
 
                 Rectangle(const Point & p1,
-                          const Point & p2) :
-                        p1_(p1),
-                        p2_(p2) {
+                          const Point & p2) {
+                        if (p1.x() > p2.x()) {
+                                p1_.x(p2.x());
+                                p2_.x(p1.x());
+                        } else {
+                                p1_.x(p1.x());
+                                p2_.x(p2.x());
+                        }
+                        if (p1.y() > p2.y()) {
+                                p1_.y(p2.y());
+                                p2_.y(p1.y());
+                        } else {
+                                p1_.y(p1.y());
+                                p2_.y(p2.y());
+                        }
+                }
+
+                ~Rectangle() { }
+
+                void move(const Point & p) {
+                        unsigned int w = p2_.x() - p1_.x();
+                        unsigned int h = p2_.y() - p1_.y();
+
+                        p2_.x(p.x() + w);
+                        p2_.y(p.y() + h);
+                        p1_ = p;
+                }
+
+                unsigned int width() {
+                        return p2_.x() - p1_.x();
+                }
+                unsigned int height() {
+                        return p2_.y() - p1_.y();
                 }
 
                 virtual void draw() {
+                }
+
+                Rectangle operator &&(const Rectangle & rhs) {
+                        Rectangle r;
+
+                        // XXX FIXME
+
+                        return r;
                 }
 
         protected:
