@@ -46,4 +46,9 @@ namespace HAZE {
                 }
         }
 
+        void Screen::resize(const Rectangle & box)
+        {
+                borders_ = box;
+        }
+
 }

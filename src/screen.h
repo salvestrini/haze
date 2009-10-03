@@ -38,8 +38,6 @@ namespace HAZE {
                         borders_(0, 0, width, height) {
                 }
 
-                ~Screen() { }
-
                 void add(Object & o);
                 void remove(Object & o);
 
@@ -47,6 +45,7 @@ namespace HAZE {
 
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & where) { }
+                virtual void resize(const Rectangle & box);
 
         protected:
 

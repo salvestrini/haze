@@ -27,24 +27,32 @@ namespace HAZE {
 
         class Rectangle {
         public:
-                Rectangle(unsigned int  x = 0,
-                          unsigned int  y = 0,
-                          unsigned int  w = 0,
-                          unsigned int  h = 0) :
+                Rectangle(int  x = 0,
+                          int  y = 0,
+                          int  w = 0,
+                          int  h = 0) :
                         p1_(x, y),
-                        p2_(x + w, y + h) {
+                        p2_(x + w, y + h)
+                {
+                        // XXX FIXME: Add checks here
                 }
 
                 Rectangle(const Point & p,
-                          unsigned int  w = 0,
-                          unsigned int  h = 0) :
-                        p1_(p) {
+                          int           w = 0,
+                          int           h = 0) :
+                        p1_(p)
+                {
+                        // XXX FIXME: Add checks here
+
                         p2_.x(p.x() + w);
                         p2_.y(p.y() + h);
                 }
 
                 Rectangle(const Point & p1,
-                          const Point & p2) {
+                          const Point & p2)
+                {
+                        // XXX FIXME: Add checks here
+
                         if (p1.x() > p2.x()) {
                                 p1_.x(p2.x());
                                 p2_.x(p1.x());
@@ -61,34 +69,12 @@ namespace HAZE {
                         }
                 }
 
-                ~Rectangle() { }
+                void move(const Point & p);
 
-                void move(const Point & p) {
-                        unsigned int w = p2_.x() - p1_.x();
-                        unsigned int h = p2_.y() - p1_.y();
-
-                        p2_.x(p.x() + w);
-                        p2_.y(p.y() + h);
-                        p1_ = p;
-                }
-
-                unsigned int width() {
-                        return p2_.x() - p1_.x();
-                }
-                unsigned int height() {
-                        return p2_.y() - p1_.y();
-                }
-
-                virtual void draw() {
-                }
-
-                Rectangle operator &&(const Rectangle & rhs) {
-                        Rectangle r;
-
-                        // XXX FIXME
-
-                        return r;
-                }
+                int x()      { return p1_.x();           }
+                int y()      { return p1_.y();           }
+                int width()  { return p2_.x() - p1_.x(); }
+                int height() { return p2_.y() - p1_.y(); }
 
         protected:
 

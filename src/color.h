@@ -34,7 +34,6 @@ namespace HAZE {
                         blue_(blue),
                         alpha_(alpha) {
                 }
-                ~Color() { };
 
                 unsigned int r() { return red_;   }
                 unsigned int g() { return green_; }

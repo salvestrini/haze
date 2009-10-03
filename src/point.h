@@ -21,33 +21,27 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <utility>
+
 namespace HAZE {
 
         class Point {
         public:
-                Point(const Point & p) :
-                        x_(p.x_),
-                        y_(p.y_) {
-                }
-
-                Point(unsigned int x = 0,
-                      unsigned int y = 0) :
-                        x_(x),
-                        y_(y) {
-                }
+                Point(const Point & p) : p_(p.p_) { }
+                Point(int x = 0,
+                      int y = 0) : p_(x, y) { }
 
                 ~Point() { }
 
-                unsigned int x() const         { return x_; }
-                unsigned int y() const         { return y_; }
-                unsigned int x(unsigned int v) { x_ = v; }
-                unsigned int y(unsigned int v) { y_ = v; }
+                int  x() const { return p_.first;  }
+                int  y() const { return p_.second; }
+                void x(int v)  { p_.first = v;     }
+                void y(int v)  { p_.second = v;    }
 
         protected:
 
         private:
-                unsigned int x_;
-                unsigned int y_;
+                std::pair<int, int> p_;
         };
 
 }

@@ -28,18 +28,15 @@ namespace HAZE {
 
         class Window : public Object {
         public:
-                Window() {
-                }
+                Window() { }
 
                 Window(const Rectangle & r) :
                         borders_(r) {
                 }
 
-                ~Window() {
-                }
-
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & p);
+                virtual void resize(const Rectangle & box);
 
         protected:
 

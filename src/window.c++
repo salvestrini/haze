@@ -24,14 +24,17 @@ namespace HAZE {
 
         void Window::draw(const Rectangle & clipping)
         {
-                Rectangle t;
-
-                t = borders_ && clipping;
+                // XXX FIXME: Add code here
         }
 
         void Window::move(const Point & p)
         {
                 borders_.move(p);
+        }
+
+        void Window::resize(const Rectangle & box)
+        {
+                // XXX FIXME: Add code here
         }
 
 }

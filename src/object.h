@@ -28,18 +28,16 @@ namespace HAZE {
 
         class Object {
         public:
-                Object()  { }
-                ~Object() { }
+                Object() : visible_(false) { }
 
-                unsigned int x() { return position_.x(); }
-                unsigned int y() { return position_.y(); }
+                virtual void draw(const Rectangle & clipping) = 0;
+                virtual void move(const Point & where)        = 0;
+                virtual void resize(const Rectangle & box)    = 0;
 
-                virtual void draw(const Rectangle & clipping) { }
-                virtual void move(const Point & where)        { }
-                virtual void resize(const Rectangle & box)    { }
+                virtual bool visible() { return visible_; }
 
         protected:
-                Point position_;
+                bool visible_;
 
         private:
         };

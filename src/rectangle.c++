@@ -19,3 +19,17 @@
 //
 
 #include "rectangle.h"
+
+namespace HAZE {
+
+        void Rectangle::move(const Point & p)
+        {
+                int w = p2_.x() - p1_.x();
+                int h = p2_.y() - p1_.y();
+
+                p2_.x(p.x() + w);
+                p2_.y(p.y() + h);
+                p1_ = p;
+        }
+
+}
