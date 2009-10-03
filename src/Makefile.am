@@ -42,14 +42,22 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze.h					\
 	haze.c++				\
+	color.h					\
+	color.c++				\
+	pen.h					\
+	pen.c++					\
 	point.h					\
+	point.c++				\
 	rectangle.h				\
+	rectangle.c++				\
 	screen.h				\
 	screen.c++				\
 	object.h				\
+	object.c++				\
 	window.h				\
 	window.c++				\
-	button.h
+	button.h				\
+	button.c++
 
 libhaze_la_CPPFLAGS =
 libhaze_la_CFLAGS   =
@@ -72,7 +80,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 		fi ; \
 	done
 
-maintainer-check-whitespaces: Makefile $(mexife_SOURCES)
-	$(WHITESPACE_DETECT) $(mexife_SOURCES)
+maintainer-check-whitespaces: Makefile $(libhaze_la_SOURCES)
+	$(WHITESPACE_DETECT) $(libhaze_la_SOURCES)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters

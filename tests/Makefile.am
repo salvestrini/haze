@@ -28,14 +28,15 @@ TESTS =						\
 check_PROGRAMS =				\
 	test
 
-TEST_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src
-
 test_SOURCES  = test.c++
 
-test_c___CPPFLAGS = $(TEST_CPPFLAGS)
-test_c___CFLAGS   =
-test_c___CXXFLAGS =
-test_c___LDADD    = $(top_srcdir)/src/libhaze.la
+test_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src
+test_CFLAGS   =
+test_CXXFLAGS =
+test_LDADD    = $(top_srcdir)/src/libhaze.la
+
+ALL_TESTS_SRCS =				\
+	$(test_SOURCES)
 
 ##
 ## Maintainer related targets
@@ -53,7 +54,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 		fi ; \
 	done
 
-maintainer-check-whitespaces: Makefile $(mexife_SOURCES)
-	$(WHITESPACE_DETECT) $(mexife_SOURCES)
+maintainer-check-whitespaces: Makefile $(ALL_TESTS_SRCS)
+	$(WHITESPACE_DETECT) $(ALL_TESTS_SRCS)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
