@@ -41,8 +41,6 @@ namespace HAZE {
                 void add(Object & o);
                 void remove(Object & o);
 
-                void         blank()   { blanking_ = true;  changed_ = true; }
-                void         unblank() { blanking_ = false; changed_ = true; }
                 void         draw()    { draw(borders_); }
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & where) { }
@@ -53,7 +51,6 @@ namespace HAZE {
         private:
                 std::list<Object *> objects_;
                 Rectangle           borders_;
-                bool                blanking_;
         };
 
 }
