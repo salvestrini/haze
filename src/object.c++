@@ -18,32 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef OBJECT_H
-#define OBJECT_H
-
-#include "point.h"
-#include "rectangle.h"
-
-namespace HAZE {
-
-        class Object {
-        public:
-                Object()  { }
-                ~Object() { }
-
-                unsigned int x() { return position_.x(); }
-                unsigned int y() { return position_.y(); }
-
-                virtual void draw(const Rectangle & clipping) { }
-                virtual void move(const Point & where)        { }
-                virtual void resize(const Rectangle & box)    { }
-
-        protected:
-                Point position_;
-
-        private:
-        };
-
-}
-
-#endif // OBJECT_H
+#include "object.h"
