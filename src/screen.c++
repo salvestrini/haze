@@ -37,6 +37,11 @@ namespace HAZE {
 
         void Screen::draw(const Rectangle & clipping)
         {
+                if (blanking_) {
+                        // XXX FIXME: Add code here
+                        return;
+                }
+
                 std::list<Object *>::iterator iter;
 
                 for (iter  = objects_.begin();
