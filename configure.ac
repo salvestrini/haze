@@ -1,9 +1,9 @@
 # Process this file with autoconf to produce a configure script.
 
 #
-# configure.ac for mexife
+# configure.ac for haze
 #
-# Copyright (C) 2008, 2009 Francesco Salvestrini
+# Copyright (C) 2009 Francesco Salvestrini
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
