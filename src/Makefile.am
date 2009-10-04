@@ -35,8 +35,12 @@ libhaze_la_SOURCES =
 
 ## SDL Backend
 libhaze_la_SOURCES +=				\
+	backends/backend.h			\
+	backends/backend.c++			\
+	backends/sdl.h				\
 	backends/sdl.c++			\
-	backends/sdl.h
+	backends/clutter.h			\
+	backends/clutter.c++
 
 ## Base
 libhaze_la_SOURCES +=				\
