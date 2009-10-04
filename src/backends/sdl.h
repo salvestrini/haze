@@ -18,10 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef SDL_H
-#define SDL_H
+#ifndef HAZE_SDL_H
+#define HAZE_SDL_H
 
-namespace HAZE {
-}
-
-#endif // SDL_H
+#endif // HAZE_SDL_H
