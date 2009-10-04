@@ -57,6 +57,8 @@ libhaze_la_SOURCES +=				\
 	point.c++				\
 	rectangle.h				\
 	rectangle.c++				\
+	bitmap.h				\
+	bitmap.c++				\
 	image.h					\
 	image.c++
 
