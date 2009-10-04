@@ -65,9 +65,9 @@ LIBTOOL_VERSION_AGE=0
 AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISION:$LIBTOOL_VERSION_AGE])
 
 # Checks for required libraries
-PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
-  AC_MSG_ERROR([missing required clutter library >= 1.0])
-])
+#PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
+#  AC_MSG_ERROR([missing required clutter library >= 1.0])
+#])
 
 #
 # gnulib related
