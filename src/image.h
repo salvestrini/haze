@@ -21,12 +21,15 @@
 #ifndef HAZE_IMAGE_H
 #define HAZE_IMAGE_H
 
+#include <string>
+
 #include "bitmap.h"
 
 namespace HAZE {
 
         class Image : public Bitmap {
         public:
+                void load(const std::string & filename);
 
         protected:
 

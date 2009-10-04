@@ -21,14 +21,16 @@
 #ifndef HAZE_BITMAP_H
 #define HAZE_BITMAP_H
 
-#include "rectangle.h"
-
 namespace HAZE {
 
-        class Bitmap : public Rectangle {
+        class Bitmap {
         public:
+                unsigned int width()  { return width_;  }
+                unsigned int height() { return height_; }
 
         protected:
+                unsigned int width_;
+                unsigned int height_;
 
         private:
         };
