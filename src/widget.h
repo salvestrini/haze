@@ -28,6 +28,7 @@ namespace HAZE {
 
         class Widget : public Object {
         public:
+                Widget() { }
                 Widget(const Rectangle & r) : borders_(r) { }
 
                 virtual void draw(const Rectangle & clipping) = 0;

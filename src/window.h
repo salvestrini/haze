@@ -28,6 +28,7 @@ namespace HAZE {
 
         class Window : public Widget {
         public:
+                Window() { }
                 Window(const Rectangle & r) : Widget(r) { }
 
                 virtual void draw(const Rectangle & clipping);
