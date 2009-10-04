@@ -27,11 +27,17 @@
 
 namespace HAZE {
 
-        class Image : public Bitmap {
+        class Image {
         public:
+                Image()  { bitmap_ = 0; }
+                ~Image() { if (bitmap_) delete bitmap_; }
+
                 void load(const std::string & filename);
 
+                Bitmap & bitmap() { return *bitmap_; }
+
         protected:
+                Bitmap * bitmap_;
 
         private:
         };

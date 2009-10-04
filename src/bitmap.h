@@ -25,6 +25,11 @@ namespace HAZE {
 
         class Bitmap {
         public:
+                Bitmap(unsigned int width,
+                       unsigned int height) :
+                        width_(width),
+                        height_(height) { }
+
                 unsigned int width()  { return width_;  }
                 unsigned int height() { return height_; }
 
