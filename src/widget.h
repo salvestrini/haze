@@ -34,12 +34,12 @@ namespace HAZE {
                 virtual void move(const Point & p)            = 0;
                 virtual void resize(const Rectangle & box)    = 0;
 
-                virtual const Rectangle & borders()  { return borders_; }
+                virtual const Rectangle & borders() const { return borders_; }
 
         protected:
+                Rectangle borders_;
 
         private:
-                Rectangle borders_;
         };
 
 }
