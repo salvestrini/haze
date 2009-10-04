@@ -21,4 +21,18 @@
 #ifndef HAZE_SDL_H
 #define HAZE_SDL_H
 
+#include "backends/backend.h"
+
+namespace HAZE {
+
+        class SDL : public Backend {
+        public:
+                virtual void init() { }
+
+        protected:
+        private:
+        };
+
+};
+
 #endif // HAZE_SDL_H

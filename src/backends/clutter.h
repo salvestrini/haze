@@ -21,4 +21,18 @@
 #ifndef HAZE_CLUTTER_H
 #define HAZE_CLUTTER_H
 
+#include "backends/backend.h"
+
+namespace HAZE {
+
+        class Clutter : public Backend {
+        public:
+                virtual void init() { }
+
+        protected:
+        private:
+        };
+
+};
+
 #endif // HAZE_CLUTTER_H

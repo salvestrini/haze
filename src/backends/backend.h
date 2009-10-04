@@ -21,4 +21,16 @@
 #ifndef HAZE_BACKEND_H
 #define HAZE_BACKEND_H
 
+namespace HAZE {
+
+        class Backend {
+        public:
+                virtual void init() = 0;
+
+        protected:
+        private:
+        };
+
+};
+
 #endif // HAZE_BACKEND_H
