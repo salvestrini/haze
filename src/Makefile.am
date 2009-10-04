@@ -56,7 +56,9 @@ libhaze_la_SOURCES +=				\
 	point.h					\
 	point.c++				\
 	rectangle.h				\
-	rectangle.c++
+	rectangle.c++				\
+	image.h					\
+	image.c++
 
 ## Core
 libhaze_la_SOURCES +=				\
