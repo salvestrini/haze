@@ -21,11 +21,11 @@
 #ifndef HAZE_IMAGE_H
 #define HAZE_IMAGE_H
 
-#include "rectangle.h"
+#include "bitmap.h"
 
 namespace HAZE {
 
-        class Image : public Rectangle {
+        class Image : public Bitmap {
         public:
 
         protected:

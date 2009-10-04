@@ -19,6 +19,3 @@
 //
 
 #include "widget.h"
-
-namespace HAZE {
-}
