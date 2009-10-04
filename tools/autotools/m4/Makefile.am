@@ -36,7 +36,8 @@ EXTERNAL =					\
 	$(URL_AA)/ax_path_generic.m4
 
 INTERNAL =					\
-	gnulib-cache.m4
+	gnulib-cache.m4				\
+	pkg.m4
 
 MACROS =					\
 	$(EXTERNAL)				\
