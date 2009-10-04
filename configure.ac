@@ -64,6 +64,11 @@ LIBTOOL_VERSION_REVISION=0
 LIBTOOL_VERSION_AGE=0
 AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISION:$LIBTOOL_VERSION_AGE])
 
+# Checks for required libraries
+PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
+  AC_MSG_ERROR([missing required clutter library >= 1.0])
+])
+
 #
 # gnulib related
 #
@@ -118,6 +123,8 @@ AC_SUBST(pkgvlibsdir, ["\${datadir}/${PACKAGE}-${API_VERSION}/libs"])
 
 AC_CONFIG_FILES([
 	Makefile
+
+        haze.pc
 
 	src/Makefile
 	src/gnulib/Makefile

@@ -50,6 +50,9 @@ EXTRA_DIST +=					\
 	README COPYING INSTALL THANKS		\
 	bootstrap .bootstrap
 
+pkgconfigdir   = $(libdir)/pkgconfig
+pkgconfig_DATA = haze.pc
+
 ##
 ## Maintainer related targets
 ##
