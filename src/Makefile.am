@@ -60,7 +60,9 @@ libhaze_la_SOURCES +=				\
 	bitmap.h				\
 	bitmap.c++				\
 	image.h					\
-	image.c++
+	image.c++				\
+	frame.h					\
+	frame.c++
 
 ## Core
 libhaze_la_SOURCES +=				\
