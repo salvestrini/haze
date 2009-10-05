@@ -23,12 +23,16 @@
 
 #include <string>
 
+#include "object.h"
 #include "rectangle.h"
 #include "font.h"
 
 namespace HAZE {
 
-        class Label : public Rectangle {
+        class Label :
+                // XXX FIXME: Diamond for multiple inheritance !!!
+                // XXX FIXME: Please rearrange the following mess !!!
+                virtual public Object, public Rectangle {
         public:
                 Label(const Font &      font,
                       const std::string text) :

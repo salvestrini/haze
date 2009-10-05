@@ -65,8 +65,6 @@ libhaze_la_SOURCES +=				\
 	image.c++				\
 	frame.h					\
 	frame.c++				\
-	label.h					\
-	label.c++				\
 	font.h					\
 	font.c++
 
@@ -80,6 +78,8 @@ libhaze_la_SOURCES +=				\
 	widget.c++				\
 	window.h				\
 	window.c++				\
+	label.h					\
+	label.c++				\
 	button.h				\
 	button.c++
 

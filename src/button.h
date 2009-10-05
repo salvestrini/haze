@@ -21,11 +21,11 @@
 #ifndef HAZE_BUTTON_H
 #define HAZE_BUTTON_H
 
-#include "rectangle.h"
+#include "object.h"
 
 namespace HAZE {
 
-        class Button : public Rectangle {
+        class Button : public Object {
         public:
                 Button();
                 ~Button();
