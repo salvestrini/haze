@@ -21,14 +21,22 @@
 #ifndef HAZE_FONT_H
 #define HAZE_FONT_H
 
+#include <string>
+
 namespace HAZE {
 
         class Font {
         public:
+                Font(const std::string & filename) :
+                        filename_(filename) { }
+
+                unsigned int width(const std::string & text)  const;
+                unsigned int height(const std::string & text) const;
 
         protected:
 
         private:
+                std::string filename_;
         };
 
 }

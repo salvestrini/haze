@@ -24,19 +24,27 @@
 #include <string>
 
 #include "rectangle.h"
+#include "font.h"
 
 namespace HAZE {
 
         class Label : public Rectangle {
         public:
-                Label(const std::string text);
+                Label(const Font &      font,
+                      const std::string text) :
+                        font_(font),
+                        text_(text) {
+                        width(font.width(text));
+                        height(font.height(text));
+                }
 
                 const std::string & text() const { return text_; }
 
                 void text(const std::string & t) { text_ = t; }
 
         protected:
-                std::string text_;
+                const Font & font_;
+                std::string  text_;
 
         private:
         };
