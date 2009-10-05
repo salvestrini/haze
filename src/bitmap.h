@@ -30,8 +30,8 @@ namespace HAZE {
                         width_(width),
                         height_(height) { }
 
-                unsigned int width()  { return width_;  }
-                unsigned int height() { return height_; }
+                unsigned int width()  const { return width_;  }
+                unsigned int height() const { return height_; }
 
         protected:
                 unsigned int width_;
