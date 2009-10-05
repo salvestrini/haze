@@ -62,7 +62,11 @@ libhaze_la_SOURCES +=				\
 	image.h					\
 	image.c++				\
 	frame.h					\
-	frame.c++
+	frame.c++				\
+	label.h					\
+	label.c++				\
+	font.h					\
+	font.c++
 
 ## Core
 libhaze_la_SOURCES +=				\
