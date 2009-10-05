@@ -47,8 +47,10 @@ libhaze_la_SOURCES +=				\
 	haze.h					\
 	haze.c++
 
-## Widget
+## Core
 libhaze_la_SOURCES +=				\
+	log.h					\
+	log.c++					\
 	color.h					\
 	color.c++				\
 	pen.h					\
@@ -68,7 +70,7 @@ libhaze_la_SOURCES +=				\
 	font.h					\
 	font.c++
 
-## Core
+## Objects
 libhaze_la_SOURCES +=				\
 	object.h				\
 	object.c++				\
