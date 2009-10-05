@@ -24,6 +24,8 @@
 #include <string>
 
 #include "bitmap.h"
+#include "rectangle.h"
+#include "point.h"
 
 namespace HAZE {
 
@@ -34,7 +36,16 @@ namespace HAZE {
 
                 void load(const std::string & filename);
 
-                Bitmap & bitmap() { return *bitmap_; }
+                const Bitmap & bitmap() { return *bitmap_; }
+                void     draw(const Point &     origin,
+                              const Rectangle & clipping);
+
+                unsigned int width() const {
+                        return bitmap_ ? bitmap_->width() : 0;
+                }
+                unsigned int height() const {
+                        return bitmap_ ? bitmap_->height(): 0;
+                }
 
         protected:
                 Bitmap * bitmap_;

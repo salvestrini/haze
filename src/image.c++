@@ -19,3 +19,18 @@
 //
 
 #include "image.h"
+#include "point.h"
+#include "rectangle.h"
+
+namespace HAZE {
+
+        void Image::load(const std::string & filename)
+        {
+        }
+
+        void Image::draw(const Point &     origin,
+                         const Rectangle & clipping)
+        {
+        }
+
+}
