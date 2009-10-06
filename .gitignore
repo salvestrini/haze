@@ -52,4 +52,8 @@ Makefile
 /tools/autotools/config.guess
 /tools/autotools/config.sub
 
-tests/test
+/docs/doxygen
+/docs/Doxyfile
+/docs/Doxyfile.bak
+
+/tests/test
