@@ -23,8 +23,10 @@
 
 #include <list>
 
+#include "log.h"
 #include "object.h"
 #include "rectangle.h"
+#include "utility.h"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320
@@ -36,6 +38,10 @@ namespace HAZE {
                 Screen(unsigned int width  = SCREEN_DEFAULT_WIDTH,
                        unsigned int height = SCREEN_DEFAULT_HEIGHT) :
                         borders_(0, 0, width, height) {
+                        hdbg << "Screen "
+                             << borders_.width() << "x" << borders_.height()
+                             << " created"
+                             << std::endl;
                 }
 
                 void add(Object & o);
@@ -47,6 +53,7 @@ namespace HAZE {
                 virtual void resize(const Rectangle & box);
 
         protected:
+                DECLARE_COPY_CTORS(Screen);
 
         private:
                 std::list<Object *> objects_;
