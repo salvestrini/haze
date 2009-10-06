@@ -32,6 +32,7 @@ ACLOCAL_AMFLAGS = -I tools/autotools/m4 --install
 SUBDIRS =					\
 	tools					\
 	src					\
+	docs					\
 	tests
 
 ##
@@ -52,6 +53,12 @@ EXTRA_DIST +=					\
 
 pkgconfigdir   = $(libdir)/pkgconfig
 pkgconfig_DATA = haze.pc
+
+##
+## Miscellaneous targets
+##
+doxygen: all
+	(cd docs && $(MAKE) $(AM_MAKEFLAGS) doxygen)
 
 ##
 ## Maintainer related targets
