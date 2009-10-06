@@ -49,6 +49,7 @@ libhaze_la_SOURCES +=				\
 
 ## Core
 libhaze_la_SOURCES +=				\
+	utility.h				\
 	log.h					\
 	log.c++					\
 	color.h					\
