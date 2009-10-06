@@ -29,14 +29,14 @@ namespace HAZE {
         class Frame : public Rectangle {
         public:
                 struct defs {
-                        Image tl_;
-                        Image t_;
-                        Image tr_;
-                        Image l_;
-                        Image r_;
-                        Image bl_;
-                        Image b_;
-                        Image br_;
+                        Image * tl_;
+                        Image * t_;
+                        Image * tr_;
+                        Image * l_;
+                        Image * r_;
+                        Image * bl_;
+                        Image * b_;
+                        Image * br_;
                 };
 
                 Frame(const struct defs & d);

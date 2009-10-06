@@ -22,7 +22,10 @@
 
 namespace HAZE {
 
-        Frame::Frame(const struct defs & d) : defs_(d) {
+        Frame::Frame(const struct defs & d) :
+                defs_(d)
+        {
+#if 0
                 if (!(defs_.tl_.width() ==
                       defs_.l_.width()  ==
                       defs_.bl_.width())) {
@@ -43,6 +46,7 @@ namespace HAZE {
                       defs_.bl_.height())) {
                         // Error
                 }
+#endif
         }
 
         void Frame::draw(const Rectangle & clipping)

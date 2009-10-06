@@ -23,6 +23,7 @@
 
 #include <string>
 
+#include "utility.h"
 #include "bitmap.h"
 #include "rectangle.h"
 #include "point.h"
@@ -48,6 +49,8 @@ namespace HAZE {
                 }
 
         protected:
+                DECLARE_COPY_CTORS(Image);
+
                 Bitmap * bitmap_;
 
         private:

@@ -21,7 +21,7 @@
 #ifndef HAZE_H
 #define HAZE_H
 
-#include "window.h"
 #include "screen.h"
+#include "window.h"
 
 #endif // HAZE_H
