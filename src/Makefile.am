@@ -50,6 +50,7 @@ libhaze_la_SOURCES +=				\
 ## Core
 libhaze_la_SOURCES +=				\
 	utility.h				\
+	exception.h				\
 	log.h					\
 	log.c++					\
 	color.h					\
