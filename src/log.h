@@ -21,7 +21,26 @@
 #ifndef HAZE_LOG_H
 #define HAZE_LOG_H
 
+#include <ostream>
+
 namespace HAZE {
+
+        class Log : public std::ostream {
+        public:
+
+        protected:
+
+        private:
+        };
+
+        Log & operator<<(Log & log, const char * v);
+        Log & operator<<(Log & log, const std::string & v);
+        Log & operator<<(Log & log, int v);
+        Log & operator<<(Log & log, unsigned int v);
+
+        extern Log hout;
+        extern Log hdbg;
+
 }
 
 #endif // HAZE_LOG_H

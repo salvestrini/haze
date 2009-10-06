@@ -19,3 +19,37 @@
 //
 
 #include "log.h"
+
+namespace HAZE {
+
+        Log hout;
+        Log hdbg;
+
+        Log & operator<<(Log &        log,
+                         const char * v)
+        {
+                log << v;
+                return log;
+        }
+
+        Log & operator<<(Log &               log,
+                         const std::string & v)
+        {
+                log << v;
+                return log;
+        }
+
+        Log & operator<<(Log & log,
+                         int   v)
+        {
+                log << v;
+                return log;
+        }
+
+        Log & operator<<(Log & log, unsigned int v)
+        {
+                log << v;
+                return log;
+        }
+
+}
