@@ -27,6 +27,12 @@ namespace HAZE {
 
         class Log : public std::ostream {
         public:
+#if 0
+                // Manipulators
+                void endl();
+
+                Log & operator<<(Log & (*m)(Log &));
+#endif
 
         protected:
 
@@ -38,8 +44,7 @@ namespace HAZE {
         Log & operator<<(Log & log, int v);
         Log & operator<<(Log & log, unsigned int v);
 
-        extern Log hout;
-        extern Log hdbg;
+        extern Log log;
 
 }
 

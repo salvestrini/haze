@@ -22,34 +22,52 @@
 
 namespace HAZE {
 
-        Log hout;
-        Log hdbg;
+        Log log;
 
         Log & operator<<(Log &        log,
                          const char * v)
         {
-                log << v;
+                static_cast<std::ostream &>(log) << v;
                 return log;
         }
 
         Log & operator<<(Log &               log,
                          const std::string & v)
         {
-                log << v;
+                static_cast<std::ostream &>(log) << v;
                 return log;
         }
 
         Log & operator<<(Log & log,
                          int   v)
         {
-                log << v;
+                static_cast<std::ostream &>(log) << v;
                 return log;
         }
 
-        Log & operator<<(Log & log, unsigned int v)
+        Log & operator<<(Log &        log,
+                         unsigned int v)
         {
-                log << v;
+                static_cast<std::ostream &>(log) << v;
                 return log;
         }
+
+        Log & operator<<(Log & log,
+                         char  v)
+        {
+                static_cast<std::ostream &>(log) << v;
+                return log;
+        }
+
+#if 0
+        Log & Log::operator<<(Log & (*m)(Log &))
+        {
+                if (*m == & std::endl) {
+                        log << std::endl;
+                }
+
+                return (*this);
+        }
+#endif
 
 }
