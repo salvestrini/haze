@@ -21,8 +21,15 @@
 #ifndef HAZE_UTILITY_H
 #define HAZE_UTILITY_H
 
+#define DECLARE_ASSIGNMENT_OPERATOR(CLASS)      \
+        CLASS & operator=(const CLASS &);
+
 #define DECLARE_COPY_CTORS(CLASS)               \
         CLASS(const CLASS &);                   \
-        CLASS & operator=(const CLASS &);
+        DECLARE_ASSIGNMENT_OPERATOR(CLASS)
+
+#define NAMESPACE_BEGIN namespace HAZE {
+
+#define NAMESPACE_END   }
 
 #endif // HAZE_UTILITY_H
