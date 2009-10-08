@@ -104,10 +104,10 @@ libhaze_la_SOURCES +=				\
 	button.h				\
 	button.c++
 
-libhaze_la_CPPFLAGS =
+libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS)
 libhaze_la_CFLAGS   =
 libhaze_la_CXXFLAGS =
-libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@
+libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS)
 
 ##
 ## Maintainer related targets
