@@ -70,6 +70,9 @@ AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISIO
 # Checks for libraries
 #
 
+# Checks for Boost
+AX_BOOST_BASE([1.35.0])
+
 # Checks for Clutter
 PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
   have_clutter=yes
@@ -78,7 +81,7 @@ PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
 ])
 
 # Checks for SDL
-AX_PATH_GENERIC([sdl],[1.2.13],[
+AX_PATH_GENERIC([sdl],[1.2.13],,[
   have_sdl=yes
 ],[
   have_sdl=no
