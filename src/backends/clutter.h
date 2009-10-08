@@ -18,21 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CLUTTER_H
-#define HAZE_CLUTTER_H
+#ifndef HAZE_BACKENDS_CLUTTER_H
+#define HAZE_BACKENDS_CLUTTER_H
 
+#include "utility.h"
 #include "backends/backend.h"
 
 namespace HAZE {
 
         class Clutter : public Backend {
         public:
-                virtual void init() { }
 
         protected:
+
         private:
+                void init() { }
+                void fini() { }
         };
 
 };
 
-#endif // HAZE_CLUTTER_H
+#endif // HAZE_BACKENDS_CLUTTER_H
