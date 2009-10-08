@@ -32,7 +32,6 @@ EXTERNAL =					\
 	$(URL_AA)/ax_path_missing.m4		\
         $(URL_AA)/ax_cxxcpp_check_flag.m4	\
 	$(URL_AA)/ax_compare_version.m4		\
-	$(URL_AA)/ax_lib_curl.m4		\
 	$(URL_AA)/ax_path_generic.m4
 
 INTERNAL =					\

@@ -57,17 +57,35 @@ AC_PROG_SED
 AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_CXX_C_O
-AC_PROG_LIBTOOL
+
+LT_INIT
+LT_PREREQ([2.2.6])
 
 LIBTOOL_VERSION_CURRENT=0
 LIBTOOL_VERSION_REVISION=0
 LIBTOOL_VERSION_AGE=0
 AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISION:$LIBTOOL_VERSION_AGE])
 
-# Checks for required libraries
-#PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
-#  AC_MSG_ERROR([missing required clutter library >= 1.0])
-#])
+#
+# Checks for libraries
+#
+
+# Checks for Clutter
+PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
+  have_clutter=yes
+],[
+  have_clutter=no
+])
+
+# Checks for SDL
+AX_PATH_GENERIC([sdl],[1.2.13],[
+  have_sdl=yes
+],[
+  have_sdl=no
+])
+
+AM_CONDITIONAL([HAVE_CLUTTER],[ test "$have_clutter" = "yes" ])
+AM_CONDITIONAL([HAVE_SDL],    [ test "$have_sdl"     = "yes" ])
 
 #
 # gnulib related
@@ -87,13 +105,6 @@ AX_PATH_MISSING([DOXYGEN], [doxygen])
 AX_PATH_MISSING([PERL],    [perl])
 AX_PATH_MISSING([WGET],    [wget])
 AX_PATH_MISSING([DNT],     [dnt])
-
-#
-# Check for require libraries
-#
-AX_LIB_CURL([7.19.4],,[
-        AC_MSG_ERROR([Your system lacks of libcurl >= 7.19.4])
-])
 
 #
 # Check for execinfo.h, backtrace() and backtrace_symbols(). They may be useful
