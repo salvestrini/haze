@@ -8,5 +8,4 @@ Description: Haze library
 Version: @VERSION@
 Libs: -L${libdir} -lhaze
 Cflags: -I${includedir}
-Requires: clutter-1.0 >= 1.0
-
+#Requires: clutter-1.0 >= 1.0
