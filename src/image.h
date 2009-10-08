@@ -32,20 +32,32 @@ namespace HAZE {
 
         class Image {
         public:
-                Image()  { bitmap_ = 0; }
-                ~Image() { if (bitmap_) delete bitmap_; }
+                Image() : bitmap_(0) { }
 
-                void load(const std::string & filename);
+                Image(const std::string & filename) :
+                        bitmap_(0) {
+                        load(filename);
+                }
+                ~Image() { unload(); }
 
                 const Bitmap & bitmap() { return *bitmap_; }
-                void     draw(const Point &     origin,
-                              const Rectangle & clipping);
 
-                unsigned int width() const {
+                void           draw(const Point &     origin,
+                                    const Rectangle & clipping);
+                void           draw(const Point &     origin);
+
+                unsigned int   width() const {
                         return bitmap_ ? bitmap_->width() : 0;
                 }
-                unsigned int height() const {
-                        return bitmap_ ? bitmap_->height(): 0;
+                unsigned int   height() const {
+                        return bitmap_ ? bitmap_->height() : 0;
+                }
+
+                void           load(const std::string & filename);
+                void           unload();
+
+                operator Rectangle() const {
+                        return Rectangle(0, 0, width(), height());
                 }
 
         protected:
