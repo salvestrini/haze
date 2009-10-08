@@ -34,8 +34,9 @@ namespace HAZE {
                 virtual void move(const Point & where)        = 0;
                 virtual void resize(const Rectangle & box)    = 0;
 
-                virtual void visible(bool v) { visible_ = v;    }
-                virtual bool visible()       { return visible_; }
+                void         show()    { visible_ = true;  }
+                void         hide()    { visible_ = false; }
+                virtual bool visible() { return visible_;  }
 
                 virtual void changed(bool v) { changed_ = v;    }
                 virtual bool changed()       { return changed_; }
