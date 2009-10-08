@@ -21,14 +21,18 @@
 #ifndef HAZE_BITMAP_H
 #define HAZE_BITMAP_H
 
+#include <string>
+
+#include "buffer.h"
+
 namespace HAZE {
 
         class Bitmap {
         public:
-                Bitmap(unsigned int width,
-                       unsigned int height) :
-                        width_(width),
-                        height_(height) { }
+                Bitmap(const std::string & filename) :
+                        width_(0), height_(0), buffer_(0) { }
+
+                ~Bitmap() { }
 
                 unsigned int width()  const { return width_;  }
                 unsigned int height() const { return height_; }
@@ -38,6 +42,7 @@ namespace HAZE {
                 unsigned int height_;
 
         private:
+                Buffer *     buffer_;
         };
 
 }
