@@ -38,8 +38,8 @@ namespace HAZE {
                 }
 
                 Rectangle(const Point & p,
-                          int           w = 0,
-                          int           h = 0) :
+                          unsigned int  w = 0,
+                          unsigned int  h = 0) :
                         p1_(p)
                 {
                         // XXX FIXME: Add checks here
@@ -69,7 +69,7 @@ namespace HAZE {
                         }
                 }
 
-                void move(const Point & p);
+                void         move(const Point & p);
 
                 int          x()      const { return p1_.x();           }
                 int          y()      const { return p1_.y();           }

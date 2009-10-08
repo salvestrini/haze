@@ -29,12 +29,21 @@ namespace HAZE {
         class Widget : public Object {
         public:
                 Widget() { }
-                Widget(const Rectangle & r) : borders_(r) { }
 
                 virtual void draw(const Rectangle & clipping) = 0;
                 virtual void move(const Point & p)            = 0;
-                virtual void resize(const Rectangle & box)    = 0;
 
+        protected:
+
+        private:
+        };
+
+        class RectangularWidget : public Widget {
+        public:
+                RectangularWidget(const Rectangle & r) :
+                        borders_(r) { }
+
+                virtual void              resize(const Rectangle & box) = 0;
                 virtual const Rectangle & borders() const { return borders_; }
 
         protected:
