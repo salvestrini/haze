@@ -27,9 +27,7 @@ namespace HAZE {
 
         class Point {
         public:
-                Point(const Point & p) : p_(p.p_) { }
-                Point(int x = 0,
-                      int y = 0) : p_(x, y) { }
+                Point(int x = 0, int y = 0) : p_(x, y) { }
 
                 ~Point() { }
 
