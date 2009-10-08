@@ -40,6 +40,7 @@ namespace HAZE {
 
         class RectangularWidget : public Widget {
         public:
+                RectangularWidget() { }
                 RectangularWidget(const Rectangle & r) :
                         borders_(r) { }
 

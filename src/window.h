@@ -23,13 +23,15 @@
 
 #include "widget.h"
 #include "rectangle.h"
+#include "point.h"
 
 namespace HAZE {
 
-        class Window : public Widget {
+        class Window : public RectangularWidget {
         public:
                 Window() { }
-                Window(const Rectangle & r) : Widget(r) { }
+                Window(const Rectangle & r) :
+                        RectangularWidget(r) { }
 
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & p);
