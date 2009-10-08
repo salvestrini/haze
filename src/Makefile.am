@@ -33,14 +33,22 @@ lib_LTLIBRARIES =				\
 
 libhaze_la_SOURCES =
 
-## SDL Backend
+## Backends
 libhaze_la_SOURCES +=				\
 	backends/backend.h			\
-	backends/backend.c++			\
+	backends/backend.c++
+
+if HAVE_SDL
+libhaze_la_SOURCES +=				\
 	backends/sdl.h				\
 	backends/sdl.c++			\
+endif
+
+if HAVE_CLUTTER
+libhaze_la_SOURCES +=				\
 	backends/clutter.h			\
 	backends/clutter.c++
+endif
 
 ## Base
 libhaze_la_SOURCES +=				\
@@ -51,6 +59,7 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	utility.h				\
 	exception.h				\
+	exception.c++				\
 	log.h					\
 	log.c++					\
 	color.h					\
@@ -61,10 +70,16 @@ libhaze_la_SOURCES +=				\
 	point.c++				\
 	rectangle.h				\
 	rectangle.c++				\
+	buffer.h				\
+	buffer.c++				\
 	bitmap.h				\
 	bitmap.c++				\
 	image.h					\
 	image.c++				\
+	animation.h				\
+	animation.c++				\
+	background.h				\
+	background.c++				\
 	frame.h					\
 	frame.c++				\
 	font.h					\
@@ -74,10 +89,14 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	object.h				\
 	object.c++				\
+	pointer.h				\
+	pointer.c++				\
 	screen.h				\
 	screen.c++				\
 	widget.h				\
 	widget.c++				\
+	icon.h					\
+	icon.c++				\
 	window.h				\
 	window.c++				\
 	label.h					\
