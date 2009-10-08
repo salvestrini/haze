@@ -41,7 +41,7 @@ libhaze_la_SOURCES +=				\
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
 	backends/sdl.h				\
-	backends/sdl.c++			\
+	backends/sdl.c++
 endif
 
 if HAVE_CLUTTER
