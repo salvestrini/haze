@@ -62,6 +62,10 @@ libhaze_la_SOURCES +=				\
 	exception.c++				\
 	log.h					\
 	log.c++					\
+	buffer.h				\
+	buffer.c++				\
+	factory.h				\
+	factory.c++				\
 	color.h					\
 	color.c++				\
 	pen.h					\
@@ -70,8 +74,6 @@ libhaze_la_SOURCES +=				\
 	point.c++				\
 	rectangle.h				\
 	rectangle.c++				\
-	buffer.h				\
-	buffer.c++				\
 	bitmap.h				\
 	bitmap.c++				\
 	image.h					\

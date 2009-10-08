@@ -45,6 +45,12 @@ namespace HAZE {
                 Buffer *     buffer_;
         };
 
+        class BitmapFactory : public Factory {
+        public:
+        protected:
+        private:
+        }
+
 }
 
 #endif // HAZE_BITMAP_H
