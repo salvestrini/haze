@@ -37,13 +37,21 @@ namespace HAZE {
 
         void Screen::draw(const Rectangle & clipping)
         {
+                // XXX FIXME:
+                //     clipping must be contained inside
+                //     borders_
+
                 std::list<Object *>::iterator iter;
+
+                background_.draw(Point(0,0), clipping);
 
                 for (iter  = objects_.begin();
                      iter != objects_.end();
                      iter++) {
                         (* iter)->draw(clipping);
                 }
+
+                pointer_.draw(clipping);
         }
 
         void Screen::resize(const Rectangle & box)

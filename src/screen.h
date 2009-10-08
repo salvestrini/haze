@@ -26,22 +26,33 @@
 #include "log.h"
 #include "object.h"
 #include "rectangle.h"
+#include "pointer.h"
 #include "utility.h"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320
+#define SCREEN_DEFAULT_BPP    HAZE::Screen::BPP32
 
 namespace HAZE {
 
         class Screen : public Object {
         public:
-                Screen(unsigned int width  = SCREEN_DEFAULT_WIDTH,
-                       unsigned int height = SCREEN_DEFAULT_HEIGHT) :
-                        borders_(0, 0, width, height) {
-                        hdbg << "Screen "
-                             << borders_.width() << "x" << borders_.height()
-                             << " created"
-                             << std::endl;
+                enum bytesPerPixel {
+                        BPP8 = 8, BPP16 = 16, BPP24 = 24, BPP32 = 32
+                };
+
+                Screen(unsigned int  width  = SCREEN_DEFAULT_WIDTH,
+                       unsigned int  height = SCREEN_DEFAULT_HEIGHT,
+                       bytesPerPixel bpp    = SCREEN_DEFAULT_BPP) :
+                        borders_(0, 0, width, height),
+                        bpp_(bpp)
+                {
+#if 0
+                        log << "Screen "
+                            << borders_.width() << "x" << borders_.height()
+                            << " created"
+                            << std::endl;
+#endif
                 }
 
                 void add(Object & o);
@@ -56,8 +67,11 @@ namespace HAZE {
                 DECLARE_COPY_CTORS(Screen);
 
         private:
-                std::list<Object *> objects_;
                 Rectangle           borders_;
+                unsigned int        bpp_;
+                std::list<Object *> objects_;
+                Pointer             pointer_;
+                Image               background_;
         };
 
 }
