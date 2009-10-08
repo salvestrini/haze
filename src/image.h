@@ -22,6 +22,7 @@
 #define HAZE_IMAGE_H
 
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 #include "utility.h"
 #include "bitmap.h"
@@ -32,15 +33,12 @@ namespace HAZE {
 
         class Image {
         public:
-                Image() : bitmap_(0) { }
+                Image() { }
 
-                Image(const std::string & filename) :
-                        bitmap_(0) {
-                        load(filename);
+                Image(const std::string & filename) {
+                        bitmap_ = bitmapFactory.get(filename);
                 }
                 ~Image() { unload(); }
-
-                const Bitmap & bitmap() { return *bitmap_; }
 
                 void           draw(const Point &     origin,
                                     const Rectangle & clipping);
@@ -63,7 +61,7 @@ namespace HAZE {
         protected:
                 DECLARE_COPY_CTORS(Image);
 
-                Bitmap * bitmap_;
+                boost::shared_ptr<Bitmap> bitmap_;
 
         private:
         };

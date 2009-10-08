@@ -22,17 +22,28 @@
 #define HAZE_BITMAP_H
 
 #include <string>
+#include <utility>
+#include <boost/shared_ptr.hpp>
 
+#include "factory.h"
 #include "buffer.h"
 
 namespace HAZE {
 
         class Bitmap {
         public:
+                Bitmap() :
+                        width_(0), height_(0), buffer_(0) {
+                        // XXX FIXME: Add code here
+                }
                 Bitmap(const std::string & filename) :
-                        width_(0), height_(0), buffer_(0) { }
+                        width_(0), height_(0), buffer_(0) {
+                        // XXX FIXME: Add code here
+                }
 
-                ~Bitmap() { }
+                ~Bitmap() {
+                        // XXX FIXME: Add code here
+                }
 
                 unsigned int width()  const { return width_;  }
                 unsigned int height() const { return height_; }
@@ -47,10 +58,31 @@ namespace HAZE {
 
         class BitmapFactory : public Factory {
         public:
+                boost::shared_ptr<Bitmap> get(const std::string & filename) {
+
+                        // XXX FIXME: Truly ugly ...
+
+                        boost::shared_ptr<Bitmap> tmp;
+
+                        std::map<std::string,
+                                boost::shared_ptr<Bitmap> >::iterator iter;
+
+                        iter = objects_.find(filename);
+
+                        if (iter == objects_.end()) {
+                                objects_.insert(std::make_pair(filename, tmp));
+                        }
+
+                        return tmp;
+                }
+
         protected:
         private:
-        }
+                std::map<std::string,
+                         boost::shared_ptr<Bitmap> > objects_;
+        };
 
+        extern BitmapFactory bitmapFactory;
 }
 
 #endif // HAZE_BITMAP_H

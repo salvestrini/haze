@@ -19,3 +19,5 @@
 //
 
 #include "bitmap.h"
+
+HAZE::BitmapFactory bitmapFactory;
