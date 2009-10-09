@@ -55,7 +55,7 @@ libhaze_la_SOURCES +=				\
 	haze.h					\
 	haze.c++
 
-## Core
+## Utilities
 libhaze_la_SOURCES +=				\
 	utility.h				\
 	exception.h				\
@@ -66,12 +66,28 @@ libhaze_la_SOURCES +=				\
 	buffer.c++				\
 	factory.h				\
 	factory.c++				\
+	unicode.h				\
+	unicode.c++
+
+## OS
+libhaze_la_SOURCES +=				\
+	time.h					\
+	time.c++				\
+	mutex.h					\
+	mutex.c++				\
+	thread.h				\
+	thread.c++
+
+## Graphic
+libhaze_la_SOURCES +=				\
 	color.h					\
 	color.c++				\
 	pen.h					\
 	pen.c++					\
 	point.h					\
 	point.c++				\
+	size.h					\
+	size.c++				\
 	rectangle.h				\
 	rectangle.c++				\
 	bitmap.h				\
@@ -80,6 +96,8 @@ libhaze_la_SOURCES +=				\
 	image.c++				\
 	animation.h				\
 	animation.c++				\
+	grid.h					\
+	grid.c++				\
 	background.h				\
 	background.c++				\
 	frame.h					\
@@ -87,7 +105,7 @@ libhaze_la_SOURCES +=				\
 	font.h					\
 	font.c++
 
-## Objects
+## Widgets
 libhaze_la_SOURCES +=				\
 	object.h				\
 	object.c++				\
@@ -106,7 +124,7 @@ libhaze_la_SOURCES +=				\
 	button.h				\
 	button.c++
 
-libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS)
+libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
 libhaze_la_CFLAGS   =
 libhaze_la_CXXFLAGS =
 libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS)
