@@ -18,6 +18,32 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string>
+#include <utility>
+#include <boost/shared_ptr.hpp>
+
 #include "bitmap.h"
 
-HAZE::BitmapFactory bitmapFactory;
+namespace HAZE {
+
+        BitmapFactory bitmapFactory;
+
+        boost::shared_ptr<Bitmap> BitmapFactory::get(const std::string & filename)
+        {
+
+                // XXX FIXME: Truly ugly ...
+
+                std::map<std::string,
+                        boost::shared_ptr<Bitmap> >::iterator iter;
+
+                iter = objects_.find(filename);
+
+                if (iter == objects_.end()) {
+                        boost::shared_ptr<Bitmap> tmp(new Bitmap(filename));
+                        objects_.insert(std::make_pair(filename, tmp));
+                }
+
+                return (*iter).second;
+        }
+
+}

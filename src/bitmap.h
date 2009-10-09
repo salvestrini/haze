@@ -27,30 +27,18 @@
 
 #include "factory.h"
 #include "buffer.h"
+#include "size.h"
 
 namespace HAZE {
 
-        class Bitmap {
+        class Bitmap : public Size {
         public:
-                Bitmap() :
-                        width_(0), height_(0), buffer_(0) {
-                        // XXX FIXME: Add code here
-                }
                 Bitmap(const std::string & filename) :
-                        width_(0), height_(0), buffer_(0) {
+                        Size(0, 0), buffer_(0) {
                         // XXX FIXME: Add code here
                 }
-
-                ~Bitmap() {
-                        // XXX FIXME: Add code here
-                }
-
-                unsigned int width()  const { return width_;  }
-                unsigned int height() const { return height_; }
 
         protected:
-                unsigned int width_;
-                unsigned int height_;
 
         private:
                 Buffer *     buffer_;
@@ -58,25 +46,10 @@ namespace HAZE {
 
         class BitmapFactory : public Factory {
         public:
-                boost::shared_ptr<Bitmap> get(const std::string & filename) {
-
-                        // XXX FIXME: Truly ugly ...
-
-                        boost::shared_ptr<Bitmap> tmp;
-
-                        std::map<std::string,
-                                boost::shared_ptr<Bitmap> >::iterator iter;
-
-                        iter = objects_.find(filename);
-
-                        if (iter == objects_.end()) {
-                                objects_.insert(std::make_pair(filename, tmp));
-                        }
-
-                        return tmp;
-                }
+                boost::shared_ptr<Bitmap> get(const std::string & filename);
 
         protected:
+
         private:
                 std::map<std::string,
                          boost::shared_ptr<Bitmap> > objects_;
