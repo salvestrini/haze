@@ -19,22 +19,3 @@
 //
 
 #include "window.h"
-
-namespace HAZE {
-
-        void Window::draw(const Rectangle & clipping)
-        {
-                // XXX FIXME: Add code here
-        }
-
-        void Window::move(const Point & p)
-        {
-                borders_.move(p);
-        }
-
-        void Window::resize(const Rectangle & box)
-        {
-                // XXX FIXME: Add code here
-        }
-
-}
