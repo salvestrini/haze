@@ -28,6 +28,7 @@
 #include "rectangle.h"
 #include "pointer.h"
 #include "utility.h"
+#include "size.h"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320
@@ -44,30 +45,29 @@ namespace HAZE {
                 Screen(unsigned int  width  = SCREEN_DEFAULT_WIDTH,
                        unsigned int  height = SCREEN_DEFAULT_HEIGHT,
                        bytesPerPixel bpp    = SCREEN_DEFAULT_BPP) :
-                        borders_(0, 0, width, height),
+                        size_(width, height),
                         bpp_(bpp)
                 {
 #if 0
                         log << "Screen "
-                            << borders_.width() << "x" << borders_.height()
+                            << size_.width() << "x" << size_.height()
                             << " created"
                             << std::endl;
 #endif
                 }
 
-                void add(Object & o);
-                void remove(Object & o);
-
-                void         draw()    { draw(borders_); }
+                void         add(Object & o);
+                void         remove(Object & o);
+                void         draw() { draw(Rectangle(Point(0, 0), size_)); }
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & where) { }
-                virtual void resize(const Rectangle & box);
+                virtual void resize(const Size & size);
 
         protected:
                 DECLARE_COPY_CTORS(Screen);
 
         private:
-                Rectangle           borders_;
+                Size                size_;
                 unsigned int        bpp_;
                 std::list<Object *> objects_;
                 Pointer             pointer_;

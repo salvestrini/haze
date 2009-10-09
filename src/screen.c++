@@ -20,6 +20,7 @@
 
 #include <list>
 
+#include "size.h"
 #include "screen.h"
 #include "object.h"
 
@@ -54,14 +55,9 @@ namespace HAZE {
                 pointer_.draw(clipping);
         }
 
-        void Screen::resize(const Rectangle & box)
+        void Screen::resize(const Size & size)
         {
-                borders_ = box;
-
-                if (borders_.x() < 0) borders_.x(0);
-                if (borders_.y() < 0) borders_.y(0);
-
-                changed_ = true;
+                size_ = size;
         }
 
 }
