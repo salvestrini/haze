@@ -40,6 +40,7 @@ namespace HAZE {
                 };
 
                 Frame(const struct defs & d);
+                virtual ~Frame() { }
 
                 virtual void draw(const Rectangle & clipping);
 
