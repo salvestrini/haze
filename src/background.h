@@ -23,26 +23,19 @@
 
 #include "image.h"
 #include "point.h"
-#include "color.h"
+#include "size.h"
 
 namespace HAZE {
 
         class Background : public Image {
         public:
-                Background(const Color &     fill,
-                           const Rectangle & bounds);
-
                 Background(const std::string & filename,
-                           const Rectangle &   bounds) :
-                        Image(filename),
-                        bounds_(0, 0, width(), height()) { }
-
-                void draw() { Image::draw(Point(0,0), bounds_); }
+                           const Size &        size) :
+                        Image(filename, size) { }
 
         protected:
 
         private:
-                Rectangle bounds_;
         };
 
 }
