@@ -22,11 +22,13 @@
 #define HAZE_RECTANGLE_H
 
 #include "point.h"
+#include "size.h"
 
 namespace HAZE {
 
         class Rectangle {
         public:
+#if 0
                 Rectangle(int  x = 0,
                           int  y = 0,
                           int  w = 0,
@@ -47,11 +49,21 @@ namespace HAZE {
                         p2_.x(p.x() + w);
                         p2_.y(p.y() + h);
                 }
+#endif
+
+                Rectangle() :
+                        origin_(0, 0),
+                        size_(0, 0) { }
+
+                Rectangle(const Point & origin,
+                          const Size &  size) :
+                        origin_(origin),
+                        size_(size) { }
 
                 Rectangle(const Point & p1,
                           const Point & p2)
                 {
-                        // XXX FIXME: Add checks here
+                        Point p1_, p2_;
 
                         if (p1.x() > p2.x()) {
                                 p1_.x(p2.x());
@@ -67,34 +79,34 @@ namespace HAZE {
                                 p1_.y(p1.y());
                                 p2_.y(p2.y());
                         }
+
+                        origin_ = p1;
+                        size_   = Size(p2_.x() - p1_.x(),
+                                       p2_.y() - p1_.x());
                 }
 
-                void         move(const Point & p);
+                virtual ~Rectangle() { }
 
-                int          x()      const { return p1_.x();           }
-                int          y()      const { return p1_.y();           }
-                unsigned int width()  const { return p2_.x() - p1_.x(); }
-                unsigned int height() const { return p2_.y() - p1_.y(); }
+                void         move(const Point & where) { origin_ = where; }
 
-                void x(int v) { p2_.x(v + p2_.x() - p1_.x()); p1_.x(v); }
-                void y(int v) { p2_.x(v + p2_.y() - p1_.y()); p1_.x(v); }
+                int          x() const { return origin_.x(); }
+                int          y() const { return origin_.y(); }
+                void         x(int v)  { origin_.x(v); }
+                void         y(int v)  { origin_.y(v); }
 
-                void width(unsigned int v)  { updateWidth(v);  }
-                void height(unsigned int v) { updateHeight(v); }
-                void resize(unsigned int w,
-                            unsigned int h) {
-                        updateWidth(w);
-                        updateHeight(h);
-                }
+                unsigned int width()  const         { return size_.width();  }
+                unsigned int height() const         { return size_.height(); }
+                void         width(unsigned int v)  { size_.width(v);  }
+                void         height(unsigned int v) { size_.height(v); }
+
+                const Size & size()                 { return size_; }
+                void         resize(const Size & s) { size_ = s; }
 
         protected:
 
         private:
-                void updateWidth(unsigned int v)  { p2_.x(p1_.x() + v); }
-                void updateHeight(unsigned int v) { p2_.y(p1_.y() + v); }
-
-                Point p1_;
-                Point p2_;
+                Point origin_;
+                Size  size_;
         };
 
 }
