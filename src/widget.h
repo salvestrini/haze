@@ -23,6 +23,7 @@
 
 #include "rectangle.h"
 #include "object.h"
+#include "size.h"
 
 namespace HAZE {
 
@@ -31,26 +32,31 @@ namespace HAZE {
                 Widget() { }
 
                 virtual void draw(const Rectangle & clipping) = 0;
-                virtual void move(const Point & p)            = 0;
+                virtual void move(const Point & where) { origin_ = where; }
 
         protected:
 
         private:
+                Point origin_;
         };
+
+#define WIDGET_DEFAULT_WIDTH  100
+#define WIDGET_DEFAULT_HEIGHT 100
 
         class RectangularWidget : public Widget {
         public:
-                RectangularWidget() { }
-                RectangularWidget(const Rectangle & r) :
-                        borders_(r) { }
+                RectangularWidget() :
+                        size_(WIDGET_DEFAULT_WIDTH,
+                              WIDGET_DEFAULT_HEIGHT) { }
+                RectangularWidget(const Size & s) : size_(s) { }
 
-                virtual void              resize(const Rectangle & box) = 0;
-                virtual const Rectangle & borders() const { return borders_; }
+                virtual const Size & size() const { return size_; }
+                virtual void         resize(const Size & box) = 0;
 
         protected:
-                Rectangle borders_;
 
         private:
+                Size size_;
         };
 
 }
