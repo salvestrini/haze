@@ -27,6 +27,7 @@ namespace HAZE {
 
         class Backend {
         public:
+                virtual ~Backend();
 
         protected:
 
