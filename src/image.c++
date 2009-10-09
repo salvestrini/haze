@@ -24,18 +24,6 @@
 
 namespace HAZE {
 
-        void Image::load(const std::string & filename) {
-                unload();
-                bitmap_ = new Bitmap(filename);
-        }
-
-        void Image::unload() {
-                if (bitmap_) {
-                        delete bitmap_;
-                        bitmap_ = 0;
-                }
-        }
-
         void Image::draw(const Point &     origin,
                          const Rectangle & clipping)
         {

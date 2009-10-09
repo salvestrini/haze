@@ -24,38 +24,41 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
-#include "utility.h"
 #include "bitmap.h"
-#include "rectangle.h"
 #include "point.h"
+#include "rectangle.h"
+#include "size.h"
 
 namespace HAZE {
 
-        class Image {
+        class Image : public Size {
         public:
-                Image() { }
+                Image()          { }
+                virtual ~Image() { }
 
                 Image(const std::string & filename) {
                         bitmap_ = bitmapFactory.get(filename);
                 }
-                ~Image() { unload(); }
 
-                void           draw(const Point &     origin,
-                                    const Rectangle & clipping);
-                void           draw(const Point &     origin);
+                Image(const std::string & filename,
+                      const Size &        size) {
+                        bitmap_ = bitmapFactory.get(filename);
+                        bitmap_->resize(size);
+                }
 
-                unsigned int   width() const {
+                void                 load(const std::string & filename) {
+                        bitmap_ = bitmapFactory.get(filename);
+                }
+
+                virtual void         draw(const Point &     origin,
+                                          const Rectangle & clipping);
+                virtual void         draw(const Point &     origin);
+
+                virtual unsigned int width() const {
                         return bitmap_ ? bitmap_->width() : 0;
                 }
-                unsigned int   height() const {
+                virtual unsigned int height() const {
                         return bitmap_ ? bitmap_->height() : 0;
-                }
-
-                void           load(const std::string & filename);
-                void           unload();
-
-                operator Rectangle() const {
-                        return Rectangle(0, 0, width(), height());
                 }
 
         protected:
