@@ -23,5 +23,13 @@
 
 #include "screen.h"
 #include "window.h"
+#include "object.h"
+#include "pointer.h"
+#include "screen.h"
+#include "widget.h"
+#include "icon.h"
+#include "window.h"
+#include "label.h"	
+#include "button.h"
 
 #endif // HAZE_H
