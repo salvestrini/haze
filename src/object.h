@@ -23,27 +23,25 @@
 
 #include "point.h"
 #include "rectangle.h"
+#include "size.h"
 
 namespace HAZE {
 
         class Object {
         public:
-                Object() : visible_(false), changed_(false) { }
+                Object() : visible_(false) { }
+                virtual ~Object()          { }
 
                 virtual void draw(const Rectangle & clipping) = 0;
                 virtual void move(const Point & where)        = 0;
-                virtual void resize(const Rectangle & box)    = 0;
+                virtual void resize(const Size & size)        = 0;
 
                 void         show()    { visible_ = true;  }
                 void         hide()    { visible_ = false; }
                 virtual bool visible() { return visible_;  }
 
-                virtual void changed(bool v) { changed_ = v;    }
-                virtual bool changed()       { return changed_; }
-
         protected:
                 bool visible_;
-                bool changed_;
 
         private:
         };
