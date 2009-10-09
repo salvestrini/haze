@@ -24,6 +24,7 @@
 #include "object.h"
 #include "image.h"
 #include "point.h"
+#include "size.h"
 
 namespace HAZE {
 
@@ -44,7 +45,7 @@ namespace HAZE {
                         position_ = where;
                 }
 
-                virtual void resize(const Rectangle & box) { }
+                virtual void resize(const Size & box) { }
 
         protected:
 
