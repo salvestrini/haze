@@ -32,7 +32,7 @@ AC_PREREQ([2.64])
 # Place/find all autotools related files in the following directories
 AC_CONFIG_AUX_DIR([tools/autotools])
 AC_CONFIG_MACRO_DIR([tools/autotools/m4])
-AC_CONFIG_SRCDIR([src/haze.h])
+AC_CONFIG_SRCDIR([src/haze.h++])
 
 #
 # For automake options (AM_INIT_AUTOMAKE options) see Makefile.am
@@ -157,5 +157,6 @@ AC_CONFIG_FILES([tools/maint/fetch],               [chmod +x tools/maint/fetch])
 AC_CONFIG_FILES([tools/maint/whitespace-detect],   [chmod +x tools/maint/whitespace-detect])
 AC_CONFIG_FILES([tools/maint/gitlog-to-committers],[chmod +x tools/maint/gitlog-to-committers])
 AC_CONFIG_FILES([tools/maint/gittag-to-date],      [chmod +x tools/maint/gittag-to-date])
+AC_CONFIG_FILES([tools/maint/guards-check],        [chmod +x tools/maint/guards-check])
 
 AC_OUTPUT
