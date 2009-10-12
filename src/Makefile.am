@@ -35,92 +35,92 @@ libhaze_la_SOURCES =
 
 ## Backends
 libhaze_la_SOURCES +=				\
-	backends/backend.h++			\
-	backends/backend.c++
+	haze/backends/backend.h++		\
+	haze/backends/backend.c++
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
-	backends/sdl.h++			\
-	backends/sdl.c++
+	haze/backends/sdl.h++			\
+	haze/backends/sdl.c++
 endif
 if HAVE_CLUTTER
 libhaze_la_SOURCES +=				\
-	backends/clutter.h++			\
-	backends/clutter.c++
+	haze/backends/clutter.h++		\
+	haze/backends/clutter.c++
 endif
 
 ## Base
 libhaze_la_SOURCES +=				\
-	haze.h++				\
-	haze.c++
+	haze/haze.h++				\
+	haze/haze.c++
 
 ## Utilities
 libhaze_la_SOURCES +=				\
-	utility.h++				\
-	exception.h++				\
-	exception.c++				\
-	log.h++					\
-	log.c++					\
-	buffer.h++				\
-	buffer.c++				\
-	factory.h++				\
-	factory.c++				\
-	unicode.h++				\
-	unicode.c++
+	haze/utility.h++			\
+	haze/exception.h++			\
+	haze/exception.c++			\
+	haze/log.h++				\
+	haze/log.c++				\
+	haze/buffer.h++				\
+	haze/buffer.c++				\
+	haze/factory.h++			\
+	haze/factory.c++			\
+	haze/unicode.h++			\
+	haze/unicode.c++
 
 ## OS
 libhaze_la_SOURCES +=				\
-	time.h++				\
-	time.c++				\
-	mutex.h++				\
-	mutex.c++				\
-	thread.h++				\
-	thread.c++
+	haze/time.h++				\
+	haze/time.c++				\
+	haze/mutex.h++				\
+	haze/mutex.c++				\
+	haze/thread.h++				\
+	haze/thread.c++
 
 ## Graphic
 libhaze_la_SOURCES +=				\
-	color.h++				\
-	color.c++				\
-	pen.h++					\
-	pen.c++					\
-	point.h++				\
-	point.c++				\
-	size.h++				\
-	size.c++				\
-	rectangle.h++				\
-	rectangle.c++				\
-	bitmap.h++				\
-	bitmap.c++				\
-	image.h++				\
-	image.c++				\
-	animation.h++				\
-	animation.c++				\
-	grid.h++				\
-	grid.c++				\
-	background.h++				\
-	background.c++				\
-	frame.h++				\
-	frame.c++				\
-	font.h++				\
-	font.c++
+	haze/color.h++				\
+	haze/color.c++				\
+	haze/pen.h++				\
+	haze/pen.c++				\
+	haze/point.h++				\
+	haze/point.c++				\
+	haze/size.h++				\
+	haze/size.c++				\
+	haze/rectangle.h++			\
+	haze/rectangle.c++			\
+	haze/bitmap.h++				\
+	haze/bitmap.c++				\
+	haze/image.h++				\
+	haze/image.c++				\
+	haze/animation.h++			\
+	haze/animation.c++			\
+	haze/grid.h++				\
+	haze/grid.c++				\
+	haze/background.h++			\
+	haze/background.c++			\
+	haze/frame.h++				\
+	haze/frame.c++				\
+	haze/font.h++				\
+	haze/font.c++
 
 ## Widgets
 libhaze_la_SOURCES +=				\
-	object.h++				\
-	object.c++				\
-	pointer.h++				\
-	pointer.c++				\
-	screen.h++				\
-	screen.c++				\
-	widget.h++				\
-	widget.c++				\
-	icon.h++				\
-	icon.c++				\
-	window.h++				\
-	window.c++				\
-	label.h++				\
-	label.c++				\
-	button.h++				\
-	button.c++
+	haze/object.h++				\
+	haze/object.c++				\
+	haze/pointer.h++			\
+	haze/pointer.c++			\
+	haze/screen.h++				\
+	haze/screen.c++				\
+	haze/widget.h++				\
+	haze/widget.c++				\
+	haze/icon.h++				\
+	haze/icon.c++				\
+	haze/window.h++				\
+	haze/window.c++				\
+	haze/label.h++				\
+	haze/label.c++				\
+	haze/button.h++				\
+	haze/button.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
 libhaze_la_CFLAGS   =
@@ -131,6 +131,14 @@ libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS)
 ## Maintainer related targets
 ##
 update-local: Makefile
+
+maintainer-check-includes: Makefile $(libhaze_la_SOURCES)
+	for i in $(libhaze_la_SOURCES) ; do \
+		if $(GREP) "include[ \t]\+\"" $$i | $(GREP) -v "\"haze\/" ; then \
+			echo "Wrong include in $$i" ; \
+			exit 1; \
+		fi ; \
+	done
 
 maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 	for i in $(bin_PROGRAMS) ; do \
@@ -149,4 +157,4 @@ maintainer-check-whitespaces: Makefile $(libhaze_la_SOURCES)
 maintainer-check-guards: Makefile $(libhaze_la_SOURCES)
 	$(GUARDS_CHECK) $(libhaze_la_SOURCES)
 
-maintainer-check-local: Makefile maintainer-check-guards maintainer-check-whitespaces maintainer-check-parameters
+maintainer-check-local: Makefile maintainer-check-includes maintainer-check-guards maintainer-check-whitespaces maintainer-check-parameters
