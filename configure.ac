@@ -32,7 +32,7 @@ AC_PREREQ([2.64])
 # Place/find all autotools related files in the following directories
 AC_CONFIG_AUX_DIR([tools/autotools])
 AC_CONFIG_MACRO_DIR([tools/autotools/m4])
-AC_CONFIG_SRCDIR([src/haze.h++])
+AC_CONFIG_SRCDIR([src/haze/haze.h++])
 
 #
 # For automake options (AM_INIT_AUTOMAKE options) see Makefile.am

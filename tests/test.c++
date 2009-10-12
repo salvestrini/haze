@@ -18,7 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze.h++"
+#include "haze/haze.h++"
 
 int main(int argc, char argv[])
 {
