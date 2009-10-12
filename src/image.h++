@@ -24,10 +24,10 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
-#include "bitmap.h"
-#include "point.h"
-#include "rectangle.h"
-#include "size.h"
+#include "bitmap.h++"
+#include "point.h++"
+#include "rectangle.h++"
+#include "size.h++"
 
 namespace HAZE {
 

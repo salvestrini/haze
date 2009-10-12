@@ -18,7 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "frame.h"
+#include "frame.h++"
 
 namespace HAZE {
 
@@ -78,7 +78,7 @@ namespace HAZE {
 
                 // Bottom
                 defs_.bl_.draw(clipping);
-                
+
                 for (t_x = x + defs_.bl_.width();
                      t_x < this->x() + this->w() - defs_.br_.width();
                      t_x++) {

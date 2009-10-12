@@ -18,44 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BITMAP_H
-#define HAZE_BITMAP_H
+#ifndef HAZE_BACKGROUND_H
+#define HAZE_BACKGROUND_H
 
-#include <string>
-#include <utility>
-#include <boost/shared_ptr.hpp>
-
-#include "factory.h"
-#include "buffer.h"
-#include "size.h"
+#include "image.h++"
 
 namespace HAZE {
 
-        class Bitmap : public Size {
+        class Background : public Image {
         public:
-                Bitmap(const std::string & filename) :
-                        Size(0, 0), buffer_(0) {
-                        // XXX FIXME: Add code here
-                }
+                Background(const std::string & filename,
+                           const Size &        size) :
+                        Image(filename, size) { }
 
         protected:
 
         private:
-                Buffer *     buffer_;
         };
 
-        class BitmapFactory : public Factory {
-        public:
-                boost::shared_ptr<Bitmap> get(const std::string & filename);
-
-        protected:
-
-        private:
-                std::map<std::string,
-                         boost::shared_ptr<Bitmap> > objects_;
-        };
-
-        extern BitmapFactory bitmapFactory;
 }
 
-#endif // HAZE_BITMAP_H
+#endif // HAZE_BACKGROUND_H

@@ -18,41 +18,33 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_LABEL_H
-#define HAZE_LABEL_H
+#ifndef HAZE_ANIMATION_H
+#define HAZE_ANIMATION_H
 
+#include <vector>
 #include <string>
 
-#include "object.h"
-#include "rectangle.h"
-#include "font.h"
+#include "image.h++"
 
 namespace HAZE {
 
-        class Label :
-                // XXX FIXME: Diamond for multiple inheritance !!!
-                // XXX FIXME: Please rearrange the following mess !!!
-                virtual public Object, public Rectangle {
+        class Animation {
         public:
-                Label(const Font &      font,
-                      const std::string text) :
-                        font_(font),
-                        text_(text) {
-                        width(font.width(text));
-                        height(font.height(text));
-                }
+                Animation(const std::vector<const std::string> & frames);
 
-                const std::string & text() const { return text_; }
-
-                void text(const std::string & t) { text_ = t; }
+                void step(int count);
+                void stepForward()  { step(1);  }
+                void stepBackward() { step(-1); }
 
         protected:
-                const Font & font_;
-                std::string  text_;
 
         private:
+#if 0
+                std::vector<Image>           frames_;
+                std::vector<Image>::iterator current_;
+#endif
         };
 
 }
 
-#endif // HAZE_LABEL_H
+#endif // HAZE_ANIMATION_H

@@ -35,93 +35,91 @@ libhaze_la_SOURCES =
 
 ## Backends
 libhaze_la_SOURCES +=				\
-	backends/backend.h			\
+	backends/backend.h++			\
 	backends/backend.c++
-
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
-	backends/sdl.h				\
+	backends/sdl.h++			\
 	backends/sdl.c++
 endif
-
 if HAVE_CLUTTER
 libhaze_la_SOURCES +=				\
-	backends/clutter.h			\
+	backends/clutter.h++			\
 	backends/clutter.c++
 endif
 
 ## Base
 libhaze_la_SOURCES +=				\
-	haze.h					\
+	haze.h++				\
 	haze.c++
 
 ## Utilities
 libhaze_la_SOURCES +=				\
-	utility.h				\
-	exception.h				\
+	utility.h++				\
+	exception.h++				\
 	exception.c++				\
-	log.h					\
+	log.h++					\
 	log.c++					\
-	buffer.h				\
+	buffer.h++				\
 	buffer.c++				\
-	factory.h				\
+	factory.h++				\
 	factory.c++				\
-	unicode.h				\
+	unicode.h++				\
 	unicode.c++
 
 ## OS
 libhaze_la_SOURCES +=				\
-	time.h					\
+	time.h++				\
 	time.c++				\
-	mutex.h					\
+	mutex.h++				\
 	mutex.c++				\
-	thread.h				\
+	thread.h++				\
 	thread.c++
 
 ## Graphic
 libhaze_la_SOURCES +=				\
-	color.h					\
+	color.h++				\
 	color.c++				\
-	pen.h					\
+	pen.h++					\
 	pen.c++					\
-	point.h					\
+	point.h++				\
 	point.c++				\
-	size.h					\
+	size.h++				\
 	size.c++				\
-	rectangle.h				\
+	rectangle.h++				\
 	rectangle.c++				\
-	bitmap.h				\
+	bitmap.h++				\
 	bitmap.c++				\
-	image.h					\
+	image.h++				\
 	image.c++				\
-	animation.h				\
+	animation.h++				\
 	animation.c++				\
-	grid.h					\
+	grid.h++				\
 	grid.c++				\
-	background.h				\
+	background.h++				\
 	background.c++				\
-	frame.h					\
+	frame.h++				\
 	frame.c++				\
-	font.h					\
+	font.h++				\
 	font.c++
 
 ## Widgets
 libhaze_la_SOURCES +=				\
-	object.h				\
+	object.h++				\
 	object.c++				\
-	pointer.h				\
+	pointer.h++				\
 	pointer.c++				\
-	screen.h				\
+	screen.h++				\
 	screen.c++				\
-	widget.h				\
+	widget.h++				\
 	widget.c++				\
-	icon.h					\
+	icon.h++				\
 	icon.c++				\
-	window.h				\
+	window.h++				\
 	window.c++				\
-	label.h					\
+	label.h++				\
 	label.c++				\
-	button.h				\
+	button.h++				\
 	button.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
@@ -148,4 +146,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 maintainer-check-whitespaces: Makefile $(libhaze_la_SOURCES)
 	$(WHITESPACE_DETECT) $(libhaze_la_SOURCES)
 
-maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
+maintainer-check-guards: Makefile $(libhaze_la_SOURCES)
+	$(GUARDS_CHECK) $(libhaze_la_SOURCES)
+
+maintainer-check-local: Makefile maintainer-check-guards maintainer-check-whitespaces maintainer-check-parameters

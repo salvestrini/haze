@@ -20,9 +20,9 @@
 
 #include <list>
 
-#include "size.h"
-#include "screen.h"
-#include "object.h"
+#include "size.h++"
+#include "screen.h++"
+#include "object.h++"
 
 namespace HAZE {
 

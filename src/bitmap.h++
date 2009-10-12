@@ -18,47 +18,44 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_WIDGET_H
-#define HAZE_WIDGET_H
+#ifndef HAZE_BITMAP_H
+#define HAZE_BITMAP_H
 
-#include "rectangle.h"
-#include "object.h"
-#include "size.h"
+#include <string>
+#include <utility>
+#include <boost/shared_ptr.hpp>
+
+#include "factory.h++"
+#include "buffer.h++"
+#include "size.h++"
 
 namespace HAZE {
 
-        class Widget : public Object {
+        class Bitmap : public Size {
         public:
-                Widget() { }
-
-                virtual void draw(const Rectangle & clipping) = 0;
-                virtual void move(const Point & where) { origin_ = where; }
+                Bitmap(const std::string & filename) :
+                        Size(0, 0), buffer_(0) {
+                        // XXX FIXME: Add code here
+                }
 
         protected:
 
         private:
-                Point origin_;
+                Buffer *     buffer_;
         };
 
-#define WIDGET_DEFAULT_WIDTH  100
-#define WIDGET_DEFAULT_HEIGHT 100
-
-        class RectangularWidget : public Widget {
+        class BitmapFactory : public Factory {
         public:
-                RectangularWidget() :
-                        size_(WIDGET_DEFAULT_WIDTH,
-                              WIDGET_DEFAULT_HEIGHT) { }
-                RectangularWidget(const Size & s) : size_(s) { }
-
-                virtual const Size & size() const { return size_; }
-                virtual void         resize(const Size & box) = 0;
+                boost::shared_ptr<Bitmap> get(const std::string & filename);
 
         protected:
 
         private:
-                Size size_;
+                std::map<std::string,
+                         boost::shared_ptr<Bitmap> > objects_;
         };
 
+        extern BitmapFactory bitmapFactory;
 }
 
-#endif // HAZE_WIDGET_H
+#endif // HAZE_BITMAP_H

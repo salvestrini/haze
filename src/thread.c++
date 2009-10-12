@@ -18,7 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "thread.h"
+#include "thread.h++"
 
 namespace HAZE {
 
@@ -30,12 +30,12 @@ namespace HAZE {
         Thread::~Thread()
         {
         }
-        
+
         bool Thread::wait(unsigned long time)
         {
                 return false;
         }
-        
+
         void Thread::start()
         {
                 started_ = true;

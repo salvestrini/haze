@@ -23,12 +23,12 @@
 
 #include <list>
 
-#include "log.h"
-#include "object.h"
-#include "rectangle.h"
-#include "pointer.h"
-#include "utility.h"
-#include "size.h"
+#include "log.h++"
+#include "object.h++"
+#include "rectangle.h++"
+#include "pointer.h++"
+#include "utility.h++"
+#include "size.h++"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320

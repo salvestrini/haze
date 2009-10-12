@@ -18,24 +18,22 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BACKENDS_BACKEND_H
-#define HAZE_BACKENDS_BACKEND_H
+#ifndef HAZE_BUTTON_H
+#define HAZE_BUTTON_H
 
-#include "utility.h"
+#include "object.h++"
 
 namespace HAZE {
 
-        class Backend {
+        class Button : public Object {
         public:
-                virtual ~Backend();
+                Button();
+                ~Button();
 
         protected:
-
         private:
-                virtual void init() = 0;
-                virtual void fini() = 0;
         };
 
-};
+}
 
-#endif // HAZE_BACKENDS_BACKEND_H
+#endif // HAZE_BUTTON_H

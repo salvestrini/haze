@@ -18,28 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_PEN_H
-#define HAZE_PEN_H
+#ifndef HAZE_BACKENDS_BACKEND_H
+#define HAZE_BACKENDS_BACKEND_H
 
-#include "color.h"
+#include "utility.h++"
 
 namespace HAZE {
 
-        class Pen {
+        class Backend {
         public:
-                Pen(const Color & color,
-                    unsigned int  size) :
-                        color_(color),
-                        size_(size) {
-                }
+                virtual ~Backend();
 
         protected:
 
         private:
-                Color        color_;
-                unsigned int size_;
+                virtual void init() = 0;
+                virtual void fini() = 0;
         };
 
-}
+};
 
-#endif // HAZE_PEN_H
+#endif // HAZE_BACKENDS_BACKEND_H

@@ -18,24 +18,18 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BACKENDS_SDL_H
-#define HAZE_BACKENDS_SDL_H
+#ifndef HAZE_H
+#define HAZE_H
 
-#include "utility.h"
-#include "backends/backend.h"
+#include "screen.h++"
+#include "window.h++"
+#include "object.h++"
+#include "pointer.h++"
+#include "screen.h++"
+#include "widget.h++"
+#include "icon.h++"
+#include "window.h++"
+#include "label.h++"
+#include "button.h++"
 
-namespace HAZE {
-
-        class SDL : public Backend {
-        public:
-
-        protected:
-
-        private:
-                void init() { }
-                void fini() { }
-        };
-
-};
-
-#endif // HAZE_BACKENDS_SDL_H
+#endif // HAZE_H

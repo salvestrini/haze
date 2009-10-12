@@ -18,24 +18,28 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GRID_H
-#define HAZE_GRID_H
+#ifndef HAZE_PEN_H
+#define HAZE_PEN_H
 
-#include <string>
-
-#include "widget.h"
+#include "color.h++"
 
 namespace HAZE {
 
-        class Grid : public RectangularWidget {
+        class Pen {
         public:
-                virtual void resize(const Size & box) { }
+                Pen(const Color & color,
+                    unsigned int  size) :
+                        color_(color),
+                        size_(size) {
+                }
 
         protected:
 
         private:
+                Color        color_;
+                unsigned int size_;
         };
 
 }
 
-#endif // HAZE_GRID_H
+#endif // HAZE_PEN_H

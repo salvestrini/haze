@@ -18,34 +18,30 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_OBJECT_H
-#define HAZE_OBJECT_H
+#ifndef HAZE_ICON_H
+#define HAZE_ICON_H
 
-#include "point.h"
-#include "rectangle.h"
-#include "size.h"
+#include <vector>
+
+#include "image.h++"
+#include "widget.h++"
 
 namespace HAZE {
 
-        class Object {
+        class Icon : public RectangularWidget {
         public:
-                Object() : visible_(false) { }
-                virtual ~Object()          { }
+                Icon(const Image & image) :
+                        RectangularWidget(image) { }
 
-                virtual void draw(const Rectangle & clipping) = 0;
-                virtual void move(const Point & where)        = 0;
-                virtual void resize(const Size & size)        = 0;
-
-                void         show()    { visible_ = true;  }
-                void         hide()    { visible_ = false; }
-                virtual bool visible() { return visible_;  }
+                virtual void draw(const Rectangle & clipping);
+                virtual void move(const Point & p);
+                virtual void resize(const Rectangle & box);
 
         protected:
-                bool visible_;
 
         private:
         };
 
 }
 
-#endif // HAZE_OBJECT_H
+#endif // HAZE_ICON_H

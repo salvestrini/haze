@@ -18,27 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BUFFER_H
-#define HAZE_BUFFER_H
+#ifndef HAZE_BACKENDS_SDL_H
+#define HAZE_BACKENDS_SDL_H
 
-#include <memory>
-
-#include "utility.h"
+#include "utility.h++"
+#include "backends/backend.h++"
 
 namespace HAZE {
 
-        class Buffer {
+        class SDL : public Backend {
         public:
-                Buffer() : data_(0) { }
-                ~Buffer() { if (data_) free(data_); }
 
         protected:
-                DECLARE_COPY_CTORS(Buffer);
 
         private:
-                void * data_;
+                void init() { }
+                void fini() { }
         };
 
-}
+};
 
-#endif // HAZE_BUFFER_H
+#endif // HAZE_BACKENDS_SDL_H

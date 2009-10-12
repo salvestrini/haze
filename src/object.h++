@@ -18,42 +18,34 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_POINTER_H
-#define HAZE_POINTER_H
+#ifndef HAZE_OBJECT_H
+#define HAZE_OBJECT_H
 
-#include "object.h"
-#include "image.h"
-#include "point.h"
-#include "size.h"
+#include "point.h++"
+#include "rectangle.h++"
+#include "size.h++"
 
 namespace HAZE {
 
-        class Pointer : public Object, public Image {
+        class Object {
         public:
-                Pointer() { }
+                Object() : visible_(false) { }
+                virtual ~Object()          { }
 
-                Pointer(const std::string & filename) :
-                        Image(filename),
-                        hotspot_(0, 0),
-                        position_(0, 0) { }
+                virtual void draw(const Rectangle & clipping) = 0;
+                virtual void move(const Point & where)        = 0;
+                virtual void resize(const Size & size)        = 0;
 
-                virtual void draw(const Rectangle & clipping) {
-                        Image::draw(position_);
-                }
-
-                virtual void move(const Point & where) {
-                        position_ = where;
-                }
-
-                virtual void resize(const Size & box) { }
+                void         show()    { visible_ = true;  }
+                void         hide()    { visible_ = false; }
+                virtual bool visible() { return visible_;  }
 
         protected:
+                bool visible_;
 
         private:
-                Point hotspot_;
-                Point position_;
         };
 
 }
 
-#endif // HAZE_POINTER_H
+#endif // HAZE_OBJECT_H

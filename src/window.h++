@@ -18,38 +18,29 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_FRAME_H
-#define HAZE_FRAME_H
+#ifndef HAZE_WINDOW_H
+#define HAZE_WINDOW_H
 
-#include "rectangle.h"
-#include "image.h"
+#include "widget.h++"
+#include "rectangle.h++"
+#include "point.h++"
 
 namespace HAZE {
 
-        class Frame : public Rectangle {
+        class Window : public RectangularWidget {
         public:
-                struct defs {
-                        Image * tl_;
-                        Image * t_;
-                        Image * tr_;
-                        Image * l_;
-                        Image * r_;
-                        Image * bl_;
-                        Image * b_;
-                        Image * br_;
-                };
+                Window() { }
+                Window(const Size & s) :
+                        RectangularWidget(s) { }
 
-                Frame(const struct defs & d);
-                virtual ~Frame() { }
-
-                virtual void draw(const Rectangle & clipping);
+                virtual void resize(const Size & box)         { }
+                virtual void draw(const Rectangle & clipping) { }
 
         protected:
-                struct defs defs_;
 
         private:
         };
 
 }
 
-#endif // HAZE_FRAME_H
+#endif // HAZE_WINDOW_H
