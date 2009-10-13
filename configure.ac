@@ -93,8 +93,8 @@ AM_CONDITIONAL([HAVE_SDL],    [ test "$have_sdl"     = "yes" ])
 #
 # gnulib related
 #
-GNULIB_EARLY
-GNULIB_INIT
+#GNULIB_EARLY
+#GNULIB_INIT
 
 
 # Checks for preprocessor flags

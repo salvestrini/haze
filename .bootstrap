@@ -6,6 +6,6 @@ PERL_AUTOFRISK="`optional perl-autofrisk`"         || \
     { echo "Missing tool: perl-autofrisk"; exit 1; }
 
 BOOTSTRAPS=""
-GNULIB_MODULES="getopt-posix mkdtemp"
+GNULIB_MODULES=""
 GNULIB_DOC="INSTALL COPYINGv2"
 GNULIB_BUILDAUX="git-version-gen gitlog-to-changelog announce-gen"
