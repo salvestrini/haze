@@ -55,6 +55,7 @@ libhaze_la_SOURCES +=				\
 
 ## Utilities
 libhaze_la_SOURCES +=				\
+	haze/debug.h++				\
 	haze/utility.h++			\
 	haze/exception.h++			\
 	haze/exception.c++			\
