@@ -26,6 +26,18 @@
 
 namespace HAZE {
 
+        Screen::Screen(unsigned int  width,
+                       unsigned int  height,
+                       bytesPerPixel bpp) :
+                size_(width, height),
+                bpp_(bpp)
+        {
+                log << "Screen "
+                    << size_.width() << "x" << size_.height()
+                    << " created"
+                    << Log::endl;
+        }
+
         void Screen::add(Object & o)
         {
                 objects_.push_front(&o);
@@ -35,6 +47,9 @@ namespace HAZE {
         {
                 objects_.remove(&o);
         }
+
+        void Screen::draw()
+        { draw(Rectangle(Point(0, 0), size_)); }
 
         void Screen::draw(const Rectangle & clipping)
         {

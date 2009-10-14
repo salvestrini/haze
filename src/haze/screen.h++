@@ -44,21 +44,11 @@ namespace HAZE {
 
                 Screen(unsigned int  width  = SCREEN_DEFAULT_WIDTH,
                        unsigned int  height = SCREEN_DEFAULT_HEIGHT,
-                       bytesPerPixel bpp    = SCREEN_DEFAULT_BPP) :
-                        size_(width, height),
-                        bpp_(bpp)
-                {
-#if 0
-                        log << "Screen "
-                            << size_.width() << "x" << size_.height()
-                            << " created"
-                            << std::endl;
-#endif
-                }
+                       bytesPerPixel bpp    = SCREEN_DEFAULT_BPP);
 
                 void         add(Object & o);
                 void         remove(Object & o);
-                void         draw() { draw(Rectangle(Point(0, 0), size_)); }
+                void         draw();
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & where) { }
                 virtual void resize(const Size & size);
