@@ -18,6 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string>
+
 #include "haze/haze.h++"
 
 int main(int argc, char argv[])
@@ -25,11 +27,11 @@ int main(int argc, char argv[])
         {
                 using namespace HAZE;
 
-                Screen screen_0;
-                Screen screen_1;
+                Screen screen_0("screen0");
+                Screen screen_1("screen1");
 
-                Window window_0;
-                Window window_1;
+                Window window_0("window0");
+                Window window_1("window1");
 
                 screen_0.add(window_0);
                 screen_1.add(window_1);
