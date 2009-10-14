@@ -31,16 +31,16 @@ namespace HAZE {
 
         class Object {
         public:
-                Object();
+                Object(const std::string & name);
                 virtual ~Object();
 
                 virtual void draw(const Rectangle & clipping) = 0;
                 virtual void move(const Point & where)        = 0;
                 virtual void resize(const Size & size)        = 0;
-#if 0
+
                 void                name(const std::string & name);
                 const std::string & name(void);
-#endif
+
                 void         show();
                 void         hide();
                 virtual bool visible();
@@ -49,9 +49,7 @@ namespace HAZE {
                 bool        visible_;
 
         private:
-#if 0
                 std::string name_;
-#endif
         };
 
 }
