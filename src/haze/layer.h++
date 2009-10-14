@@ -21,19 +21,19 @@
 #ifndef HAZE_LAYER_H
 #define HAZE_LAYER_H
 
-#include "haze/log.h++"
 #include "haze/utility.h++"
 
 namespace HAZE {
 
         class Layer {
         public:
-                Layer() { }
+                Layer(int z);
 
         protected:
                 DECLARE_COPY_CTORS(Layer);
 
         private:
+                int z_;
         };
 
 }

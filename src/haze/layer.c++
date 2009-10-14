@@ -18,4 +18,14 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/log.h++"
 #include "haze/layer.h++"
+
+namespace HAZE {
+
+        Layer::Layer(int z)
+        {
+                log << "Layer created" << Log::endl;
+        }
+
+}
