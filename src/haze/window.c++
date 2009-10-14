@@ -18,4 +18,32 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string>
+
+#include "haze/log.h++"
 #include "haze/window.h++"
+#include "haze/size.h++"
+#include "haze/widget.h++"
+#include "haze/rectangle.h++"
+
+namespace HAZE {
+
+        Window::Window(const std::string & name,
+                       const Size &        size) :
+                        RectangularWidget(name, size)
+        {
+                log << "Window " << name << " "
+                    << "(" << size.width() << "x" << size.height() << ")"
+                    << " created"
+                    << Log::endl;
+        }
+
+        void Window::resize(const Size & box)
+        {
+        }
+        
+        void Window::draw(const Rectangle & clipping)
+        {
+        }
+
+}

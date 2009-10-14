@@ -21,20 +21,24 @@
 #ifndef HAZE_WINDOW_H
 #define HAZE_WINDOW_H
 
+#include <string>
+
 #include "haze/widget.h++"
 #include "haze/rectangle.h++"
-#include "haze/point.h++"
+
+#define WINDOW_DEFAULT_WIDTH  100
+#define WINDOW_DEFAULT_HEIGHT 100
 
 namespace HAZE {
 
         class Window : public RectangularWidget {
         public:
-                Window() { }
-                Window(const Size & s) :
-                        RectangularWidget(s) { }
+                Window(const std::string & name,
+                       const Size &        size = Size(WINDOW_DEFAULT_WIDTH,
+                                                       WINDOW_DEFAULT_HEIGHT));
 
-                virtual void resize(const Size & box)         { }
-                virtual void draw(const Rectangle & clipping) { }
+                virtual void resize(const Size & box);
+                virtual void draw(const Rectangle & clipping);
 
         protected:
 
