@@ -18,56 +18,86 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <iostream>
+
 #include "haze/log.h++"
 
 namespace HAZE {
 
-        Log log;
+        Log log("haze: ");
 
-        Log & operator<<(Log &        log,
-                         const char * v)
+        Log::Log(const std::string & prefix) :
+                prefix_(prefix),
+                newline_(true)
+        { }
+
+        Log & Log::endl(Log & l)
+        { return l; }
+
+        Log & Log::operator<<(const char * v)
         {
-                static_cast<std::ostream &>(log) << v;
-                return log;
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
         }
 
-        Log & operator<<(Log &               log,
-                         const std::string & v)
+        Log & Log::operator<<(const std::string & v)
         {
-                static_cast<std::ostream &>(log) << v;
-                return log;
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
         }
 
-        Log & operator<<(Log & log,
-                         int   v)
+        Log & Log::operator<<(int v)
         {
-                static_cast<std::ostream &>(log) << v;
-                return log;
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
         }
 
-        Log & operator<<(Log &        log,
-                         unsigned int v)
+        Log & Log::operator<<(unsigned int v)
         {
-                static_cast<std::ostream &>(log) << v;
-                return log;
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
         }
 
-        Log & operator<<(Log & log,
-                         char  v)
+        Log & Log::operator<<(char v)
         {
-                static_cast<std::ostream &>(log) << v;
-                return log;
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
         }
 
-#if 0
+
         Log & Log::operator<<(Log & (*m)(Log &))
         {
-                if (*m == & std::endl) {
-                        log << std::endl;
+                if (m == Log::endl) {
+                        std::cout << std::endl;
+                        newline_ = true;
                 }
 
                 return (*this);
         }
-#endif
 
 }

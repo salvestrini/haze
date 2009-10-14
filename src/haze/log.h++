@@ -21,28 +21,31 @@
 #ifndef HAZE_LOG_H
 #define HAZE_LOG_H
 
-#include <ostream>
+#include <string>
 
 namespace HAZE {
 
-        class Log : public std::ostream {
+        class Log {
         public:
-#if 0
-                // Manipulators
-                void endl();
+                Log(const std::string & prefix);
 
+                // Manipulators
+                static Log & endl(Log & l);
+
+                // Operators
                 Log & operator<<(Log & (*m)(Log &));
-#endif
+                Log & operator<<(const char * v);
+                Log & operator<<(const std::string & v);
+                Log & operator<<(int v);
+                Log & operator<<(char v);
+                Log & operator<<(unsigned int v);
 
         protected:
 
         private:
+                std::string prefix_;
+                bool        newline_;
         };
-
-        Log & operator<<(Log & log, const char * v);
-        Log & operator<<(Log & log, const std::string & v);
-        Log & operator<<(Log & log, int v);
-        Log & operator<<(Log & log, unsigned int v);
 
         extern Log log;
 
