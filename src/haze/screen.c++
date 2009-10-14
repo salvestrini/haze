@@ -23,17 +23,23 @@
 #include "haze/size.h++"
 #include "haze/screen.h++"
 #include "haze/object.h++"
+#include "haze/image.h++"
 
 namespace HAZE {
 
-        Screen::Screen(unsigned int  width,
-                       unsigned int  height,
-                       bytesPerPixel bpp) :
+        Screen::Screen(const std::string & name,
+                       unsigned int        width,
+                       unsigned int        height,
+                       bytesPerPixel       bpp) :
+                Object(name),
                 size_(width, height),
                 bpp_(bpp)
         {
-                log << "Screen "
-                    << size_.width() << "x" << size_.height()
+                log << "Screen " << name << " "
+                    << "(" << size_.width()
+                    << "x" << size_.height()
+                    << "@" << bpp_
+                    << ")"
                     << " created"
                     << Log::endl;
         }
@@ -66,8 +72,6 @@ namespace HAZE {
                      iter++) {
                         (* iter)->draw(clipping);
                 }
-
-                pointer_.draw(clipping);
         }
 
         void Screen::resize(const Size & size)

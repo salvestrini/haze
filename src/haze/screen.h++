@@ -26,9 +26,9 @@
 #include "haze/log.h++"
 #include "haze/object.h++"
 #include "haze/rectangle.h++"
-#include "haze/pointer.h++"
 #include "haze/utility.h++"
 #include "haze/size.h++"
+#include "haze/image.h++"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320
@@ -42,9 +42,10 @@ namespace HAZE {
                         BPP8 = 8, BPP16 = 16, BPP24 = 24, BPP32 = 32
                 };
 
-                Screen(unsigned int  width  = SCREEN_DEFAULT_WIDTH,
-                       unsigned int  height = SCREEN_DEFAULT_HEIGHT,
-                       bytesPerPixel bpp    = SCREEN_DEFAULT_BPP);
+                Screen(const std::string & name,
+                       unsigned int        width  = SCREEN_DEFAULT_WIDTH,
+                       unsigned int        height = SCREEN_DEFAULT_HEIGHT,
+                       bytesPerPixel       bpp    = SCREEN_DEFAULT_BPP);
 
                 void         add(Object & o);
                 void         remove(Object & o);
@@ -60,7 +61,6 @@ namespace HAZE {
                 Size                size_;
                 unsigned int        bpp_;
                 std::list<Object *> objects_;
-                Pointer             pointer_;
                 Image               background_;
         };
 
