@@ -19,3 +19,30 @@
 //
 
 #include "haze/object.h++"
+
+namespace HAZE {
+
+        Object::Object() : visible_(false)
+        { }
+
+        Object::~Object()
+        { }
+
+#if 0
+        void Object::name(const std::string & name)
+        { name_ = name; }
+
+        const std::string & Object::name(void)
+        { return name_; }
+#endif
+
+        void Object::show()
+        { visible_ = true; }
+
+        void Object::hide()
+        { visible_ = false; }
+
+        bool Object::visible()
+        { return visible_; }
+
+}

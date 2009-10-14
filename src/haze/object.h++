@@ -21,6 +21,8 @@
 #ifndef HAZE_OBJECT_H
 #define HAZE_OBJECT_H
 
+#include <string>
+
 #include "haze/point.h++"
 #include "haze/rectangle.h++"
 #include "haze/size.h++"
@@ -29,21 +31,27 @@ namespace HAZE {
 
         class Object {
         public:
-                Object() : visible_(false) { }
-                virtual ~Object()          { }
+                Object();
+                virtual ~Object();
 
                 virtual void draw(const Rectangle & clipping) = 0;
                 virtual void move(const Point & where)        = 0;
                 virtual void resize(const Size & size)        = 0;
-
-                void         show()    { visible_ = true;  }
-                void         hide()    { visible_ = false; }
-                virtual bool visible() { return visible_;  }
+#if 0
+                void                name(const std::string & name);
+                const std::string & name(void);
+#endif
+                void         show();
+                void         hide();
+                virtual bool visible();
 
         protected:
-                bool visible_;
+                bool        visible_;
 
         private:
+#if 0
+                std::string name_;
+#endif
         };
 
 }
