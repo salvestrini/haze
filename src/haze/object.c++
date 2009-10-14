@@ -22,19 +22,19 @@
 
 namespace HAZE {
 
-        Object::Object() : visible_(false)
+        Object::Object(const std::string & name) :
+                visible_(false),
+                name_(name)
         { }
 
         Object::~Object()
         { }
 
-#if 0
         void Object::name(const std::string & name)
         { name_ = name; }
 
         const std::string & Object::name(void)
         { return name_; }
-#endif
 
         void Object::show()
         { visible_ = true; }

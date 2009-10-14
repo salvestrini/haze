@@ -21,6 +21,8 @@
 #ifndef HAZE_POINTER_H
 #define HAZE_POINTER_H
 
+#include <string>
+
 #include "haze/object.h++"
 #include "haze/image.h++"
 #include "haze/point.h++"
@@ -30,9 +32,9 @@ namespace HAZE {
 
         class Pointer : public Object, public Image {
         public:
-                Pointer() { }
-
-                Pointer(const std::string & filename) :
+                Pointer(const std::string & name,
+                        const std::string & filename) :
+                        Object(name),
                         Image(filename),
                         hotspot_(0, 0),
                         position_(0, 0) { }

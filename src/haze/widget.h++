@@ -29,7 +29,8 @@ namespace HAZE {
 
         class Widget : public Object {
         public:
-                Widget() { }
+                Widget(const std::string & name) :
+                        Object(name) { }
 
                 virtual void draw(const Rectangle & clipping) = 0;
                 virtual void move(const Point & where) { origin_ = where; }
@@ -45,10 +46,14 @@ namespace HAZE {
 
         class RectangularWidget : public Widget {
         public:
-                RectangularWidget() :
+                RectangularWidget(const std::string & name) :
+                        Widget(name),
                         size_(WIDGET_DEFAULT_WIDTH,
                               WIDGET_DEFAULT_HEIGHT) { }
-                RectangularWidget(const Size & s) : size_(s) { }
+                RectangularWidget(const std::string & name,
+                                  const Size &        size) :
+                        Widget(name),
+                        size_(size) { }
 
                 virtual const Size & size() const { return size_; }
                 virtual void         resize(const Size & box) = 0;

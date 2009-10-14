@@ -23,24 +23,22 @@
 
 #include <string>
 
-#include "haze/object.h++"
+#include "haze/widget.h++"
 #include "haze/rectangle.h++"
 #include "haze/font.h++"
 
 namespace HAZE {
 
-        class Label :
-                // XXX FIXME: Diamond for multiple inheritance !!!
-                // XXX FIXME: Please rearrange the following mess !!!
-                virtual public Object, public Rectangle {
+        class Label : public RectangularWidget {
         public:
-                Label(const Font &      font,
-                      const std::string text) :
+                Label(const std::string & name,
+                      const Font &        font,
+                      const std::string & text) :
+                        RectangularWidget(name,
+                                          Size(font.width(text),
+                                               font.height(text))),
                         font_(font),
-                        text_(text) {
-                        width(font.width(text));
-                        height(font.height(text));
-                }
+                        text_(text) { }
 
                 const std::string & text() const { return text_; }
 

@@ -28,8 +28,9 @@ namespace HAZE {
 
         class Icon : public RectangularWidget {
         public:
-                Icon(const Image & image) :
-                        RectangularWidget(image) { }
+                Icon(const std::string & name,
+                     const Image &       image) :
+                        RectangularWidget(name, image) { }
 
                 virtual void draw(const Rectangle & clipping);
                 virtual void move(const Point & p);
