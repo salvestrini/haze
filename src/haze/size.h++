@@ -21,37 +21,30 @@
 #ifndef HAZE_SIZE_H
 #define HAZE_SIZE_H
 
-#include <cmath>
+#include <string>
+
+#include "haze/log.h++"
 
 namespace HAZE {
 
         class Size {
         public:
                 Size(unsigned int width  = 0,
-                     unsigned int height = 0) :
-                        width_(width),
-                        height_(height) { }
+                     unsigned int height = 0);
+                virtual ~Size();
 
-                unsigned int width()  const { return width_;  }
-                unsigned int height() const { return height_; }
+                unsigned int width()  const;
+                unsigned int height() const;
 
-                void width(unsigned int width)   { width_  = width;  }
-                void height(unsigned int height) { height_ = height; }
+                void         width(unsigned int width);
+                void         height(unsigned int height);
 
-                void resize(const Size & size) {
-                        width_  = size.width_;
-                        height_ = size.height_;
-                }
-                void resize(float factor) {
-                        width_  = int(std::abs(float(width_) * factor));
-                        height_ = int(std::abs(float(height_) * factor));
-                }
+                void         resize(const Size & size);
+                void         resize(float factor);
+                void         resize(unsigned int width,
+                                    unsigned int height);
 
-                void resize(unsigned int width,
-                            unsigned int height) {
-                        width_  = width;
-                        height_ = height;
-                }
+                virtual      operator std::string() const;
 
         protected:
 

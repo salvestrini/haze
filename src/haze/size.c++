@@ -18,4 +18,60 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <cmath>
+#include <sstream>
+
+#include "haze/log.h++"
 #include "haze/size.h++"
+
+namespace HAZE {
+
+        Size::Size(unsigned int width,
+                   unsigned int height) :
+                width_(width),
+                height_(height)
+        { }
+
+        Size::~Size()
+        { }
+
+        unsigned int Size::width() const
+        { return width_; }
+
+        unsigned int Size::height() const
+        { return height_; }
+
+        void Size::width(unsigned int width)
+        { width_  = width; }
+
+        void Size::height(unsigned int height)
+        { height_ = height; }
+
+        void Size::resize(const Size & size)
+        {
+                width_  = size.width_;
+                height_ = size.height_;
+        }
+
+        void Size::resize(float factor)
+        {
+                width_  = int(std::abs(float(width_)  * factor));
+                height_ = int(std::abs(float(height_) * factor));
+        }
+
+        void Size::resize(unsigned int width,
+                          unsigned int height)
+        {
+                width_  = width;
+                height_ = height;
+        }
+
+        Size::operator std::string() const
+        {
+                std::stringstream t;
+
+                t << width_ << "x" << height_;
+
+                return t.str();
+        }
+}
