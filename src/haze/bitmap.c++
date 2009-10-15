@@ -46,4 +46,17 @@ namespace HAZE {
                 return (*iter).second;
         }
 
+        Bitmap::Bitmap(const std::string & filename) :
+                Size(0, 0), buffer_(0)
+        {
+                // XXX FIXME: Add code here
+        }
+
+        Bitmap::~Bitmap()
+        {
+                if (buffer_) {
+                        delete buffer_;
+                }
+        }
+
 }

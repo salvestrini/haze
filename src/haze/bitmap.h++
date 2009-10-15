@@ -34,10 +34,8 @@ namespace HAZE {
 
         class Bitmap : public Size {
         public:
-                Bitmap(const std::string & filename) :
-                        Size(0, 0), buffer_(0) {
-                        // XXX FIXME: Add code here
-                }
+                Bitmap(const std::string & filename);
+                virtual ~Bitmap();
 
         protected:
 
