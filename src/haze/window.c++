@@ -28,12 +28,12 @@
 
 namespace HAZE {
 
-        Window::Window(const std::string & name,
-                       const Size &        size) :
-                        RectangularWidget(name, size)
+        Window::Window(const std::string & n,
+                       const Size &        s) :
+                        RectangularWidget(n, s)
         {
-                log << "Window " << name << " "
-                    << "(" << size.width() << "x" << size.height() << ")"
+                log << "Window " << name() << " "
+                    << "(" << size() << ")"
                     << " created"
                     << Log::endl;
         }
@@ -41,7 +41,7 @@ namespace HAZE {
         void Window::resize(const Size & box)
         {
         }
-        
+
         void Window::draw(const Rectangle & clipping)
         {
         }

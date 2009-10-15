@@ -23,6 +23,7 @@
 
 #include "haze/screen.h++"
 #include "haze/window.h++"
+
 #include "haze/object.h++"
 #include "haze/pointer.h++"
 #include "haze/screen.h++"

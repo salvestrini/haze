@@ -59,9 +59,9 @@ namespace HAZE {
                 virtual void         resize(const Size & box) = 0;
 
         protected:
+                Size size_;
 
         private:
-                Size size_;
         };
 
 }

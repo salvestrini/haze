@@ -28,7 +28,7 @@ namespace HAZE {
         class Button : public Object {
         public:
                 Button();
-                ~Button();
+                virtual ~Button();
 
         protected:
         private:
