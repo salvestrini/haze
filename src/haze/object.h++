@@ -41,9 +41,11 @@ namespace HAZE {
                 void                name(const std::string & name);
                 const std::string & name(void);
 
-                void         show();
-                void         hide();
-                virtual bool visible();
+                void                show();
+                void                hide();
+                virtual bool        visible();
+
+                virtual operator    std::string();
 
         protected:
                 bool        visible_;

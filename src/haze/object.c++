@@ -18,6 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/log.h++"
 #include "haze/object.h++"
 
 namespace HAZE {
@@ -44,5 +45,8 @@ namespace HAZE {
 
         bool Object::visible()
         { return visible_; }
+
+        Object::operator std::string()
+        { return name_; }
 
 }
