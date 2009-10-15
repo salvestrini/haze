@@ -20,42 +20,47 @@
 
 #include <list>
 
+#include "haze/log.h++"
 #include "haze/size.h++"
 #include "haze/screen.h++"
-#include "haze/object.h++"
+#include "haze/window.h++"
 #include "haze/image.h++"
 
 namespace HAZE {
 
-        Screen::Screen(const std::string & name,
-                       unsigned int        width,
-                       unsigned int        height,
-                       bytesPerPixel       bpp) :
-                Object(name),
-                size_(width, height),
-                bpp_(bpp)
+        Screen::Screen(const std::string & n,
+                       unsigned int        w,
+                       unsigned int        h,
+                       bytesPerPixel       b) :
+                RectangularWidget(n, Size(w, h)),
+                bpp_(b)
         {
-                log << "Screen " << name << " "
-                    << "(" << size_.width()
-                    << "x" << size_.height()
+                log << "Screen " << name() << " "
+                    << "(" << std::string(size())
                     << "@" << bpp_
                     << ")"
                     << " created"
                     << Log::endl;
         }
 
-        void Screen::add(Object & o)
+        void Screen::add(Window * w)
         {
-                objects_.push_front(&o);
+                windows_.push_front(w);
+                log << "Window " << *w << " added to "
+                    << "screen " << *this
+                    << Log::endl;
         }
 
-        void Screen::remove(Object & o)
+        void Screen::remove(Window * w)
         {
-                objects_.remove(&o);
+                windows_.remove(w);
+                log << "Window " << *w << " removed from "
+                    << "screen " << *this
+                    << Log::endl;
         }
 
         void Screen::draw()
-        { draw(Rectangle(Point(0, 0), size_)); }
+        { draw(Rectangle(Point(0, 0), size())); }
 
         void Screen::draw(const Rectangle & clipping)
         {
@@ -63,20 +68,21 @@ namespace HAZE {
                 //     clipping must be contained inside
                 //     borders_
 
-                std::list<Object *>::iterator iter;
+                std::list<Window *>::iterator iter;
 
                 background_.draw(Point(0,0), clipping);
 
-                for (iter  = objects_.begin();
-                     iter != objects_.end();
+                for (iter  = windows_.begin();
+                     iter != windows_.end();
                      iter++) {
                         (* iter)->draw(clipping);
                 }
         }
 
-        void Screen::resize(const Size & size)
-        {
-                size_ = size;
-        }
+        void Screen::move(const Point & where)
+        { }
+
+        void Screen::resize(const Size & box)
+        { }
 
 }

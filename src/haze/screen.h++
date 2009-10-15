@@ -23,12 +23,12 @@
 
 #include <list>
 
-#include "haze/log.h++"
-#include "haze/object.h++"
+#include "haze/widget.h++"
 #include "haze/rectangle.h++"
 #include "haze/utility.h++"
 #include "haze/size.h++"
 #include "haze/image.h++"
+#include "haze/window.h++"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320
@@ -36,7 +36,7 @@
 
 namespace HAZE {
 
-        class Screen : public Object {
+        class Screen : public RectangularWidget {
         public:
                 enum bytesPerPixel {
                         BPP8 = 8, BPP16 = 16, BPP24 = 24, BPP32 = 32
@@ -47,20 +47,19 @@ namespace HAZE {
                        unsigned int        height = SCREEN_DEFAULT_HEIGHT,
                        bytesPerPixel       bpp    = SCREEN_DEFAULT_BPP);
 
-                void         add(Object & o);
-                void         remove(Object & o);
+                void         add(Window * w);
+                void         remove(Window * w);
                 void         draw();
                 virtual void draw(const Rectangle & clipping);
-                virtual void move(const Point & where) { }
-                virtual void resize(const Size & size);
+                virtual void move(const Point & where);
+                virtual void resize(const Size & box);
 
         protected:
                 DECLARE_COPY_CTORS(Screen);
 
         private:
-                Size                size_;
                 unsigned int        bpp_;
-                std::list<Object *> objects_;
+                std::list<Window *> windows_;
                 Image               background_;
         };
 
