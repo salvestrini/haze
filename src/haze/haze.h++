@@ -28,9 +28,7 @@
 #include "haze/pointer.h++"
 #include "haze/screen.h++"
 #include "haze/widget.h++"
-#include "haze/icon.h++"
 #include "haze/window.h++"
 #include "haze/label.h++"
-#include "haze/button.h++"
 
 #endif // HAZE_H

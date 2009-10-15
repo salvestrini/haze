@@ -65,8 +65,6 @@ libhaze_la_SOURCES +=				\
 
 ## OS
 libhaze_la_SOURCES +=				\
-	haze/time.h++				\
-	haze/time.c++				\
 	haze/mutex.h++				\
 	haze/mutex.c++				\
 	haze/thread.h++				\
@@ -76,8 +74,6 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/color.h++				\
 	haze/color.c++				\
-	haze/pen.h++				\
-	haze/pen.c++				\
 	haze/point.h++				\
 	haze/point.c++				\
 	haze/size.h++				\
@@ -90,8 +86,6 @@ libhaze_la_SOURCES +=				\
 	haze/image.c++				\
 	haze/animation.h++			\
 	haze/animation.c++			\
-	haze/grid.h++				\
-	haze/grid.c++				\
 	haze/background.h++			\
 	haze/background.c++			\
 	haze/frame.h++				\
@@ -109,14 +103,10 @@ libhaze_la_SOURCES +=				\
 	haze/screen.c++				\
 	haze/widget.h++				\
 	haze/widget.c++				\
-	haze/icon.h++				\
-	haze/icon.c++				\
 	haze/window.h++				\
 	haze/window.c++				\
 	haze/label.h++				\
-	haze/label.c++				\
-	haze/button.h++				\
-	haze/button.c++
+	haze/label.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
 libhaze_la_CFLAGS   =
