@@ -28,85 +28,34 @@ namespace HAZE {
 
         class Rectangle {
         public:
-#if 0
-                Rectangle(int  x = 0,
-                          int  y = 0,
-                          int  w = 0,
-                          int  h = 0) :
-                        p1_(x, y),
-                        p2_(x + w, y + h)
-                {
-                        // XXX FIXME: Add checks here
-                }
-
-                Rectangle(const Point & p,
-                          unsigned int  w = 0,
-                          unsigned int  h = 0) :
-                        p1_(p)
-                {
-                        // XXX FIXME: Add checks here
-
-                        p2_.x(p.x() + w);
-                        p2_.y(p.y() + h);
-                }
-#endif
-
-                Rectangle() :
-                        origin_(0, 0),
-                        size_(0, 0) { }
-
+                Rectangle();
                 Rectangle(const Point & origin,
-                          const Size &  size) :
-                        origin_(origin),
-                        size_(size) { }
-
+                          const Size &  size);
                 Rectangle(const Point & p1,
-                          const Point & p2)
-                {
-                        Point p1_, p2_;
+                          const Point & p2);
 
-                        if (p1.x() > p2.x()) {
-                                p1_.x(p2.x());
-                                p2_.x(p1.x());
-                        } else {
-                                p1_.x(p1.x());
-                                p2_.x(p2.x());
-                        }
-                        if (p1.y() > p2.y()) {
-                                p1_.y(p2.y());
-                                p2_.y(p1.y());
-                        } else {
-                                p1_.y(p1.y());
-                                p2_.y(p2.y());
-                        }
+                virtual ~Rectangle();
 
-                        origin_ = p1;
-                        size_   = Size(p2_.x() - p1_.x(),
-                                       p2_.y() - p1_.x());
-                }
+                void         move(const Point & where);
 
-                virtual ~Rectangle() { }
+                int          x() const;
+                int          y() const;
+                void         x(int v);
+                void         y(int v);
 
-                void         move(const Point & where) { origin_ = where; }
+                unsigned int width()  const;
+                unsigned int height() const;
+                void         width(unsigned int v);
+                void         height(unsigned int v);
 
-                int          x() const { return origin_.x(); }
-                int          y() const { return origin_.y(); }
-                void         x(int v)  { origin_.x(v); }
-                void         y(int v)  { origin_.y(v); }
-
-                unsigned int width()  const         { return size_.width();  }
-                unsigned int height() const         { return size_.height(); }
-                void         width(unsigned int v)  { size_.width(v);  }
-                void         height(unsigned int v) { size_.height(v); }
-
-                const Size & size()                 { return size_; }
-                void         resize(const Size & s) { size_ = s; }
+                const Size & size() const;
+                void         resize(const Size & s);
 
         protected:
+                Size  size_;
 
         private:
                 Point origin_;
-                Size  size_;
         };
 
 }
