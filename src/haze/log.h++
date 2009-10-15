@@ -34,11 +34,10 @@ namespace HAZE {
 
                 // Operators
                 Log & operator<<(Log & (*m)(Log &));
-                Log & operator<<(const char * v);
                 Log & operator<<(const std::string & v);
                 Log & operator<<(int v);
-                Log & operator<<(char v);
                 Log & operator<<(unsigned int v);
+                Log & operator<<(char v);
 
         protected:
 

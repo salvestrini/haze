@@ -34,17 +34,6 @@ namespace HAZE {
         Log & Log::endl(Log & l)
         { return l; }
 
-        Log & Log::operator<<(const char * v)
-        {
-                if (newline_) {
-                        std::cout << prefix_;
-                        newline_ = false;
-                }
-                std::cout << v;
-
-                return (*this);
-        }
-
         Log & Log::operator<<(const std::string & v)
         {
                 if (newline_) {
