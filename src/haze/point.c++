@@ -18,4 +18,29 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <utility>
+
 #include "haze/point.h++"
+
+namespace HAZE {
+
+        Point::Point(int x, int y) :
+                p_(x, y)
+        { }
+
+        Point::~Point()
+        { }
+
+        int Point::x() const
+        { return p_.first; }
+
+        int Point::y() const
+        { return p_.second; }
+
+        void Point::x(int v)
+        { p_.first = v; }
+
+        void Point::y(int v)
+        { p_.second = v; }
+
+}

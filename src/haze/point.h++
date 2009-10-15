@@ -27,14 +27,13 @@ namespace HAZE {
 
         class Point {
         public:
-                Point(int x = 0, int y = 0) : p_(x, y) { }
+                Point(int x = 0, int y = 0);
+                virtual ~Point();
 
-                ~Point() { }
-
-                int  x() const { return p_.first;  }
-                int  y() const { return p_.second; }
-                void x(int v)  { p_.first = v;     }
-                void y(int v)  { p_.second = v;    }
+                int  x() const;
+                int  y() const;
+                void x(int v);
+                void y(int v);
 
         protected:
 
