@@ -42,11 +42,6 @@ libhaze_la_SOURCES +=				\
 	haze/backends/sdl.h++			\
 	haze/backends/sdl.c++
 endif
-if HAVE_CLUTTER
-libhaze_la_SOURCES +=				\
-	haze/backends/clutter.h++		\
-	haze/backends/clutter.c++
-endif
 
 ## Base
 libhaze_la_SOURCES +=				\
@@ -108,8 +103,6 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/object.h++				\
 	haze/object.c++				\
-	haze/layer.h++				\
-	haze/layer.c++				\
 	haze/pointer.h++			\
 	haze/pointer.c++			\
 	haze/screen.h++				\
