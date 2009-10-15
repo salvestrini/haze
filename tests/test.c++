@@ -33,14 +33,14 @@ int main(int argc, char argv[])
                 Window window_0("window0");
                 Window window_1("window1");
 
-                screen_0.add(window_0);
-                screen_1.add(window_1);
+                screen_0.add(&window_0);
+                screen_1.add(&window_1);
 
                 screen_0.draw();
                 screen_1.draw();
 
-                screen_0.remove(window_0);
-                screen_1.remove(window_1);
+                screen_0.remove(&window_0);
+                screen_1.remove(&window_1);
 
                 screen_0.draw();
                 screen_1.draw();
