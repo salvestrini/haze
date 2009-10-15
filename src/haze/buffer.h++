@@ -29,8 +29,8 @@ namespace HAZE {
 
         class Buffer {
         public:
-                Buffer() : data_(0) { }
-                ~Buffer() { if (data_) free(data_); }
+                Buffer();
+                virtual ~Buffer();
 
         protected:
                 DECLARE_COPY_CTORS(Buffer);

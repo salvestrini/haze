@@ -19,3 +19,17 @@
 //
 
 #include "haze/buffer.h++"
+
+namespace HAZE {
+
+        Buffer::Buffer() : data_(0)
+        { }
+
+        Buffer::~Buffer()
+        {
+                if (data_) {
+                        free(data_);
+                }
+        }
+
+}
