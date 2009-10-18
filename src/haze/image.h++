@@ -36,15 +36,14 @@ namespace HAZE {
                 Image()          { }
                 virtual ~Image() { }
 
-                Image(const std::string & filename) {
-                        bitmap_ = bitmapFactory.get(filename);
-                }
+                Image(const std::string & filename) :
+                        bitmap_(bitmapFactory.get(filename))
+                { }
 
                 Image(const std::string & filename,
-                      const Size &        size) {
-                        bitmap_ = bitmapFactory.get(filename);
-                        bitmap_->resize(size);
-                }
+                      const Size &        size) :
+                        bitmap_(bitmapFactory.get(filename))
+                { bitmap_->resize(size); }
 
                 void                 load(const std::string & filename) {
                         bitmap_ = bitmapFactory.get(filename);
