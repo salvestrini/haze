@@ -21,7 +21,6 @@
 #ifndef HAZE_BITMAP_H
 #define HAZE_BITMAP_H
 
-#include <map>
 #include <string>
 #include <utility>
 #include <boost/shared_ptr.hpp>
@@ -40,19 +39,12 @@ namespace HAZE {
         protected:
 
         private:
-                Buffer *     buffer_;
+                Buffer * buffer_;
+
+                NOT_COPYABLE(Bitmap);
         };
 
-        class BitmapFactory : public Factory {
-        public:
-                boost::shared_ptr<Bitmap> get(const std::string & filename);
-
-        protected:
-
-        private:
-                std::map<std::string,
-                         boost::shared_ptr<Bitmap> > objects_;
-        };
+        typedef Factory<std::string, Bitmap> BitmapFactory;
 
         extern BitmapFactory bitmapFactory;
 }

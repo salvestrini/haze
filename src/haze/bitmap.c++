@@ -26,26 +26,6 @@
 
 namespace HAZE {
 
-        BitmapFactory bitmapFactory;
-
-        boost::shared_ptr<Bitmap> BitmapFactory::get(const std::string & filename)
-        {
-
-                // XXX FIXME: Truly ugly ...
-
-                std::map<std::string,
-                        boost::shared_ptr<Bitmap> >::iterator iter;
-
-                iter = objects_.find(filename);
-
-                if (iter == objects_.end()) {
-                        boost::shared_ptr<Bitmap> tmp(new Bitmap(filename));
-                        objects_.insert(std::make_pair(filename, tmp));
-                }
-
-                return (*iter).second;
-        }
-
         Bitmap::Bitmap(const std::string & filename) :
                 Size(0, 0), buffer_(0)
         {
