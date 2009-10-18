@@ -33,10 +33,11 @@ namespace HAZE {
                 virtual ~Buffer();
 
         protected:
-                DECLARE_COPY_CTORS(Buffer);
 
         private:
                 void * data_;
+
+                NOT_COPYABLE(Buffer);
         };
 
 }

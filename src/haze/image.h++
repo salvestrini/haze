@@ -62,11 +62,10 @@ namespace HAZE {
                 }
 
         protected:
-                DECLARE_COPY_CTORS(Image);
-
                 boost::shared_ptr<Bitmap> bitmap_;
 
         private:
+                NOT_COPYABLE(Image);
         };
 
 }

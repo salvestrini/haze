@@ -28,6 +28,8 @@
         CLASS(const CLASS &);                   \
         DECLARE_ASSIGNMENT_OPERATOR(CLASS)
 
+#define NOT_COPYABLE(CLASS) DECLARE_COPY_CTORS(CLASS)
+
 #define NAMESPACE_BEGIN namespace HAZE {
 #define NAMESPACE_END   }
 

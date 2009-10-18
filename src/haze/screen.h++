@@ -55,12 +55,13 @@ namespace HAZE {
                 virtual void resize(const Size & box);
 
         protected:
-                DECLARE_COPY_CTORS(Screen);
 
         private:
                 unsigned int        bpp_;
                 std::list<Window *> windows_;
                 Image               background_;
+
+                NOT_COPYABLE(Screen);
         };
 
 }
