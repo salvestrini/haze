@@ -22,7 +22,7 @@ include $(top_srcdir)/Makefile.sub
 
 AUTOMAKE_OPTIONS = subdir-objects
 
-SUBDIRS = gnulib
+SUBDIRS =
 
 EXTRA_DIST =
 
@@ -59,9 +59,7 @@ libhaze_la_SOURCES +=				\
 	haze/buffer.h++				\
 	haze/buffer.c++				\
 	haze/factory.h++			\
-	haze/factory.c++			\
-	haze/unicode.h++			\
-	haze/unicode.c++
+	haze/factory.c++
 
 ## OS
 libhaze_la_SOURCES +=				\

@@ -89,13 +89,6 @@ AX_PATH_GENERIC([sdl],[1.2.13],,[
 ])
 AM_CONDITIONAL([HAVE_SDL],    [ test "$have_sdl"     = "yes" ])
 
-#
-# gnulib related
-#
-#GNULIB_EARLY
-#GNULIB_INIT
-
-
 # Checks for preprocessor flags
 TEMP_FLAGS=""
 AX_CXXCPP_CHECK_FLAG([-Wall],  [],[],[ TEMP_FLAGS="$TEMP_FLAGS -Wall"  ])
@@ -140,7 +133,6 @@ AC_CONFIG_FILES([
         haze.pc
 
 	src/Makefile
-	src/gnulib/Makefile
 
 	docs/Makefile
 
