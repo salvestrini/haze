@@ -21,13 +21,36 @@
 #ifndef HAZE_FACTORY_H
 #define HAZE_FACTORY_H
 
+#include <map>
+#include <string>
+#include <boost/shared_ptr.hpp>
+
 namespace HAZE {
 
-        class Factory {
+        template<class Key, class Type> class Factory {
         public:
+                boost::shared_ptr<Type> get(const Key & key);
+
         protected:
+
         private:
+                std::map<Key, boost::shared_ptr<Type> > objects_;
         };
+
+        template<class Key, class Type>
+        boost::shared_ptr<Type> Factory<Key, Type>::get(const Key & key)
+        {
+                typename std::map<Key, boost::shared_ptr<Type> >::iterator i;
+
+                i = objects_.find(key);
+
+                if (i == objects_.end()) {
+                        boost::shared_ptr<Type> tmp(new Type(key));
+                        objects_.insert(std::make_pair(key, tmp));
+                }
+
+                return (*i).second;
+        }
 
 }
 
