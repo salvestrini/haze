@@ -108,7 +108,6 @@ AC_CHECK_HEADERS([execinfo.h])
 AC_CHECK_FUNCS([backtrace backtrace_symbols])
 
 AX_SPLIT_VERSION($PACKAGE_VERSION, AX_MAJOR_VERSION, AX_MINOR_VERSION, AX_MICRO_VERSION, AX_EXTRA_VERSION)
-
 AC_SUBST([PACKAGE_API],[${AX_MAJOR_VERSION}"."${AX_MINOR_VERSION}])
 
 # Versioned directories, defined here for convenience
