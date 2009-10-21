@@ -18,24 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_MUTEX_H
-#define HAZE_MUTEX_H
-
-namespace HAZE {
-
-        class Mutex {
-        public:
-                Mutex()          { }
-                virtual ~Mutex() { }
-                void lock()      { }
-                void unlock()    { }
-                bool locked()    { return false; }
-                bool tryLock()   { return false; }
-
-        protected:
-        private:
-        };
-
-}
-
-#endif // HAZE_MUTEX_H
+#include "haze/ui/label.h++"

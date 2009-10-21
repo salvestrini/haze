@@ -18,30 +18,32 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_THREAD_H
-#define HAZE_THREAD_H
+#include <string>
 
-#include <climits>
+#include "haze/log.h++"
+#include "haze/size.h++"
+#include "haze/rectangle.h++"
+#include "haze/ui/widget.h++"
+#include "haze/ui/window.h++"
 
 namespace HAZE {
 
-        class Thread {
-        public:
-                Thread();
-                virtual ~Thread();
-                bool wait(unsigned long time = ULONG_MAX);
-                void start();
-                bool finished() const;
-                bool running() const;
+        Window::Window(const std::string & n,
+                       const Size &        s) :
+                        RectangularWidget(n, s)
+        {
+                log << "Window " << name() << " "
+                    << "(" << size() << ")"
+                    << " created"
+                    << Log::endl;
+        }
 
-        protected:
-                virtual void run() = 0;
+        void Window::resize(const Size & box)
+        {
+        }
 
-        private:
-                bool running_;
-                bool started_;
-        };
+        void Window::draw(const Rectangle & clipping)
+        {
+        }
 
 }
-
-#endif // HAZE_THREAD_H

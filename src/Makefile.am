@@ -61,13 +61,6 @@ libhaze_la_SOURCES +=				\
 	haze/factory.h++			\
 	haze/factory.c++
 
-## OS
-libhaze_la_SOURCES +=				\
-	haze/mutex.h++				\
-	haze/mutex.c++				\
-	haze/thread.h++				\
-	haze/thread.c++
-
 ## Graphic
 libhaze_la_SOURCES +=				\
 	haze/color.h++				\
@@ -86,25 +79,23 @@ libhaze_la_SOURCES +=				\
 	haze/animation.c++			\
 	haze/background.h++			\
 	haze/background.c++			\
-	haze/frame.h++				\
-	haze/frame.c++				\
 	haze/font.h++				\
 	haze/font.c++
 
-## Widgets
+## User Interface
 libhaze_la_SOURCES +=				\
-	haze/object.h++				\
-	haze/object.c++				\
-	haze/pointer.h++			\
-	haze/pointer.c++			\
-	haze/screen.h++				\
-	haze/screen.c++				\
-	haze/widget.h++				\
-	haze/widget.c++				\
-	haze/window.h++				\
-	haze/window.c++				\
-	haze/label.h++				\
-	haze/label.c++
+	haze/ui/object.h++			\
+	haze/ui/object.c++			\
+	haze/ui/pointer.h++			\
+	haze/ui/pointer.c++			\
+	haze/ui/screen.h++			\
+	haze/ui/screen.c++			\
+	haze/ui/widget.h++			\
+	haze/ui/widget.c++			\
+	haze/ui/window.h++			\
+	haze/ui/window.c++			\
+	haze/ui/label.h++			\
+	haze/ui/label.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
 libhaze_la_CFLAGS   =

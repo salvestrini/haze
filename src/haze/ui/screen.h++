@@ -23,12 +23,12 @@
 
 #include <list>
 
-#include "haze/widget.h++"
 #include "haze/rectangle.h++"
 #include "haze/utility.h++"
 #include "haze/size.h++"
 #include "haze/image.h++"
-#include "haze/window.h++"
+#include "haze/ui/widget.h++"
+#include "haze/ui/window.h++"
 
 #define SCREEN_DEFAULT_WIDTH  640
 #define SCREEN_DEFAULT_HEIGHT 320

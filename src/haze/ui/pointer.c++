@@ -18,38 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/thread.h++"
-
-namespace HAZE {
-
-        Thread::Thread() :
-                running_(false), started_(false)
-        {
-        }
-
-        Thread::~Thread()
-        {
-        }
-
-        bool Thread::wait(unsigned long time)
-        {
-                return false;
-        }
-
-        void Thread::start()
-        {
-                started_ = true;
-                run();
-        }
-
-        bool Thread::finished() const
-        {
-                return false;
-        }
-
-        bool Thread::running() const
-        {
-                return running_;
-        }
-
-}
+#include "haze/ui/pointer.h++"

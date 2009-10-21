@@ -18,33 +18,35 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_WINDOW_H
-#define HAZE_WINDOW_H
-
-#include <string>
-
-#include "haze/widget.h++"
-#include "haze/rectangle.h++"
-
-#define WINDOW_DEFAULT_WIDTH  100
-#define WINDOW_DEFAULT_HEIGHT 100
+#include "haze/log.h++"
+#include "haze/ui/object.h++"
 
 namespace HAZE {
 
-        class Window : public RectangularWidget {
-        public:
-                Window(const std::string & name,
-                       const Size &        size = Size(WINDOW_DEFAULT_WIDTH,
-                                                       WINDOW_DEFAULT_HEIGHT));
+        Object::Object(const std::string & name) :
+                visible_(false),
+                name_(name)
+        { }
 
-                virtual void resize(const Size & box);
-                virtual void draw(const Rectangle & clipping);
+        Object::~Object()
+        { }
 
-        protected:
+        void Object::name(const std::string & name)
+        { name_ = name; }
 
-        private:
-        };
+        const std::string & Object::name(void)
+        { return name_; }
+
+        void Object::show()
+        { visible_ = true; }
+
+        void Object::hide()
+        { visible_ = false; }
+
+        bool Object::visible()
+        { return visible_; }
+
+        Object::operator std::string()
+        { return name_; }
 
 }
-
-#endif // HAZE_WINDOW_H

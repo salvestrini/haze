@@ -18,38 +18,44 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_FRAME_H
-#define HAZE_FRAME_H
+#ifndef HAZE_POINTER_H
+#define HAZE_POINTER_H
 
-#include "haze/rectangle.h++"
+#include <string>
+
 #include "haze/image.h++"
+#include "haze/point.h++"
+#include "haze/size.h++"
+#include "haze/ui/object.h++"
 
 namespace HAZE {
 
-        class Frame : public Rectangle {
+        class Pointer : public Object, public Image {
         public:
-                struct defs {
-                        Image * tl_;
-                        Image * t_;
-                        Image * tr_;
-                        Image * l_;
-                        Image * r_;
-                        Image * bl_;
-                        Image * b_;
-                        Image * br_;
-                };
+                Pointer(const std::string & name,
+                        const std::string & filename) :
+                        Object(name),
+                        Image(filename),
+                        hotspot_(0, 0),
+                        position_(0, 0) { }
 
-                Frame(const struct defs & d);
-                virtual ~Frame() { }
+                virtual void draw(const Rectangle & clipping) {
+                        Image::draw(position_);
+                }
 
-                virtual void draw(const Rectangle & clipping);
+                virtual void move(const Point & where) {
+                        position_ = where;
+                }
+
+                virtual void resize(const Size & box) { }
 
         protected:
-                struct defs defs_;
 
         private:
+                Point hotspot_;
+                Point position_;
         };
 
 }
 
-#endif // HAZE_FRAME_H
+#endif // HAZE_POINTER_H

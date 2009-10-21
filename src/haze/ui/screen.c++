@@ -22,9 +22,9 @@
 
 #include "haze/log.h++"
 #include "haze/size.h++"
-#include "haze/screen.h++"
-#include "haze/window.h++"
 #include "haze/image.h++"
+#include "haze/ui/window.h++"
+#include "haze/ui/screen.h++"
 
 namespace HAZE {
 

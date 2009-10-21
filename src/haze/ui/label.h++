@@ -23,9 +23,9 @@
 
 #include <string>
 
-#include "haze/widget.h++"
 #include "haze/rectangle.h++"
 #include "haze/font.h++"
+#include "haze/ui/widget.h++"
 
 namespace HAZE {
 

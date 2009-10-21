@@ -29,23 +29,26 @@ namespace HAZE {
 
         template<class Key, class Type> class Factory {
         public:
-                boost::shared_ptr<Type> get(const Key & key);
+                typedef boost::shared_ptr<Type> Data;
+
+                Data get(const Key & key);
 
         protected:
 
         private:
-                std::map<Key, boost::shared_ptr<Type> > objects_;
+                std::map<Key, Data> objects_;
         };
 
         template<class Key, class Type>
-        boost::shared_ptr<Type> Factory<Key, Type>::get(const Key & key)
+        typename Factory<Key, Type>::Data
+        Factory<Key, Type>::get(const Key & key)
         {
-                typename std::map<Key, boost::shared_ptr<Type> >::iterator i;
+                typename std::map<Key, Data>::iterator i;
 
                 i = objects_.find(key);
 
                 if (i == objects_.end()) {
-                        boost::shared_ptr<Type> tmp(new Type(key));
+                        Data tmp(new Type(key));
                         objects_.insert(std::make_pair(key, tmp));
                 }
 

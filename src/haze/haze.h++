@@ -21,14 +21,13 @@
 #ifndef HAZE_H
 #define HAZE_H
 
-#include "haze/screen.h++"
-#include "haze/window.h++"
-
-#include "haze/object.h++"
-#include "haze/pointer.h++"
-#include "haze/screen.h++"
-#include "haze/widget.h++"
-#include "haze/window.h++"
-#include "haze/label.h++"
+#include "haze/ui/screen.h++"
+#include "haze/ui/window.h++"
+#include "haze/ui/object.h++"
+#include "haze/ui/pointer.h++"
+#include "haze/ui/screen.h++"
+#include "haze/ui/widget.h++"
+#include "haze/ui/window.h++"
+#include "haze/ui/label.h++"
 
 #endif // HAZE_H
