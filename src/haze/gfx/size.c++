@@ -21,8 +21,7 @@
 #include <cmath>
 #include <sstream>
 
-#include "haze/log.h++"
-#include "haze/size.h++"
+#include "haze/gfx/size.h++"
 
 namespace HAZE {
 

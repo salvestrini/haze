@@ -23,8 +23,6 @@
 
 #include <string>
 
-#include "haze/log.h++"
-
 namespace HAZE {
 
         class Size {
