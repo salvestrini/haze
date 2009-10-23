@@ -21,8 +21,8 @@
 #ifndef HAZE_RECTANGLE_H
 #define HAZE_RECTANGLE_H
 
-#include "haze/point.h++"
-#include "haze/size.h++"
+#include "haze/gfx/point.h++"
+#include "haze/gfx/size.h++"
 
 namespace HAZE {
 
