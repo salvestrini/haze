@@ -23,7 +23,7 @@
 
 #include <memory>
 
-#include "haze/utility.h++"
+#include "haze/core/utility.h++"
 
 namespace HAZE {
 
