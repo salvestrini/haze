@@ -18,23 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BACKENDS_SDL_H
-#define HAZE_BACKENDS_SDL_H
-
-#include "haze/backends/backend.h++"
-
-namespace HAZE {
-
-        class SDL : public Backend {
-        public:
-
-        protected:
-
-        private:
-                void init() { }
-                void fini() { }
-        };
-
-};
-
-#endif // HAZE_BACKENDS_SDL_H
+#include "haze/gfx/backends/backend.h++"
