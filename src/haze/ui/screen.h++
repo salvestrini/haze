@@ -66,4 +66,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_SCREEN_H
+#endif

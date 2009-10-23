@@ -50,4 +50,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_LOG_H
+#endif

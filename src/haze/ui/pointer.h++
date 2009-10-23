@@ -58,4 +58,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_POINTER_H
+#endif

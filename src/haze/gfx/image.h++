@@ -69,4 +69,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_IMAGE_H
+#endif

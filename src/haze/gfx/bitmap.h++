@@ -49,4 +49,4 @@ namespace HAZE {
         extern BitmapFactory bitmapFactory;
 }
 
-#endif // HAZE_BITMAP_H
+#endif

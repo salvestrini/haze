@@ -66,4 +66,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_WIDGET_H
+#endif

@@ -43,4 +43,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_POINT_H
+#endif

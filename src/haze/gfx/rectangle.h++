@@ -60,4 +60,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_RECTANGLE_H
+#endif

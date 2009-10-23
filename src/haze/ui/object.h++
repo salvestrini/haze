@@ -56,4 +56,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_OBJECT_H
+#endif

@@ -53,4 +53,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_LABEL_H
+#endif

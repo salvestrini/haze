@@ -42,4 +42,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_BUFFER_H
+#endif

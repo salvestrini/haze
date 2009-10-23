@@ -29,4 +29,4 @@ namespace HAZE {
         };
 }
 
-#endif // HAZE_EXCEPTION_H
+#endif

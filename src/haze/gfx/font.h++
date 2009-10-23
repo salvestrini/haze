@@ -41,4 +41,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_FONT_H
+#endif

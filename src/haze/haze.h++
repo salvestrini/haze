@@ -30,4 +30,4 @@
 #include "haze/ui/window.h++"
 #include "haze/ui/label.h++"
 
-#endif // HAZE_H
+#endif

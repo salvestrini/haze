@@ -47,4 +47,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_WINDOW_H
+#endif

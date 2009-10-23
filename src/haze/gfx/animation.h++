@@ -47,4 +47,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_ANIMATION_H
+#endif

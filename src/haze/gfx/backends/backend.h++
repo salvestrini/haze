@@ -36,4 +36,4 @@ namespace HAZE {
 
 };
 
-#endif // HAZE_BACKENDS_BACKEND_H
+#endif

@@ -53,4 +53,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_SIZE_H
+#endif

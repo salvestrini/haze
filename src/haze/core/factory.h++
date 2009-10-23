@@ -57,4 +57,4 @@ namespace HAZE {
 
 }
 
-#endif // HAZE_FACTORY_H
+#endif

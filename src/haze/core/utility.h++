@@ -33,4 +33,4 @@
 #define NAMESPACE_BEGIN namespace HAZE {
 #define NAMESPACE_END   }
 
-#endif // HAZE_UTILITY_H
+#endif

@@ -58,4 +58,4 @@
 #endif
 #define assert(X) ASSERT(X)
 
-#endif // HAZE_DEBUG_H
+#endif
