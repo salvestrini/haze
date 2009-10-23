@@ -23,10 +23,10 @@
 
 #include <list>
 
-#include "haze/rectangle.h++"
-#include "haze/utility.h++"
-#include "haze/size.h++"
-#include "haze/image.h++"
+#include "haze/core/utility.h++"
+#include "haze/gfx/rectangle.h++"
+#include "haze/gfx/size.h++"
+#include "haze/gfx/image.h++"
 #include "haze/ui/widget.h++"
 #include "haze/ui/window.h++"
 

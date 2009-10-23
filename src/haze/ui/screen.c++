@@ -20,9 +20,9 @@
 
 #include <list>
 
-#include "haze/log.h++"
-#include "haze/size.h++"
-#include "haze/image.h++"
+#include "haze/core/log.h++"
+#include "haze/gfx/size.h++"
+#include "haze/gfx/image.h++"
 #include "haze/ui/window.h++"
 #include "haze/ui/screen.h++"
 

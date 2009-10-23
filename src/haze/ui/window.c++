@@ -20,9 +20,9 @@
 
 #include <string>
 
-#include "haze/log.h++"
-#include "haze/size.h++"
-#include "haze/rectangle.h++"
+#include "haze/core/log.h++"
+#include "haze/gfx/size.h++"
+#include "haze/gfx/rectangle.h++"
 #include "haze/ui/widget.h++"
 #include "haze/ui/window.h++"
 

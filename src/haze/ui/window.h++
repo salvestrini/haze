@@ -23,7 +23,7 @@
 
 #include <string>
 
-#include "haze/rectangle.h++"
+#include "haze/gfx/rectangle.h++"
 #include "haze/ui/widget.h++"
 
 #define WINDOW_DEFAULT_WIDTH  100

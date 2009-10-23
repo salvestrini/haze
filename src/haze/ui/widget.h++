@@ -21,8 +21,8 @@
 #ifndef HAZE_WIDGET_H
 #define HAZE_WIDGET_H
 
-#include "haze/rectangle.h++"
-#include "haze/size.h++"
+#include "haze/gfx/rectangle.h++"
+#include "haze/gfx/size.h++"
 #include "haze/ui/object.h++"
 
 namespace HAZE {

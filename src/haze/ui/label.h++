@@ -23,8 +23,8 @@
 
 #include <string>
 
-#include "haze/rectangle.h++"
-#include "haze/font.h++"
+#include "haze/gfx/rectangle.h++"
+#include "haze/gfx/font.h++"
 #include "haze/ui/widget.h++"
 
 namespace HAZE {

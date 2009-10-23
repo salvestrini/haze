@@ -23,9 +23,9 @@
 
 #include <string>
 
-#include "haze/image.h++"
-#include "haze/point.h++"
-#include "haze/size.h++"
+#include "haze/gfx/image.h++"
+#include "haze/gfx/point.h++"
+#include "haze/gfx/size.h++"
 #include "haze/ui/object.h++"
 
 namespace HAZE {
