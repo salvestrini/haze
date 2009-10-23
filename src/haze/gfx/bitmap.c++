@@ -22,7 +22,7 @@
 #include <utility>
 #include <boost/shared_ptr.hpp>
 
-#include "haze/bitmap.h++"
+#include "haze/gfx/bitmap.h++"
 
 namespace HAZE {
 

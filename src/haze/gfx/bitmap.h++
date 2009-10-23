@@ -25,9 +25,9 @@
 #include <utility>
 #include <boost/shared_ptr.hpp>
 
-#include "haze/factory.h++"
-#include "haze/buffer.h++"
-#include "haze/size.h++"
+#include "haze/core/factory.h++"
+#include "haze/core/buffer.h++"
+#include "haze/gfx/size.h++"
 
 namespace HAZE {
 
