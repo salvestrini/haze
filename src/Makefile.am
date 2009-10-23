@@ -76,15 +76,26 @@ libhaze_la_SOURCES +=				\
 	haze/gfx/font.h++			\
 	haze/gfx/font.c++
 
-## Graphicx Backends
+## Graphic Backends
 libhaze_la_SOURCES +=				\
 	haze/gfx/backends/backend.h++		\
 	haze/gfx/backends/backend.c++
-if HAVE_SDL
-libhaze_la_SOURCES +=				\
-	haze/gfx/backends/sdl.h++		\
-	haze/gfx/backends/sdl.c++
-endif
+
+## Sound
+libhaze_la_SOURCES +=
+
+## Sound Backends
+libhaze_la_SOURCES +=
+	haze/sfx/backends/backend.h++		\
+	haze/sfx/backends/backend.c++
+
+## I/O
+libhaze_la_SOURCES +=
+
+## I/O Backends
+libhaze_la_SOURCES +=
+	haze/io/backends/backend.h++		\
+	haze/io/backends/backend.c++
 
 ## User Interface
 libhaze_la_SOURCES +=				\

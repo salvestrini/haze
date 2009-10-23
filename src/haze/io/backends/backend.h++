@@ -18,4 +18,22 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/gfx/backends/sdl.h++"
+#ifndef HAZE_IO_BACKENDS_BACKEND_H
+#define HAZE_IO_BACKENDS_BACKEND_H
+
+namespace HAZE {
+
+        class Backend {
+        public:
+                virtual ~Backend();
+
+        protected:
+
+        private:
+                virtual void init() = 0;
+                virtual void fini() = 0;
+        };
+
+};
+
+#endif
