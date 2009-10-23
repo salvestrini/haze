@@ -24,7 +24,7 @@
 #include <vector>
 #include <string>
 
-#include "haze/image.h++"
+#include "haze/gfx/image.h++"
 
 namespace HAZE {
 
