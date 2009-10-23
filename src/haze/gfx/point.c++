@@ -20,7 +20,7 @@
 
 #include <utility>
 
-#include "haze/point.h++"
+#include "haze/gfx/point.h++"
 
 namespace HAZE {
 
