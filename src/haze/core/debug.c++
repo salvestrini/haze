@@ -18,15 +18,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_EXCEPTION_H
-#define HAZE_EXCEPTION_H
-
-#include <exception>
-
-namespace HAZE {
-
-        class Exception : public std::exception {
-        };
-}
-
-#endif // HAZE_EXCEPTION_H
+#include "haze/core/debug.h++"
