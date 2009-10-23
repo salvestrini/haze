@@ -33,54 +33,58 @@ lib_LTLIBRARIES =				\
 
 libhaze_la_SOURCES =
 
-## Backends
-libhaze_la_SOURCES +=				\
-	haze/backends/backend.h++		\
-	haze/backends/backend.c++
-if HAVE_SDL
-libhaze_la_SOURCES +=				\
-	haze/backends/sdl.h++			\
-	haze/backends/sdl.c++
-endif
-
 ## Base
 libhaze_la_SOURCES +=				\
 	haze/haze.h++				\
 	haze/haze.c++
 
-## Utilities
+## Core
 libhaze_la_SOURCES +=				\
-	haze/debug.h++				\
-	haze/utility.h++			\
-	haze/exception.h++			\
-	haze/exception.c++			\
-	haze/log.h++				\
-	haze/log.c++				\
-	haze/buffer.h++				\
-	haze/buffer.c++				\
-	haze/factory.h++			\
-	haze/factory.c++
+	haze/core/debug.h++			\
+	haze/core/debug.c++			\
+	haze/core/utility.h++			\
+	haze/core/utility.c++			\
+	haze/core/exception.h++			\
+	haze/core/exception.c++			\
+	haze/core/log.h++			\
+	haze/core/log.c++			\
+	haze/core/buffer.h++			\
+	haze/core/buffer.c++			\
+	haze/core/factory.h++			\
+	haze/core/factory.c++			\
+	haze/core/singleton.h++			\
+	haze/core/singleton.c++			\
+	haze/core/observer.h++			\
+	haze/core/observer.c++
 
 ## Graphic
 libhaze_la_SOURCES +=				\
-	haze/color.h++				\
-	haze/color.c++				\
-	haze/point.h++				\
-	haze/point.c++				\
-	haze/size.h++				\
-	haze/size.c++				\
-	haze/rectangle.h++			\
-	haze/rectangle.c++			\
-	haze/bitmap.h++				\
-	haze/bitmap.c++				\
-	haze/image.h++				\
-	haze/image.c++				\
-	haze/animation.h++			\
-	haze/animation.c++			\
-	haze/background.h++			\
-	haze/background.c++			\
-	haze/font.h++				\
-	haze/font.c++
+	haze/gfx/color.h++			\
+	haze/gfx/color.c++			\
+	haze/gfx/point.h++			\
+	haze/gfx/point.c++			\
+	haze/gfx/size.h++			\
+	haze/gfx/size.c++			\
+	haze/gfx/rectangle.h++			\
+	haze/gfx/rectangle.c++			\
+	haze/gfx/bitmap.h++			\
+	haze/gfx/bitmap.c++			\
+	haze/gfx/image.h++			\
+	haze/gfx/image.c++			\
+	haze/gfx/animation.h++			\
+	haze/gfx/animation.c++			\
+	haze/gfx/font.h++			\
+	haze/gfx/font.c++
+
+## Graphicx Backends
+libhaze_la_SOURCES +=				\
+	haze/gfx/backends/backend.h++		\
+	haze/gfx/backends/backend.c++
+if HAVE_SDL
+libhaze_la_SOURCES +=				\
+	haze/gfx/backends/sdl.h++		\
+	haze/gfx/backends/sdl.c++
+endif
 
 ## User Interface
 libhaze_la_SOURCES +=				\
