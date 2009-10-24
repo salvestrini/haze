@@ -36,6 +36,7 @@ EXTERNAL =					\
 	$(URL_AA)/ax_boost_base.m4		\
 	$(URL_AA)/ax_pthread.m4			\
 	$(URL_AA)/ax_check_gl.m4		\
+	$(URL_AA)/ax_lang_compiler_ms.m4	\
 	$(URL_BU)/ax_check_al.m4
 
 INTERNAL =					\
