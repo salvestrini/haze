@@ -82,18 +82,18 @@ libhaze_la_SOURCES +=				\
 	haze/gfx/backends/backend.c++
 
 ## Sound
-libhaze_la_SOURCES +=
+#libhaze_la_SOURCES +=
 
 ## Sound Backends
-libhaze_la_SOURCES +=
+libhaze_la_SOURCES +=				\
 	haze/sfx/backends/backend.h++		\
 	haze/sfx/backends/backend.c++
 
 ## I/O
-libhaze_la_SOURCES +=
+#libhaze_la_SOURCES +=
 
 ## I/O Backends
-libhaze_la_SOURCES +=
+libhaze_la_SOURCES +=				\
 	haze/io/backends/backend.h++		\
 	haze/io/backends/backend.c++
 
