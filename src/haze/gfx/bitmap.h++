@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BITMAP_H
-#define HAZE_BITMAP_H
+#ifndef HAZE_GFX_BITMAP
+#define HAZE_GFX_BITMAP
 
 #include <string>
 #include <utility>

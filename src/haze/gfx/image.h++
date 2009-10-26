@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_IMAGE_H
-#define HAZE_IMAGE_H
+#ifndef HAZE_GFX_IMAGE
+#define HAZE_GFX_IMAGE
 
 #include <string>
 #include <boost/shared_ptr.hpp>

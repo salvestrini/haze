@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_BACKENDS_BACKEND_H
-#define HAZE_GFX_BACKENDS_BACKEND_H
+#ifndef HAZE_GFX_BACKENDS_BACKEND
+#define HAZE_GFX_BACKENDS_BACKEND
 
 namespace HAZE {
 

@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_RECTANGLE_H
-#define HAZE_RECTANGLE_H
+#ifndef HAZE_GFX_RECTANGLE
+#define HAZE_GFX_RECTANGLE
 
 #include "haze/gfx/point.h++"
 #include "haze/gfx/size.h++"
