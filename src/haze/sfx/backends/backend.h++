@@ -22,18 +22,18 @@
 #define HAZE_SFX_BACKENDS_BACKEND
 
 namespace HAZE {
+        namespace SFX {
 
-        class Backend {
-        public:
-                virtual ~Backend();
+                class Backend {
+                public:
+                        virtual ~Backend();
 
-        protected:
+                private:
+                        virtual void init() = 0;
+                        virtual void fini() = 0;
+                };
 
-        private:
-                virtual void init() = 0;
-                virtual void fini() = 0;
-        };
-
-};
+        }
+}
 
 #endif
