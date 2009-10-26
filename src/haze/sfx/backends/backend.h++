@@ -26,11 +26,8 @@ namespace HAZE {
 
                 class Backend {
                 public:
+                        Backend();
                         virtual ~Backend();
-
-                private:
-                        virtual void init() = 0;
-                        virtual void fini() = 0;
                 };
 
         }

@@ -27,6 +27,13 @@ namespace HAZE {
         namespace SFX {
 
                 class SDL : public Backend {
+                public:
+                        SDL();
+                        virtual ~SDL();
+
+                private:
+                        void init();
+                        void fini();
                 };
 
         }

@@ -18,4 +18,30 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/sfx/backends/sdl.h++"
+#include "config.h"
+
+#ifdef HAVE_SDL
+
+#include "SDL.h"
+
+#include "haze/gfx/backends/sdl.h++"
+
+namespace HAZE {
+        namespace SFX {
+
+                SDL::SDL()
+                { init(); }
+
+                SDL::~SDL()
+                { fini(); }
+
+                SDL::init()
+                { }
+
+                SDL::fini()
+                { }
+
+        }
+}
+
+#endif
