@@ -30,10 +30,6 @@ namespace HAZE {
                 public:
                         SDL();
                         virtual ~SDL();
-
-                private:
-                        void init();
-                        void fini();
                 };
 
         }

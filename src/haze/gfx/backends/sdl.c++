@@ -29,17 +29,15 @@
 namespace HAZE {
         namespace GFX {
 
-                SDL::SDL()
-                { init(); }
+                SDL::SDL() throw(CannotInitialize)
+                {
+                        if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
+                                throw CannotInitialize(SDL_GetError());
+                        }
+                }
 
                 SDL::~SDL()
-                { fini(); }
-
-                SDL::init()
-                { }
-
-                SDL::fini()
-                { }
+                { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
 
         }
 }

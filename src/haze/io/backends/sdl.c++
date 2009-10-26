@@ -30,15 +30,9 @@ namespace HAZE {
         namespace IO {
 
                 SDL::SDL()
-                { init(); }
-
-                SDL::~SDL()
-                { fini(); }
-
-                SDL::init()
                 { }
 
-                SDL::fini()
+                SDL::~SDL()
                 { }
 
         }

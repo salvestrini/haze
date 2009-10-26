@@ -30,16 +30,14 @@ namespace HAZE {
         namespace SFX {
 
                 SDL::SDL()
-                { init(); }
-
-                SDL::~SDL()
-                { fini(); }
-
-                SDL::init()
-                { }
+                {
+                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                                throw CannotInitialize(SDL_GetError());
+                        }
+                }
 
                 SDL::fini()
-                { }
+                { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
         }
 }

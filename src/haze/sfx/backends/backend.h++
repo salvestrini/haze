@@ -21,12 +21,16 @@
 #ifndef HAZE_SFX_BACKENDS_BACKEND
 #define HAZE_SFX_BACKENDS_BACKEND
 
+#include "haze/core/exception.h++"
+
 namespace HAZE {
         namespace SFX {
 
                 class Backend {
                 public:
-                        Backend();
+                        class CannotInitialize : public Exception { };
+
+                        Backend() throw(CannotInitialize);
                         virtual ~Backend();
                 };
 
