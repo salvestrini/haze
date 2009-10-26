@@ -23,6 +23,7 @@
 
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
 
 #include "haze/gfx/bitmap.h++"
 #include "haze/gfx/point.h++"
@@ -31,7 +32,7 @@
 
 namespace HAZE {
 
-        class Image : public Size {
+        class Image : public Size, boost::noncopyable {
         public:
                 Image()          { }
                 virtual ~Image() { }
@@ -60,11 +61,8 @@ namespace HAZE {
                         return bitmap_ ? bitmap_->height() : 0;
                 }
 
-        protected:
-                boost::shared_ptr<Bitmap> bitmap_;
-
         private:
-                NOT_COPYABLE(Image);
+                boost::shared_ptr<Bitmap> bitmap_;
         };
 
 }

@@ -22,8 +22,8 @@
 #define HAZE_UI_SCREEN
 
 #include <list>
+#include <boost/noncopyable.hpp>
 
-#include "haze/core/utility.h++"
 #include "haze/gfx/rectangle.h++"
 #include "haze/gfx/size.h++"
 #include "haze/gfx/image.h++"
@@ -36,7 +36,7 @@
 
 namespace HAZE {
 
-        class Screen : public RectangularWidget {
+        class Screen : public RectangularWidget, public boost::noncopyable {
         public:
                 enum bytesPerPixel {
                         BPP8 = 8, BPP16 = 16, BPP24 = 24, BPP32 = 32
@@ -60,8 +60,6 @@ namespace HAZE {
                 unsigned int        bpp_;
                 std::list<Window *> windows_;
                 Image               background_;
-
-                NOT_COPYABLE(Screen);
         };
 
 }

@@ -35,8 +35,6 @@ namespace HAZE {
                 void x(int v);
                 void y(int v);
 
-        protected:
-
         private:
                 std::pair<int, int> p_;
         };

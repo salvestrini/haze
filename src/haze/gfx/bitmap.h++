@@ -22,7 +22,7 @@
 #define HAZE_GFX_BITMAP
 
 #include <string>
-#include <utility>
+#include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "haze/core/factory.h++"
@@ -31,17 +31,13 @@
 
 namespace HAZE {
 
-        class Bitmap : public Size {
+        class Bitmap : public Size, public boost::noncopyable {
         public:
                 Bitmap(const std::string & filename);
                 virtual ~Bitmap();
 
-        protected:
-
         private:
                 Buffer * buffer_;
-
-                NOT_COPYABLE(Bitmap);
         };
 
         typedef Factory<std::string, Bitmap> BitmapFactory;

@@ -22,12 +22,11 @@
 #define HAZE_CORE_BUFFER
 
 #include <cstdlib>
-
-#include "haze/core/utility.h++"
+#include <boost/noncopyable.hpp>
 
 namespace HAZE {
 
-        class Buffer {
+        class Buffer : public boost::noncopyable {
         public:
                 Buffer(size_t size);
                 virtual ~Buffer();
@@ -37,8 +36,6 @@ namespace HAZE {
         protected:
 
         private:
-                NOT_COPYABLE(Buffer);
-
                 unsigned char * data_;
                 size_t          size_;
         };
