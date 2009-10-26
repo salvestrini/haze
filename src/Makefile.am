@@ -82,7 +82,9 @@ libhaze_la_SOURCES +=				\
 	haze/gfx/backends/backend.c++
 
 ## Sound
-#libhaze_la_SOURCES +=
+libhaze_la_SOURCES +=				\
+	haze/sfx/sample.h++			\
+	haze/sfx/sample.c++
 
 ## Sound Backends
 libhaze_la_SOURCES +=				\
@@ -90,7 +92,11 @@ libhaze_la_SOURCES +=				\
 	haze/sfx/backends/backend.c++
 
 ## I/O
-#libhaze_la_SOURCES +=
+libhaze_la_SOURCES +=				\
+	haze/io/keyboard.h++			\
+	haze/io/keyboard.c++			\
+	haze/io/mouse.h++			\
+	haze/io/mouse.c++
 
 ## I/O Backends
 libhaze_la_SOURCES +=				\
@@ -113,9 +119,9 @@ libhaze_la_SOURCES +=				\
 	haze/ui/label.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
-libhaze_la_CFLAGS   =
+libhaze_la_CFLAGS   = $(GL_CFLAGS)
 libhaze_la_CXXFLAGS =
-libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS)
+libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS) $(GL_LIBS) $(OPENAL_LIBS)
 
 ##
 ## Maintainer related targets
