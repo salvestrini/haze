@@ -18,10 +18,17 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_IO_MOUSE_H
-#define HAZE_IO_MOUSE_H
+#ifndef HAZE_IO_MOUSE
+#define HAZE_IO_MOUSE
 
 namespace HAZE {
+
+
+        class Mouse {
+        public:
+                Mouse();
+        };
+
 }
 
 #endif

@@ -18,10 +18,16 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_IO_KEYBOARD_H
-#define HAZE_IO_KEYBOARD_H
+#ifndef HAZE_IO_KEYBOARD
+#define HAZE_IO_KEYBOARD
 
 namespace HAZE {
+
+        class Keyboard {
+        public:
+                Keyboard();
+        };
+
 }
 
 #endif
