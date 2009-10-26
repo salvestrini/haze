@@ -80,6 +80,11 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/gfx/backends/backend.h++		\
 	haze/gfx/backends/backend.c++
+if HAVE_SDL
+libhaze_la_SOURCES +=				\
+	haze/gfx/backends/sdl.h++		\
+	haze/gfx/backends/sdl.c++
+endif
 
 ## Sound
 libhaze_la_SOURCES +=				\
@@ -90,6 +95,11 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/sfx/backends/backend.h++		\
 	haze/sfx/backends/backend.c++
+if HAVE_SDL
+libhaze_la_SOURCES +=				\
+	haze/sfx/backends/sdl.h++		\
+	haze/sfx/backends/sdl.c++
+endif
 
 ## I/O
 libhaze_la_SOURCES +=				\
@@ -102,6 +112,11 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/io/backends/backend.h++		\
 	haze/io/backends/backend.c++
+if HAVE_SDL
+libhaze_la_SOURCES +=				\
+	haze/io/backends/sdl.h++		\
+	haze/io/backends/sdl.c++
+endif
 
 ## User Interface
 libhaze_la_SOURCES +=				\
