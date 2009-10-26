@@ -18,22 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_SFX_BACKENDS_BACKEND
-#define HAZE_SFX_BACKENDS_BACKEND
+#ifndef HAZE_SFX_SAMPLE
+#define HAZE_SFX_SAMPLE
+
+#include <string>
 
 namespace HAZE {
 
-        class Backend {
+        class Sample {
         public:
-                virtual ~Backend();
+                Sample(const std::string & filename) :
+                        filename_(filename) { }
 
         protected:
 
         private:
-                virtual void init() = 0;
-                virtual void fini() = 0;
+                std::string filename_;
         };
 
-};
+}
 
 #endif
