@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_UTILITY_H
-#define HAZE_UTILITY_H
+#ifndef HAZE_CORE_UTILITY
+#define HAZE_CORE_UTILITY
 
 #define DECLARE_ASSIGNMENT_OPERATOR(CLASS)      \
         CLASS & operator=(const CLASS &);

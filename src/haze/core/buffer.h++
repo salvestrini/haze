@@ -18,10 +18,10 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_BUFFER_H
-#define HAZE_BUFFER_H
+#ifndef HAZE_CORE_BUFFER
+#define HAZE_CORE_BUFFER
 
-#include <memory>
+#include <cstdlib>
 
 #include "haze/core/utility.h++"
 
@@ -29,15 +29,18 @@ namespace HAZE {
 
         class Buffer {
         public:
-                Buffer();
+                Buffer(size_t size);
                 virtual ~Buffer();
+
+                size_t size();
 
         protected:
 
         private:
-                void * data_;
-
                 NOT_COPYABLE(Buffer);
+
+                unsigned char * data_;
+                size_t          size_;
         };
 
 }

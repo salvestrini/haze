@@ -22,14 +22,20 @@
 
 namespace HAZE {
 
-        Buffer::Buffer() : data_(0)
-        { }
+        Buffer::Buffer(size_t size) :
+                size_(size)
+        {
+                data_ = new unsigned char[size_];
+        }
 
         Buffer::~Buffer()
         {
                 if (data_) {
-                        free(data_);
+                        delete[] data_;
                 }
         }
+
+        size_t Buffer::size()
+        { return size_; }
 
 }

@@ -18,8 +18,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_FACTORY_H
-#define HAZE_FACTORY_H
+#ifndef HAZE_CORE_FACTORY
+#define HAZE_CORE_FACTORY
 
 #include <map>
 #include <string>
