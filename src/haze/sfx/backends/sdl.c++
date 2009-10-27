@@ -31,12 +31,14 @@ namespace HAZE {
 
                 SDL::SDL()
                 {
-                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                                throw CannotInitialize(SDL_GetError());
+                        if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                                if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                                        throw CannotInitialize(SDL_GetError());
+                                }
                         }
                 }
 
-                SDL::fini()
+                SDL::~SDL()
                 { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
         }

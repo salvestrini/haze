@@ -31,8 +31,10 @@ namespace HAZE {
 
                 SDL::SDL() throw(CannotInitialize)
                 {
-                        if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
-                                throw CannotInitialize(SDL_GetError());
+                        if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                                if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
+                                        throw CannotInitialize(SDL_GetError());
+                                }
                         }
                 }
 
