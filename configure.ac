@@ -90,10 +90,10 @@ AX_PATH_GENERIC([sdl],[1.2.13],,[
 AM_CONDITIONAL([HAVE_SDL],[ test "$have_sdl" = "yes" ])
 
 # Checks for OpenGL
-AX_CHECK_GL
+#AX_CHECK_GL
 
 # Checks for OpenAL
-AX_CHECK_AL
+#AX_CHECK_AL
 
 # Checks for preprocessor flags
 TEMP_FLAGS=""
