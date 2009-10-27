@@ -21,14 +21,17 @@
 #ifndef HAZE_GFX_BACKENDS_VIDEO
 #define HAZE_GFX_BACKENDS_VIDEO
 
+#include <string>
+#include <boost/noncopyable.hpp>
+
 #include "haze/core/exception.h++"
 
 namespace HAZE {
-        class Video {
+        class Video : public boost::noncopyable {
         public:
                 class CannotInitialize : public Exception { };
 
-                Video() throw(CannotInitialize);
+                Video(const std::string & name) throw(CannotInitialize);
                 virtual ~Video();
 
                 virtual unsigned int width()  = 0;
@@ -36,6 +39,9 @@ namespace HAZE {
                 virtual unsigned int bpp()    = 0;
 
                 virtual void         refresh() = 0;
+
+        private:
+                std::string name_;
         };
 
 }

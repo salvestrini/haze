@@ -44,7 +44,8 @@
 #include "haze/sfx/backends/audio.h++"
 #include "haze/sfx/sample.h++"
 
-#include "haze/gfx/backends/video.h++"
+// FIXME: including video.h++ should be enough ...
+#include "haze/gfx/backends/sdl.h++"
 #include "haze/gfx/size.h++"
 #include "haze/gfx/point.h++"
 #include "haze/gfx/animation.h++"

@@ -21,12 +21,15 @@
 #ifndef HAZE_GFX_BACKENDS_SDL
 #define HAZE_GFX_BACKENDS_SDL
 
+#include <string>
+#include "SDL/SDL.h"
+
 #include "haze/gfx/backends/video.h++"
 
 namespace HAZE {
         class SDL : public Video {
         public:
-                SDL();
+                SDL(const std::string & name) throw(CannotInitialize);
                 virtual ~SDL();
 
                 virtual unsigned int width();
@@ -39,7 +42,7 @@ namespace HAZE {
                 int           width_;
                 int           height_;
                 int           bpp_;
-                SDL_Surface * context_;
+                SDL_Surface * context_; // GL context
         };
 
 }
