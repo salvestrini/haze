@@ -35,7 +35,8 @@ namespace HAZE {
         SDL::SDL() throw(CannotInitialize) :
                 width_(VIDEO_WIDTH),
                 height_(VIDEO_HEIGHT),
-                bpp_(VIDEO_BPP)
+                bpp_(VIDEO_BPP),
+                context_(0)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
@@ -57,9 +58,21 @@ namespace HAZE {
                         bpp_ = closest;
                 }
 
-                if (!SDL_SetVideoMode(width_, height_, bpp_, flags)) {
+                context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
+                if (!context_) {
                         throw CannotInitialize("wrong video mode");
                 }
+
+                // Set the GL attributes
+                SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, bpp_);
+
+                SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   bpp_ / 4);
+                SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, bpp_ / 4);
+                SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,  bpp_ / 4);
+                SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, bpp_ / 4);
+
+                // Create the GL drawing context
         }
 
         SDL::~SDL()
@@ -74,6 +87,8 @@ namespace HAZE {
         unsigned int SDL::bpp()
         { return bpp_; }
 
+        void SDL::refresh()
+        { SDL_GL_SwapBuffers(); }
 }
 
 #endif

@@ -33,10 +33,13 @@ namespace HAZE {
                 virtual unsigned int height();
                 virtual unsigned int bpp();
 
+                virtual void         refresh();
+
         private:
-                int width_;
-                int height_;
-                int bpp_;
+                int           width_;
+                int           height_;
+                int           bpp_;
+                SDL_Surface * context_;
         };
 
 }
