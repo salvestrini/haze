@@ -26,13 +26,17 @@
 
 #include "haze/gfx/backends/sdl.h++"
 
+#define VIDEO_WIDTH  640
+#define VIDEO_HEIGHT 320
+#define VIDEO_BPP    16
+
 namespace HAZE {
         namespace GFX {
 
                 SDL::SDL() throw(CannotInitialize) :
-                        width_(640),
-                        height_(320),
-                        bpp_(16)
+                        width_(VIDEO_WIDTH),
+                        height_(VIDEO_HEIGHT),
+                        bpp_(VIDEO_BPP)
                 {
                         if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                                 if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
@@ -61,6 +65,15 @@ namespace HAZE {
 
                 SDL::~SDL()
                 { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
+
+                unsigned int SDL::width()
+                { return width_; }
+
+                unsigned int SDL::height()
+                { return height_; }
+
+                unsigned int SDL::bpp()
+                { return bpp_; }
 
         }
 }

@@ -26,10 +26,14 @@
 namespace HAZE {
         namespace GFX {
 
-                class SDL : public Backend {
+                class SDL : public Video {
                 public:
                         SDL();
                         virtual ~SDL();
+
+                        virtual unsigned int width();
+                        virtual unsigned int height();
+                        virtual unsigned int bpp();
 
                 private:
                         int width_;

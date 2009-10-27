@@ -24,17 +24,18 @@
 #include "haze/core/exception.h++"
 
 namespace HAZE {
-        namespace GFX {
+        class Video {
+        public:
+                class CannotInitialize : public Exception { };
 
-                class Backend {
-                public:
-                        class CannotInitialize : public Exception { };
+                Video() throw(CannotInitialize);
+                virtual ~Video();
 
-                        Backend() throw(CannotInitialize);
-                        virtual ~Backend();
-                };
+                virtual unsigned int width()  = 0;
+                virtual unsigned int height() = 0;
+                virtual unsigned int bpp()    = 0;
+        };
 
-        }
 }
 
 #endif
