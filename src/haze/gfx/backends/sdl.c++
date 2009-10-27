@@ -29,12 +29,33 @@
 namespace HAZE {
         namespace GFX {
 
-                SDL::SDL() throw(CannotInitialize)
+                SDL::SDL() throw(CannotInitialize) :
+                        width_(640),
+                        height_(320),
+                        bpp_(16)
                 {
                         if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                                 if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
                                         throw CannotInitialize(SDL_GetError());
                                 }
+                        }
+
+                        Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
+
+                        int closest = SDL_VideoModeOK(width_,
+                                                      height_,
+                                                      bpp_,
+                                                      flags);
+                        if (closest == 0) {
+                                throw CannotInitialize("video mode "
+                                                       "unsupported");
+                        }
+                        if (closest != bpp_) {
+                                bpp_ = closest;
+                        }
+
+                        if (!SDL_SetVideoMode(width_, height_, bpp_, flags)) {
+                                throw CannotInitialize("wrong video mode");
                         }
                 }
 

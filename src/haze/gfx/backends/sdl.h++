@@ -30,6 +30,11 @@ namespace HAZE {
                 public:
                         SDL();
                         virtual ~SDL();
+
+                private:
+                        int width_;
+                        int height_;
+                        int bpp_;
                 };
 
         }
