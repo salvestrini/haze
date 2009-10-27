@@ -27,21 +27,19 @@
 #include "haze/gfx/backends/sdl.h++"
 
 namespace HAZE {
-        namespace SFX {
 
-                SDL::SDL()
-                {
-                        if (!SDL_WasInit(SDL_INIT_VIDEO)) {
-                                if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                                        throw CannotInitialize(SDL_GetError());
-                                }
+        SDL::SDL()
+        {
+                if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                                throw CannotInitialize(SDL_GetError());
                         }
                 }
-
-                SDL::~SDL()
-                { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
-
         }
+
+        SDL::~SDL()
+        { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
+
 }
 
 #endif

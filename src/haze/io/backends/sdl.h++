@@ -21,12 +21,12 @@
 #ifndef HAZE_IO_BACKENDS_SDL
 #define HAZE_IO_BACKENDS_SDL
 
-#include "haze/io/backends/backend.h++"
+#include "haze/io/backends/controller.h++"
 
 namespace HAZE {
         namespace IO {
 
-                class SDL : public Backend {
+                class SDL : public Controller {
                 public:
                         SDL();
                         virtual ~SDL();

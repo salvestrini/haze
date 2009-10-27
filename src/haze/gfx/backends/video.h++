@@ -18,4 +18,24 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/io/backends/backend.h++"
+#ifndef HAZE_GFX_BACKENDS_VIDEO
+#define HAZE_GFX_BACKENDS_VIDEO
+
+#include "haze/core/exception.h++"
+
+namespace HAZE {
+        class Video {
+        public:
+                class CannotInitialize : public Exception { };
+
+                Video() throw(CannotInitialize);
+                virtual ~Video();
+
+                virtual unsigned int width()  = 0;
+                virtual unsigned int height() = 0;
+                virtual unsigned int bpp()    = 0;
+        };
+
+}
+
+#endif

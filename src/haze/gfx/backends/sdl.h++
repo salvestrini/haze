@@ -21,27 +21,24 @@
 #ifndef HAZE_GFX_BACKENDS_SDL
 #define HAZE_GFX_BACKENDS_SDL
 
-#include "haze/gfx/backends/backend.h++"
+#include "haze/gfx/backends/video.h++"
 
 namespace HAZE {
-        namespace GFX {
+        class SDL : public Video {
+        public:
+                SDL();
+                virtual ~SDL();
 
-                class SDL : public Video {
-                public:
-                        SDL();
-                        virtual ~SDL();
+                virtual unsigned int width();
+                virtual unsigned int height();
+                virtual unsigned int bpp();
 
-                        virtual unsigned int width();
-                        virtual unsigned int height();
-                        virtual unsigned int bpp();
+        private:
+                int width_;
+                int height_;
+                int bpp_;
+        };
 
-                private:
-                        int width_;
-                        int height_;
-                        int bpp_;
-                };
-
-        }
 }
 
 #endif

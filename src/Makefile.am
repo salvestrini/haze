@@ -78,8 +78,8 @@ libhaze_la_SOURCES +=				\
 
 ## Graphic Backends
 libhaze_la_SOURCES +=				\
-	haze/gfx/backends/backend.h++		\
-	haze/gfx/backends/backend.c++
+	haze/gfx/backends/video.h++		\
+	haze/gfx/backends/video.c++
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
 	haze/gfx/backends/sdl.h++		\
@@ -93,8 +93,8 @@ libhaze_la_SOURCES +=				\
 
 ## Sound Backends
 libhaze_la_SOURCES +=				\
-	haze/sfx/backends/backend.h++		\
-	haze/sfx/backends/backend.c++
+	haze/sfx/backends/audio.h++		\
+	haze/sfx/backends/audio.c++
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
 	haze/sfx/backends/sdl.h++		\
@@ -110,8 +110,8 @@ libhaze_la_SOURCES +=				\
 
 ## I/O Backends
 libhaze_la_SOURCES +=				\
-	haze/io/backends/backend.h++		\
-	haze/io/backends/backend.c++
+	haze/io/backends/controller.h++		\
+	haze/io/backends/controller.c++
 if HAVE_SDL
 libhaze_la_SOURCES +=				\
 	haze/io/backends/sdl.h++		\

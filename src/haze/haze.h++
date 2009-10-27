@@ -37,14 +37,14 @@
 #include "haze/ui/object.h++"
 #include "haze/ui/pointer.h++"
 
+#include "haze/io/backends/controller.h++"
 #include "haze/io/keyboard.h++"
 #include "haze/io/mouse.h++"
-#include "haze/io/backends/sdl.h++"
 
+#include "haze/sfx/backends/audio.h++"
 #include "haze/sfx/sample.h++"
-#include "haze/sfx/backends/backend.h++"
-#include "haze/sfx/backends/sdl.h++"
 
+#include "haze/gfx/backends/video.h++"
 #include "haze/gfx/size.h++"
 #include "haze/gfx/point.h++"
 #include "haze/gfx/animation.h++"
@@ -53,7 +53,5 @@
 #include "haze/gfx/bitmap.h++"
 #include "haze/gfx/image.h++"
 #include "haze/gfx/color.h++"
-#include "haze/gfx/backends/backend.h++"
-#include "haze/gfx/backends/sdl.h++"
 
 #endif

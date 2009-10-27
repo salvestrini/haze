@@ -31,51 +31,49 @@
 #define VIDEO_BPP    16
 
 namespace HAZE {
-        namespace GFX {
 
-                SDL::SDL() throw(CannotInitialize) :
-                        width_(VIDEO_WIDTH),
-                        height_(VIDEO_HEIGHT),
-                        bpp_(VIDEO_BPP)
-                {
-                        if (!SDL_WasInit(SDL_INIT_VIDEO)) {
-                                if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
-                                        throw CannotInitialize(SDL_GetError());
-                                }
-                        }
-
-                        Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
-
-                        int closest = SDL_VideoModeOK(width_,
-                                                      height_,
-                                                      bpp_,
-                                                      flags);
-                        if (closest == 0) {
-                                throw CannotInitialize("video mode "
-                                                       "unsupported");
-                        }
-                        if (closest != bpp_) {
-                                bpp_ = closest;
-                        }
-
-                        if (!SDL_SetVideoMode(width_, height_, bpp_, flags)) {
-                                throw CannotInitialize("wrong video mode");
+        SDL::SDL() throw(CannotInitialize) :
+                width_(VIDEO_WIDTH),
+                height_(VIDEO_HEIGHT),
+                bpp_(VIDEO_BPP)
+        {
+                if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                        if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
+                                throw CannotInitialize(SDL_GetError());
                         }
                 }
 
-                SDL::~SDL()
-                { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
+                Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
 
-                unsigned int SDL::width()
-                { return width_; }
+                int closest = SDL_VideoModeOK(width_,
+                                              height_,
+                                              bpp_,
+                                              flags);
+                if (closest == 0) {
+                        throw CannotInitialize("video mode "
+                                               "unsupported");
+                }
+                if (closest != bpp_) {
+                        bpp_ = closest;
+                }
 
-                unsigned int SDL::height()
-                { return height_; }
-
-                unsigned int SDL::bpp()
-                { return bpp_; }
-
+                if (!SDL_SetVideoMode(width_, height_, bpp_, flags)) {
+                        throw CannotInitialize("wrong video mode");
+                }
         }
+
+        SDL::~SDL()
+        { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
+
+        unsigned int SDL::width()
+        { return width_; }
+
+        unsigned int SDL::height()
+        { return height_; }
+
+        unsigned int SDL::bpp()
+        { return bpp_; }
+
 }
 
 #endif

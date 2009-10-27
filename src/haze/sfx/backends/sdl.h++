@@ -24,6 +24,7 @@
 #include "haze/sfx/backends/backend.h++"
 
 namespace HAZE {
+
         class SDL : public Audio {
         public:
                 SDL();

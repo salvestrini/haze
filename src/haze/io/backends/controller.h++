@@ -18,23 +18,21 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_IO_BACKENDS_BACKEND
-#define HAZE_IO_BACKENDS_BACKEND
+#ifndef HAZE_IO_BACKENDS_CONTROLLER
+#define HAZE_IO_BACKENDS_CONTROLLER
 
 #include "haze/core/exception.h++"
 
 namespace HAZE {
-        namespace IO {
 
-                class Backend {
-                public:
-                        class CannotInitialize : public Exception { };
+        class Controller {
+        public:
+                class CannotInitialize : public Exception { };
 
-                        Backend() throw(CannotInitialize);
-                        virtual ~Backend();
-                };
+                Controller() throw(CannotInitialize);
+                virtual ~Controller();
+        };
 
-        }
 }
 
 #endif

@@ -27,15 +27,13 @@
 #include "haze/gfx/backends/sdl.h++"
 
 namespace HAZE {
-        namespace IO {
 
-                SDL::SDL()
-                { }
+        SDL::SDL()
+        { }
 
-                SDL::~SDL()
-                { }
+        SDL::~SDL()
+        { }
 
-        }
 }
 
 #endif
