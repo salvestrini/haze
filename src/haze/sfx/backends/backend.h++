@@ -24,17 +24,14 @@
 #include "haze/core/exception.h++"
 
 namespace HAZE {
-        namespace SFX {
+        class Audio {
+        public:
+                class CannotInitialize : public Exception { };
 
-                class Backend {
-                public:
-                        class CannotInitialize : public Exception { };
+                Audio() throw(CannotInitialize);
+                virtual ~Audio();
+        };
 
-                        Backend() throw(CannotInitialize);
-                        virtual ~Backend();
-                };
-
-        }
 }
 
 #endif

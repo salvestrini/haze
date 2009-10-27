@@ -24,15 +24,12 @@
 #include "haze/sfx/backends/backend.h++"
 
 namespace HAZE {
-        namespace SFX {
-
-                class SDL : public Backend {
-                public:
-                        SDL();
-                        virtual ~SDL();
-                };
-
-        }
+        class SDL : public Audio {
+        public:
+                SDL();
+                virtual ~SDL();
+        };
+        
 }
 
 #endif
