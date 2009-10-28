@@ -20,20 +20,18 @@
 
 #include "config.h"
 
-#ifdef HAVE_SDL
+#include "SDL/SDL.h"
 
-#include "SDL.h"
-
-#include "haze/gfx/backends/sdl.h++"
+#include "haze/io/backends/sdl.h++"
 
 namespace HAZE {
 
-        SDL::SDL()
+        SDLController::SDLController(const std::string & name)
+                throw(CannotInitialize) :
+                Controller(name)
         { }
 
-        SDL::~SDL()
+        SDLController::~SDLController()
         { }
 
 }
-
-#endif

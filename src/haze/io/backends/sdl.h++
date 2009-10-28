@@ -24,15 +24,14 @@
 #include "haze/io/backends/controller.h++"
 
 namespace HAZE {
-        namespace IO {
 
-                class SDL : public Controller {
-                public:
-                        SDL();
-                        virtual ~SDL();
-                };
+        class SDLController : public Controller {
+        public:
+                SDLController(const std::string & name) 
+                        throw(CannotInitialize);
+                virtual ~SDLController();
+        };
 
-        }
 }
 
 #endif

@@ -19,3 +19,15 @@
 //
 
 #include "haze/io/backends/controller.h++"
+
+namespace HAZE {
+
+        Controller::Controller(const std::string & name)
+                throw(CannotInitialize) :
+                name_(name)
+        { }
+
+        Controller::~Controller()
+        { }
+
+}

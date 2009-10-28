@@ -21,16 +21,26 @@
 #ifndef HAZE_IO_BACKENDS_CONTROLLER
 #define HAZE_IO_BACKENDS_CONTROLLER
 
+#include <string>
+
 #include "haze/core/exception.h++"
 
 namespace HAZE {
 
         class Controller {
         public:
-                class CannotInitialize : public Exception { };
+                class CannotInitialize : public Exception {
+                public:
+                        CannotInitialize(const std::string & what) :
+                                Exception(what) { }
+                };
 
-                Controller() throw(CannotInitialize);
+                Controller(const std::string & name)
+                        throw(CannotInitialize);
                 virtual ~Controller();
+
+        private:
+                std::string name_;
         };
 
 }
