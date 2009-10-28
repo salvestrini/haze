@@ -19,3 +19,53 @@
 //
 
 #include "haze/haze.h++"
+#include "haze/gfx/backends/sdl.h++"
+#include "haze/sfx/backends/sdl.h++"
+#include "haze/io/backends/sdl.h++"
+
+namespace HAZE {
+
+        Haze::Haze() :
+                video_(0),
+                audio_(0),
+                controller_(0)
+        {
+                try {
+                        try {
+                                video_ = new SDLVideo("SDL");
+                        } catch (Exception & e) {
+                                log << "Cannot create SDL video backend "
+                                    << "(" << e.what() << ")"
+                                    << Log::endl;
+                        }
+                        try {
+                                audio_ = new SDLAudio("SDL");
+                        } catch (Exception & e) {
+                                log << "Cannot create SDL audio backend "
+                                    << "(" << e.what() << ")"
+                                    << Log::endl;
+                        }
+                        try {
+                                controller_ = new SDLController("SDL");
+                        } catch (Exception & e) {
+                                log << "Cannot create SDL controller backend "
+                                    << "(" << e.what() << ")"
+                                    << Log::endl;
+                        }
+                } catch (std::exception & e) {
+                        log << "Got a bug "
+                            << "(" << e.what() << ")"
+                            << Log::endl;
+                }
+        }
+
+        Haze::~Haze()
+        {
+                if (video_)      delete video_;
+                if (audio_)      delete audio_;
+                if (controller_) delete controller_;
+        }
+
+        bool Haze::initialized()
+        { return (video_ != 0 || audio_ != 0 || controller_ != 0); }
+}
