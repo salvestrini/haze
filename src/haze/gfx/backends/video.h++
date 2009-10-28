@@ -27,17 +27,21 @@
 #include "haze/core/exception.h++"
 
 namespace HAZE {
+
         class Video : public boost::noncopyable {
         public:
-                class CannotInitialize : public Exception { };
+                class CannotInitialize : public Exception {
+                public:
+                        CannotInitialize(const std::string what) :
+                                Exception(what) { }
+                };
 
                 Video(const std::string & name) throw(CannotInitialize);
                 virtual ~Video();
 
-                virtual unsigned int width()  = 0;
-                virtual unsigned int height() = 0;
-                virtual unsigned int bpp()    = 0;
-
+                virtual unsigned int width()   = 0;
+                virtual unsigned int height()  = 0;
+                virtual unsigned int bpp()     = 0;
                 virtual void         refresh() = 0;
 
         private:

@@ -18,10 +18,6 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "config.h"
-
-#ifdef HAVE_SDL
-
 #include <string>
 #include <cassert>
 
@@ -34,9 +30,9 @@
 
 namespace HAZE {
 
-        SDL::SDL(const std::string & name)
+        SDLVideo::SDLVideo(const std::string & name)
                 throw(CannotInitialize) :
-                name_(name),
+                Video(name),
                 width_(VIDEO_WIDTH),
                 height_(VIDEO_HEIGHT),
                 bpp_(VIDEO_BPP),
@@ -57,7 +53,6 @@ namespace HAZE {
                                               height_,
                                               bpp_,
                                               flags);
-                log << "SDL closest video bpp is " << closest << Log::endl;
                 if (closest == 0) {
                         throw CannotInitialize("video mode "
                                                "unsupported");
@@ -65,13 +60,17 @@ namespace HAZE {
                 if (closest != bpp_) {
                         bpp_ = closest;
                 }
+                log << "SDL video width  = " << width_  << Log::endl;
+                log << "SDL video height = " << height_ << Log::endl;
+                log << "SDL video bpp    = " << bpp_    << Log::endl;
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
                 SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,   bpp_);
 
+                assert(bpp_ != 0);
+
                 int tmp = bpp_ / 4;
-                assert(tmp != 0);
 
                 SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   tmp);
                 SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp);
@@ -85,21 +84,19 @@ namespace HAZE {
                 }
         }
 
-        SDL::~SDL()
+        SDLVideo::~SDLVideo()
         { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
 
-        unsigned int SDL::width()
+        unsigned int SDLVideo::width()
         { return width_; }
 
-        unsigned int SDL::height()
+        unsigned int SDLVideo::height()
         { return height_; }
 
-        unsigned int SDL::bpp()
+        unsigned int SDLVideo::bpp()
         { return bpp_; }
 
-        void SDL::refresh()
+        void SDLVideo::refresh()
         { SDL_GL_SwapBuffers(); }
 
 }
-
-#endif

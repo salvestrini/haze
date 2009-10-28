@@ -18,4 +18,18 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string>
+
 #include "haze/gfx/backends/video.h++"
+
+namespace HAZE {
+
+        Video::Video(const std::string & name)
+                throw(CannotInitialize) :
+                name_(name)
+        { }
+
+        Video::~Video()
+        { }
+
+}
