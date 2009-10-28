@@ -27,7 +27,8 @@ int main(int argc, char argv[])
         using namespace HAZE;
 
         try {
-                Haze     haze();
+                Haze     haze;
+                assert(haze.initialized());
 
                 Screen   screen_0("screen0");
                 Screen   screen_1("screen1");
