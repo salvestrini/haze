@@ -21,11 +21,21 @@
 #ifndef HAZE_CORE_EXCEPTION
 #define HAZE_CORE_EXCEPTION
 
+#include <string>
 #include <exception>
 
 namespace HAZE {
 
         class Exception : public std::exception {
+        public:
+                Exception();
+                Exception(const std::string & what);
+
+                virtual ~Exception() throw();
+                virtual const char * what() const throw();
+
+        protected:
+                std::string message_;
         };
 }
 

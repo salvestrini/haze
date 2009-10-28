@@ -19,3 +19,21 @@
 //
 
 #include "haze/core/exception.h++"
+
+namespace HAZE {
+
+        Exception::Exception() :
+                message_()
+        { }
+
+        Exception::Exception(const std::string & what) :
+                message_(what)
+        { }
+
+        Exception::~Exception() throw()
+        { }
+
+        const char * Exception::what() const throw()
+        { return message_.c_str(); }
+
+}
