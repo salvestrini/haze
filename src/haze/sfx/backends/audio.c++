@@ -19,3 +19,15 @@
 //
 
 #include "haze/sfx/backends/audio.h++"
+
+namespace HAZE {
+
+        Audio::Audio(const std::string & name)
+                throw(CannotInitialize) :
+                name_(name)
+        { }
+
+        Audio::~Audio()
+        { }
+
+}

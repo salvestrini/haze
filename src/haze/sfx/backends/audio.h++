@@ -21,15 +21,26 @@
 #ifndef HAZE_SFX_BACKENDS_AUDIO
 #define HAZE_SFX_BACKENDS_AUDIO
 
+#include <string>
+
 #include "haze/core/exception.h++"
 
 namespace HAZE {
+
         class Audio {
         public:
-                class CannotInitialize : public Exception { };
+                class CannotInitialize : public Exception {
+                public:
+                        CannotInitialize(const std::string & what) :
+                                Exception(what) { }
+                };
 
-                Audio() throw(CannotInitialize);
+                Audio(const std::string & name)
+                        throw(CannotInitialize);
                 virtual ~Audio();
+
+        private:
+                std::string name_;
         };
 
 }

@@ -18,17 +18,15 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "config.h"
+#include "SDL/SDL.h"
 
-#ifdef HAVE_SDL
-
-#include "SDL.h"
-
-#include "haze/gfx/backends/sdl.h++"
+#include "haze/sfx/backends/sdl.h++"
 
 namespace HAZE {
 
-        SDL::SDL()
+        SDLAudio::SDLAudio(const std::string & name)
+                throw(CannotInitialize) :
+                Audio(name)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
@@ -37,9 +35,7 @@ namespace HAZE {
                 }
         }
 
-        SDL::~SDL()
+        SDLAudio::~SDLAudio()
         { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
 }
-
-#endif

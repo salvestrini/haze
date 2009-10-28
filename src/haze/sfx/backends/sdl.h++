@@ -21,14 +21,15 @@
 #ifndef HAZE_SFX_BACKENDS_SDL
 #define HAZE_SFX_BACKENDS_SDL
 
-#include "haze/sfx/backends/backend.h++"
+#include "haze/sfx/backends/audio.h++"
 
 namespace HAZE {
 
-        class SDL : public Audio {
+        class SDLAudio : public Audio {
         public:
-                SDL();
-                virtual ~SDL();
+                SDLAudio(const std::string & name)
+                        throw(CannotInitialize);
+                virtual ~SDLAudio();
         };
         
 }
