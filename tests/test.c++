@@ -18,29 +18,40 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <iostream>
+
 #include "haze/haze.h++"
 
 int main(int argc, char argv[])
 {
         using namespace HAZE;
 
-        Screen screen_0("screen0");
-        Screen screen_1("screen1");
+        try {
+                Haze     haze();
 
-        Window window_0("window0");
-        Window window_1("window1");
+                Screen   screen_0("screen0");
+                Screen   screen_1("screen1");
 
-        screen_0.add(&window_0);
-        screen_1.add(&window_1);
+                Window   window_0("window0");
+                Window   window_1("window1");
 
-        screen_0.draw();
-        screen_1.draw();
+                screen_0.add(&window_0);
+                screen_1.add(&window_1);
 
-        screen_0.remove(&window_0);
-        screen_1.remove(&window_1);
+                screen_0.draw();
+                screen_1.draw();
 
-        screen_0.draw();
-        screen_1.draw();
+                screen_0.remove(&window_0);
+                screen_1.remove(&window_1);
+
+                screen_0.draw();
+                screen_1.draw();
+        } catch (Exception & e) {
+                std::cerr << "Got the following exception: "
+                          << e.what()
+                          << std::endl;
+                return 1;
+        }
 
         return 0;
 }
