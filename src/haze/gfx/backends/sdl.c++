@@ -25,8 +25,8 @@
 #include "haze/gfx/backends/sdl.h++"
 
 #define VIDEO_WIDTH  640
-#define VIDEO_HEIGHT 320
-#define VIDEO_BPP    16
+#define VIDEO_HEIGHT 480
+#define VIDEO_BPP    8
 
 namespace HAZE {
 
@@ -38,31 +38,36 @@ namespace HAZE {
                 bpp_(VIDEO_BPP),
                 context_(0)
         {
-                if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                if (SDL_WasInit(SDL_INIT_VIDEO)) {
                         log << "SDL video backend already initialized"
                             << Log::endl;
-
+                } else {
                         if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
                                 throw CannotInitialize(SDL_GetError());
                         }
                 }
 
+                log << "Initializing video for "
+                    << width_ << "x" << height_ << "@" << bpp_
+                    << Log::endl;
+
                 Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
 
-                int closest = SDL_VideoModeOK(width_,
-                                              height_,
-                                              bpp_,
-                                              flags);
+                int closest = SDL_VideoModeOK(width_, height_, bpp_, flags);
                 if (closest == 0) {
-                        throw CannotInitialize("video mode "
-                                               "unsupported");
+                        throw CannotInitialize("video mode unsupported");
                 }
                 if (closest != bpp_) {
                         bpp_ = closest;
                 }
-                log << "SDL video width  = " << width_  << Log::endl;
-                log << "SDL video height = " << height_ << Log::endl;
-                log << "SDL video bpp    = " << bpp_    << Log::endl;
+
+                log << "Closest video mode is "
+                    << closest
+                    << " bpp" << Log::endl;
+
+                log << "Requesting video for "
+                    << width_ << "x" << height_ << "@" << bpp_
+                    << Log::endl;
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -71,16 +76,31 @@ namespace HAZE {
                 assert(bpp_ != 0);
 
                 int tmp = bpp_ / 4;
+                log << "Setting framebuffer to "
+                    << tmp << " bits per channel"
+                    << Log::endl;
 
-                SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   tmp);
-                SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp);
-                SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,  tmp);
-                SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, tmp);
+                if (SDL_GL_SetAttribute(SDL_GL_RED_SIZE, tmp) != 0) {
+                        log << "Cannot set SDL_GL_RED_SIZE attribute"
+                            << Log::endl;
+                }
+                if (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp) != 0) {
+                        log << "Cannot set SDL_GL_RED_SIZE attribute"
+                            << Log::endl;
+                }
+                if (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, tmp) != 0) {
+                        log << "Cannot set SDL_GL_RED_SIZE attribute"
+                            << Log::endl;
+                }
+                if (SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, tmp) != 0) {
+                        log << "Cannot set SDL_GL_RED_SIZE attribute"
+                            << Log::endl;
+                }
 
                 // Create the GL drawing context
                 context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
                 if (!context_) {
-                        throw CannotInitialize("wrong video mode");
+                        throw CannotInitialize(SDL_GetError());
                 }
         }
 

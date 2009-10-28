@@ -30,33 +30,38 @@ namespace HAZE {
                 audio_(0),
                 controller_(0)
         {
+                log << "Haze instance creation in progress ..."
+                    << Log::endl;
+
                 try {
-                        try {
-                                video_ = new SDLVideo("SDL");
-                        } catch (Exception & e) {
-                                log << "Cannot create SDL video backend "
-                                    << "(" << e.what() << ")"
-                                    << Log::endl;
-                        }
-                        try {
-                                audio_ = new SDLAudio("SDL");
-                        } catch (Exception & e) {
-                                log << "Cannot create SDL audio backend "
-                                    << "(" << e.what() << ")"
-                                    << Log::endl;
-                        }
-                        try {
-                                controller_ = new SDLController("SDL");
-                        } catch (Exception & e) {
-                                log << "Cannot create SDL controller backend "
-                                    << "(" << e.what() << ")"
-                                    << Log::endl;
-                        }
-                } catch (std::exception & e) {
-                        log << "Got a bug "
-                            << "(" << e.what() << ")"
+                        video_ = new SDLVideo("SDL");
+                        log << "Video backend initialized"
                             << Log::endl;
+                } catch (Exception & e) {
+                        throw e;
                 }
+
+                try {
+                        audio_ = new SDLAudio("SDL");
+                        log << "Audio backend initialized"
+                            << Log::endl;
+                } catch (Exception & e) {
+                        delete video_; video_ = 0;
+                        throw e;
+                }
+
+                try {
+                        controller_ = new SDLController("SDL");
+                        log << "Controller backend initialized"
+                            << Log::endl;
+                } catch (Exception & e) {
+                        delete video_; video_ = 0;
+                        delete audio_; audio_ = 0;
+                        throw e;
+                }
+
+                log << "Haze instance created successfully"
+                    << Log::endl;
         }
 
         Haze::~Haze()
@@ -64,6 +69,9 @@ namespace HAZE {
                 if (video_)      delete video_;
                 if (audio_)      delete audio_;
                 if (controller_) delete controller_;
+
+                log << "Haze instance destroyed successfully"
+                    << Log::endl;
         }
 
         bool Haze::initialized()
