@@ -134,9 +134,15 @@ libhaze_la_SOURCES +=				\
 	haze/ui/label.c++
 
 libhaze_la_CPPFLAGS = $(BOOST_CPPFLAGS) $(EXTRA_CPPFLAGS)
-libhaze_la_CFLAGS   = $(GL_CFLAGS)
+#libhaze_la_CFLAGS   = $(GL_CFLAGS) $(SDL_CFLAGS)
+libhaze_la_CFLAGS   = $(SDL_CFLAGS)
 libhaze_la_CXXFLAGS =
-libhaze_la_LDFLAGS  = -version-info @LIBTOOL_VERSION_INFO@ $(BOOST_LDFLAGS) $(GL_LIBS) $(OPENAL_LIBS)
+#libhaze_la_LDFLAGS  = \
+#	-version-info @LIBTOOL_VERSION_INFO@ \
+#	$(BOOST_LDFLAGS) $(GL_LIBS) $(OPENAL_LIBS) $(SDL_LIBS)
+libhaze_la_LDFLAGS  = \
+	-version-info @LIBTOOL_VERSION_INFO@ \
+	$(BOOST_LDFLAGS) $(SDL_LIBS)
 
 ##
 ## Maintainer related targets
