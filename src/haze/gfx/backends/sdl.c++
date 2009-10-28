@@ -69,12 +69,18 @@ namespace HAZE {
                     << width_ << "x" << height_ << "@" << bpp_
                     << Log::endl;
 
+                // Create the GL drawing context
+                context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
+                if (!context_) {
+                        throw CannotInitialize(SDL_GetError());
+                }
+
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
                 SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,   bpp_);
 
+#if 0
                 assert(bpp_ != 0);
-
                 int tmp = bpp_ / 4;
                 log << "Setting framebuffer to "
                     << tmp << " bits per channel"
@@ -96,12 +102,7 @@ namespace HAZE {
                         log << "Cannot set SDL_GL_RED_SIZE attribute"
                             << Log::endl;
                 }
-
-                // Create the GL drawing context
-                context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
-                if (!context_) {
-                        throw CannotInitialize(SDL_GetError());
-                }
+#endif
         }
 
         SDLVideo::~SDLVideo()
