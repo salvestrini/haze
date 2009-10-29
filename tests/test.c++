@@ -22,6 +22,9 @@
 
 #include "haze/haze.h++"
 
+#define LOG std::clog << "test: "
+#define ERR std::cerr << "test: error: "
+
 int main(int argc, char argv[])
 {
         using namespace HAZE;
@@ -29,6 +32,21 @@ int main(int argc, char argv[])
         try {
                 Haze     haze;
                 assert(haze.initialized());
+
+                Video &      video      = haze.video();
+                Audio &      audio      = haze.audio();
+#if 0
+                Controller & controller = haze.controller();
+#endif
+
+                LOG << "Video "
+                    << video.width() << "x" << video.height()
+                    << "@" << video.bpp()
+                    << std::endl;
+
+                LOG << "Audio "
+                    << audio.channels() << "@" << audio.frequency()
+                    << std::endl;
 
                 Screen   screen_0("screen0");
                 Screen   screen_1("screen1");
@@ -48,7 +66,7 @@ int main(int argc, char argv[])
                 screen_0.draw();
                 screen_1.draw();
         } catch (Exception & e) {
-                std::cerr << "Got the following exception: "
+                ERR << "Got the following exception: "
                           << e.what()
                           << std::endl;
                 return 1;
