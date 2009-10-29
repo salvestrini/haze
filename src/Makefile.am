@@ -42,8 +42,6 @@ libhaze_la_SOURCES +=				\
 libhaze_la_SOURCES +=				\
 	haze/core/debug.h++			\
 	haze/core/debug.c++			\
-	haze/core/utility.h++			\
-	haze/core/utility.c++			\
 	haze/core/exception.h++			\
 	haze/core/exception.c++			\
 	haze/core/log.h++			\
