@@ -26,7 +26,9 @@ namespace HAZE {
 
         SDLAudio::SDLAudio(const std::string & name)
                 throw(CannotInitialize) :
-                Audio(name)
+                Audio(name),
+                channels_(0),
+                frequency_(0)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
@@ -37,5 +39,11 @@ namespace HAZE {
 
         SDLAudio::~SDLAudio()
         { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
+
+        size_t SDLAudio::channels()
+        { return channels_; }
+
+        size_t SDLAudio::frequency()
+        { return frequency_; }
 
 }

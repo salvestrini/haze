@@ -30,6 +30,13 @@ namespace HAZE {
                 SDLAudio(const std::string & name)
                         throw(CannotInitialize);
                 virtual ~SDLAudio();
+
+                virtual size_t channels();
+                virtual size_t frequency();
+
+        private:
+                size_t channels_;
+                size_t frequency_;
         };
         
 }

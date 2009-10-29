@@ -39,6 +39,9 @@ namespace HAZE {
                         throw(CannotInitialize);
                 virtual ~Audio();
 
+                virtual size_t channels()  = 0;
+                virtual size_t frequency() = 0;
+
         private:
                 std::string name_;
         };
