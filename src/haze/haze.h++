@@ -26,7 +26,6 @@
 #include "haze/core/exception.h++"
 #include "haze/core/debug.h++"
 #include "haze/core/log.h++"
-#include "haze/core/utility.h++"
 #include "haze/core/observer.h++"
 #include "haze/core/singleton.h++"
 
@@ -62,6 +61,10 @@ namespace HAZE {
                 ~Haze();
 
                 bool initialized();
+
+                Audio &      audio();
+                Video &      video();
+                Controller & controller();
 
         private:
                 Video *      video_;

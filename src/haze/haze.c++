@@ -76,4 +76,13 @@ namespace HAZE {
 
         bool Haze::initialized()
         { return (video_ != 0 || audio_ != 0 || controller_ != 0); }
+
+        Video & Haze::video()
+        { return *video_; }
+
+        Audio & Haze::audio()
+        { return *audio_; }
+
+        Controller & Haze::controller()
+        { return *controller_; }
 }
