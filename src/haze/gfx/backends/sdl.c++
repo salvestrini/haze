@@ -21,6 +21,8 @@
 #include <string>
 #include <cassert>
 
+#include "SDL/SDL.h"
+
 #include "haze/core/log.h++"
 #include "haze/gfx/backends/sdl.h++"
 
@@ -47,7 +49,7 @@ namespace HAZE {
                         }
                 }
 
-                log << "Initializing video for "
+                log << "Initializing video "
                     << width_ << "x" << height_ << "@" << bpp_
                     << Log::endl;
 

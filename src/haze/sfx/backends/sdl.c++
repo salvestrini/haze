@@ -18,8 +18,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string>
+
 #include "SDL/SDL.h"
 
+#include "haze/core/log.h++"
 #include "haze/sfx/backends/sdl.h++"
 
 namespace HAZE {
@@ -30,11 +33,18 @@ namespace HAZE {
                 channels_(0),
                 frequency_(0)
         {
-                if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                if (SDL_WasInit(SDL_INIT_VIDEO)) {
+                        log << "SDL audio backend already initialized"
+                            << Log::endl;
+                } else {
                         if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                                 throw CannotInitialize(SDL_GetError());
                         }
                 }
+
+                log << "Initializing audio "
+                    << channels_ << "@" << frequency_
+                    << Log::endl;
         }
 
         SDLAudio::~SDLAudio()
