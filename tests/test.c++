@@ -42,6 +42,7 @@ int main(int argc, char argv[])
                 LOG << "Video "
                     << video.width() << "x" << video.height()
                     << "@" << video.bpp()
+                    << "-" << video.hz()
                     << std::endl;
 
                 LOG << "Audio "
