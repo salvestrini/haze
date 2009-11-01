@@ -42,6 +42,7 @@ namespace HAZE {
                 virtual unsigned int width()   = 0;
                 virtual unsigned int height()  = 0;
                 virtual unsigned int bpp()     = 0;
+                virtual unsigned int hz()      = 0;
                 virtual void         refresh() = 0;
 
         private:

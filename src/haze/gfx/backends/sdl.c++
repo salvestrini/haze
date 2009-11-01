@@ -29,6 +29,7 @@
 #define VIDEO_WIDTH  640
 #define VIDEO_HEIGHT 480
 #define VIDEO_BPP    8
+#define VIDEO_HZ     60
 
 namespace HAZE {
 
@@ -38,6 +39,7 @@ namespace HAZE {
                 width_(VIDEO_WIDTH),
                 height_(VIDEO_HEIGHT),
                 bpp_(VIDEO_BPP),
+                hz_(VIDEO_HZ),
                 context_(0)
         {
                 if (SDL_WasInit(SDL_INIT_VIDEO)) {
@@ -56,10 +58,12 @@ namespace HAZE {
                 Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
 
                 int closest = SDL_VideoModeOK(width_, height_, bpp_, flags);
-                if (closest == 0) {
+                if (closest <= 0) {
                         throw CannotInitialize("video mode unsupported");
                 }
-                if (closest != bpp_) {
+
+                // XXX FIXME: Ugly ...
+                if (static_cast<unsigned int>(closest) != bpp_) {
                         bpp_ = closest;
                 }
 
@@ -67,15 +71,17 @@ namespace HAZE {
                     << closest
                     << " bpp" << Log::endl;
 
-                log << "Requesting video for "
-                    << width_ << "x" << height_ << "@" << bpp_
-                    << Log::endl;
-
                 // Create the GL drawing context
                 context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
                 if (!context_) {
                         throw CannotInitialize(SDL_GetError());
                 }
+
+                log << "Video set to "
+                    << width_ << "x" << height_
+                    << "@" << bpp_
+                    << "-" << hz_ << "Hz"
+                    << Log::endl;
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -118,6 +124,9 @@ namespace HAZE {
 
         unsigned int SDLVideo::bpp()
         { return bpp_; }
+
+        unsigned int SDLVideo::hz()
+        { return hz_; }
 
         void SDLVideo::refresh()
         { SDL_GL_SwapBuffers(); }

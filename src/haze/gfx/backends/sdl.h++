@@ -36,13 +36,15 @@ namespace HAZE {
                 virtual unsigned int width();
                 virtual unsigned int height();
                 virtual unsigned int bpp();
+                virtual unsigned int hz();
 
                 virtual void         refresh();
 
         private:
-                int           width_;
-                int           height_;
-                int           bpp_;
+                unsigned int  width_;
+                unsigned int  height_;
+                unsigned int  bpp_;
+                unsigned int  hz_;
                 SDL_Surface * context_;
         };
 
