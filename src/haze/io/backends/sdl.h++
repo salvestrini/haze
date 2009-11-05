@@ -27,7 +27,7 @@ namespace HAZE {
 
         class SDLController : public Controller {
         public:
-                SDLController(const std::string & name) 
+                SDLController(const std::string & name)
                         throw(CannotInitialize);
                 virtual ~SDLController();
         };

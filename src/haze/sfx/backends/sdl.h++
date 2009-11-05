@@ -38,7 +38,7 @@ namespace HAZE {
                 size_t channels_;
                 size_t frequency_;
         };
-        
+
 }
 
 #endif

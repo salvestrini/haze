@@ -22,7 +22,8 @@
 #define HAZE_GFX_BACKENDS_SDL
 
 #include <string>
-#include "SDL/SDL.h"
+
+#include <SDL/SDL.h>
 
 #include "haze/gfx/backends/video.h++"
 

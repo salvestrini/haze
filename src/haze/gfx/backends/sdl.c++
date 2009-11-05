@@ -21,7 +21,7 @@
 #include <string>
 #include <cassert>
 
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
 #include "haze/core/log.h++"
 #include "haze/gfx/backends/sdl.h++"

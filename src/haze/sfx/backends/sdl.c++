@@ -20,7 +20,7 @@
 
 #include <string>
 
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
 #include "haze/core/log.h++"
 #include "haze/sfx/backends/sdl.h++"

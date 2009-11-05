@@ -18,9 +18,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "config.h"
-
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
 #include "haze/io/backends/sdl.h++"
 
