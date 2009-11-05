@@ -68,6 +68,7 @@ DNT_DB    = $(top_srcdir)/.dnt.db
 DNT_FLAGS = --database=$(DNT_DB) --mono
 
 WHITESPACE_DETECT    = $(top_builddir)/tools/maint/whitespace-detect
+WORDWRAP_DETECT      = $(top_builddir)/tools/maint/wordwrap-detect
 FETCH                = $(top_builddir)/tools/maint/fetch
 GITTAG_TO_DATE       = $(top_builddir)/tools/maint/gittag-to-date
 GITLOG_TO_COMMITTERS = $(top_builddir)/tools/maint/gitlog-to-committers

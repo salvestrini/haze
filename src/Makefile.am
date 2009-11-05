@@ -169,7 +169,15 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS)
 maintainer-check-whitespaces: Makefile $(libhaze_la_SOURCES)
 	$(WHITESPACE_DETECT) $(libhaze_la_SOURCES)
 
+maintainer-check-wordwraps: Makefile $(libhaze_la_SOURCES)
+	$(WORDWRAP_DETECT) --tab-size 8 --columns 80 $(libhaze_la_SOURCES)
+
 maintainer-check-guards: Makefile $(libhaze_la_SOURCES)
 	$(GUARDS_CHECK) $(libhaze_la_SOURCES)
 
-maintainer-check-local: Makefile maintainer-check-includes maintainer-check-guards maintainer-check-whitespaces maintainer-check-parameters
+maintainer-check-local: Makefile		\
+	maintainer-check-includes		\
+	maintainer-check-guards			\
+	maintainer-check-whitespaces		\
+	maintainer-check-wordwraps		\
+	maintainer-check-parameters
