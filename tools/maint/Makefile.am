@@ -27,8 +27,8 @@ EXTRA_DIST =					\
 
 scripts =					\
 	fetch					\
-	whitespace-detect			\
 	wordwrap-detect				\
+	whitespace-detect			\
 	gitlog-to-committers			\
 	gittag-to-date				\
 	guards-check				\
@@ -41,8 +41,8 @@ URL_BU = "http://github.com/salvestrini/build-utils/tree/master/maint"
 
 EXTERNAL =					\
 	$(URL_BU)/fetch.in			\
-	$(URL_BU)/whitespace-detect.in		\
 	$(URL_BU)/wordwrap-detect.in		\
+	$(URL_BU)/whitespace-detect.in		\
 	$(URL_BU)/gitlog-to-committers.in	\
 	$(URL_BU)/gittag-to-date.in		\
 	$(URL_BU)/guards-check.in
