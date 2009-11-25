@@ -38,7 +38,7 @@ AC_CONFIG_SRCDIR([src/haze/haze.h++])
 # For automake options (AM_INIT_AUTOMAKE options) see Makefile.am
 # file, AUTOMAKE_OPTIONS variable
 #
-AM_INIT_AUTOMAKE([1.10 foreign std-options -Wall])
+AM_INIT_AUTOMAKE([1.10 foreign std-options -Wall color-tests])
 
 #
 # Autoheader support
