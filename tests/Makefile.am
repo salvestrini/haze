@@ -33,7 +33,7 @@ test_SOURCES  = test.c++
 test_CPPFLAGS = -I$(top_srcdir)/src -I$(top_builddir)/src $(EXTRA_CPPFLAGS)
 test_CFLAGS   =
 test_CXXFLAGS =
-test_LDADD    = $(top_srcdir)/src/libhaze.la
+test_LDADD    = $(top_builddir)/src/libhaze.la
 
 ALL_TESTS_SRCS =				\
 	$(test_SOURCES)
