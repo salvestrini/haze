@@ -25,9 +25,9 @@
 #   If you are only building threads programs, you may wish to use these
 #   variables in your default LIBS, CFLAGS, and CC:
 #
-#          LIBS="$PTHREAD_LIBS $LIBS"
-#          CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-#          CC="$PTHREAD_CC"
+#     LIBS="$PTHREAD_LIBS $LIBS"
+#     CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
+#     CC="$PTHREAD_CC"
 #
 #   In addition, if the PTHREAD_CREATE_JOINABLE thread-attribute constant
 #   has a nonstandard name, defines PTHREAD_CREATE_JOINABLE to that name
@@ -192,10 +192,15 @@ for flag in $ax_pthread_flags; do
         # pthread_cleanup_push because it is one of the few pthread
         # functions on Solaris that doesn't have a non-functional libc stub.
         # We try pthread_create on general principles.
-        AC_TRY_LINK([#include <pthread.h>],
-                    [pthread_t th; pthread_join(th, 0);
-                     pthread_attr_init(0); pthread_cleanup_push(0, 0);
-                     pthread_create(0,0,0,0); pthread_cleanup_pop(0); ],
+        AC_TRY_LINK([#include <pthread.h>
+	             static void routine(void* a) {a=0;}
+	             static void* start_routine(void* a) {return a;}],
+                    [pthread_t th; pthread_attr_t attr;
+                     pthread_join(th, 0);
+                     pthread_attr_init(&attr);
+                     pthread_cleanup_push(routine, 0);
+                     pthread_create(&th,0,start_routine,0);
+                     pthread_cleanup_pop(0); ],
                     [ax_pthread_ok=yes])
 
         LIBS="$save_LIBS"
