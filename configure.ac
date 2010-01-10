@@ -71,7 +71,9 @@ AC_SUBST(LIBTOOL_VERSION_INFO,[$LIBTOOL_VERSION_CURRENT:$LIBTOOL_VERSION_REVISIO
 #
 
 # Checks for Boost
-AX_BOOST_BASE([1.35.0])
+AX_BOOST_BASE([1.35.0],[],[
+  AC_MSG_ERROR([Required Boost >= 1.35.0 not found])
+])
 
 ## Checks for Clutter
 #PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
