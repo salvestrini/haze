@@ -78,14 +78,6 @@ AX_BOOST_SYSTEM
 AX_BOOST_THREAD
 AX_BOOST_FILESYSTEM
 
-## Checks for Clutter
-#PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= 1.0],,[
-#  have_clutter=yes
-#],[
-#  have_clutter=no
-#])
-#AM_CONDITIONAL([HAVE_CLUTTER],[ test "$have_clutter" = "yes" ])
-
 # Checks for SDL
 AX_PATH_GENERIC([sdl],[1.2.13],,[
   have_sdl=yes
@@ -124,8 +116,6 @@ AX_PACKAGE_API([${AX_MAJOR_VERSION}"."${AX_MINOR_VERSION}])
 
 AC_CONFIG_FILES([
 	Makefile
-
-        haze.pc
 
 	src/Makefile
 

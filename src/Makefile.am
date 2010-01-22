@@ -137,10 +137,18 @@ libhaze_la_CFLAGS   = $(SDL_CFLAGS)
 libhaze_la_CXXFLAGS =
 #libhaze_la_LDFLAGS  = \
 #	-version-info @LIBTOOL_VERSION_INFO@ \
-#	$(BOOST_LDFLAGS) $(GL_LIBS) $(OPENAL_LIBS) $(SDL_LIBS)
+#	$(GL_LIBS) $(OPENAL_LIBS) $(SDL_LIBS) \
+#	$(BOOST_LDFLAGS) \
+#	$(BOOST_SYSTEM_LIB) \
+#	$(BOOST_THREAD_LIB) \
+#	$(BOOST_FILESYSTEM_LIB)
 libhaze_la_LDFLAGS  = \
 	-version-info @LIBTOOL_VERSION_INFO@ \
-	$(BOOST_LDFLAGS) $(SDL_LIBS)
+	$(SDL_LIBS) \
+	$(BOOST_LDFLAGS) \
+	$(BOOST_SYSTEM_LIB) \
+	$(BOOST_THREAD_LIB) \
+	$(BOOST_FILESYSTEM_LIB)
 
 ##
 ## Maintainer related targets
