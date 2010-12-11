@@ -19,7 +19,7 @@
 #ifndef HAZE_PATTERN_H
 #define HAZE_PATTERN_H
 
-#include "config.h"
+#include "settings.h"
 
 #include <map>
 #include <list>

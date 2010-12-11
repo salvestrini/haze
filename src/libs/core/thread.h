@@ -19,7 +19,7 @@
 #ifndef HAZE_THREAD_H
 #define HAZE_THREAD_H
 
-#include "config.h"
+#include "settings.h"
 
 #include <string>
 

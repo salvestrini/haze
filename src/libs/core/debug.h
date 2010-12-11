@@ -19,7 +19,7 @@
 #ifndef HAZE_DEBUG_H
 #define HAZE_DEBUG_H
 
-#include "config.h"
+#include "settings.h"
 
 #include <cstdlib>
 

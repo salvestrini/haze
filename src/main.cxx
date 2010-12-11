@@ -16,15 +16,14 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "config.h"
+#include "settings.h"
 
 #include <cstdlib>
 
-#include "application.h"
-#include "log.h"
-#include "debug.h"
-#include "thread.h"
-#include "time.h"
+#include "core/application.h"
+#include "core/log.h"
+#include "core/debug.h"
+#include "core/thread.h"
 
 class MyApp : public Application {
         public:
