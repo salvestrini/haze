@@ -16,8 +16,6 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "settings.h"
-
 #include <cstdlib>
 
 #include "core/application.h"
@@ -32,8 +30,11 @@ class MyApp : public Application {
                                 T(const std::string & n) : Thread(n) { }
 
                                 virtual void loop() {
+#if 0
                                         static int i = 0;
+
                                         DBG("loop %d", i++);
+#endif
                                 }
                 };
 
