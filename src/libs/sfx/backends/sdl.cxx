@@ -33,7 +33,7 @@ namespace HAZE {
                 channels_(0),
                 frequency_(0)
         {
-                if (SDL_WasInit(SDL_INIT_VIDEO)) {
+                if (SDL_WasInit(SDL_INIT_AUDIO)) {
                         log << "SDL audio backend already initialized"
                             << Log::endl;
                 } else {
