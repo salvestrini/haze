@@ -11,12 +11,20 @@ add_library(core STATIC
   core/core.cxx
   core/debug.cxx
   core/log.cxx
-  core/utility.cxx
   core/pattern.cxx
   core/synchronization.cxx
   core/thread.cxx
   core/application.cxx
-)
+
+  core/application.cxx
+  core/exception.cxx
+  core/factory.cxx
+  #log.c++                   log.cxx
+  core/pattern.cxx
+  core/singleton.cxx
+  core/synchronization.cxx
+  core/thread.cxx
+  )
 
 add_library(gfx STATIC
   gfx/gfx.cxx
