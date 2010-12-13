@@ -23,7 +23,7 @@
 
 #include <SDL/SDL_thread.h>
 
-#include "utility.h"
+#include "pattern.h"
 
 class Semaphore : public NonCopyable {
         public:

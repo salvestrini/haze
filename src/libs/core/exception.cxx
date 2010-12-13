@@ -1,5 +1,7 @@
+// -*- c++ -*-
+
 //
-// Copyright (C) 2010 Francesco Salvestrini
+// Copyright (C) 2009 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,17 +18,22 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_UTILITY_H
-#define HAZE_UTILITY_H
+#include "core/exception.hxx"
 
-class NonCopyable {
-        public:
-                NonCopyable() { };
-                ~NonCopyable() { };
+namespace HAZE {
 
-        private:
-                NonCopyable(const NonCopyable &);
-                const NonCopyable & operator =(const NonCopyable &);
-};
+        Exception::Exception() :
+                message_()
+        { }
 
-#endif
+        Exception::Exception(const std::string & what) :
+                message_(what)
+        { }
+
+        Exception::~Exception() throw()
+        { }
+
+        const char * Exception::what() const throw()
+        { return message_.c_str(); }
+
+}

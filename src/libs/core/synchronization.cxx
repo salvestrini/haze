@@ -24,7 +24,7 @@
 #include <SDL/SDL_thread.h>
 
 #include "debug.h"
-#include "synchronization.h"
+#include "synchronization.hxx"
 
 Semaphore::Semaphore(int value)
 {

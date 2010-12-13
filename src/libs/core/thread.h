@@ -26,7 +26,7 @@
 #include <SDL/SDL_thread.h>
 
 #include "log.h"
-#include "utility.h"
+#include "pattern.h"
 
 class Thread : public NonCopyable {
         public:

@@ -26,7 +26,15 @@
 #include <functional>
 #include <algorithm>
 
-#include "utility.h"
+class NonCopyable {
+        public:
+                NonCopyable() { };
+                ~NonCopyable() { };
+
+        private:
+                NonCopyable(const NonCopyable &);
+                const NonCopyable & operator =(const NonCopyable &);
+};
 
 class ReferenceCounter {
         public:
@@ -128,8 +136,8 @@ template<class K, class T> class Factory {
 };
 
 template<typename T> class Observer {
-        public:
-                virtual void update(const T & parameters) = 0;
+ public:
+        virtual void update(const T & parameters) = 0;
 };
 
 template<class T> class Subject {

@@ -25,10 +25,10 @@
 #include <cassert>
 
 // XXX FIXME: Add code here ...
-#define BACKTRACE
+#define BACKTRACE()
 
 // XXX FIXME: Add code here ...
-#define ASSERT_HEADER                                   \
+#define ASSERT_HEADER()                                 \
 {                                                       \
         do {                                            \
                 std::cerr << "Got bug in "              \
@@ -45,8 +45,8 @@
 {                                               \
         do {                                    \
                 if (!(X)) {                     \
-                        ASSERT_HEADER;          \
-                        BACKTRACE;              \
+                        ASSERT_HEADER();        \
+                        BACKTRACE();            \
                 }                               \
         } while (0);                            \
 }
