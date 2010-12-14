@@ -45,4 +45,7 @@ namespace HAZE {
         void Path::remove()
         { }
 
+        const char * Path::c_str() const
+        { return path_.c_str(); }
+
 }

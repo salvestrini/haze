@@ -36,6 +36,8 @@ namespace HAZE {
                 bool exists();
                 void remove();
 
+                const char * c_str() const;
+
         private:
                 std::string path_;
         };
