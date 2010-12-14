@@ -26,10 +26,11 @@
 #include "core/pattern.hxx"
 #include "core/filesystem.hxx"
 #include "gfx/geometry.hxx"
+#include "gfx/surface.hxx"
 
 namespace HAZE {
 
-        class Image : public Size, NonCopyable {
+        class Image : public NonCopyable {
         public:
                 Image(const Path & file);
                 virtual ~Image();
@@ -39,7 +40,7 @@ namespace HAZE {
                 virtual void draw(const Point &     origin);
 
         private:
-                SDL_Surface * image_;
+                Surface * surface_;
         };
 
 }

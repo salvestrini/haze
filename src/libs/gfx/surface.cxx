@@ -17,3 +17,17 @@
 //
 
 #include "surface.hxx"
+
+namespace HAZE {
+
+        Surface::Surface(const Path & file)
+        {
+                surface_ = SDL_LoadBMP(file.c_str());
+        }
+
+        Surface::~Surface()
+        {
+                SDL_FreeSurface(surface_);
+        }
+
+}

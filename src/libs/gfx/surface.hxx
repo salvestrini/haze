@@ -19,13 +19,23 @@
 #ifndef HAZE_GFX_SURFACE
 #define HAZE_GFX_SURFACE
 
-#include <string>
-
 #include <SDL/SDL.h>
 
-#include "core/exception.hxx"
+#include "core/filesystem.hxx"
+#include "gfx/geometry.hxx"
 
 namespace HAZE {
+
+        class Surface : public Size {
+        public:
+                Surface(const Path & file);
+
+                virtual ~Surface();
+
+        private:
+                SDL_Surface * surface_;
+        };
+
 }
 
 #endif
