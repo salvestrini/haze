@@ -21,9 +21,10 @@
 
 #include <string>
 
+#include <SDL/SDL.h>
+
 #include "core/pattern.hxx"
 #include "core/filesystem.hxx"
-#include "gfx/bitmap.hxx"
 #include "gfx/geometry.hxx"
 
 namespace HAZE {
@@ -33,12 +34,12 @@ namespace HAZE {
                 Image(const Path & file);
                 virtual ~Image();
 
-                virtual void         draw(const Point &     origin,
-                                          const Rectangle & clipping);
-                virtual void         draw(const Point &     origin);
+                virtual void draw(const Point &     origin,
+                                  const Rectangle & clipping);
+                virtual void draw(const Point &     origin);
 
         private:
-                Bitmap * bitmap_;
+                SDL_Surface * image_;
         };
 
 }

@@ -21,14 +21,10 @@
 namespace HAZE {
 
         Image::Image(const Path & file)
-        {
-                bitmap_ = new Bitmap(file);
-        }
+        { }
 
         Image::~Image()
-        {
-                delete bitmap_;
-        }
+        { }
 
         void Image::draw(const Point &     origin,
                          const Rectangle & clipping)

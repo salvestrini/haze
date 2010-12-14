@@ -24,7 +24,6 @@ set(core_SOURCES
 set(gfx_SOURCES
   gfx/video.cxx
   gfx/animation.cxx
-  gfx/bitmap.cxx
   gfx/image.cxx
   gfx/geometry.cxx
   )
