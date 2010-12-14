@@ -21,13 +21,14 @@
 
 #include <string>
 
+#include "core/pattern.hxx"
 #include "core/filesystem.hxx"
 #include "gfx/bitmap.hxx"
 #include "gfx/geometry.hxx"
 
 namespace HAZE {
 
-        class Image : public Size {
+        class Image : public Size, NonCopyable {
         public:
                 Image(const Path & file);
                 virtual ~Image();
@@ -35,11 +36,9 @@ namespace HAZE {
                 virtual void         draw(const Point &     origin,
                                           const Rectangle & clipping);
                 virtual void         draw(const Point &     origin);
-                virtual unsigned int width() const;
-                virtual unsigned int height() const;
 
         private:
-                //SmartPointer<Bitmap> bitmap_;
+                Bitmap * bitmap_;
         };
 
 }

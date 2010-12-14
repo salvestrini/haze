@@ -21,6 +21,8 @@
 
 #include <string>
 
+#include <SDL/SDL.h>
+
 #include "core/exception.hxx"
 
 namespace HAZE {
@@ -49,6 +51,7 @@ namespace HAZE {
                 unsigned int height();
                 unsigned int bpp();
                 unsigned int hz();
+
                 void         refresh();
 
         private:
@@ -57,7 +60,7 @@ namespace HAZE {
                 unsigned int  bpp_;
                 unsigned int  hz_;
 
-                SDL_Surface * context_;
+                SDL_Surface * surface_;
         };
 
 }

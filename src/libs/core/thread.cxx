@@ -16,13 +16,9 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <string>
-
-#include <SDL/SDL_thread.h>
-
+#include "thread.hxx"
 #include "debug.hxx"
 #include "log.hxx"
-#include "thread.hxx"
 #include "exception.hxx"
 
 namespace HAZE {

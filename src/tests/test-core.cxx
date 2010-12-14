@@ -50,6 +50,8 @@ int main(int argc, char * argv[])
                 
                 //x.stop();
 
+                retval = EXIT_SUCCESS;
+
         } catch (std::exception & e) {
                 BUG("Uncaught exception");
         } catch (...) {

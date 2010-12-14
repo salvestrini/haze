@@ -19,6 +19,6 @@ target_link_libraries(test-gfx
 #   ${SDL_LIBRARIES}
    SDLmain
 
-   core
    gfx
+   core
 )

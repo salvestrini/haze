@@ -19,7 +19,7 @@
 #ifndef HAZE_CORE_SYNCHRONIZATION
 #define HAZE_CORE_SYNCHRONIZATION
 
-#include <SDL/SDL_thread.h>
+#include <SDL/SDL.h>
 
 #include "pattern.hxx"
 

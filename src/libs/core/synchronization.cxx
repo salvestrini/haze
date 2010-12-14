@@ -16,11 +16,6 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <stdexcept>
-#include <string>
-
-#include <SDL/SDL_thread.h>
-
 #include "debug.hxx"
 #include "synchronization.hxx"
 #include "exception.hxx"

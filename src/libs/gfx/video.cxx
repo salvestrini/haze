@@ -19,8 +19,6 @@
 #include <string>
 #include <cassert>
 
-#include <SDL/SDL.h>
-
 #include "core/log.hxx"
 #include "gfx/video.hxx"
 
@@ -35,7 +33,7 @@ namespace HAZE {
                 height_(height),
                 bpp_(bpp),
                 hz_(frequency),
-                context_(0)
+                surface_(0)
         {
                 if (SDL_WasInit(SDL_INIT_VIDEO)) {
                         log << "SDL video backend already initialized"
@@ -67,8 +65,8 @@ namespace HAZE {
                     << " bpp" << Log::endl;
 
                 // Create the GL drawing context
-                context_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
-                if (!context_) {
+                surface_ = SDL_SetVideoMode(width_, height_, bpp_, flags);
+                if (!surface_) {
                         throw CannotInitialize(SDL_GetError());
                 }
 

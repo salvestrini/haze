@@ -19,13 +19,14 @@
 #ifndef HAZE_CORE_TIMER
 #define HAZE_CORE_TIMER
 
-#include <SDL/SDL_timer.h>
+#include <SDL/SDL.h>
 
+#include "core/pattern.hxx"
 #include "core/exception.hxx"
 
 namespace HAZE {
 
-        class Timer {
+        class Timer : public NonCopyable {
         public:
                 enum type {
                         ONESHOT,
@@ -52,7 +53,6 @@ namespace HAZE {
                 type         mode_;
         };
 
-        //void delay(unsigned int ms);
 }
 
 #endif

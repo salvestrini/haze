@@ -21,7 +21,7 @@
 
 #include <string>
 
-#include <SDL/SDL_thread.h>
+#include <SDL/SDL.h>
 
 #include "pattern.hxx"
 
@@ -44,7 +44,7 @@ namespace HAZE {
 
                 void         join();
 
-                static int run(void * opaque);
+                static int   run(void * opaque);
         };
 
 }

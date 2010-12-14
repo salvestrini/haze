@@ -34,9 +34,6 @@ namespace HAZE {
                 virtual ~Bitmap();
         };
 
-        typedef Factory<std::string, Bitmap> BitmapFactory;
-
-        extern BitmapFactory bitmapFactory;
 }
 
 #endif

@@ -21,28 +21,22 @@
 namespace HAZE {
 
         Image::Image(const Path & file)
-        { }
+        {
+                bitmap_ = new Bitmap(file);
+        }
 
         Image::~Image()
-        { }
+        {
+                delete bitmap_;
+        }
 
         void Image::draw(const Point &     origin,
                          const Rectangle & clipping)
-        { }
-
-        void Image::draw(const Point & origin)
-        { }
-
-        unsigned int Image::width() const
         {
-                //return bitmap_->width();
-                return 0;
         }
 
-        unsigned int Image::height() const
+        void Image::draw(const Point & origin)
         {
-                //return bitmap_->height();
-                return 0;
         }
 
 }

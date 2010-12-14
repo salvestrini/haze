@@ -20,20 +20,7 @@
 
 #include "core/log.hxx"
 #include "core/debug.hxx"
-#include "core/thread.hxx"
-
-class T : public HAZE::Thread {
-public:
-        T(const std::string & n) : Thread(n) { }
-        
-        virtual void loop() {
-#if 0
-                static int i = 0;
-                
-                DBG("loop %d", i++);
-#endif
-        }
-};
+#include "gfx/video.hxx"
 
 int main(int argc, char * argv[])
 {
@@ -42,13 +29,10 @@ int main(int argc, char * argv[])
         int retval = EXIT_FAILURE;
 
         try {
-                T x("test");
 
-                x.start();
+                HAZE::Video v;
 
-                sleep(500);
-                
-                //x.stop();
+                retval = EXIT_SUCCESS;
 
         } catch (std::exception & e) {
                 BUG("Uncaught exception");
