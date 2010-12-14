@@ -16,17 +16,17 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_PATTERN_H
-#define HAZE_PATTERN_H
-
-#include "settings.h"
+#ifndef HAZE_CORE_PATTERN
+#define HAZE_CORE_PATTERN
 
 #include <map>
 #include <list>
 #include <functional>
 #include <algorithm>
 
-class NonCopyable {
+namespace HAZE {
+
+        class NonCopyable {
         public:
                 NonCopyable() { };
                 ~NonCopyable() { };
@@ -34,9 +34,9 @@ class NonCopyable {
         private:
                 NonCopyable(const NonCopyable &);
                 const NonCopyable & operator =(const NonCopyable &);
-};
+        };
 
-class ReferenceCounter {
+        class ReferenceCounter {
         public:
                 ReferenceCounter() : count_(0) { }
                 void increment()               { count_++; }
@@ -44,9 +44,9 @@ class ReferenceCounter {
 
         private:
                 int count_;
-};
+        };
 
-template <typename T> class SmartPointer {
+        template <typename T> class SmartPointer {
         public:
                 SmartPointer() :
                         data_(0), reference_(0) {
@@ -97,25 +97,59 @@ template <typename T> class SmartPointer {
         private:
                 T *                data_;
                 ReferenceCounter * reference_;
-};
+        };
 
-template<class T> class Singleton : public NonCopyable {
+        template<class T> class Singleton : public NonCopyable {
         public:
                 Singleton() { };
-
-                T * instance() {
-                        if (!instance_) {
-                                instance_ = new T;
+                ~Singleton() {
+                        if (instance_) {
+                                delete instance_;
                         }
+                }
 
+                T * operator->() {
+                        if (instance_ == 0) {
+                                instance_ = new T();
+                        }
                         return instance_;
                 }
 
         private:
                 static T * instance_ = 0;
-};
+        };
 
-template<class K, class T> class Factory {
+#if 0
+        template<class Key, class Type> class Factory {
+        public:
+                typedef boost::shared_ptr<Type> Data;
+
+                Data get(const Key & key);
+
+        protected:
+
+        private:
+                std::map<Key, Data> objects_;
+        };
+
+        template<class Key, class Type>
+        typename Factory<Key, Type>::Data
+        Factory<Key, Type>::get(const Key & key)
+        {
+                typename std::map<Key, Data>::iterator i;
+
+                i = objects_.find(key);
+
+                if (i == objects_.end()) {
+                        Data tmp(new Type(key));
+                        objects_.insert(std::make_pair(key, tmp));
+                }
+
+                return (*i).second;
+        }
+#endif
+
+        template<class K, class T> class Factory {
         public:
                 typedef SmartPointer<T> Data;
 
@@ -133,14 +167,14 @@ template<class K, class T> class Factory {
 
         private:
                 std::map<K, Data> objects_;
-};
+        };
 
-template<typename T> class Observer {
- public:
-        virtual void update(const T & parameters) = 0;
-};
+        template<typename T> class Observer {
+        public:
+                virtual void update(const T & parameters) = 0;
+        };
 
-template<class T> class Subject {
+        template<class T> class Subject {
         public:
                 void attach(Observer<T> * observer) {
                         observers_.push_back(observer);
@@ -157,6 +191,8 @@ template<class T> class Subject {
 
         private:
                 std::list<Observer<T> *> observers_;
-};
+        };
+
+}
 
 #endif

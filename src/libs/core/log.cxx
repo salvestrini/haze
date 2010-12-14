@@ -16,8 +16,78 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "settings.h"
+#include <iostream>
 
-#include "log.h"
+#include "settings.hxx"
+#include "log.hxx"
 
 const char * prefix_ = 0;
+
+namespace HAZE {
+
+        Log log("haze: ");
+
+        Log::Log(const std::string & prefix) :
+                prefix_(prefix),
+                newline_(true)
+        { }
+
+        Log & Log::endl(Log & l)
+        { return l; }
+
+        Log & Log::operator<<(const std::string & v)
+        {
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
+        }
+
+        Log & Log::operator<<(int v)
+        {
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
+        }
+
+        Log & Log::operator<<(unsigned int v)
+        {
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
+        }
+
+        Log & Log::operator<<(char v)
+        {
+                if (newline_) {
+                        std::cout << prefix_;
+                        newline_ = false;
+                }
+                std::cout << v;
+
+                return (*this);
+        }
+
+
+        Log & Log::operator<<(Log & (*m)(Log &))
+        {
+                if (m == Log::endl) {
+                        std::cout << std::endl;
+                        newline_ = true;
+                }
+
+                return (*this);
+        }
+
+}

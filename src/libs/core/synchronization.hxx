@@ -16,16 +16,16 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_SYNCHRONIZATION_H
-#define HAZE_SYNCHRONIZATION_H
-
-#include "settings.h"
+#ifndef HAZE_CORE_SYNCHRONIZATION
+#define HAZE_CORE_SYNCHRONIZATION
 
 #include <SDL/SDL_thread.h>
 
-#include "pattern.h"
+#include "pattern.hxx"
 
-class Semaphore : public NonCopyable {
+namespace HAZE {
+
+        class Semaphore : public NonCopyable {
         public:
                 Semaphore(int value);
                 virtual ~Semaphore();
@@ -35,9 +35,9 @@ class Semaphore : public NonCopyable {
 
         private:
                 SDL_sem * semaphore_;
-};
+        };
 
-class Mutex : public NonCopyable {
+        class Mutex : public NonCopyable {
 	public:
 		Mutex();
 		virtual ~Mutex();
@@ -47,9 +47,9 @@ class Mutex : public NonCopyable {
 
 	private:
 		SDL_mutex * mutex_;
-};
+        };
 
-class Guard : public NonCopyable {
+        class Guard : public NonCopyable {
 	public:
 		Guard(Mutex & mutex) : mutex_(mutex) {
 			mutex_.lock();
@@ -61,6 +61,7 @@ class Guard : public NonCopyable {
 
 	private:
 		Mutex & mutex_;
-};
+        };
 
+}
 #endif

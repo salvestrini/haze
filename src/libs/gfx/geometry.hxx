@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,10 +16,10 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_SIZE
-#define HAZE_GFX_SIZE
+#ifndef HAZE_GFX_GEOMETRY
+#define HAZE_GFX_GEOMETRY
 
-#include <string>
+#include <utility>
 
 namespace HAZE {
 
@@ -42,14 +40,59 @@ namespace HAZE {
                 void         resize(unsigned int width,
                                     unsigned int height);
 
-                virtual      operator std::string() const;
-
         protected:
 
         private:
                 unsigned int width_;
                 unsigned int height_;
         };
+
+        class Point {
+        public:
+                Point(int x = 0, int y = 0);
+                virtual ~Point();
+
+                int  x() const;
+                int  y() const;
+                void x(int v);
+                void y(int v);
+
+        private:
+                std::pair<int, int> p_;
+        };
+
+        class Rectangle {
+        public:
+                Rectangle();
+                Rectangle(const Point & origin,
+                          const Size &  size);
+                Rectangle(const Point & p1,
+                          const Point & p2);
+
+                virtual ~Rectangle();
+
+                void         move(const Point & where);
+
+                int          x() const;
+                int          y() const;
+                void         x(int v);
+                void         y(int v);
+
+                unsigned int width()  const;
+                unsigned int height() const;
+                void         width(unsigned int v);
+                void         height(unsigned int v);
+
+                const Size & size() const;
+                void         resize(const Size & s);
+
+        protected:
+                Size  size_;
+
+        private:
+                Point origin_;
+        };
+
 
 }
 

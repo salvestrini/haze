@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,4 +16,33 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "core/factory.hxx"
+#include "filesystem.hxx"
+
+namespace HAZE {
+
+        Path::Path(const std::string & p) :
+                path_(p)
+        { }
+
+        Path::~Path()
+        { }
+
+        Path Path::basename(const std::string & suffix)
+        { return Path(path_); }
+ 
+        Path Path::dirname()
+        { return Path(path_); }
+
+        bool Path::isFile()
+        { return false; }
+
+        bool Path::isDirectory()
+        { return false; }
+
+        bool Path::exists()
+        { return false; }
+
+        void Path::remove()
+        { }
+
+}

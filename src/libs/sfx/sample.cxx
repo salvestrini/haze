@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,4 +16,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/sfx/sample.h++"
+#include "sfx/sample.hxx"

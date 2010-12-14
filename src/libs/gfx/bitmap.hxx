@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,22 +20,18 @@
 #define HAZE_GFX_BITMAP
 
 #include <string>
-#include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 
-#include "haze/core/factory.h++"
-#include "haze/core/buffer.h++"
-#include "haze/gfx/size.h++"
+#include "core/pattern.hxx"
+#include "core/filesystem.hxx"
+#include "gfx/geometry.hxx"
+#include "gfx/bitmap.hxx"
 
 namespace HAZE {
 
-        class Bitmap : public Size, public boost::noncopyable {
+        class Bitmap : public Size {
         public:
-                Bitmap(const std::string & filename);
+                Bitmap(const Path & file);
                 virtual ~Bitmap();
-
-        private:
-                Buffer * buffer_;
         };
 
         typedef Factory<std::string, Bitmap> BitmapFactory;

@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,25 +16,33 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/gfx/image.h++"
-#include "haze/gfx/point.h++"
-#include "haze/gfx/rectangle.h++"
+#include "gfx/image.hxx"
 
 namespace HAZE {
 
+        Image::Image(const Path & file)
+        { }
+
+        Image::~Image()
+        { }
+
         void Image::draw(const Point &     origin,
                          const Rectangle & clipping)
-        {
-                if (!bitmap_) {
-                        return;
-                }
-        }
+        { }
 
         void Image::draw(const Point & origin)
+        { }
+
+        unsigned int Image::width() const
         {
-                if (!bitmap_) {
-                        return;
-                }
+                //return bitmap_->width();
+                return 0;
+        }
+
+        unsigned int Image::height() const
+        {
+                //return bitmap_->height();
+                return 0;
         }
 
 }

@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,27 +16,9 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_FONT
-#define HAZE_GFX_FONT
+#ifndef HAZE_SETTINGS
+#define HAZE_SETTINGS
 
-#include <string>
-
-namespace HAZE {
-
-        class Font {
-        public:
-                Font(const std::string & filename) :
-                        filename_(filename) { }
-
-                unsigned int width(const std::string & text)  const;
-                unsigned int height(const std::string & text) const;
-
-        protected:
-
-        private:
-                std::string filename_;
-        };
-
-}
+#define DEBUG 1
 
 #endif

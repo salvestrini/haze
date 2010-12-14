@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,25 +16,33 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_POINT
-#define HAZE_GFX_POINT
+#ifndef HAZE_SFX_MIXER
+#define HAZE_SFX_MIXER
 
-#include <utility>
+#include <string>
+
+#include "core/exception.hxx"
 
 namespace HAZE {
 
-        class Point {
+        class Audio {
         public:
-                Point(int x = 0, int y = 0);
-                virtual ~Point();
+                class CannotInitialize : public Exception {
+                public:
+                        CannotInitialize(const std::string & what) :
+                                Exception(what) { }
+                };
 
-                int  x() const;
-                int  y() const;
-                void x(int v);
-                void y(int v);
+                Audio()
+                        throw(CannotInitialize);
+                virtual ~Audio();
+
+                virtual size_t channels();
+                virtual size_t frequency();
 
         private:
-                std::pair<int, int> p_;
+                size_t channels_;
+                size_t frequency_;
         };
 
 }

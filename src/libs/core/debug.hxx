@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,6 +19,7 @@
 #ifndef HAZE_CORE_DEBUG
 #define HAZE_CORE_DEBUG
 
+#include <cstdlib>
 #include <iostream>
 #include <cassert>
 
@@ -38,6 +37,13 @@
         } while (0);                                    \
 }
 
+// Redefine assert() as our ASSERT()
+#ifdef assert
+#undef assert
+#endif
+#define assert(X) ASSERT(X)
+
+// Define our assert now
 #ifdef NDEBUG
 #define ASSERT(X)
 #else
@@ -52,10 +58,13 @@
 }
 #endif
 
-// Redefine assert() as our ASSERT()
-#ifdef assert
-#undef assert
-#endif
-#define assert(X) ASSERT(X)
+#include "log.hxx"
+
+#define BUG(X) \
+do { \
+	ERR("Got a bug at %s:%d", __FILE__, __LINE__); \
+	BACKTRACE(); \
+	exit(-1); \
+} while (0)
 
 #endif

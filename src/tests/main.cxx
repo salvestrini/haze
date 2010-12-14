@@ -18,49 +18,21 @@
 
 #include <cstdlib>
 
-#include "core/application.h"
-#include "core/log.h"
-#include "core/debug.h"
-#include "core/thread.h"
+#include "core/log.hxx"
+#include "core/debug.hxx"
+#include "core/thread.hxx"
 
-class MyApp : public Application {
-        public:
-                class T : public Thread {
-                        public:
-                                T(const std::string & n) : Thread(n) { }
-
-                                virtual void loop() {
+class T : public HAZE::Thread {
+public:
+        T(const std::string & n) : Thread(n) { }
+        
+        virtual void loop() {
 #if 0
-                                        static int i = 0;
-
-                                        DBG("loop %d", i++);
+                static int i = 0;
+                
+                DBG("loop %d", i++);
 #endif
-                                }
-                };
-
-                MyApp(const std::string & name,
-                      int                 width,
-                      int                 height) :
-                        Application(name, width, height),
-                        x("test-thread")
-                { };
-
-                virtual bool run() {
-                        DBG("Running ...");
-
-                        x.start();
-
-                        sleep(500);
-
-                        //x.stop();
-
-                        DBG("Done ...");
-
-                        return true;
-                }
-
-        private:
-                T x;
+        }
 };
 
 int main(int argc, char * argv[])
@@ -70,9 +42,13 @@ int main(int argc, char * argv[])
         int retval = EXIT_FAILURE;
 
         try {
-                MyApp app("test", 640, 480);
+                T x("test");
 
-                retval = app.run() ? EXIT_SUCCESS : EXIT_FAILURE;
+                x.start();
+
+                sleep(500);
+                
+                //x.stop();
 
         } catch (std::exception & e) {
                 BUG("Uncaught exception");

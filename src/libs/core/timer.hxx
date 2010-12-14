@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,34 +16,43 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_SFX_BACKENDS_AUDIO
-#define HAZE_SFX_BACKENDS_AUDIO
+#ifndef HAZE_CORE_TIMER
+#define HAZE_CORE_TIMER
 
-#include <string>
+#include <SDL/SDL_timer.h>
 
-#include "haze/core/exception.h++"
+#include "core/exception.hxx"
 
 namespace HAZE {
 
-        class Audio {
+        class Timer {
         public:
-                class CannotInitialize : public Exception {
-                public:
-                        CannotInitialize(const std::string & what) :
-                                Exception(what) { }
+                enum type {
+                        ONESHOT,
+                        PERIODIC
                 };
 
-                Audio(const std::string & name)
-                        throw(CannotInitialize);
-                virtual ~Audio();
+                Timer(unsigned int period, // ms
+                      type         mode);
+                ~Timer();
 
-                virtual size_t channels()  = 0;
-                virtual size_t frequency() = 0;
+                virtual void fire() = 0;
+
+                class CantStart  : public Exception { };
+                class CantCancel : public Exception { };
+
+                void start();
+                void cancel();
+                bool isRunning();
+                type mode();
 
         private:
-                std::string name_;
+                SDL_TimerID  id_;
+                unsigned int period_;
+                type         mode_;
         };
 
+        //void delay(unsigned int ms);
 }
 
 #endif

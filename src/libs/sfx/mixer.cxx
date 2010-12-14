@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,14 +20,13 @@
 
 #include <SDL/SDL.h>
 
-#include "haze/core/log.h++"
-#include "haze/sfx/backends/sdl.h++"
+#include "core/log.hxx"
+#include "sfx/mixer.hxx"
 
 namespace HAZE {
 
-        SDLAudio::SDLAudio(const std::string & name)
+        Audio::Audio()
                 throw(CannotInitialize) :
-                Audio(name),
                 channels_(0),
                 frequency_(0)
         {
@@ -47,13 +44,13 @@ namespace HAZE {
                     << Log::endl;
         }
 
-        SDLAudio::~SDLAudio()
+        Audio::~Audio()
         { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
-        size_t SDLAudio::channels()
+        size_t Audio::channels()
         { return channels_; }
 
-        size_t SDLAudio::frequency()
+        size_t Audio::frequency()
         { return frequency_; }
 
 }

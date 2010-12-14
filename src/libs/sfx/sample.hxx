@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,17 +21,14 @@
 
 #include <string>
 
+#include "core/filesystem.hxx"
+
 namespace HAZE {
 
         class Sample {
         public:
-                Sample(const std::string & filename) :
-                        filename_(filename) { }
-
-        protected:
-
-        private:
-                std::string filename_;
+                Sample(const Path & file);
+                ~Sample();
         };
 
 }

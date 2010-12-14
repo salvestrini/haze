@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,23 +21,20 @@
 
 #include <SDL/SDL.h>
 
-#include "haze/core/log.h++"
-#include "haze/gfx/backends/sdl.h++"
-
-#define VIDEO_WIDTH  640
-#define VIDEO_HEIGHT 480
-#define VIDEO_BPP    8
-#define VIDEO_HZ     60
+#include "core/log.hxx"
+#include "gfx/video.hxx"
 
 namespace HAZE {
 
-        SDLVideo::SDLVideo(const std::string & name)
+        Video::Video(unsigned int width,
+                     unsigned int height,
+                     unsigned int bpp,
+                     unsigned int frequency)
                 throw(CannotInitialize) :
-                Video(name),
-                width_(VIDEO_WIDTH),
-                height_(VIDEO_HEIGHT),
-                bpp_(VIDEO_BPP),
-                hz_(VIDEO_HZ),
+                width_(width),
+                height_(height),
+                bpp_(bpp),
+                hz_(frequency),
                 context_(0)
         {
                 if (SDL_WasInit(SDL_INIT_VIDEO)) {
@@ -113,22 +108,22 @@ namespace HAZE {
 #endif
         }
 
-        SDLVideo::~SDLVideo()
+        Video::~Video()
         { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
 
-        unsigned int SDLVideo::width()
+        unsigned int Video::width()
         { return width_; }
 
-        unsigned int SDLVideo::height()
+        unsigned int Video::height()
         { return height_; }
 
-        unsigned int SDLVideo::bpp()
+        unsigned int Video::bpp()
         { return bpp_; }
 
-        unsigned int SDLVideo::hz()
+        unsigned int Video::hz()
         { return hz_; }
 
-        void SDLVideo::refresh()
+        void Video::refresh()
         { SDL_GL_SwapBuffers(); }
 
 }

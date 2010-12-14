@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,25 +16,15 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <string>
-#include <utility>
-#include <boost/shared_ptr.hpp>
-
-#include "haze/gfx/bitmap.h++"
+#include "gfx/bitmap.hxx"
 
 namespace HAZE {
 
-        Bitmap::Bitmap(const std::string & filename) :
-                Size(0, 0), buffer_(0)
-        {
-                // XXX FIXME: Add code here
-        }
+        Bitmap::Bitmap(const Path & file) :
+                Size(0, 0)
+        { }
 
         Bitmap::~Bitmap()
-        {
-                if (buffer_) {
-                        delete buffer_;
-                }
-        }
+        { }
 
 }

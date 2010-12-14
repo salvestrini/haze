@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,18 +16,37 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#ifndef HAZE_CORE_THREAD
+#define HAZE_CORE_THREAD
+
 #include <string>
 
-#include "haze/sfx/backends/audio.h++"
+#include <SDL/SDL_thread.h>
+
+#include "pattern.hxx"
 
 namespace HAZE {
 
-        Audio::Audio(const std::string & name)
-                throw(CannotInitialize) :
-                name_(name)
-        { }
+        class Thread : public NonCopyable {
+        public:
+                Thread(const std::string & name = "unknown");
+                virtual ~Thread();
 
-        Audio::~Audio()
-        { }
+                std::string  name() { return name_; }
+
+                void         start();
+                void         stop();
+                virtual void loop() = 0;
+
+        private:
+                SDL_Thread * thread_;
+                std::string  name_;
+
+                void         join();
+
+                static int run(void * opaque);
+        };
 
 }
+
+#endif

@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,47 +20,26 @@
 #define HAZE_GFX_IMAGE
 
 #include <string>
-#include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 
-#include "haze/gfx/bitmap.h++"
-#include "haze/gfx/point.h++"
-#include "haze/gfx/rectangle.h++"
-#include "haze/gfx/size.h++"
+#include "core/filesystem.hxx"
+#include "gfx/bitmap.hxx"
+#include "gfx/geometry.hxx"
 
 namespace HAZE {
 
-        class Image : public Size, boost::noncopyable {
+        class Image : public Size {
         public:
-                Image()          { }
-                virtual ~Image() { }
-
-                Image(const std::string & filename) :
-                        bitmap_(bitmapFactory.get(filename))
-                { }
-
-                Image(const std::string & filename,
-                      const Size &        size) :
-                        bitmap_(bitmapFactory.get(filename))
-                { bitmap_->resize(size); }
-
-                void                 load(const std::string & filename) {
-                        bitmap_ = bitmapFactory.get(filename);
-                }
+                Image(const Path & file);
+                virtual ~Image();
 
                 virtual void         draw(const Point &     origin,
                                           const Rectangle & clipping);
                 virtual void         draw(const Point &     origin);
-
-                virtual unsigned int width() const {
-                        return bitmap_ ? bitmap_->width() : 0;
-                }
-                virtual unsigned int height() const {
-                        return bitmap_ ? bitmap_->height() : 0;
-                }
+                virtual unsigned int width() const;
+                virtual unsigned int height() const;
 
         private:
-                boost::shared_ptr<Bitmap> bitmap_;
+                //SmartPointer<Bitmap> bitmap_;
         };
 
 }

@@ -16,74 +16,77 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "settings.h"
-
-#include <stdexcept>
 #include <string>
 
 #include <SDL/SDL_thread.h>
 
-#include "debug.h"
-#include "thread.h"
+#include "debug.hxx"
+#include "log.hxx"
+#include "thread.hxx"
+#include "exception.hxx"
 
-int Thread::run(void * opaque)
-{
-        ASSERT(opaque != 0);
+namespace HAZE {
 
-        Thread * t = reinterpret_cast<Thread *>(opaque);
+        int Thread::run(void * opaque)
+        {
+                ASSERT(opaque != 0);
 
-        DBG("Running thread %s loop", t->name().c_str());
-        t->loop();
+                Thread * t = reinterpret_cast<Thread *>(opaque);
 
-        return 0;
-}
+                DBG("Running thread %s loop", t->name().c_str());
+                t->loop();
 
-Thread::Thread(const std::string & name) :
-        name_(name)
-{
-        DBG("Thread %s created", name_.c_str());
-}
-
-void Thread::start()
-{
-        if (thread_) {
-                WRN("Thread %s already started", name_.c_str());
-                return;
+                return 0;
         }
 
-        DBG("Starting thread %s", name_.c_str());
-
-        thread_ = SDL_CreateThread(run, this);
-        if (thread_ == 0) {
-                throw std::runtime_error(std::string("Unable to "
-                                                     "create thread ") +
-                                                     name_ +
-                                                     SDL_GetError());
+        Thread::Thread(const std::string & name) :
+                name_(name)
+        {
+                DBG("Thread %s created", name_.c_str());
         }
 
-        ASSERT(thread_);
-}
+        void Thread::start()
+        {
+                if (thread_) {
+                        WRN("Thread %s already started", name_.c_str());
+                        return;
+                }
 
-void Thread::stop()
-{
-        if (thread_) {
-                DBG("Stopping thread %s", name_.c_str());
+                DBG("Starting thread %s", name_.c_str());
 
-                int status;
+                thread_ = SDL_CreateThread(run, this);
+                if (thread_ == 0) {
+                        throw Exception(std::string("Unable to "
+                                                    "create thread ") +
+                                        name_ +
+                                        SDL_GetError());
+                }
 
-                SDL_WaitThread(thread_, &status);
-
-                thread_ = 0;
-        } else {
-                WRN("Thread %s already stopped", name_.c_str());
+                ASSERT(thread_);
         }
 
-        ASSERT(!thread_);
-}
+        void Thread::stop()
+        {
+                if (thread_) {
+                        DBG("Stopping thread %s", name_.c_str());
 
-Thread::~Thread()
-{
-        stop();
+                        int status;
 
-        DBG("Thread %s destroyed", name_.c_str());
+                        SDL_WaitThread(thread_, &status);
+
+                        thread_ = 0;
+                } else {
+                        WRN("Thread %s already stopped", name_.c_str());
+                }
+
+                ASSERT(!thread_);
+        }
+
+        Thread::~Thread()
+        {
+                stop();
+
+                DBG("Thread %s destroyed", name_.c_str());
+        }
+
 }

@@ -1,7 +1,5 @@
-// -*- c++ -*-
-
 //
-// Copyright (C) 2009 Francesco Salvestrini
+// Copyright (C) 2010 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,9 +16,70 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/gfx/rectangle.h++"
+#include <cmath>
+
+#include "gfx/geometry.hxx"
 
 namespace HAZE {
+
+        Size::Size(unsigned int width,
+                   unsigned int height) :
+                width_(width),
+                height_(height)
+        { }
+
+        Size::~Size()
+        { }
+
+        unsigned int Size::width() const
+        { return width_; }
+
+        unsigned int Size::height() const
+        { return height_; }
+
+        void Size::width(unsigned int width)
+        { width_  = width; }
+
+        void Size::height(unsigned int height)
+        { height_ = height; }
+
+        void Size::resize(const Size & size)
+        {
+                width_  = size.width_;
+                height_ = size.height_;
+        }
+
+        void Size::resize(float factor)
+        {
+                width_  = int(std::abs(float(width_)  * factor));
+                height_ = int(std::abs(float(height_) * factor));
+        }
+
+        void Size::resize(unsigned int width,
+                          unsigned int height)
+        {
+                width_  = width;
+                height_ = height;
+        }
+
+        Point::Point(int x, int y) :
+                p_(x, y)
+        { }
+
+        Point::~Point()
+        { }
+
+        int Point::x() const
+        { return p_.first; }
+
+        int Point::y() const
+        { return p_.second; }
+
+        void Point::x(int v)
+        { p_.first = v; }
+
+        void Point::y(int v)
+        { p_.second = v; }
 
         Rectangle::Rectangle() :
                 size_(0, 0),
