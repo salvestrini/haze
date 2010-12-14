@@ -22,6 +22,7 @@ set(core_SOURCES
   )
 
 set(gfx_SOURCES
+  gfx/surface.cxx
   gfx/video.cxx
   gfx/animation.cxx
   gfx/image.cxx
