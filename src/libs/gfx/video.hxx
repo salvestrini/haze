@@ -52,7 +52,7 @@ namespace HAZE {
                 unsigned int bpp();
                 unsigned int hz();
 
-                void         refresh();
+                void         clear();
 
         private:
                 unsigned int  width_;

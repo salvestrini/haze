@@ -121,7 +121,7 @@ namespace HAZE {
         unsigned int Video::hz()
         { return hz_; }
 
-        void Video::refresh()
+        void Video::clear()
         { SDL_GL_SwapBuffers(); }
 
 }
