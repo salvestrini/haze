@@ -8,13 +8,10 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(core_SOURCES
-  core/filesystem.cxx
   core/debug.cxx
-  core/log.cxx
-  core/pattern.cxx
-  core/synchronization.cxx
-  core/thread.cxx
   core/exception.cxx
+  core/filesystem.cxx
+  core/log.cxx
   core/pattern.cxx
   core/synchronization.cxx
   core/thread.cxx
@@ -22,11 +19,9 @@ set(core_SOURCES
   )
 
 set(gfx_SOURCES
-  gfx/surface.cxx
   gfx/video.cxx
-  gfx/animation.cxx
-  gfx/image.cxx
   gfx/geometry.cxx
+  gfx/image.cxx
   )
 
 set(sfx_SOURCES
