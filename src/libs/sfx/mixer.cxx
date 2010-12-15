@@ -30,18 +30,13 @@ namespace HAZE {
                 channels_(0),
                 frequency_(0)
         {
-                if (SDL_WasInit(SDL_INIT_AUDIO)) {
-                        log << "SDL audio backend already initialized"
-                            << Log::endl;
-                } else {
+                if (!SDL_WasInit(SDL_INIT_AUDIO)) {
                         if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                                 throw CannotInitialize(SDL_GetError());
                         }
                 }
 
-                log << "Initializing audio "
-                    << channels_ << "@" << frequency_
-                    << Log::endl;
+                DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
         }
 
         Audio::~Audio()
