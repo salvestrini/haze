@@ -22,8 +22,8 @@
 
 namespace HAZE {
 
-        Size::Size(unsigned int width,
-                   unsigned int height) :
+        Size::Size(size_t width,
+                   size_t height) :
                 width_(width),
                 height_(height)
         { }
@@ -31,16 +31,16 @@ namespace HAZE {
         Size::~Size()
         { }
 
-        unsigned int Size::width() const
+        size_t Size::width() const
         { return width_; }
 
-        unsigned int Size::height() const
+        size_t Size::height() const
         { return height_; }
 
-        void Size::width(unsigned int width)
-        { width_  = width; }
+        void Size::width(size_t width)
+        { width_ = width; }
 
-        void Size::height(unsigned int height)
+        void Size::height(size_t height)
         { height_ = height; }
 
         void Size::resize(const Size & size)
@@ -51,35 +51,37 @@ namespace HAZE {
 
         void Size::resize(float factor)
         {
-                width_  = int(std::abs(float(width_)  * factor));
-                height_ = int(std::abs(float(height_) * factor));
+                width_  = static_cast<size_t>(std::abs(float(width_)  *
+                                                       factor));
+                height_ = static_cast<size_t>(std::abs(float(height_) *
+                                                       factor));
         }
 
-        void Size::resize(unsigned int width,
-                          unsigned int height)
+        void Size::resize(size_t width,
+                          size_t height)
         {
                 width_  = width;
                 height_ = height;
         }
 
         Point::Point(int x, int y) :
-                p_(x, y)
+                x_(x), y_(y)
         { }
 
         Point::~Point()
         { }
 
         int Point::x() const
-        { return p_.first; }
+        { return x_; }
 
         int Point::y() const
-        { return p_.second; }
+        { return y_; }
 
         void Point::x(int v)
-        { p_.first = v; }
+        { x_ = v; }
 
         void Point::y(int v)
-        { p_.second = v; }
+        { y_ = v; }
 
         Rectangle::Rectangle() :
                 size_(0, 0),
@@ -123,7 +125,6 @@ namespace HAZE {
         void Rectangle::move(const Point & where)
         { origin_ = where; }
 
-
         int Rectangle::x() const
         { return origin_.x(); }
 
@@ -136,16 +137,16 @@ namespace HAZE {
         void Rectangle::y(int v)
         { origin_.y(v); }
 
-        unsigned int Rectangle::width()  const
+        size_t Rectangle::width()  const
         { return size_.width(); }
 
-        unsigned int Rectangle::height() const
+        size_t Rectangle::height() const
         { return size_.height(); }
 
-        void Rectangle::width(unsigned int v)
+        void Rectangle::width(size_t v)
         { size_.width(v); }
 
-        void Rectangle::height(unsigned int v)
+        void Rectangle::height(size_t v)
         { size_.height(v); }
 
         const Size & Rectangle::size() const

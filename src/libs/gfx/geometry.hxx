@@ -25,26 +25,24 @@ namespace HAZE {
 
         class Size {
         public:
-                Size(unsigned int width  = 0,
-                     unsigned int height = 0);
+                Size(size_t width  = 0,
+                     size_t height = 0);
                 virtual ~Size();
 
-                unsigned int width()  const;
-                unsigned int height() const;
+                size_t width()  const;
+                size_t height() const;
 
-                void         width(unsigned int width);
-                void         height(unsigned int height);
+                void   width(size_t value);
+                void   height(size_t value);
 
-                void         resize(const Size & size);
-                void         resize(float factor);
-                void         resize(unsigned int width,
-                                    unsigned int height);
-
-        protected:
+                void   resize(const Size & size);
+                void   resize(float factor);
+                void   resize(size_t width,
+                              size_t height);
 
         private:
-                unsigned int width_;
-                unsigned int height_;
+                size_t width_;
+                size_t height_;
         };
 
         class Point {
@@ -58,7 +56,8 @@ namespace HAZE {
                 void y(int v);
 
         private:
-                std::pair<int, int> p_;
+                int x_;
+                int y_;
         };
 
         class Rectangle {
@@ -72,27 +71,24 @@ namespace HAZE {
                 virtual ~Rectangle();
 
                 void         move(const Point & where);
-
+                             
                 int          x() const;
                 int          y() const;
-                void         x(int v);
-                void         y(int v);
-
-                unsigned int width()  const;
-                unsigned int height() const;
-                void         width(unsigned int v);
-                void         height(unsigned int v);
+                void         x(int value);
+                void         y(int value);
+                             
+                size_t       width()  const;
+                size_t       height() const;
+                void         width(size_t v);
+                void         height(size_t v);
 
                 const Size & size() const;
                 void         resize(const Size & s);
 
-        protected:
-                Size  size_;
-
         private:
+                Size  size_;
                 Point origin_;
         };
-
 
 }
 
