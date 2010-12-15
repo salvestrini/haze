@@ -21,10 +21,24 @@
 namespace HAZE {
 
         Image::Image(const Path & file)
-        { }
+        {
+#if 0
+                SDL_Surface * temp = SDL_LoadBMP(file.c_str());
+                surface_ = SDL_ConvertSurface(temp,
+                                              video.surface().format(),
+                                              SDL_SWSURFACE);
+                SDL_FreeSurface(temp);
+#endif
+                surface_ = SDL_LoadBMP(file.c_str());
+
+                width(surface_->w);
+                height(surface_->h);
+        }
 
         Image::~Image()
-        { }
+        {
+                SDL_FreeSurface(surface_);
+        }
 
         void Image::draw(const Point &     origin,
                          const Rectangle & clipping)
