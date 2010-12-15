@@ -36,33 +36,4 @@ extern const char * prefix_;
 #define WRN(FMT, ARGS...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##ARGS)
 #define ERR(FMT, ARGS...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##ARGS)
 
-#include <string>
-
-namespace HAZE {
-
-        class Log {
-        public:
-                Log(const std::string & prefix);
-
-                // Manipulators
-                static Log & endl(Log & l);
-
-                // Operators
-                Log & operator<<(Log & (*m)(Log &));
-                Log & operator<<(const std::string & v);
-                Log & operator<<(int v);
-                Log & operator<<(unsigned int v);
-                Log & operator<<(char v);
-
-        protected:
-
-        private:
-                std::string prefix_;
-                bool        newline_;
-        };
-
-        extern Log log;
-
-}
-
 #endif

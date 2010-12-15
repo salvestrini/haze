@@ -55,11 +55,6 @@ namespace HAZE {
                 void         clear();
 
         private:
-                unsigned int  width_;
-                unsigned int  height_;
-                unsigned int  bpp_;
-                unsigned int  hz_;
-
                 SDL_Surface * surface_;
         };
 
