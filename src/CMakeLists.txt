@@ -13,12 +13,13 @@ set(core_SOURCES
 
 set(gfx_SOURCES
   gfx/video.cxx
+  gfx/image.cxx
   gfx/geometry.cxx
   gfx/camera.cxx
   gfx/texture.cxx
-  gfx/image.cxx
   gfx/font.cxx
   gfx/text.cxx
+  gfx/object.cxx
   )
 
 set(sfx_SOURCES

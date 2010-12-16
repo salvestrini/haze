@@ -26,6 +26,7 @@
 #include "gfx/image.hxx"
 #include "gfx/font.hxx"
 #include "gfx/text.hxx"
+#include "gfx/object.hxx"
 
 int main(int argc, char * argv[])
 {
@@ -42,9 +43,14 @@ int main(int argc, char * argv[])
                 HAZE::Video v;
                 HAZE::Path p(datadir + "font.png");
                 HAZE::Image i(p);
-                HAZE::Font f;
-                HAZE::Text t("this is a test", f);
-                
+                //HAZE::Font f;
+                //HAZE::Text t("this is a test", f);
+                HAZE::Texture t(i);
+
+                HAZE::Object o;
+
+                o.draw();
+
         } catch (std::exception & e) {
                 ERR("%s", e.what());
         } catch (...) {
