@@ -34,6 +34,7 @@ add_executable(test-sfx
 
 target_link_libraries(test-sfx
   ${SDL_LIBRARY}
+  ${SDLMIXER_LIBRARY}
   SDLmain
 
   ${OPENAL_LIBRARY}
@@ -63,6 +64,7 @@ add_executable(test-all
 target_link_libraries(test-all
   ${SDL_LIBRARY}
   ${SDLIMAGE_LIBRARY}
+  ${SDLMIXER_LIBRARY}
   SDLmain
 
   ${OPENGL_LIBRARIES}
