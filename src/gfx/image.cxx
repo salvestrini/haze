@@ -16,15 +16,27 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <SDL/SDL_image.h>
+
 #include "gfx/image.hxx"
 
 namespace HAZE {
 
+        int Image::count_ = 0;
+
         Image::Image(const Path & file)
         {
-                surface_ = SDL_LoadBMP(file.c_str());
+                if (count_ == 0) {
+                        if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
+                                throw CannotLoad(file, "unknown format");
+                        }
+
+                        count_++;
+                }
+
+                surface_ = IMG_Load(file.c_str());
                 if (!surface_) {
-                        throw CannotLoad(file);
+                        throw CannotLoad(file, SDL_GetError());
                 }
 
                 width(surface_->w);
@@ -32,7 +44,13 @@ namespace HAZE {
         }
 
         Image::~Image()
-        { SDL_FreeSurface(surface_); }
+        {
+                SDL_FreeSurface(surface_);
+                count_--;
+                if (count_ == 0) {
+                        IMG_Quit();
+                }
+        }
 
         bool Image::hasAlpha() const
         { return surface_->format->Amask ? true : false; }

@@ -39,10 +39,7 @@ namespace HAZE {
         {
                 std::map<char, Image *>::const_iterator i = glyphs_.find(c);
                 if (i == glyphs_.end()) {
-                        throw CannotMap(std::string("Missing "
-                                                    "mapping "
-                                                    "for character ") +
-                                        std::string(1, c));
+                        throw CannotMap(c);
                 }
 
                 return (*i).second;
@@ -58,10 +55,7 @@ namespace HAZE {
                      i++) {
                         j = glyphs_.find(*i);
                         if (j == glyphs_.end()) {
-                                throw CannotMap(std::string("Missing "
-                                                            "mapping "
-                                                            "for character ") +
-                                                std::string(1, *i));
+                                throw CannotMap(*i);
                         }
 
                         tmp.push_back((*j).second);

@@ -19,6 +19,7 @@
 #ifndef HAZE_GFX_IMAGE
 #define HAZE_GFX_IMAGE
 
+#include <string>
 #include <SDL/SDL.h>
 
 #include "core/exception.hxx"
@@ -32,9 +33,11 @@ namespace HAZE {
         public:
                 class CannotLoad : public Exception {
                 public:
-                        CannotLoad(const Path & p) :
-                                Exception(std::string("cannot load ") +
-                                          p.c_str())
+                        CannotLoad(const Path &        path,
+                                   const std::string & cause) :
+                                Exception(std::string("Cannot load ") +
+                                          std::string(path.c_str())   +
+                                          (!cause.empty() ? ", " + cause : ""))
                         { }
                 };
 
@@ -48,6 +51,7 @@ namespace HAZE {
 
         private:
                 SDL_Surface * surface_;
+                static int    count_;
         };
 
 }

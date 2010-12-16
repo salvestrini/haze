@@ -35,8 +35,3 @@ add_library(core STATIC ${core_SOURCES})
 add_library(gfx  STATIC ${gfx_SOURCES})
 add_library(sfx  STATIC ${sfx_SOURCES})
 add_library(io   STATIC ${io_SOURCES})
-
-#target_link_libraries(core LINK_INTERFACE_LIBRARIES ${SDL_LIBRARY})
-#target_link_libraries(gfx  LINK_INTERFACE_LIBRARIES ${SDL_LIBRARY} ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
-#target_link_libraries(sfx  LINK_INTERFACE_LIBRARIES ${SDL_LIBRARY})
-#target_link_libraries(io   LINK_INTERFACE_LIBRARIES ${SDL_LIBRARY})

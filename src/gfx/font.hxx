@@ -32,8 +32,11 @@ namespace HAZE {
         public:
                 class CannotMap : public Exception {
                 public:
-                        CannotMap(const std::string & w) :
-                                Exception(w)
+                        CannotMap(char c) :
+                                Exception(std::string("Cannot map "
+                                                      "character '") +
+                                          std::string(1, c)          +
+                                          std::string("'"))
                         { }
                 };
 
