@@ -16,37 +16,41 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#ifndef HAZE_GFX_FONT
+#define HAZE_GFX_FONT
+
+#include <string>
+#include <map>
+#include <vector>
+
+#include "core/exception.hxx"
 #include "gfx/image.hxx"
 
 namespace HAZE {
 
-        Image::Image(const Path & file)
-        {
-#if 0
-                SDL_Surface * temp = SDL_LoadBMP(file.c_str());
-                surface_ = SDL_ConvertSurface(temp,
-                                              video.surface().format(),
-                                              SDL_SWSURFACE);
-                SDL_FreeSurface(temp);
-#endif
-                surface_ = SDL_LoadBMP(file.c_str());
+        class Font {
+        public:
+                class CannotMap : public Exception {
+                public:
+                        CannotMap(const std::string & w) :
+                                Exception(w)
+                        { }
+                };
 
-                width(surface_->w);
-                height(surface_->h);
-        }
+                Font();
+                ~Font();
 
-        Image::~Image()
-        {
-                SDL_FreeSurface(surface_);
-        }
+                void                 clear();
+                void                 add(char c, Image * i);
+                void                 remove(char c);
 
-        void Image::draw(const Point &     origin,
-                         const Rectangle & clipping)
-        {
-        }
+                Image *              map(char c) const;
+                std::vector<Image *> map(const std::string & s) const;
 
-        void Image::draw(const Point & origin)
-        {
-        }
+        private:
+                std::map<char, Image *> glyphs_;
+        };
 
 }
+
+#endif

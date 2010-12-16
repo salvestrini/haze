@@ -16,22 +16,22 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "core/exception.hxx"
+#ifndef HAZE_GFX_CAMERA
+#define HAZE_GFX_CAMERA
+
+#include <GL/gl.h>
+
+#include "gfx/geometry.hxx"
 
 namespace HAZE {
 
-        Exception::Exception() :
-                message_()
-        { }
+        class Camera : public Point<GLfloat> {
+        public:
+                Camera(GLfloat x = 0.0f, GLfloat y = 0.0f);
+                ~Camera();
 
-        Exception::Exception(const std::string & what) :
-                message_(what)
-        { }
-
-        Exception::~Exception() throw()
-        { }
-
-        const char * Exception::what() const throw()
-        { return message_.c_str(); }
-
+                void set(GLfloat x, GLfloat y);
+        };
 }
+
+#endif

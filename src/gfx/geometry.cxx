@@ -16,12 +16,10 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cmath>
-
 #include "gfx/geometry.hxx"
 
 namespace HAZE {
-
+#if 0
         Size::Size(size_t width,
                    size_t height) :
                 width_(width),
@@ -63,7 +61,9 @@ namespace HAZE {
                 width_  = width;
                 height_ = height;
         }
+#endif
 
+#if 0
         Point::Point(int x, int y) :
                 x_(x), y_(y)
         { }
@@ -82,22 +82,23 @@ namespace HAZE {
 
         void Point::y(int v)
         { y_ = v; }
+#endif
 
         Rectangle::Rectangle() :
                 size_(0, 0),
                 origin_(0, 0)
         { }
 
-        Rectangle::Rectangle(const Point & origin,
-                             const Size &  size) :
+        Rectangle::Rectangle(const Point<int> &           origin,
+                             const Size<size_t> & size) :
                 size_(size),
                 origin_(origin)
         { }
 
-        Rectangle::Rectangle(const Point & p1,
-                             const Point & p2)
+        Rectangle::Rectangle(const Point<int> & p1,
+                             const Point<int> & p2)
         {
-                Point p1_, p2_;
+                Point<int> p1_, p2_;
 
                 if (p1.x() > p2.x()) {
                         p1_.x(p2.x());
@@ -115,14 +116,14 @@ namespace HAZE {
                 }
 
                 origin_ = p1;
-                size_   = Size(p2_.x() - p1_.x(),
+                size_   = Size<size_t>(p2_.x() - p1_.x(),
                                p2_.y() - p1_.x());
         }
 
         Rectangle::~Rectangle()
         { }
 
-        void Rectangle::move(const Point & where)
+        void Rectangle::move(const Point<int> & where)
         { origin_ = where; }
 
         int Rectangle::x() const
@@ -149,10 +150,10 @@ namespace HAZE {
         void Rectangle::height(size_t v)
         { size_.height(v); }
 
-        const Size & Rectangle::size() const
+        const Size<size_t> & Rectangle::size() const
         { return size_; }
 
-        void Rectangle::resize(const Size & s)
+        void Rectangle::resize(const Size<size_t> & s)
         { size_ = s; }
 
 }

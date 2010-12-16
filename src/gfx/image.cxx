@@ -16,32 +16,31 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_IMAGE
-#define HAZE_GFX_IMAGE
-
-#include <string>
-
-#include <SDL/SDL.h>
-
-#include "core/pattern.hxx"
-#include "core/filesystem.hxx"
-#include "gfx/geometry.hxx"
+#include "gfx/image.hxx"
 
 namespace HAZE {
 
-        class Image : public NonCopyable, public Size {
-        public:
-                Image(const Path & file);
-                virtual ~Image();
+        Image::Image(const Path & file)
+        {
+                surface_ = SDL_LoadBMP(file.c_str());
+                if (!surface_) {
+                        throw CannotLoad(file);
+                }
 
-                virtual void draw(const Point &     origin,
-                                  const Rectangle & clipping);
-                virtual void draw(const Point &     origin);
+                width(surface_->w);
+                height(surface_->h);
+        }
 
-        private:
-                SDL_Surface * surface_;
-        };
+        Image::~Image()
+        { SDL_FreeSurface(surface_); }
+
+        bool Image::hasAlpha() const
+        { return surface_->format->Amask ? true : false; }
+
+        const void * Image::data() const
+        { return surface_->pixels; }
+
+        size_t Image::bpp() const
+        { return surface_->format->BitsPerPixel; }
 
 }
-
-#endif

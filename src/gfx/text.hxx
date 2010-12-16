@@ -16,25 +16,33 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CORE_EXCEPTION
-#define HAZE_CORE_EXCEPTION
+#ifndef HAZE_GFX_TEXT
+#define HAZE_GFX_TEXT
+
+#include <GL/gl.h>
 
 #include <string>
-#include <exception>
+#include <vector>
+
+#include "gfx/font.hxx"
+#include "gfx/geometry.hxx"
+#include "gfx/texture.hxx"
 
 namespace HAZE {
 
-        class Exception : public std::exception {
+        class Text {
         public:
-                Exception();
-                Exception(const std::string & what);
+                Text(const std::string & message,
+                     const Font &        font);
+                ~Text();
 
-                virtual ~Exception() throw();
-                virtual const char * what() const throw();
+                void         draw(const Point<GLfloat> & origin) const;
+                Size<size_t> size() const;
 
-        protected:
-                std::string message_;
+        private:
+                std::vector<Texture *> chars_;
         };
+
 }
 
 #endif

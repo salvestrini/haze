@@ -16,31 +16,18 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
+#include "gfx/camera.hxx"
 
-#include "core/log.hxx"
-#include "core/debug.hxx"
-#include "gfx/video.hxx"
+namespace HAZE {
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
+        Camera::Camera(GLfloat x, GLfloat y) :
+                Point<GLfloat>(x, y)
+        { }
+ 
+        Camera::~Camera()
+        { }
 
-        int retval = EXIT_FAILURE;
+        void Camera::set(GLfloat origin_x, GLfloat origin_y)
+        { x(origin_x); y(origin_y); }
 
-        try {
-
-                HAZE::Video v;
-
-                retval = EXIT_SUCCESS;
-
-        } catch (std::exception & e) {
-                BUG("Uncaught exception");
-        } catch (...) {
-                BUG("Unknown exception");
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
 }
