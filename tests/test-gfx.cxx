@@ -23,6 +23,9 @@
 #include "core/debug.hxx"
 
 #include "gfx/video.hxx"
+#include "gfx/image.hxx"
+#include "gfx/font.hxx"
+#include "gfx/text.hxx"
 
 int main(int argc, char * argv[])
 {
@@ -36,7 +39,7 @@ int main(int argc, char * argv[])
         int retval = EXIT_SUCCESS;
 
         try {
-                HAZE::Video v;
+                
         } catch (std::exception & e) {
                 retval = EXIT_FAILURE;
                 BUG("Uncaught exception");

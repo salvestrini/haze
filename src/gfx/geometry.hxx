@@ -72,8 +72,13 @@ namespace HAZE {
 
         template<typename TYPE = int> class Point {
         public:
-                Point(TYPE x = 0, TYPE y = 0);
-                virtual ~Point();
+                Point(TYPE x = 0, TYPE y = 0) :
+                        x_(x),
+                        y_(y)
+                { }
+
+                virtual ~Point()
+                { }
 
                 TYPE  x() const   { return x_; }
                 TYPE  y() const   { return y_; }

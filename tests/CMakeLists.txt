@@ -7,7 +7,7 @@ add_executable(test-core
 
 target_link_libraries(test-core
   ${SDL_LIBRARY}
-  #   ${SDL_LIBRARIES}
+  #${SDL_LIBRARIES}
   SDLmain
 
   core
@@ -19,10 +19,10 @@ add_executable(test-gfx
 
 target_link_libraries(test-gfx
   ${SDL_LIBRARY}
-  #   ${SDL_LIBRARIES}
+  #${SDL_LIBRARIES}
   SDLmain
 
-  ${OPENGL_LIBRARY}
+  ${OPENGL_LIBRARIES}
 
   gfx
   core
@@ -35,7 +35,7 @@ add_executable(test-sfx
 
 target_link_libraries(test-sfx
   ${SDL_LIBRARY}
-  #   ${SDL_LIBRARIES}
+  #${SDL_LIBRARIES}
   SDLmain
 
   ${OPENAL_LIBRARY}
@@ -51,7 +51,7 @@ add_executable(test-io
 
 target_link_libraries(test-io
   ${SDL_LIBRARY}
-  #   ${SDL_LIBRARIES}
+  #${SDL_LIBRARIES}
   SDLmain
 
   io
@@ -65,10 +65,10 @@ add_executable(test-all
 
 target_link_libraries(test-all
   ${SDL_LIBRARY}
-  #   ${SDL_LIBRARIES}
+  #${SDL_LIBRARIES}
   SDLmain
 
-  ${OPENGL_LIBRARY}
+  ${OPENGL_LIBRARIES}
   ${OPENAL_LIBRARY}
 
   io
@@ -79,11 +79,11 @@ target_link_libraries(test-all
 
 add_test(NAME test-all CONFIGURATIONS Debug COMMAND test-all ${CMAKE_CURRENT_BINARY_DIR})
 
-#target_link_libraries(core LINK_INTERFACE_LIBRARIES
-#  ${SDL_LIBRARY})
-#target_link_libraries(gfx  LINK_INTERFACE_LIBRARIES
-#  ${SDL_LIBRARY} ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
-#target_link_libraries(sfx  LINK_INTERFACE_LIBRARIES
-#  ${SDL_LIBRARY})
-#target_link_libraries(io   LINK_INTERFACE_LIBRARIES
-#  ${SDL_LIBRARY})
+target_link_libraries(core LINK_INTERFACE_LIBRARIES
+  ${SDL_LIBRARY})
+target_link_libraries(gfx  LINK_INTERFACE_LIBRARIES
+  ${SDL_LIBRARY} ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
+target_link_libraries(sfx  LINK_INTERFACE_LIBRARIES
+  ${SDL_LIBRARY})
+target_link_libraries(io   LINK_INTERFACE_LIBRARIES
+  ${SDL_LIBRARY})
