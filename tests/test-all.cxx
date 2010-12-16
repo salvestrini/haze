@@ -38,8 +38,7 @@ int main(int argc, char * argv[])
 
                 retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
-                DBG("Caught exception '%s'", e.what());
-                BUG();
+                ERR("%s", e.what());
         } catch (...) {
                 BUG();
         }

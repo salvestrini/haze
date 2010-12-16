@@ -40,14 +40,13 @@ int main(int argc, char * argv[])
 
         try {
                 HAZE::Video v;
-                HAZE::Path p(datadir);
+                HAZE::Path p(datadir + "font.png");
                 HAZE::Image i(p);
                 HAZE::Font f;
                 HAZE::Text t("this is a test", f);
                 
         } catch (std::exception & e) {
-                DBG("Caught exception '%s'", e.what());
-                BUG();
+                ERR("%s", e.what());
         } catch (...) {
                 BUG();
         }
