@@ -17,6 +17,7 @@
 //
 
 #include <cstdlib>
+#include <string>
 
 #include "core/log.hxx"
 #include "core/debug.hxx"
@@ -24,6 +25,11 @@
 int main(int argc, char * argv[])
 {
         LOG_SETPREFIX("test");
+
+        std::string datadir("./");
+        if (argc > 1) {
+                datadir = std::string(argv[1]);
+        }
 
         int retval = EXIT_FAILURE;
 
