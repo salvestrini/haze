@@ -39,13 +39,17 @@ int main(int argc, char * argv[])
         int retval = EXIT_SUCCESS;
 
         try {
+                HAZE::Video v;
+                HAZE::Path p(datadir);
+                HAZE::Image i(p);
+                HAZE::Font f;
+                HAZE::Text t("this is a test", f);
                 
         } catch (std::exception & e) {
-                retval = EXIT_FAILURE;
-                BUG("Uncaught exception");
+                DBG("Caught exception '%s'", e.what());
+                BUG();
         } catch (...) {
-                retval = EXIT_FAILURE;
-                BUG("Unknown exception");
+                BUG();
         }
 
         DBG("Completed with%s errors", (retval ? "" : "out"));

@@ -60,7 +60,7 @@
 
 #include "log.hxx"
 
-#define BUG(X) \
+#define BUG() \
 do { \
 	ERR("Got a bug at %s:%d", __FILE__, __LINE__); \
 	BACKTRACE(); \
