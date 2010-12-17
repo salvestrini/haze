@@ -39,10 +39,23 @@ void test(const std::string & datadir)
         Rectangle rectangle(0, 0, image.width() / 16, image.height() / 16);
 
         Font font;
-        for (int i = 0; i < 16; i++) {
-                for (int j = 0; j < 16; j++) {
-                        rectangle.move(i * 16, j * 16);
-                        font.add(i + j, image.clip(rectangle));
+
+        char c = 0;
+
+        for (int y = 0; y < 16; y++) {
+                for (int x = 0; x < 16; x++) {
+
+                        rectangle.move(x * 16, y * 16);
+
+                        DBG("Adding font mapping for character '%c' "
+                            "(%04d, %04d, %04d, %04d)",
+                            c,
+                            rectangle.x(), rectangle.y(),
+                            rectangle.width(), rectangle.height());
+
+                        font.add(c, image.clip(rectangle));
+
+                        c++;
                 }
         }
 
