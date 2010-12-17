@@ -89,7 +89,12 @@ namespace HAZE {
                 origin_(0, 0)
         { }
 
-        Rectangle::Rectangle(const Point<int> &           origin,
+        Rectangle::Rectangle(int x, int y, size_t w, size_t h) :
+                size_(w, h),
+                origin_(0, 0)
+        { }
+
+        Rectangle::Rectangle(const Point<int> &   origin,
                              const Size<size_t> & size) :
                 size_(size),
                 origin_(origin)

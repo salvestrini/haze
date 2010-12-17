@@ -93,6 +93,7 @@ namespace HAZE {
         class Rectangle {
         public:
                 Rectangle();
+                Rectangle(int x, int y, size_t w, size_t h);
                 Rectangle(const Point<int> &    origin,
                           const Size<size_t> &  size);
                 Rectangle(const Point<int> & p1,
