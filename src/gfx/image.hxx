@@ -41,13 +41,23 @@ namespace HAZE {
                         { }
                 };
 
+                class CannotCreate : public Exception {
+                };
+
+#if 0
+                Image(void * data,
+                      int    width, int height,
+                      int    depth, int pitch,
+                      Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
+#endif
+                Image(SDL_Surface * surface);
                 Image(const Path & file);
                 virtual ~Image();
 
                 size_t       bpp() const;
                 bool         hasAlpha() const;
                 const void * data() const;
-
+                Image *      clip(const Rectangle & rect) const;
 
         private:
                 SDL_Surface * surface_;

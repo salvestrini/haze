@@ -24,6 +24,18 @@ namespace HAZE {
 
         int Image::count_ = 0;
 
+        Image::Image(SDL_Surface * surface)
+        {
+                if (!surface) {
+                        throw CannotCreate();
+                }
+
+                surface_ = surface;
+
+                width(surface_->w);
+                height(surface_->h);
+        }
+
         Image::Image(const Path & file)
         {
                 if (count_ == 0) {
@@ -50,6 +62,45 @@ namespace HAZE {
                 if (count_ == 0) {
                         IMG_Quit();
                 }
+        }
+
+        Image * Image::clip(const Rectangle & rect) const
+        {
+                SDL_Surface * surface;
+                Uint32        rmask, gmask, bmask, amask;
+
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+                rmask = 0xff000000;
+                gmask = 0x00ff0000;
+                bmask = 0x0000ff00;
+                amask = 0x000000ff;
+#else
+                rmask = 0x000000ff;
+                gmask = 0x0000ff00;
+                bmask = 0x00ff0000;
+                amask = 0xff000000;
+#endif
+
+                surface = SDL_CreateRGBSurface(SDL_SWSURFACE,
+                                               rect.width(), rect.height(),
+                                               32,
+                                               rmask, gmask, bmask, amask);
+                if (surface == NULL) {
+                        throw CannotCreate();
+                }
+
+                SDL_Rect r;
+
+                r.x = rect.x();
+                r.y = rect.y();
+                r.w = rect.width();
+                r.h = rect.height();
+
+                if (SDL_BlitSurface(surface_, &r, surface, NULL) != 0) {
+                        throw CannotCreate();
+                }
+
+                return new Image(surface);
         }
 
         bool Image::hasAlpha() const
