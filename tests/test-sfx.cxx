@@ -22,6 +22,11 @@
 #include "core/log.hxx"
 #include "core/debug.hxx"
 
+void test(const std::string & datadir)
+{
+        // Put your code here ...
+}
+
 int main(int argc, char * argv[])
 {
         LOG_SETPREFIX("test");
@@ -34,8 +39,7 @@ int main(int argc, char * argv[])
         int retval = EXIT_FAILURE;
 
         try {
-                // Put your code here ...
-
+                test(datadir);
                 retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
                 ERR("%s", e.what());

@@ -28,6 +28,32 @@
 #include "gfx/text.hxx"
 #include "gfx/object.hxx"
 
+void test(const std::string & datadir)
+{
+        using namespace HAZE;
+
+        Video video;
+        Image image(Path(datadir + "font.png"));
+
+        // Font image is 16x16 chars
+        Rectangle rectangle(0, 0, image.width() / 16, image.height() / 16);
+
+        Font font;
+        for (int i = 0; i < 16; i++) {
+                for (int j = 0; j < 16; j++) {
+                        rectangle.move(i * 16, j * 16);
+                        font.add(i + j, image.clip(rectangle));
+                }
+        }
+
+        Text    text("this is a test", font);
+        Texture texture(image);
+
+        Object o;
+
+        o.draw();
+}
+
 int main(int argc, char * argv[])
 {
         LOG_SETPREFIX("test");
@@ -37,20 +63,11 @@ int main(int argc, char * argv[])
                 datadir = std::string(argv[1]);
         }
 
-        int retval = EXIT_SUCCESS;
+        int retval = EXIT_FAILURE;
 
         try {
-                HAZE::Video v;
-                HAZE::Path p(datadir + "font.png");
-                HAZE::Image i(p);
-                //HAZE::Font f;
-                //HAZE::Text t("this is a test", f);
-                HAZE::Texture t(i);
-
-                HAZE::Object o;
-
-                o.draw();
-
+                test(datadir);
+                retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
                 ERR("%s", e.what());
         } catch (...) {

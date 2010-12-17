@@ -35,6 +35,17 @@ public:
         }
 };
 
+void test(const std::string & datadir)
+{
+        T x("test");
+
+        x.start();
+
+        sleep(500);
+                
+        x.stop();
+}
+
 int main(int argc, char * argv[])
 {
         LOG_SETPREFIX("test");
@@ -44,16 +55,11 @@ int main(int argc, char * argv[])
                 datadir = std::string(argv[1]);
         }
 
-        int retval = EXIT_SUCCESS;
+        int retval = EXIT_FAILURE;
 
         try {
-                T x("test");
-
-                x.start();
-
-                sleep(500);
-                
-                x.stop();
+                test(datadir);
+                retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
                 ERR("%s", e.what());
         } catch (...) {
