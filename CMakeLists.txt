@@ -17,6 +17,7 @@ find_package(SDL_mixer REQUIRED)
 find_package(OpenGL    REQUIRED)
 find_package(OpenAL    REQUIRED)
 
+add_subdirectory(tools)
 add_subdirectory(src)
 add_subdirectory(tests)
 
