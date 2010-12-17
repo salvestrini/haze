@@ -101,6 +101,7 @@ namespace HAZE {
 
                 virtual ~Rectangle();
 
+                void                 move(int x, int y);
                 void                 move(const Point<int> & where);
 
                 int                  x() const;

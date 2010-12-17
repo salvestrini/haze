@@ -128,6 +128,12 @@ namespace HAZE {
         Rectangle::~Rectangle()
         { }
 
+        void Rectangle::move(int x, int y)
+        {
+                origin_.x(x);
+                origin_.y(y);
+        }
+
         void Rectangle::move(const Point<int> & where)
         { origin_ = where; }
 
