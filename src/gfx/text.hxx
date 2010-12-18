@@ -36,6 +36,7 @@ namespace HAZE {
                      const Font &        font);
                 ~Text();
 
+                void         draw(GLfloat x, GLfloat y) const;
                 void         draw(const Point<GLfloat> & origin) const;
                 Size<size_t> size() const;
 

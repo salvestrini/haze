@@ -50,6 +50,9 @@ namespace HAZE {
                 }
         }
 
+        void Text::draw(GLfloat x, GLfloat y) const
+        { draw(Point<GLfloat>(x, y)); }
+
         Size<size_t> Text::size() const
         {
                 Size<size_t> t;
