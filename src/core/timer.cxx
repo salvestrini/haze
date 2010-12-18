@@ -16,6 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <unistd.h>
+
 #include "core/timer.hxx"
 #include "core/debug.hxx"
 
@@ -86,4 +88,15 @@ namespace HAZE {
                         throw CantCancel();
                 }
         }
+
+        Delay::Delay(long milliseconds) :
+                timeout_(milliseconds)
+        { }
+
+        Delay::~Delay()
+        { }
+
+        void Delay::wait()
+        { usleep(timeout_ * 1000); }
+
 }

@@ -19,6 +19,8 @@
 #include <string>
 #include <cassert>
 
+#include <GL/gl.h>
+
 #include "core/log.hxx"
 #include "gfx/video.hxx"
 
@@ -90,6 +92,15 @@ namespace HAZE {
 
                 DBG("Video set to %d x %d @ %d", width, height, bpp);
 
+                glViewport(0, 0, width, height);
+                glMatrixMode(GL_PROJECTION);
+                glPushMatrix();
+                glLoadIdentity();
+
+                glOrtho(0, width, 0, height, -1, 1);
+                glMatrixMode(GL_MODELVIEW);
+                glPushMatrix();
+                glLoadIdentity();
         }
 
         Video::~Video()
@@ -107,7 +118,7 @@ namespace HAZE {
         unsigned int Video::hz()
         { return surface_->pitch; }
 
-        void Video::clear()
+        void Video::redraw()
         { SDL_GL_SwapBuffers(); }
 
 }

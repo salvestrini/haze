@@ -52,7 +52,7 @@ namespace HAZE {
                 unsigned int bpp();
                 unsigned int hz();
 
-                void         clear();
+                void         redraw();
 
         private:
                 SDL_Surface * surface_;

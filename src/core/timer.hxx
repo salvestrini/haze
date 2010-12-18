@@ -53,6 +53,17 @@ namespace HAZE {
                 type         mode_;
         };
 
+        class Delay {
+        public:
+                Delay(long milliseconds);
+                ~Delay();
+
+                void wait();
+
+        private:
+                long timeout_;
+        };
+
 }
 
 #endif
