@@ -21,6 +21,7 @@
 
 #include "core/log.hxx"
 #include "core/debug.hxx"
+#include "core/timer.hxx"
 
 #include "gfx/video.hxx"
 #include "gfx/image.hxx"
@@ -59,7 +60,14 @@ void test(const std::string & datadir)
                 }
         }
 
-        Text    text("this is a test", font);
+        Text text("this is a test", font);
+        text.draw(0, 0);
+
+        video.redraw();
+
+        Delay d(5000);
+        d.wait();
+
         Texture texture(image);
 
         Object o;
