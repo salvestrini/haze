@@ -20,16 +20,18 @@
 #include <cassert>
 
 #include <GL/gl.h>
+#if 0
+#include <GL/glu.h>
+#endif
 
 #include "core/log.hxx"
 #include "gfx/video.hxx"
 
 namespace HAZE {
 
-        Video::Video(unsigned int width,
-                     unsigned int height,
-                     unsigned int bpp,
-                     unsigned int frequency)
+        Video::Video(size_t width,
+                     size_t height,
+                     size_t bpp)
                 throw(CannotInitialize) :
                 surface_(0)
         {
@@ -41,70 +43,141 @@ namespace HAZE {
 
                 DBG("Initializing video %d x %d @ %d", width, height, bpp);
 
-                Uint32 flags = SDL_ANYFORMAT | SDL_OPENGL;
+                const SDL_VideoInfo * info = SDL_GetVideoInfo();
+                if (!info) {
+                        throw CannotInitialize(SDL_GetError());
+                }
+                DBG("Video infos:");
+                DBG("  hw_available = %d", info->hw_available);
+                DBG("  wm_available = %d", info->wm_available);
+                DBG("  blit_hw      = %d", info->blit_hw     );
+                DBG("  blit_hw_CC   = %d", info->blit_hw_CC  );
+                DBG("  blit_hw_A    = %d", info->blit_hw_A   );
+                DBG("  blit_sw      = %d", info->blit_sw     );
+                DBG("  blit_sw_CC   = %d", info->blit_sw_CC  );
+                DBG("  blit_sw_A    = %d", info->blit_sw_A   );
+                DBG("  blit_fill    = %d", info->blit_fill   );
+                DBG("  video_mem    = %d", info->video_mem   );
+                DBG("  current_w    = %d", info->current_w   );
+                DBG("  current_h    = %d", info->current_h   );
+
+                Uint32 flags =
+                        SDL_OPENGL |
+                        SDL_RESIZABLE |
+                        SDL_DOUBLEBUF |
+                        // info->hw_available ? SDL_HWSURFACE : SDL_SWSURFACE |
+                        0;
 
                 int closest = SDL_VideoModeOK(width, height, bpp, flags);
                 if (closest <= 0) {
-                        throw CannotInitialize("video mode unsupported");
+                        throw CannotInitialize("Video mode unsupported");
                 }
 
                 // XXX FIXME: Ugly ...
-                if (static_cast<unsigned int>(closest) != bpp) {
+                if (static_cast<size_t>(closest) != bpp) {
                         bpp = closest;
+                        DBG("Closest video mode is %d bpp", bpp);
                 }
-                
-                DBG("Closest video mode is %d bpp", closest);
-
-                // Create the GL drawing context
-                surface_ = SDL_SetVideoMode(width,
-                                            height,
-                                            bpp,
-                                            flags);
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,   bpp);
 
 #if 0
-                assert(bpp_ != 0);
-                int tmp = bpp_ / 4;
-                log << "Setting framebuffer to "
-                    << tmp << " bits per channel"
-                    << Log::endl;
+                assert(bpp != 0);
+                int tmp = bpp / 4;
 
-                if (SDL_GL_SetAttribute(SDL_GL_RED_SIZE, tmp) != 0) {
-                        log << "Cannot set SDL_GL_RED_SIZE attribute"
-                            << Log::endl;
+                if (SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   tmp) != 0) {
+                        throw CannotInitialize("Cannot set "
+                                               "SDL_GL_RED_SIZE attribute");
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp) != 0) {
-                        log << "Cannot set SDL_GL_RED_SIZE attribute"
-                            << Log::endl;
+                        throw CannotInitialize("Cannot set "
+                                               "SDL_GL_RED_SIZE attribute");
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, tmp) != 0) {
-                        log << "Cannot set SDL_GL_RED_SIZE attribute"
-                            << Log::endl;
+                        throw CannotInitialize("Cannot set "
+                                               "SDL_GL_RED_SIZE attribute");
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, tmp) != 0) {
-                        log << "Cannot set SDL_GL_RED_SIZE attribute"
-                            << Log::endl;
+                        throw CannotInitialize("Cannot set "
+                                               "SDL_GL_RED_SIZE attribute");
                 }
 #endif
 
+                // Create the GL drawing context
+                surface_ = SDL_SetVideoMode(width, height, bpp, flags);
+                if (!surface_) {
+                        throw CannotInitialize(SDL_GetError());
+                }
+
                 DBG("Video set to %d x %d @ %d", width, height, bpp);
 
-                glViewport(0, 0, width, height);
-                glMatrixMode(GL_PROJECTION);
-                glPushMatrix();
-                glLoadIdentity();
-
-                glOrtho(0, width, 0, height, -1, 1);
-                glMatrixMode(GL_MODELVIEW);
-                glPushMatrix();
-                glLoadIdentity();
+                initGL();
+                resizeWindow(width, height);
         }
 
         Video::~Video()
         { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
+
+        void Video::initGL()
+        {
+                glEnable(GL_TEXTURE_2D);
+                glDisable(GL_DEPTH_TEST);
+
+                // glShadeModel(GL_SMOOTH);
+
+                glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                // glClearDepth(1.0f);
+
+                // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+                // glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+                // glEnable(GL_BLEND);
+        }
+
+        void Video::resizeWindow(size_t width,
+                                 size_t height)
+        {
+                if ( height == 0 ) {
+                        height = 1;
+                }
+
+#if 0
+                glViewport(0, 0,
+                           static_cast<GLint>(width),
+                           static_cast<GLint>(height));
+#endif
+
+                glMatrixMode(GL_PROJECTION);
+                glLoadIdentity();
+
+#if 0
+                // Use (0, 0) as center
+                glOrtho(-1, // Left
+                        1,  // Right
+                        -1, // Bottom
+                        1,  // Top
+                        -1, // Z-Near
+                        1); // Z-Far
+#else
+                glOrtho(0,
+                        static_cast<GLfloat>(width),
+                        static_cast<GLfloat>(height),
+                        0,
+                        0,
+                        1);
+#endif
+
+#if 0
+                GLfloat ratio = (static_cast<GLfloat>(width) /
+                                 static_cast<GLfloat>(height));
+
+                gluPerspective(45.0f, ratio, 0.1f, 100.0f);
+#endif
+
+                glMatrixMode(GL_MODELVIEW);
+
+                glLoadIdentity();
+        }
 
         unsigned int Video::width()
         { return surface_->w; }
@@ -115,10 +188,16 @@ namespace HAZE {
         unsigned int Video::bpp()
         { return surface_->format->BitsPerPixel; }
 
-        unsigned int Video::hz()
-        { return surface_->pitch; }
+        void Video::clear()
+        {
+                // DBG("Clearing video");
+                glClear(GL_COLOR_BUFFER_BIT); // | GL_DEPTH_BUFFER_BIT
+        }
 
-        void Video::redraw()
-        { SDL_GL_SwapBuffers(); }
+        void Video::update()
+        {
+                // DBG("Updating video");
+                SDL_GL_SwapBuffers();
+        }
 
 }

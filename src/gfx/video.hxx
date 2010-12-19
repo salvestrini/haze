@@ -30,7 +30,6 @@ namespace HAZE {
 #define VIDEO_DEFAULT_WIDTH     640
 #define VIDEO_DEFAULT_HEIGHT    480
 #define VIDEO_DEFAULT_BPP         8
-#define VIDEO_DEFAULT_FREQUENCY  60
 
         class Video {
         public:
@@ -40,21 +39,24 @@ namespace HAZE {
                                 Exception(what) { }
                 };
 
-                Video(unsigned int width     = VIDEO_DEFAULT_WIDTH,
-                      unsigned int height    = VIDEO_DEFAULT_HEIGHT,
-                      unsigned int bpp       = VIDEO_DEFAULT_BPP,
-                      unsigned int frequency = VIDEO_DEFAULT_FREQUENCY)
+                Video(size_t width     = VIDEO_DEFAULT_WIDTH,
+                      size_t height    = VIDEO_DEFAULT_HEIGHT,
+                      size_t bpp       = VIDEO_DEFAULT_BPP)
                         throw(CannotInitialize);
                 virtual ~Video();
 
                 unsigned int width();
                 unsigned int height();
                 unsigned int bpp();
-                unsigned int hz();
 
-                void         redraw();
+                void         clear();
+                void         update();
 
         private:
+                void initGL();
+                void resizeWindow(size_t width,
+                                  size_t height);
+
                 SDL_Surface * surface_;
         };
 
