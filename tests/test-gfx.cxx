@@ -35,6 +35,8 @@ void test(const std::string & datadir)
         Video video;
         Image glyphs(Path(datadir + "font.png"));
 
+        DBG("Glyphs image is %d x %d", glyphs.width(), glyphs.height());
+
         // Font image is 16x16 chars
         Rectangle rectangle(0, 0, glyphs.width() / 16, glyphs.height() / 16);
 
@@ -44,8 +46,8 @@ void test(const std::string & datadir)
 
         for (int y = 0; y < 16; y++) {
                 for (int x = 0; x < 16; x++) {
-
-                        rectangle.move(x * 16, y * 16);
+                        rectangle.move(x * rectangle.width(),
+                                       y * rectangle.height());
 
 #if 0
                         DBG("Adding font mapping for character '%c' "
@@ -63,19 +65,37 @@ void test(const std::string & datadir)
 
         Text text("this is a test", font);
 
+        Text * texts[256];
+        for (int i = 0; i < 256; i++) {
+                texts[i] = new Text(std::string(1, static_cast<char>(i)), font);
+        }
+
         Image   star_image(Path(datadir + "star.bmp"));
         Texture star_texture(star_image);
 
-        Delay d(100);
-        for (int i = 0; i < 60; i++) {
+        Delay d(10);
+
+        GLfloat x = 0.0f;
+        GLfloat y = 0.0f;
+        for (int iteration = 0; iteration < 150; iteration++) {
                 video.clear();
 
-                text.draw(0, 0);
-                star_texture.draw(Point<GLfloat>(0, 0));
+                Point<GLfloat> p;
+                for (int k = 0; k < 256; k++) {
+                        p.move(k * 32 % video.width(), k * 32 % video.height());
+                        texts[k]->draw(p);
+                }
+
+                text.draw(x, y);
+                star_texture.draw(Point<GLfloat>(x, y));
 
                 video.update();
 
-                d.wait();
+                //d.wait();
+
+                x++; y++;
+
+                DBG("Iteration %d", iteration);
         }
 
 }
