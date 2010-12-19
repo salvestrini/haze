@@ -15,6 +15,7 @@ set(gfx_SOURCES
   gfx/video.cxx
   gfx/image.cxx
   gfx/geometry.cxx
+  gfx/primitive.cxx
   gfx/camera.cxx
   gfx/texture.cxx
   gfx/font.cxx
