@@ -17,7 +17,6 @@
 //
 
 #include <SDL/SDL.h>
-#include <GL/glu.h>
 
 #include "globals.hxx"
 
@@ -28,22 +27,15 @@ namespace HAZE {
 
         void Texture::init(const Image & image)
         {
-                GLuint id_;
-
-                glPixelStorei(GL_UNPACK_ALIGNMENT,4);
-
                 glGenTextures(1, &id_);
                 glBindTexture(GL_TEXTURE_2D, id_);
 
-                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
                 glTexParameteri(GL_TEXTURE_2D,
                                 GL_TEXTURE_MIN_FILTER,
-                                GL_NEAREST);
+                                GL_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D,
                                 GL_TEXTURE_MAG_FILTER,
-                                GL_NEAREST);
+                                GL_LINEAR);
 
                 GLuint internal_format;
                 GLenum format;
@@ -55,17 +47,16 @@ namespace HAZE {
                         format          = GL_BGR;
                 }
 
-                if (gluBuild2DMipmaps(GL_TEXTURE_2D, internal_format,
-                                      image.width(), image.height(),
-                                      format, GL_UNSIGNED_BYTE,
-                                      image.data())) {
-                        throw CannotCreate();
-                }
+                glTexImage2D(GL_TEXTURE_2D,
+                             0, internal_format,
+                             image.width(), image.height(),
+                             0, format,
+                             GL_UNSIGNED_BYTE,
+                             image.data());
                     
                 width(image.width());
                 height(image.height());
         }
-
 
         Texture::Texture(const Image & image)
         { init(image); }
@@ -76,40 +67,34 @@ namespace HAZE {
         Texture::~Texture()
         { }
 
-        GLuint Texture::id()
-        { return id_; }
+        // GLuint Texture::id()
+        // { return id_; }
 
         void Texture::draw(const Point<GLfloat> & origin,
                            GLfloat scale, GLfloat rotation,
                            GLfloat red, GLfloat green, GLfloat blue,
                            GLfloat alpha)
         {
-#if 0
-                //check if the right texture is bound
-                if( g_Graphics->CurrentTexture != TextureId ) {
-                        //bind texture
-                        glBindTexture(GL_TEXTURE_2D, m_Textures[TextureId].Texture );
-                        
-                        //set graphics varible
-                        g_Graphics->CurrentTexture = TextureId;
-                }
-#endif
-
-                        // Scale the points if needed
-                GLfloat w  = width() * scale;
-                GLfloat h  = height() * scale;
-
+                glBindTexture(GL_TEXTURE_2D, id_);
                 glLoadIdentity();
+
                 glTranslatef(camera.x() + origin.x(),
                              camera.x() + origin.y(),
                              0.0);
-                glScaled(scale, scale, 0);
+                glScaled(scale,
+                         scale,
+                         0);
                 glRotatef(rotation, 0.0f, 0.0f, 1.0f);
                         
+                // Scale the points if needed
+                GLfloat w  = width() * scale;
+                GLfloat h  = height() * scale;
+
+                glColor4f(red, green, blue, alpha);
+
                 glBegin(GL_QUADS);
                         
                 // Top-left vertex (corner)
-                glColor4f(red, green, blue, alpha);
                 glTexCoord2f(0, 1);
                 glVertex2f(0, 0);
                 

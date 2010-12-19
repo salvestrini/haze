@@ -36,12 +36,15 @@ namespace HAZE {
                 Texture(const Image & image);
                 ~Texture();
 
-                GLuint id();
+                // GLuint id();
 
                 void   draw(const Point<GLfloat> & origin,
-                            GLfloat scale, GLfloat rotation,
-                            GLfloat red, GLfloat green, GLfloat blue,
-                            GLfloat alpha);
+                            GLfloat scale    = 1.0f,
+                            GLfloat rotation = 0.0f,
+                            GLfloat red      = 1.0f,
+                            GLfloat green    = 1.0f,
+                            GLfloat blue     = 1.0f,
+                            GLfloat alpha    = 1.0f);
 
         private:
                 GLuint id_;
