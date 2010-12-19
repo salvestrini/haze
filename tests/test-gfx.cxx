@@ -27,17 +27,16 @@
 #include "gfx/image.hxx"
 #include "gfx/font.hxx"
 #include "gfx/text.hxx"
-#include "gfx/object.hxx"
 
 void test(const std::string & datadir)
 {
         using namespace HAZE;
 
         Video video;
-        Image image(Path(datadir + "font.png"));
+        Image glyphs(Path(datadir + "font.png"));
 
         // Font image is 16x16 chars
-        Rectangle rectangle(0, 0, image.width() / 16, image.height() / 16);
+        Rectangle rectangle(0, 0, glyphs.width() / 16, glyphs.height() / 16);
 
         Font font;
 
@@ -48,31 +47,37 @@ void test(const std::string & datadir)
 
                         rectangle.move(x * 16, y * 16);
 
+#if 0
                         DBG("Adding font mapping for character '%c' "
                             "(%04d, %04d, %04d, %04d)",
                             c,
                             rectangle.x(), rectangle.y(),
                             rectangle.width(), rectangle.height());
+#endif
 
-                        font.add(c, image.clip(rectangle));
+                        font.add(c, glyphs.clip(rectangle));
 
                         c++;
                 }
         }
 
         Text text("this is a test", font);
-        text.draw(0, 0);
 
-        video.redraw();
+        Image   star_image(Path(datadir + "star.bmp"));
+        Texture star_texture(star_image);
 
-        Delay d(5000);
-        d.wait();
+        Delay d(100);
+        for (int i = 0; i < 60; i++) {
+                video.clear();
 
-        Texture texture(image);
+                text.draw(0, 0);
+                star_texture.draw(Point<GLfloat>(0, 0));
 
-        Object o;
+                video.update();
 
-        o.draw();
+                d.wait();
+        }
+
 }
 
 int main(int argc, char * argv[])
