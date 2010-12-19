@@ -19,7 +19,6 @@ set(gfx_SOURCES
   gfx/texture.cxx
   gfx/font.cxx
   gfx/text.cxx
-  gfx/object.cxx
   )
 
 set(sfx_SOURCES
