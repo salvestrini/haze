@@ -137,15 +137,13 @@ namespace HAZE {
         void Video::resizeWindow(size_t width,
                                  size_t height)
         {
-                if ( height == 0 ) {
-                        height = 1;
+                if ((height == 0) || (height == 0)) {
+                        throw CannotResize();
                 }
 
-#if 0
                 glViewport(0, 0,
                            static_cast<GLint>(width),
                            static_cast<GLint>(height));
-#endif
 
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
@@ -175,7 +173,6 @@ namespace HAZE {
 #endif
 
                 glMatrixMode(GL_MODELVIEW);
-
                 glLoadIdentity();
         }
 

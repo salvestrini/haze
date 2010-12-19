@@ -78,14 +78,10 @@ namespace HAZE {
                 glBindTexture(GL_TEXTURE_2D, id_);
                 glLoadIdentity();
 
-                glTranslatef(camera.x() + origin.x(),
-                             camera.x() + origin.y(),
-                             0.0);
-                glScaled(scale,
-                         scale,
-                         0);
-                glRotatef(rotation, 0.0f, 0.0f, 1.0f);
-                        
+                glTranslatef(origin.x(), origin.y(), 0.0);
+                glScaled(scale, scale, 1.0f);
+                glRotatef(rotation, 1.0f, 1.0f, 1.0f);
+
                 // Scale the points if needed
                 GLfloat w  = width() * scale;
                 GLfloat h  = height() * scale;
@@ -93,23 +89,12 @@ namespace HAZE {
                 glColor4f(red, green, blue, alpha);
 
                 glBegin(GL_QUADS);
-                        
-                // Top-left vertex (corner)
-                glTexCoord2f(0, 1);
-                glVertex2f(0, 0);
-                
-                // Bottom-left vertex (corner)
-                glTexCoord2f(0, 0);
-                glVertex2f(0, h);
-                        
-                // Bottom-right vertex (corner)
-                glTexCoord2f(1, 0);
-                glVertex2f(w, h);
-                
-                // Top-right vertex (corner)
-                glTexCoord2f(1, 1);
-                glVertex2f(w, origin.y());
-                
+
+                glTexCoord2f(0, 1); glVertex2f(0, h);
+                glTexCoord2f(0, 0); glVertex2f(0, 0);
+                glTexCoord2f(1, 0); glVertex2f(w, 0);
+                glTexCoord2f(1, 1); glVertex2f(w, h);
+
                 glEnd();
         }
 

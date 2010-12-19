@@ -82,8 +82,13 @@ namespace HAZE {
 
                 TYPE  x() const   { return x_; }
                 TYPE  y() const   { return y_; }
+
                 void  x(TYPE v) { x_ = v;    }
                 void  y(TYPE v) { y_ = v;    }
+                void  move(TYPE x, TYPE y) {
+                        x_ = x;
+                        y_ = y;
+                }
 
         private:
                 TYPE x_;

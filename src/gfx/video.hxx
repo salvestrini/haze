@@ -39,6 +39,8 @@ namespace HAZE {
                                 Exception(what) { }
                 };
 
+                class CannotResize : public Exception { };
+
                 Video(size_t width     = VIDEO_DEFAULT_WIDTH,
                       size_t height    = VIDEO_DEFAULT_HEIGHT,
                       size_t bpp       = VIDEO_DEFAULT_BPP)
