@@ -40,6 +40,11 @@ namespace HAZE {
                         GLfloat blue();
                         GLfloat alpha();
 
+                        void    red(GLfloat value);
+                        void    green(GLfloat value);
+                        void    blue(GLfloat value);
+                        void    alpha(GLfloat value);
+
                         void    set();
 
                 private:

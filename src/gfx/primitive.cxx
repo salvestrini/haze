@@ -34,6 +34,9 @@ namespace HAZE {
                         alpha_(alpha)
                 { }
 
+                Color::~Color()
+                { }
+
                 GLfloat Color::red()
                 { return red_; }
 
@@ -45,6 +48,18 @@ namespace HAZE {
 
                 GLfloat Color::alpha()
                 { return alpha_; }
+
+                void Color::red(GLfloat value)
+                { red_ = value; }
+
+                void Color::green(GLfloat value)
+                { green_ = value; }
+
+                void Color::blue(GLfloat value)
+                { blue_ = value; }
+
+                void Color::alpha(GLfloat value)
+                { alpha_ = value; }
 
                 void Color::set()
                 { glColor4f(red_, green_, blue_, alpha_); }
@@ -128,14 +143,16 @@ namespace HAZE {
                         set();
 
                         if (filled_) {
-                                glBegin(GL_TRIANGLE_FAN);
+                                glBegin(GL_TRIANGLES);
                         } else {
                                 glBegin(GL_LINE_LOOP);
                         }
 
                         glVertex2f(center.x(), center.y());
 
-                        for (size_t angle = 0; angle < 360; angle += 360 / slices_) {
+                        for (size_t angle = 0;
+                             angle < 360;
+                             angle += 360 / slices_) {
                                 glVertex2f(center.x() + sin(angle) * radius_,
                                            center.y() + cos(angle) * radius_);
                         }
