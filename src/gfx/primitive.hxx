@@ -71,6 +71,20 @@ namespace HAZE {
                                   const HAZE::Point<GLfloat> & to);
                 };
 
+                class Triangle : public Color {
+                public:
+                        Triangle(const Color & color,
+                                 bool          filled = false);
+                        ~Triangle();
+
+                        void draw(const HAZE::Point<GLfloat> & a,
+                                  const HAZE::Point<GLfloat> & b,
+                                  const HAZE::Point<GLfloat> & c);
+
+                private:
+                        bool filled_;
+                };
+
                 class Rectangle : public Color {
                 public:
                         Rectangle(const Color & color,

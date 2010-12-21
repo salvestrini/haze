@@ -75,7 +75,8 @@ namespace HAZE {
                 {
                         set();
 
-                        glBegin(GL_LINES);
+                        //glPointSize(1.0f);
+                        glBegin(GL_POINTS);
                         glVertex2f(where.x(), where.y());
                         glEnd();
                 }
@@ -96,6 +97,34 @@ namespace HAZE {
                         glVertex2f(from.x(), from.y());
                         glVertex2f(to.x(),   to.y());
                         glEnd();
+                }
+
+                Triangle::Triangle(const Color & color,
+                                   bool          filled) :
+                        Color(color),
+                        filled_(filled)
+                { }
+
+                Triangle::~Triangle()
+                { }
+
+                void Triangle::draw(const HAZE::Point<GLfloat> & a,
+                                    const HAZE::Point<GLfloat> & b,
+                                    const HAZE::Point<GLfloat> & c)
+                {
+                        if (!filled_) {
+                                set();
+                        }
+
+                        glBegin(GL_TRIANGLES);
+                        if (filled_) {
+                                set();
+                        }
+                        glVertex3f(a.x(), a.y(), 0.0f);
+                        glVertex3f(b.x(), b.y(), 0.0f);
+                        glVertex3f(c.x(), c.y(), 0.0f);
+                        glEnd();
+
                 }
 
                 Rectangle::Rectangle(const Color & color,
@@ -136,7 +165,11 @@ namespace HAZE {
                 { }
 
                 Circle::~Circle()
-                { }
+                {
+                        if (slices_ <= 0) {
+                                slices_ = 1;
+                        }
+                }
 
                 void Circle::draw(const HAZE::Point<GLfloat> & center)
                 {
@@ -150,11 +183,11 @@ namespace HAZE {
 
                         glVertex2f(center.x(), center.y());
 
-                        for (size_t angle = 0;
-                             angle < 360;
-                             angle += 360 / slices_) {
-                                glVertex2f(center.x() + sin(angle) * radius_,
-                                           center.y() + cos(angle) * radius_);
+                        for (float angle = 0;
+                             angle <= 2 * M_PI;
+                             angle += 2 * M_PI / slices_) {
+                                glVertex2f(center.x() + cosf(angle) * radius_,
+                                           center.y() + sinf(angle) * radius_);
                         }
 
                         glEnd();
