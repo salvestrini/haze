@@ -72,8 +72,8 @@ void test(const std::string & datadir)
                                     font);
         }
 
-        Image   star_image(Path(datadir + "star.bmp"));
-        Texture star_texture(star_image);
+        Image       star_image(Path(datadir + "star.bmp"));
+        GL::Texture star_texture(star_image);
 
         Delay d(10);
 

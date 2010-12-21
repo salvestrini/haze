@@ -26,7 +26,7 @@
 
 #include "gfx/font.hxx"
 #include "gfx/geometry.hxx"
-#include "gfx/texture.hxx"
+#include "gfx/primitive.hxx"
 
 namespace HAZE {
 
@@ -41,7 +41,7 @@ namespace HAZE {
                 Size<size_t> size() const;
 
         private:
-                std::vector<Texture *> chars_;
+                std::vector<GL::Texture *> chars_;
         };
 
 }

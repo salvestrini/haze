@@ -127,14 +127,13 @@ namespace HAZE {
                 glEnable(GL_TEXTURE_2D);
                 glDisable(GL_DEPTH_TEST);
 
+                // glShadeModel(GL_FLAT);
                 // glShadeModel(GL_SMOOTH);
 
                 glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                 // glClearDepth(1.0f);
 
                 // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-                // glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-                // glEnable(GL_BLEND);
         }
 
         void Video::resizeWindow(size_t width,

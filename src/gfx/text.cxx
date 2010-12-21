@@ -29,7 +29,7 @@ namespace HAZE {
                 for (std::vector<Image *>::const_iterator i = tmp.begin();
                      i != tmp.end();
                      i++) {
-                        chars_.push_back(new Texture(*(*i)));
+                        chars_.push_back(new GL::Texture(*(*i)));
                 }
         }
 
@@ -40,7 +40,8 @@ namespace HAZE {
         {
                 Point<GLfloat> p(origin);
 
-                for (std::vector<Texture *>::const_iterator i = chars_.begin();
+                for (std::vector<GL::Texture *>::const_iterator i =
+                             chars_.begin();
                      i != chars_.end();
                      i++) {
                         (*i)->draw(p,
@@ -57,7 +58,8 @@ namespace HAZE {
         {
                 Size<size_t> t;
 
-                for (std::vector<Texture *>::const_iterator i = chars_.begin();
+                for (std::vector<GL::Texture *>::const_iterator i =
+                             chars_.begin();
                      i != chars_.end();
                      i++) {
                         t.width(t.width() + (*i)->width());
