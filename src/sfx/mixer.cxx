@@ -17,11 +17,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <string>
-
-#include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
-
-#include "core/log.hxx"
 #include "sfx/mixer.hxx"
-

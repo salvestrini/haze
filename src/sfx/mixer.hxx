@@ -20,8 +20,4 @@
 #ifndef HAZE_SFX_MIXER
 #define HAZE_SFX_MIXER
 
-#include <string>
-
-#include "core/exception.hxx"
-
 #endif
