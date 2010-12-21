@@ -65,16 +65,17 @@ namespace HAZE {
         { init(Image(file)); }
 
         Texture::~Texture()
-        { }
-
-        // GLuint Texture::id()
-        // { return id_; }
+        { glDeleteTextures(1, &id_); }
 
         void Texture::draw(const Point<GLfloat> & origin,
                            GLfloat scale, GLfloat rotation,
-                           GLfloat red, GLfloat green, GLfloat blue,
+                           GLfloat red,
+                           GLfloat green,
+                           GLfloat blue,
                            GLfloat alpha)
         {
+                //glEnable(GL_TEXTURE_2D);
+
                 glBindTexture(GL_TEXTURE_2D, id_);
                 glLoadIdentity();
 
@@ -83,7 +84,7 @@ namespace HAZE {
                 glRotatef(rotation, 1.0f, 1.0f, 1.0f);
 
                 // Scale the points if needed
-                GLfloat w  = width() * scale;
+                GLfloat w  = width()  * scale;
                 GLfloat h  = height() * scale;
 
                 glColor4f(red, green, blue, alpha);
@@ -96,6 +97,8 @@ namespace HAZE {
                 glTexCoord2f(1, 1); glVertex2f(w, h);
 
                 glEnd();
+
+                //glDisable(GL_TEXTURE_2D);
         }
 
 }
