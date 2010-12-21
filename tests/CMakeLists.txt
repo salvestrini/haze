@@ -46,7 +46,7 @@ target_link_libraries(test-sfx
 add_test(NAME test-sfx CONFIGURATIONS Debug COMMAND test-sfx ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(test-io
-  test-sfx.cxx)
+  test-io.cxx)
 
 target_link_libraries(test-io
   ${SDL_LIBRARY}
