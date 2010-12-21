@@ -121,6 +121,9 @@ namespace HAZE {
 
         void Video::initGL()
         {
+                //glEnable(GL_LINE_SMOOTH);
+                //glEnable(GL_POINT_SMOOTH);
+                //glEnable(GL_POLYGON_SMOOTH);
                 glEnable(GL_TEXTURE_2D);
                 glDisable(GL_DEPTH_TEST);
 
@@ -142,34 +145,17 @@ namespace HAZE {
                 }
 
                 glViewport(0, 0,
-                           static_cast<GLint>(width),
-                           static_cast<GLint>(height));
+                           static_cast<GLsizei>(width),
+                           static_cast<GLsizei>(height));
 
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
 
 #if 0
-                // Use (0, 0) as center
-                glOrtho(-1, // Left
-                        1,  // Right
-                        -1, // Bottom
-                        1,  // Top
-                        -1, // Z-Near
-                        1); // Z-Far
-#else
-                glOrtho(0,
-                        static_cast<GLfloat>(width),
-                        static_cast<GLfloat>(height),
-                        0,
-                        0,
-                        1);
-#endif
-
-#if 0
-                GLfloat ratio = (static_cast<GLfloat>(width) /
-                                 static_cast<GLfloat>(height));
-
-                gluPerspective(45.0f, ratio, 0.1f, 100.0f);
+                // This sets up the OpenGL window so that (0,0) corresponds
+                // to the top left corner, and (width, height) corresponds to
+                // the bottom right hand corner
+                glOrtho(0, width, height, 0, 0, 1)
 #endif
 
                 glMatrixMode(GL_MODELVIEW);
