@@ -17,7 +17,6 @@ set(gfx_SOURCES
   gfx/geometry.cxx
   gfx/primitive.cxx
   gfx/camera.cxx
-  gfx/texture.cxx
   gfx/font.cxx
   gfx/text.cxx
   )

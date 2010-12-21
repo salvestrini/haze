@@ -21,6 +21,8 @@
 
 #include <GL/gl.h>
 
+#include "core/filesystem.hxx"
+#include "gfx/image.hxx"
 #include "gfx/geometry.hxx"
 
 namespace HAZE {
@@ -114,7 +116,34 @@ namespace HAZE {
                         bool    filled_;
                 };
 
+
+                class Texture :
+                        public Size<GLuint>,
+                        public NonCopyable  {
+                public:
+                        class CannotCreate : public Exception { };
+
+                        Texture(const Path & file);
+                        Texture(const Image & image);
+                        ~Texture();
+
+                        // GLuint id();
+
+                        void draw(const HAZE::Point<GLfloat> & origin,
+                                    GLfloat                    scale    = 1.0f,
+                                    GLfloat                    rotation = 0.0f,
+                                    GLfloat                    red      = 1.0f,
+                                    GLfloat                    green    = 1.0f,
+                                    GLfloat                    blue     = 1.0f,
+                                    GLfloat                    alpha    = 1.0f);
+
+                private:
+                        GLuint id_;
+
+                        void init(const Image & image);
+                };
         }
+
 }
 
 #endif
