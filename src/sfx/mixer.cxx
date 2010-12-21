@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2010 Francesco Salvestrini
+//                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,33 +20,8 @@
 #include <string>
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 
 #include "core/log.hxx"
 #include "sfx/mixer.hxx"
 
-namespace HAZE {
-
-        Audio::Audio()
-                throw(CannotInitialize) :
-                channels_(0),
-                frequency_(0)
-        {
-                if (!SDL_WasInit(SDL_INIT_AUDIO)) {
-                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                                throw CannotInitialize(SDL_GetError());
-                        }
-                }
-
-                DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
-        }
-
-        Audio::~Audio()
-        { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
-
-        size_t Audio::channels()
-        { return channels_; }
-
-        size_t Audio::frequency()
-        { return frequency_; }
-
-}

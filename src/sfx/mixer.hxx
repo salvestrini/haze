@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2010 Francesco Salvestrini
+//                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,29 +23,5 @@
 #include <string>
 
 #include "core/exception.hxx"
-
-namespace HAZE {
-
-        class Audio {
-        public:
-                class CannotInitialize : public Exception {
-                public:
-                        CannotInitialize(const std::string & what) :
-                                Exception(what) { }
-                };
-
-                Audio()
-                        throw(CannotInitialize);
-                virtual ~Audio();
-
-                virtual size_t channels();
-                virtual size_t frequency();
-
-        private:
-                size_t channels_;
-                size_t frequency_;
-        };
-
-}
 
 #endif
