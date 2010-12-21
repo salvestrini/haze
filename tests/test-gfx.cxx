@@ -27,6 +27,7 @@
 #include "gfx/image.hxx"
 #include "gfx/font.hxx"
 #include "gfx/text.hxx"
+#include "gfx/primitive.hxx"
 
 void test(const std::string & datadir)
 {
@@ -67,7 +68,8 @@ void test(const std::string & datadir)
 
         Text * texts[256];
         for (int i = 0; i < 256; i++) {
-                texts[i] = new Text(std::string(1, static_cast<char>(i)), font);
+                texts[i] = new Text(std::string(1, static_cast<char>(i)),
+                                    font);
         }
 
         Image   star_image(Path(datadir + "star.bmp"));
@@ -77,25 +79,58 @@ void test(const std::string & datadir)
 
         GLfloat x = 0.0f;
         GLfloat y = 0.0f;
+
+        GL::Color color(1.0, 1.0, 1.0, 1.0);
+
+        GL::Point     point(color);
+        GL::Line      line(color);
+        GL::Rectangle rectangle_filled(color, true);
+        GL::Rectangle rectangle_empty(color,  false);
+        GL::Circle    circle_filled(color,    0.5, 8,  true);
+        GL::Circle    circle_empty(color,     0.5, 16, false);
+
         for (int iteration = 0; iteration < 150; iteration++) {
+                DBG("Iteration %d", iteration);
+
                 video.clear();
 
+#if 0
+                point.draw(Point<GLfloat>(0.5f, 0.5f));
+#endif
+#if 0
+                line.draw(Point<GLfloat>(-1, -1), Point<GLfloat>(1, 1));
+#endif
+#if 0
+                rectangle_filled.draw(Point<GLfloat>(-0.5, -0.5),
+                                 Point<GLfloat>(0.5, 0.5));
+#endif
+#if 0
+                rectangle_empty.draw(Point<GLfloat>(-0.5, -0.5),
+                                Point<GLfloat>(0.5, 0.5));
+#endif
+#if 0
+                circle_filled.draw(Point<GLfloat>(y, x));
+#endif
+#if 0
+                circle_empty.draw(Point<GLfloat>(x, y));
+#endif
+
+#if 1
                 Point<GLfloat> p;
                 for (int k = 0; k < 256; k++) {
-                        p.move(k * 32 % video.width(), k * 32 % video.height());
+                        p.move(k * 32 % video.width(),
+                               k * 32 % video.height());
                         texts[k]->draw(p);
                 }
 
                 text.draw(x, y);
                 star_texture.draw(Point<GLfloat>(x, y));
-
+#endif
                 video.update();
 
                 //d.wait();
 
                 x++; y++;
-
-                DBG("Iteration %d", iteration);
         }
 
 }
