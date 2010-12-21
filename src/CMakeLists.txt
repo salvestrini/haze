@@ -22,6 +22,7 @@ set(gfx_SOURCES
   )
 
 set(sfx_SOURCES
+  sfx/audio.cxx
   sfx/mixer.cxx
   sfx/sample.cxx
   )
