@@ -20,9 +20,6 @@
 #include <cassert>
 
 #include <GL/gl.h>
-#if 0
-#include <GL/glu.h>
-#endif
 
 #include "core/log.hxx"
 #include "gfx/video.hxx"
@@ -121,9 +118,9 @@ namespace HAZE {
 
         void Video::initGL()
         {
-                //glEnable(GL_LINE_SMOOTH);
-                //glEnable(GL_POINT_SMOOTH);
-                //glEnable(GL_POLYGON_SMOOTH);
+                glEnable(GL_LINE_SMOOTH);
+                glEnable(GL_POINT_SMOOTH);
+                glEnable(GL_POLYGON_SMOOTH);
                 glEnable(GL_TEXTURE_2D);
                 glDisable(GL_DEPTH_TEST);
                 glEnable(GL_BLEND);
@@ -131,7 +128,7 @@ namespace HAZE {
                 // glShadeModel(GL_FLAT);
                 // glShadeModel(GL_SMOOTH);
 
-                glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+                glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                 // glClearDepth(1.0f);
 
                 // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -151,8 +148,6 @@ namespace HAZE {
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
 
-#if 0
-#else
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
                 // the bottom right hand corner
@@ -162,7 +157,6 @@ namespace HAZE {
                         0,
                         0,
                         1);
-#endif
 
                 glMatrixMode(GL_MODELVIEW);
                 glLoadIdentity();

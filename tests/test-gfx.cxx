@@ -33,6 +33,10 @@ void test(const std::string & datadir)
 {
         using namespace HAZE;
 
+        //
+        // Setup
+        //
+
         Video video;
         Image glyphs(Path(datadir + "font.png"));
 
@@ -64,71 +68,79 @@ void test(const std::string & datadir)
                 }
         }
 
-        Text text("this is a test", font);
+        Text text_message("this is a test", font);
 
-        Text * texts[256];
+        Text * text_chars[256];
         for (int i = 0; i < 256; i++) {
-                texts[i] = new Text(std::string(1, static_cast<char>(i)),
-                                    font);
+                text_chars[i] = new Text(std::string(1, static_cast<char>(i)),
+                                         font);
         }
 
         Image       star_image(Path(datadir + "star.bmp"));
-        GL::Texture star_texture(star_image);
+        GL::Texture star1_texture(star_image);
+        GL::Texture star2_texture(star_image);
 
         Delay d(10);
 
         GLfloat x = 0.0f;
         GLfloat y = 0.0f;
 
-        GL::Color color(1.0, 1.0, 1.0, 1.0);
+        GL::Color     color_white (1.0, 1.0, 1.0, 1.0);
+        GL::Color     color_red   (1.0, 0.0, 0.0, 1.0);
+        GL::Color     color_green (0.0, 1.0, 0.0, 1.0);
+        GL::Color     color_blue  (0.0, 0.0, 0.0, 1.0);
 
-        GL::Point     point(color);
-        GL::Line      line(color);
-        GL::Rectangle rectangle_filled(color, true);
-        GL::Rectangle rectangle_empty(color,  false);
-        GL::Circle    circle_filled(color,    0.5, 8,  true);
-        GL::Circle    circle_empty(color,     0.5, 16, false);
+        GL::Point     point(color_green);
+        GL::Line      line(color_blue);
+        GL::Rectangle rectangle_filled(color_white, true);
+        GL::Rectangle rectangle_empty(color_blue,   false);
+        GL::Circle    circle_filled(color_green, 0.5, 8,  true);
+        GL::Circle    circle_empty(color_blue,   0.5, 16, false);
+
+        //
+        // Draw
+        //
 
         for (int iteration = 0; iteration < 150; iteration++) {
                 DBG("Iteration %d", iteration);
 
-                video.clear();
+                //                video.clear();
 
-#if 0
+#if 1
                 point.draw(Point<GLfloat>(0.5f, 0.5f));
 #endif
-#if 0
-                line.draw(Point<GLfloat>(-1, -1), Point<GLfloat>(1, 1));
+#if 1
+                line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
 #endif
-#if 0
-                rectangle_filled.draw(Point<GLfloat>(-0.5, -0.5),
+#if 1
+                rectangle_filled.draw(Point<GLfloat>(10),
                                  Point<GLfloat>(0.5, 0.5));
 #endif
-#if 0
-                rectangle_empty.draw(Point<GLfloat>(-0.5, -0.5),
-                                Point<GLfloat>(0.5, 0.5));
+#if 1
+                rectangle_empty.draw(Point<GLfloat>(10, 10),
+                                Point<GLfloat>(30, 30));
 #endif
-#if 0
+#if 1
                 circle_filled.draw(Point<GLfloat>(y, x));
 #endif
-#if 0
+#if 1
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
 
 #if 1
                 Point<GLfloat> p;
                 for (int k = 0; k < 256; k++) {
-                        p.move(k * 32 % video.width(),
-                               k * 32 % video.height());
-                        texts[k]->draw(p);
+                        text_chars[k]->draw(p);
                 }
-
-                text.draw(x, y);
-                star_texture.draw(Point<GLfloat>(x, y));
+#endif
+                text_message.draw(x, y);
+#if 1
+                star1_texture.draw(Point<GLfloat>(x * 4, y * 4));
+                star1_texture.draw(Point<GLfloat>(x * 8, y * 8), 4, 0.5);
 #endif
                 video.update();
 
-                //d.wait();
+                d.wait();
 
                 x++; y++;
         }

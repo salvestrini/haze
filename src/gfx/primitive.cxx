@@ -226,10 +226,14 @@ namespace HAZE {
                         height(image.height());
                 }
 
-                Texture::Texture(const Image & image)
+                Texture::Texture(const Image & image,
+                                 const Color & color) :
+                        Color(color)
                 { init(image); }
 
-                Texture::Texture(const Path & file)
+                Texture::Texture(const Path &  file,
+                                 const Color & color) :
+                        Color(color)
                 { init(Image(file)); }
 
                 Texture::~Texture()
@@ -237,39 +241,49 @@ namespace HAZE {
 
                 void Texture::draw(const HAZE::Point<GLfloat> & origin,
                                    GLfloat                      scale,
-                                   GLfloat                      rotation,
-                                   GLfloat                      red,
-                                   GLfloat                      green,
-                                   GLfloat                      blue,
-                                   GLfloat                      alpha)
+                                   GLfloat                      rotation)
                 {
-                        //glEnable(GL_TEXTURE_2D);
-
                         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+                        
                         glBindTexture(GL_TEXTURE_2D, id_);
                         glLoadIdentity();
 
+                        glPushMatrix();
+
                         glTranslatef(origin.x(), origin.y(), 0.0f);
-                        glScaled(scale, scale, 1.0f);
+                        glScalef(scale, scale, 1.0f);
                         glRotatef(rotation, 1.0f, 1.0f, 1.0f);
 
                         // Scale the points if needed
-                        GLfloat w  = width()  * scale;
-                        GLfloat h  = height() * scale;
+                        GLfloat w  = width();
+                        GLfloat h  = height();
 
-                        //glColor4f(red, green, blue, alpha);
+                        set();
 
                         glBegin(GL_QUADS);
 
+#if 0
+#if 1
                         glTexCoord2f(0, 1); glVertex2f(0, h);
                         glTexCoord2f(0, 0); glVertex2f(0, 0);
                         glTexCoord2f(1, 0); glVertex2f(w, 0);
                         glTexCoord2f(1, 1); glVertex2f(w, h);
+#else
+                        glTexCoord2f(0, 0); glVertex2f(0, 0);
+                        glTexCoord2f(0, 1); glVertex2f(0, h);
+                        glTexCoord2f(1, 1); glVertex2f(w, h);
+                        glTexCoord2f(1, 0); glVertex2f(w, 0);
+#endif
+#endif
+
+                        glTexCoord2f(0, 0); glVertex2f(0, 0);
+                        glTexCoord2f(1, 0); glVertex2f(w, 0);
+                        glTexCoord2f(1, 1); glVertex2f(w, h);
+                        glTexCoord2f(0, 1); glVertex2f(0, h);
 
                         glEnd();
 
-                        //glDisable(GL_TEXTURE_2D);
+                        glPopMatrix();
                 }
 
         }

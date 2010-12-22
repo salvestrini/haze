@@ -118,24 +118,23 @@ namespace HAZE {
 
 
                 class Texture :
+                        public Color,
                         public Size<GLuint>,
                         public NonCopyable  {
                 public:
                         class CannotCreate : public Exception { };
 
-                        Texture(const Path & file);
-                        Texture(const Image & image);
+                        Texture(const Path & file,
+                                const Color & color = Color());
+                        Texture(const Image & image,
+                                const Color & color = Color());
                         ~Texture();
 
                         // GLuint id();
 
                         void draw(const HAZE::Point<GLfloat> & origin,
-                                    GLfloat                    scale    = 1.0f,
-                                    GLfloat                    rotation = 0.0f,
-                                    GLfloat                    red      = 1.0f,
-                                    GLfloat                    green    = 1.0f,
-                                    GLfloat                    blue     = 1.0f,
-                                    GLfloat                    alpha    = 1.0f);
+                                  GLfloat                     scale    = 1.0f,
+                                  GLfloat                     rotation = 0.0f);
 
                 private:
                         GLuint id_;
