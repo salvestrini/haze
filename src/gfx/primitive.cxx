@@ -244,7 +244,7 @@ namespace HAZE {
                                    GLfloat                      alpha)
                 {
                         //glEnable(GL_TEXTURE_2D);
-                        
+
                         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                         glBindTexture(GL_TEXTURE_2D, id_);

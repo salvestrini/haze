@@ -126,11 +126,12 @@ namespace HAZE {
                 //glEnable(GL_POLYGON_SMOOTH);
                 glEnable(GL_TEXTURE_2D);
                 glDisable(GL_DEPTH_TEST);
+                glEnable(GL_BLEND);
 
                 // glShadeModel(GL_FLAT);
                 // glShadeModel(GL_SMOOTH);
 
-                glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
                 // glClearDepth(1.0f);
 
                 // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -151,10 +152,16 @@ namespace HAZE {
                 glLoadIdentity();
 
 #if 0
+#else
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
                 // the bottom right hand corner
-                glOrtho(0, width, height, 0, 0, 1)
+                glOrtho(0,
+                        static_cast<GLfloat>(width),
+                        static_cast<GLfloat>(height),
+                        0,
+                        0,
+                        1);
 #endif
 
                 glMatrixMode(GL_MODELVIEW);
