@@ -116,6 +116,7 @@ namespace HAZE {
                         bool    filled_;
                 };
 
+#define MAX_TEXTURES 128 // XXX-FIXME: Change ASAP
 
                 class Texture :
                         public Color,

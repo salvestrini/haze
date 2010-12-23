@@ -29,7 +29,7 @@ namespace HAZE {
 
 #define VIDEO_DEFAULT_WIDTH     640
 #define VIDEO_DEFAULT_HEIGHT    480
-#define VIDEO_DEFAULT_BPP         8
+#define VIDEO_DEFAULT_BPP        32
 
         class Video {
         public:

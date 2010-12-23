@@ -59,10 +59,10 @@ namespace HAZE {
                 DBG("  current_h    = %d", info->current_h   );
 
                 Uint32 flags =
-                        SDL_OPENGL |
+                        SDL_OPENGL    |
                         SDL_RESIZABLE |
                         SDL_DOUBLEBUF |
-                        // info->hw_available ? SDL_HWSURFACE : SDL_SWSURFACE |
+                        SDL_HWSURFACE |
                         0;
 
                 int closest = SDL_VideoModeOK(width, height, bpp, flags);
@@ -118,6 +118,8 @@ namespace HAZE {
 
         void Video::initGL()
         {
+                DBG("GL initializing");
+
                 glEnable(GL_LINE_SMOOTH);
                 glEnable(GL_POINT_SMOOTH);
                 glEnable(GL_POLYGON_SMOOTH);
@@ -132,6 +134,7 @@ namespace HAZE {
                 // glClearDepth(1.0f);
 
                 // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+                DBG("GL initialized");
         }
 
         void Video::resizeWindow(size_t width,

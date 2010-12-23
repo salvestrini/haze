@@ -44,7 +44,7 @@ namespace HAZE {
                              chars_.begin();
                      i != chars_.end();
                      i++) {
-                        (*i)->draw(p, 1.0, 0.0);
+                        (*i)->draw(p);
                         p.x(p.x() + (*i)->width());
                 }
         }

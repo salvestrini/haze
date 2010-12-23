@@ -18,6 +18,7 @@
 
 #include <cmath>
 
+#include "core/log.hxx"
 #include "gfx/primitive.hxx"
 
 namespace HAZE {
@@ -193,9 +194,18 @@ namespace HAZE {
                         glEnd();
                 }
 
+                static bool   texture_initialized = false;
+                static size_t texture_index = 0;
+                static GLuint texture_indexes[MAX_TEXTURES];
+
                 void Texture::init(const Image & image)
                 {
-                        glGenTextures(1, &id_);
+                        if (!texture_initialized) {
+                                glGenTextures(MAX_TEXTURES, texture_indexes);
+                                texture_initialized = true;
+                        }
+                        id_ = texture_indexes[texture_index++];
+
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glTexParameteri(GL_TEXTURE_2D,
@@ -224,6 +234,10 @@ namespace HAZE {
 
                         width(image.width());
                         height(image.height());
+
+                        DBG("Image is %d x %d pixels (%s)",
+                            width(), height(),
+                            format == GL_BGRA ? "alpha" : "no-alpha");
                 }
 
                 Texture::Texture(const Image & image,
@@ -251,35 +265,20 @@ namespace HAZE {
                         glPushMatrix();
 
                         glTranslatef(origin.x(), origin.y(), 0.0f);
-                        glScalef(scale, scale, 1.0f);
-                        glRotatef(rotation, 1.0f, 1.0f, 1.0f);
+                        glScalef(scale, scale, 0.0f);
+                        glRotatef(rotation, 0.0f, 0.0f, 1.0f);
 
-                        // Scale the points if needed
-                        GLfloat w  = width();
-                        GLfloat h  = height();
+                        GLfloat w2  = width()  / 2;
+                        GLfloat h2  = height() / 2;
 
                         set();
 
                         glBegin(GL_QUADS);
 
-#if 0
-#if 1
-                        glTexCoord2f(0, 1); glVertex2f(0, h);
-                        glTexCoord2f(0, 0); glVertex2f(0, 0);
-                        glTexCoord2f(1, 0); glVertex2f(w, 0);
-                        glTexCoord2f(1, 1); glVertex2f(w, h);
-#else
-                        glTexCoord2f(0, 0); glVertex2f(0, 0);
-                        glTexCoord2f(0, 1); glVertex2f(0, h);
-                        glTexCoord2f(1, 1); glVertex2f(w, h);
-                        glTexCoord2f(1, 0); glVertex2f(w, 0);
-#endif
-#endif
-
-                        glTexCoord2f(0, 0); glVertex2f(0, 0);
-                        glTexCoord2f(1, 0); glVertex2f(w, 0);
-                        glTexCoord2f(1, 1); glVertex2f(w, h);
-                        glTexCoord2f(0, 1); glVertex2f(0, h);
+                        glTexCoord2f(0, 0); glVertex2f(-w2,  h2);
+                        glTexCoord2f(1, 0); glVertex2f( w2,  h2);
+                        glTexCoord2f(1, 1); glVertex2f( w2, -h2);
+                        glTexCoord2f(0, 1); glVertex2f(-w2, -h2);
 
                         glEnd();
 

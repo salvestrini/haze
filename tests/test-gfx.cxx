@@ -53,15 +53,6 @@ void test(const std::string & datadir)
                 for (int x = 0; x < 16; x++) {
                         rectangle.move(x * rectangle.width(),
                                        y * rectangle.height());
-
-#if 0
-                        DBG("Adding font mapping for character '%c' "
-                            "(%04d, %04d, %04d, %04d)",
-                            c,
-                            rectangle.x(), rectangle.y(),
-                            rectangle.width(), rectangle.height());
-#endif
-
                         font.add(c, glyphs.clip(rectangle));
 
                         c++;
@@ -101,48 +92,56 @@ void test(const std::string & datadir)
         // Draw
         //
 
-        for (int iteration = 0; iteration < 150; iteration++) {
+        GLfloat angle = 0.0;
+        
+        for (int iteration = 0;
+             iteration < 50;
+             iteration++) {
                 DBG("Iteration %d", iteration);
 
-                //                video.clear();
+                video.clear();
 
-#if 1
+#if 0
                 point.draw(Point<GLfloat>(0.5f, 0.5f));
 #endif
-#if 1
+#if 0
                 line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
 #endif
-#if 1
+#if 0
                 rectangle_filled.draw(Point<GLfloat>(10),
                                  Point<GLfloat>(0.5, 0.5));
 #endif
-#if 1
+#if 0
                 rectangle_empty.draw(Point<GLfloat>(10, 10),
                                 Point<GLfloat>(30, 30));
 #endif
-#if 1
+#if 0
                 circle_filled.draw(Point<GLfloat>(y, x));
 #endif
-#if 1
+#if 0
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
 
 #if 1
-                Point<GLfloat> p;
+                Point<GLfloat> p(x, y);
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->draw(p);
                 }
 #endif
+
+#if 1
                 text_message.draw(x, y);
+#endif
+
 #if 1
                 star1_texture.draw(Point<GLfloat>(x * 4, y * 4));
-                star1_texture.draw(Point<GLfloat>(x * 8, y * 8), 4, 0.5);
+                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 4, angle);
 #endif
                 video.update();
 
                 d.wait();
 
-                x++; y++;
+                x++; y++; angle += 1;
         }
 
 }
