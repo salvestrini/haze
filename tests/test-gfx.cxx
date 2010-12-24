@@ -70,6 +70,7 @@ void test(const std::string & datadir)
         Image       star_image(Path(datadir + "star.bmp"));
         GL::Texture star1_texture(star_image);
         GL::Texture star2_texture(star_image);
+        GL::Texture star3_texture(star_image);
 
         Delay d(10);
 
@@ -101,7 +102,7 @@ void test(const std::string & datadir)
 
                 video.clear();
 
-#if 1
+#if 0
                 for (int k = 0;
                      k < 10000;
                      k++) {
@@ -141,6 +142,10 @@ void test(const std::string & datadir)
 #if 1
                 star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 2);
                 star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle);
+                star3_texture.draw(Point<GLfloat>(video.width()  / 2,
+                                                  video.height() / 2),
+                                   1,
+                                   angle * 2);
 #endif
                 video.update();
 

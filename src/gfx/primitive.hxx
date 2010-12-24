@@ -147,8 +147,6 @@ namespace HAZE {
                                 const Color & color = Color());
                         ~Texture();
 
-                        // GLuint id();
-
                         void draw(const HAZE::Point<GLfloat> & origin,
                                   GLfloat                     scale    = 1.0f,
                                   GLfloat                     rotation = 0.0f);

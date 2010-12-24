@@ -311,7 +311,7 @@ namespace HAZE {
                                    GLfloat                      rotation)
                 {
                         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                        
+
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glPushMatrix();
@@ -327,10 +327,10 @@ namespace HAZE {
 
                         glBegin(GL_QUADS);
 
-                        glTexCoord2f(0, 0); glVertex2f(-w2,  h2);
-                        glTexCoord2f(1, 0); glVertex2f( w2,  h2);
-                        glTexCoord2f(1, 1); glVertex2f( w2, -h2);
-                        glTexCoord2f(0, 1); glVertex2f(-w2, -h2);
+                        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w2,  h2);
+                        glTexCoord2f(1.0f, 0.0f); glVertex2f( w2,  h2);
+                        glTexCoord2f(1.0f, 1.0f); glVertex2f( w2, -h2);
+                        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w2, -h2);
 
                         glEnd();
 
