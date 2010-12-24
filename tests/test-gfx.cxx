@@ -81,7 +81,7 @@ void test(const std::string & datadir)
         GL::Color     color_green (0.0, 1.0, 0.0, 1.0);
         GL::Color     color_blue  (0.0, 0.0, 0.0, 1.0);
 
-        GL::Point     point(color_green);
+        GL::Point     point(color_white, 10);
         GL::Line      line(color_blue);
         GL::Rectangle rectangle_filled(color_white, true);
         GL::Rectangle rectangle_empty(color_blue,   false);
@@ -102,16 +102,21 @@ void test(const std::string & datadir)
                 video.clear();
 
 #if 1
-                point.draw(Point<GLfloat>(0.5f, 0.5f));
+                for (int k = 0;
+                     k < 10000;
+                     k++) {
+                        point.draw(Point<GLfloat>(k % 10, k % 10));
+                }
 #endif
-#if 1
+
+#if 0
                 line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
 #endif
-#if 1
+#if 0
                 rectangle_filled.draw(Point<GLfloat>(10),
                                  Point<GLfloat>(0.5, 0.5));
 #endif
-#if 1
+#if 0
                 rectangle_empty.draw(Point<GLfloat>(10, 10),
                                 Point<GLfloat>(30, 30));
 #endif
@@ -122,14 +127,14 @@ void test(const std::string & datadir)
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
 
-#if 1
+#if 0
                 Point<GLfloat> p(x, y);
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->draw(p);
                 }
 #endif
 
-#if 1
+#if 0
                 text_message.draw(x, y);
 #endif
 
