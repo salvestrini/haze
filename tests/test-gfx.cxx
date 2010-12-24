@@ -74,13 +74,10 @@ void test(const std::string & datadir)
 
         Delay d(10);
 
-        GLfloat x = 0.0f;
-        GLfloat y = 0.0f;
-
-        GL::Color     color_white (1.0, 1.0, 1.0, 1.0);
-        GL::Color     color_red   (1.0, 0.0, 0.0, 1.0);
-        GL::Color     color_green (0.0, 1.0, 0.0, 1.0);
-        GL::Color     color_blue  (0.0, 0.0, 0.0, 1.0);
+        GL::Color     color_white (1.0f, 1.0f, 1.0f, 1.0f);
+        GL::Color     color_red   (1.0f, 0.0f, 0.0f, 1.0f);
+        GL::Color     color_green (0.0f, 1.0f, 0.0f, 1.0f);
+        GL::Color     color_blue  (0.0f, 0.0f, 0.0f, 1.0f);
 
         GL::Point     point(color_white, 10);
         GL::Line      line(color_blue);
@@ -93,7 +90,9 @@ void test(const std::string & datadir)
         // Draw
         //
 
-        GLfloat angle = 0.0;
+        GLfloat x     = 0.0f;
+        GLfloat y     = 0.0f;
+        GLfloat angle = 0.0f;
         
         for (int iteration = 0;
              iteration < 50;
@@ -110,10 +109,10 @@ void test(const std::string & datadir)
                 }
 #endif
 
-#if 0
+#if 1
                 line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
 #endif
-#if 0
+#if 1
                 rectangle_filled.draw(Point<GLfloat>(10),
                                  Point<GLfloat>(0.5, 0.5));
 #endif
@@ -129,14 +128,9 @@ void test(const std::string & datadir)
 #endif
 
 #if 0
-                Point<GLfloat> p(x, y);
                 for (int k = 0; k < 256; k++) {
-                        text_chars[k]->draw(p);
+                        text_chars[k]->draw(Point<GLfloat>(k % 31));
                 }
-#endif
-
-#if 0
-                text_message.draw(x, y);
 #endif
 
 #if 1
@@ -144,14 +138,17 @@ void test(const std::string & datadir)
                 star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle);
                 star3_texture.draw(Point<GLfloat>(video.width()  / 2,
                                                   video.height() / 2),
-                                   1,
-                                   angle * 2);
+                                   1, angle * 4);
 #endif
+#if 1
+                text_message.draw(video.width() / 2, video.height() / 2);
+#endif
+
                 video.update();
 
                 d.wait();
 
-                x++; y++; angle += 1;
+                x++; y++; angle++;
         }
 
 }
