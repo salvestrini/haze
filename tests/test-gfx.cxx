@@ -101,17 +101,17 @@ void test(const std::string & datadir)
 
                 video.clear();
 
-#if 0
+#if 1
                 point.draw(Point<GLfloat>(0.5f, 0.5f));
 #endif
-#if 0
+#if 1
                 line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
 #endif
-#if 0
+#if 1
                 rectangle_filled.draw(Point<GLfloat>(10),
                                  Point<GLfloat>(0.5, 0.5));
 #endif
-#if 0
+#if 1
                 rectangle_empty.draw(Point<GLfloat>(10, 10),
                                 Point<GLfloat>(30, 30));
 #endif
@@ -134,8 +134,8 @@ void test(const std::string & datadir)
 #endif
 
 #if 1
-                star1_texture.draw(Point<GLfloat>(x * 4, y * 4));
-                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 4, angle);
+                star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 2);
+                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle);
 #endif
                 video.update();
 
