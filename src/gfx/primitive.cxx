@@ -215,6 +215,9 @@ namespace HAZE {
 #define WANT_TEXTURE_MANAGER 0
 
 #ifdef WANT_TEXTURE_MANAGER
+
+#define MAX_TEXTURES 1024
+
                 class TextureManager {
                 public:
                         TextureManager(size_t count = MAX_TEXTURES) :
@@ -255,7 +258,6 @@ namespace HAZE {
                         id_ = textureManager->next();
 #else
                         glGenTextures(1, &id_);
-                        DBG("Texture got id %d", id_);
 #endif
                         glBindTexture(GL_TEXTURE_2D, id_);
 
@@ -311,7 +313,6 @@ namespace HAZE {
                         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                         
                         glBindTexture(GL_TEXTURE_2D, id_);
-                        glLoadIdentity();
 
                         glPushMatrix();
 

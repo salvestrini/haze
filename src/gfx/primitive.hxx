@@ -42,9 +42,9 @@ namespace HAZE {
                         GLfloat blue();
                         GLfloat alpha();
 
-                        void    red(GLfloat value);
+                        void    red(GLfloat   value);
                         void    green(GLfloat value);
-                        void    blue(GLfloat value);
+                        void    blue(GLfloat  value);
                         void    alpha(GLfloat value);
 
                         void    set();
@@ -134,8 +134,6 @@ namespace HAZE {
                         bool    filled_;
                         GLfloat size_;
                 };
-
-#define MAX_TEXTURES 1024 // XXX-FIXME: Change ASAP
 
                 class Texture :
                         public Size<GLuint>,
