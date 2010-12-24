@@ -56,27 +56,38 @@ namespace HAZE {
                         GLfloat alpha_;
                 };
 
-                class Point : public Color {
+                class Point {
                 public:
-                        Point(const Color & color);
+                        Point(const Color & color,
+                              GLfloat       size = 1.0f);
                         ~Point();
 
                         void draw(const HAZE::Point<GLfloat> & where);
+
+                private:
+                        Color   color_;
+                        GLfloat size_;
                 };
 
-                class Line : public Color {
+                class Line {
                 public:
-                        Line(const Color & color);
+                        Line(const Color & color,
+                             GLfloat       size = 1.0f);
                         ~Line();
 
                         void draw(const HAZE::Point<GLfloat> & from,
                                   const HAZE::Point<GLfloat> & to);
+
+                private:
+                        Color   color_;
+                        GLfloat size_;
                 };
 
-                class Triangle : public Color {
+                class Triangle {
                 public:
                         Triangle(const Color & color,
-                                 bool          filled = false);
+                                 bool          filled = false,
+                                 GLfloat       size   = 1.0f);
                         ~Triangle();
 
                         void draw(const HAZE::Point<GLfloat> & a,
@@ -84,42 +95,49 @@ namespace HAZE {
                                   const HAZE::Point<GLfloat> & c);
 
                 private:
-                        bool filled_;
+                        Color   color_;
+                        bool    filled_;
+                        GLfloat size_;
                 };
 
-                class Rectangle : public Color {
+                class Rectangle {
                 public:
                         Rectangle(const Color & color,
-                                  bool          filled = false);
+                                  bool          filled = false,
+                                  GLfloat       size   = 1.0f);
                         ~Rectangle();
 
                         void draw(const HAZE::Point<GLfloat> & from,
                                   const HAZE::Point<GLfloat> & to);
 
                 private:
-                        bool filled_;
+                        Color   color_;
+                        bool    filled_;
+                        GLfloat size_;
                 };
 
-                class Circle : public Color {
+                class Circle {
                 public:
                         Circle(const Color & color,
                                GLfloat       radius,
                                size_t        slices = 8,
-                               bool          filled = false);
+                               bool          filled = false,
+                               GLfloat       size   = 1.0f);
                         ~Circle();
 
                         void draw(const HAZE::Point<GLfloat> & center);
 
                 private:
+                        Color   color_;
                         GLfloat radius_;
                         size_t  slices_;
                         bool    filled_;
+                        GLfloat size_;
                 };
 
-#define MAX_TEXTURES 128 // XXX-FIXME: Change ASAP
+#define MAX_TEXTURES 1024 // XXX-FIXME: Change ASAP
 
                 class Texture :
-                        public Color,
                         public Size<GLuint>,
                         public NonCopyable  {
                 public:
@@ -138,6 +156,7 @@ namespace HAZE {
                                   GLfloat                     rotation = 0.0f);
 
                 private:
+                        Color  color_;
                         GLuint id_;
 
                         void init(const Image & image);

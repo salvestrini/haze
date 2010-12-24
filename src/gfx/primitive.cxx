@@ -19,6 +19,7 @@
 #include <cmath>
 
 #include "core/log.hxx"
+#include "core/debug.hxx"
 #include "gfx/primitive.hxx"
 
 namespace HAZE {
@@ -65,8 +66,10 @@ namespace HAZE {
                 void Color::set()
                 { glColor4f(red_, green_, blue_, alpha_); }
 
-                Point::Point(const Color & color) :
-                        Color(color)
+                Point::Point(const Color & color,
+                             GLfloat       size) :
+                        color_(color),
+                        size_(size)
                 { }
 
                 Point::~Point()
@@ -74,16 +77,18 @@ namespace HAZE {
 
                 void Point::draw(const HAZE::Point<GLfloat> & where)
                 {
-                        set();
+                        color_.set();
 
-                        //glPointSize(1.0f);
+                        glPointSize(size_);
                         glBegin(GL_POINTS);
                         glVertex2f(where.x(), where.y());
                         glEnd();
                 }
 
-                Line::Line(const Color & color) :
-                        Color(color)
+                Line::Line(const Color & color,
+                           GLfloat       size) :
+                        color_(color),
+                        size_(size)
                 { }
 
                 Line::~Line()
@@ -92,8 +97,9 @@ namespace HAZE {
                 void Line::draw(const HAZE::Point<GLfloat> & from,
                                 const HAZE::Point<GLfloat> & to)
                 {
-                        set();
+                        color_.set();
 
+                        glPointSize(size_);
                         glBegin(GL_LINES);
                         glVertex2f(from.x(), from.y());
                         glVertex2f(to.x(),   to.y());
@@ -101,9 +107,11 @@ namespace HAZE {
                 }
 
                 Triangle::Triangle(const Color & color,
-                                   bool          filled) :
-                        Color(color),
-                        filled_(filled)
+                                   bool          filled,
+                                   GLfloat       size) :
+                        color_(color),
+                        filled_(filled),
+                        size_(size)
                 { }
 
                 Triangle::~Triangle()
@@ -113,13 +121,15 @@ namespace HAZE {
                                     const HAZE::Point<GLfloat> & b,
                                     const HAZE::Point<GLfloat> & c)
                 {
+                        glPointSize(size_);
+
                         if (!filled_) {
-                                set();
+                                color_.set();
                         }
 
                         glBegin(GL_TRIANGLES);
                         if (filled_) {
-                                set();
+                                color_.set();
                         }
                         glVertex3f(a.x(), a.y(), 0.0f);
                         glVertex3f(b.x(), b.y(), 0.0f);
@@ -129,9 +139,11 @@ namespace HAZE {
                 }
 
                 Rectangle::Rectangle(const Color & color,
-                                     bool          filled) :
-                        Color(color),
-                        filled_(filled)
+                                     bool          filled,
+                                     GLfloat       size) :
+                        color_(color),
+                        filled_(filled),
+                        size_(size)
                 { }
 
                 Rectangle::~Rectangle()
@@ -140,7 +152,9 @@ namespace HAZE {
                 void Rectangle::draw(const HAZE::Point<GLfloat> & from,
                                      const HAZE::Point<GLfloat> & to)
                 {
-                        set();
+                        glPointSize(size_);
+
+                        color_.set();
 
                         if (filled_) {
                                 glBegin(GL_QUADS);
@@ -158,11 +172,13 @@ namespace HAZE {
                 Circle::Circle(const Color & color,
                                GLfloat       radius,
                                size_t        slices,
-                               bool          filled) :
-                        Color(color),
+                               bool          filled,
+                               GLfloat       size) :
+                        color_(color),
                         radius_(radius),
                         slices_(slices),
-                        filled_(filled)
+                        filled_(filled),
+                        size_(size)
                 { }
 
                 Circle::~Circle()
@@ -174,7 +190,9 @@ namespace HAZE {
 
                 void Circle::draw(const HAZE::Point<GLfloat> & center)
                 {
-                        set();
+                        glPointSize(size_);
+
+                        color_.set();
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLES);
@@ -194,18 +212,51 @@ namespace HAZE {
                         glEnd();
                 }
 
-                static bool   texture_initialized = false;
-                static size_t texture_index = 0;
-                static GLuint texture_indexes[MAX_TEXTURES];
+#define WANT_TEXTURE_MANAGER 0
+
+#ifdef WANT_TEXTURE_MANAGER
+                class TextureManager {
+                public:
+                        TextureManager(size_t count = MAX_TEXTURES) :
+                                current_(0),
+                                size_(count) {
+                                indexes_ = new GLuint[count];
+                                glGenTextures(count, indexes_);
+
+                        }
+
+                        ~TextureManager() {
+                                delete [] indexes_;
+                        }
+
+                        GLuint next() {
+                                if (current_ >= size_) {
+                                        BUG();
+                                }
+                                return indexes_[current_++];
+                        }
+
+                private:
+                        GLuint * indexes_;
+                        size_t   current_;
+                        size_t   size_;
+                };
+
+                TextureManager * textureManager = 0;
+#endif
 
                 void Texture::init(const Image & image)
                 {
-                        if (!texture_initialized) {
-                                glGenTextures(MAX_TEXTURES, texture_indexes);
-                                texture_initialized = true;
+#if WANT_TEXTURE_MANAGER
+                        if (!textureManager) {
+                                textureManager = new TextureManager;
                         }
-                        id_ = texture_indexes[texture_index++];
 
+                        id_ = textureManager->next();
+#else
+                        glGenTextures(1, &id_);
+                        DBG("Texture got id %d", id_);
+#endif
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glTexParameteri(GL_TEXTURE_2D,
@@ -242,12 +293,12 @@ namespace HAZE {
 
                 Texture::Texture(const Image & image,
                                  const Color & color) :
-                        Color(color)
+                        color_(color)
                 { init(image); }
 
                 Texture::Texture(const Path &  file,
                                  const Color & color) :
-                        Color(color)
+                        color_(color)
                 { init(Image(file)); }
 
                 Texture::~Texture()
@@ -271,7 +322,7 @@ namespace HAZE {
                         GLfloat w2  = width()  / 2;
                         GLfloat h2  = height() / 2;
 
-                        set();
+                        color_.set();
 
                         glBegin(GL_QUADS);
 
