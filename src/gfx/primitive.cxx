@@ -212,6 +212,40 @@ namespace HAZE {
                         glEnd();
                 }
 
+                Polygon::Polygon(std::list<std::pair<GLfloat,
+                                                     GLfloat> > points,
+                                 bool                           filled,
+                                 const Color &                  color) :
+                        color_(color),
+                        points_(points),
+                        filled_(filled)
+                { }
+
+                void Polygon::draw(const HAZE::Point<GLfloat> & where,
+                                   GLfloat                      scale,
+                                   GLfloat                      rotation)
+                {
+                        // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+                        color_.set();
+
+                        glPushMatrix();
+
+                        glTranslatef(where.x(), where.y(), 0.0f);
+
+                        glBegin(GL_TRIANGLE_FAN);
+                        for (std::list<std::pair<GLfloat,
+                                                 GLfloat> >::iterator i =
+                                     points_.begin();
+                             i != points_.end();
+                             i++) {
+                                glVertex2f((*i).first, (*i).second);
+                        }
+                        glEnd();
+
+                        glPopMatrix();
+                }
+
 #define WANT_TEXTURE_MANAGER 0
 
 #ifdef WANT_TEXTURE_MANAGER

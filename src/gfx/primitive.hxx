@@ -135,6 +135,23 @@ namespace HAZE {
                         GLfloat size_;
                 };
 
+                class Polygon {
+                public:
+                        Polygon(std::list<std::pair<GLfloat,
+                                                    GLfloat> > points,
+                                bool                           filled = false,
+                                const Color &                  color  = Color());
+
+                        void draw(const HAZE::Point<GLfloat> & where,
+                                  GLfloat                     scale    = 1.0f,
+                                  GLfloat                     rotation = 0.0f);
+
+                private:
+                        Color                                   color_;
+                        std::list<std::pair<GLfloat, GLfloat> > points_;
+                        bool                                    filled_;
+                };
+
                 class Texture :
                         public Size<GLuint>,
                         public NonCopyable  {
