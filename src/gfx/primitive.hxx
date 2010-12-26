@@ -62,7 +62,13 @@ namespace HAZE {
                             GLfloat       size  = 1.0f);
                         ~Pen();
 
-                        void set();
+                        void    set();
+
+                        void    color(const Color & color);
+                        Color   color();
+
+                        void    size(GLfloat value);
+                        GLfloat size();
 
                 private:
                         Color   color_;

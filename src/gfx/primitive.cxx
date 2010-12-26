@@ -87,6 +87,18 @@ namespace HAZE {
                         glPointSize(size_);
                 }
 
+                void Pen::color(const Color & color)
+                { color_ = color; }
+
+                Color Pen::color()
+                { return color_; }
+
+                void Pen::size(GLfloat value)
+                { size_ = value; }
+
+                GLfloat Pen::size()
+                { return size_; }
+
                 Point::Point(const Pen & pen) :
                         pen_(pen)
                 { }
