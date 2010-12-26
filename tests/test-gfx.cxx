@@ -77,17 +77,17 @@ void test(const std::string & datadir)
 
         Delay d(10);
 
-        GL::Color     color_white (1.0f, 1.0f, 1.0f, 0.5f);
-        GL::Color     color_red   (1.0f, 0.0f, 0.0f, 0.5f);
-        GL::Color     color_green (0.0f, 1.0f, 0.0f, 0.5f);
-        GL::Color     color_blue  (0.0f, 0.0f, 1.0f, 0.5f);
+        GL::Pen pen_white (GL::Color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
+        GL::Pen pen_red   (GL::Color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
+        GL::Pen pen_green (GL::Color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
+        GL::Pen pen_blue  (GL::Color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
-        GL::Point     point(color_white, 10);
-        GL::Line      line(color_blue);
-        GL::Rectangle rectangle_filled(color_white, true);
-        GL::Rectangle rectangle_empty(color_blue,   false);
-        GL::Circle    circle_filled(color_green, 0.5, 8,  true);
-        GL::Circle    circle_empty(color_blue,   0.5, 16, false);
+        GL::Point     point(pen_white);
+        GL::Line      line(pen_blue);
+        GL::Rectangle rectangle_filled(pen_white, true);
+        GL::Rectangle rectangle_empty(pen_blue,   false);
+        GL::Circle    circle_filled(pen_green, 0.5, 8,  true);
+        GL::Circle    circle_empty(pen_blue,   0.5, 16, false);
 
         //
         // Draw
