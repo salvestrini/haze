@@ -139,8 +139,8 @@ namespace HAZE {
                 public:
                         Polygon(std::list<std::pair<GLfloat,
                                                     GLfloat> > points,
-                                bool                           filled = false,
-                                const Color &                  color  = Color());
+                                bool                         filled = false,
+                                const Color &                color  = Color());
 
                         void draw(const HAZE::Point<GLfloat> & where,
                                   GLfloat                     scale    = 1.0f,

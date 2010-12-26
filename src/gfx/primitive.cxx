@@ -64,7 +64,13 @@ namespace HAZE {
                 { alpha_ = value; }
 
                 void Color::set()
-                { glColor4f(red_, green_, blue_, alpha_); }
+                {
+                        if (alpha_ == 1.0f) {
+                                glColor3f(red_, green_, blue_);
+                        } else {
+                                glColor4f(red_, green_, blue_, alpha_);
+                        }
+                }
 
                 Point::Point(const Color & color,
                              GLfloat       size) :
