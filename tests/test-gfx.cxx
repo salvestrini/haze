@@ -59,6 +59,7 @@ void test(const std::string & datadir)
                 }
         }
 
+#if 0
         Text text_message("this is a test", font);
 
         Text * text_chars[256];
@@ -72,12 +73,14 @@ void test(const std::string & datadir)
         GL::Texture star2_texture(star_image);
         GL::Texture star3_texture(star_image);
 
+#endif
+
         Delay d(10);
 
-        GL::Color     color_white (1.0f, 1.0f, 1.0f, 1.0f);
-        GL::Color     color_red   (1.0f, 0.0f, 0.0f, 1.0f);
-        GL::Color     color_green (0.0f, 1.0f, 0.0f, 1.0f);
-        GL::Color     color_blue  (0.0f, 0.0f, 0.0f, 1.0f);
+        GL::Color     color_white (1.0f, 1.0f, 1.0f, 0.5f);
+        GL::Color     color_red   (1.0f, 0.0f, 0.0f, 0.5f);
+        GL::Color     color_green (0.0f, 1.0f, 0.0f, 0.5f);
+        GL::Color     color_blue  (0.0f, 0.0f, 1.0f, 0.5f);
 
         GL::Point     point(color_white, 10);
         GL::Line      line(color_blue);
@@ -95,22 +98,25 @@ void test(const std::string & datadir)
         GLfloat angle = 0.0f;
         
         for (int iteration = 0;
-             iteration < 50;
+             iteration < 100;
              iteration++) {
                 DBG("Iteration %d", iteration);
 
                 video.clear();
 
-#if 0
-                for (int k = 0;
-                     k < 10000;
-                     k++) {
-                        point.draw(Point<GLfloat>(k % 10, k % 10));
+#if 1
+                for (int k = -100;
+                     k < 100;
+                     k += 5) {
+                        point.draw(Point<GLfloat>(k, k));
                 }
 #endif
 
 #if 1
-                line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(100, 100));
+                line.draw(Point<GLfloat>(-1, -1), Point<GLfloat>(  1,   1));
+                line.draw(Point<GLfloat>( 0,  0), Point<GLfloat>(100, 100));
+                line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(150,  50));
+                line.draw(Point<GLfloat>(10, 10), Point<GLfloat>(200, 200));
 #endif
 #if 1
                 rectangle_filled.draw(Point<GLfloat>(10),
@@ -126,21 +132,19 @@ void test(const std::string & datadir)
 #if 0
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
-
 #if 0
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->draw(Point<GLfloat>(k % 31));
                 }
 #endif
-
-#if 1
-                star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 2);
-                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle);
+#if 0
+                star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 1);
+                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle * 4);
                 star3_texture.draw(Point<GLfloat>(video.width()  / 2,
                                                   video.height() / 2),
-                                   1, angle * 4);
+                                   1, angle * 8);
 #endif
-#if 1
+#if 0
                 text_message.draw(video.width() / 2, video.height() / 2);
 #endif
 
