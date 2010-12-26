@@ -56,38 +56,46 @@ namespace HAZE {
                         GLfloat alpha_;
                 };
 
-                class Point {
+                class Pen {
                 public:
-                        Point(const Color & color,
-                              GLfloat       size = 1.0f);
-                        ~Point();
+                        Pen(const Color & color = Color(),
+                            GLfloat       size  = 1.0f);
+                        ~Pen();
 
-                        void draw(const HAZE::Point<GLfloat> & where);
+                        void set();
 
                 private:
                         Color   color_;
                         GLfloat size_;
                 };
 
+                class Point {
+                public:
+                        Point(const Pen & pen);
+                        ~Point();
+
+                        void draw(const HAZE::Point<GLfloat> & where);
+
+                private:
+                        Pen pen_;
+                };
+
                 class Line {
                 public:
-                        Line(const Color & color,
-                             GLfloat       size = 1.0f);
+                        Line(const Pen & pen);
                         ~Line();
 
                         void draw(const HAZE::Point<GLfloat> & from,
                                   const HAZE::Point<GLfloat> & to);
 
                 private:
-                        Color   color_;
-                        GLfloat size_;
+                        Pen pen_;
                 };
 
                 class Triangle {
                 public:
-                        Triangle(const Color & color,
-                                 bool          filled = false,
-                                 GLfloat       size   = 1.0f);
+                        Triangle(const Pen & pen,
+                                 bool        filled = false);
                         ~Triangle();
 
                         void draw(const HAZE::Point<GLfloat> & a,
@@ -95,59 +103,54 @@ namespace HAZE {
                                   const HAZE::Point<GLfloat> & c);
 
                 private:
-                        Color   color_;
-                        bool    filled_;
-                        GLfloat size_;
+                        Pen  pen_;
+                        bool filled_;
                 };
 
                 class Rectangle {
                 public:
-                        Rectangle(const Color & color,
-                                  bool          filled = false,
-                                  GLfloat       size   = 1.0f);
+                        Rectangle(const Pen & pen,
+                                  bool        filled = false);
                         ~Rectangle();
 
                         void draw(const HAZE::Point<GLfloat> & from,
                                   const HAZE::Point<GLfloat> & to);
 
                 private:
-                        Color   color_;
-                        bool    filled_;
-                        GLfloat size_;
+                        Pen  pen_;
+                        bool filled_;
                 };
 
                 class Circle {
                 public:
-                        Circle(const Color & color,
-                               GLfloat       radius,
-                               size_t        slices = 8,
-                               bool          filled = false,
-                               GLfloat       size   = 1.0f);
+                        Circle(const Pen & pen,
+                               GLfloat     radius,
+                               size_t      slices = 8,
+                               bool        filled = false);
                         ~Circle();
 
                         void draw(const HAZE::Point<GLfloat> & center);
 
                 private:
-                        Color   color_;
+                        Pen     pen_;
                         GLfloat radius_;
                         size_t  slices_;
                         bool    filled_;
-                        GLfloat size_;
                 };
 
                 class Polygon {
                 public:
-                        Polygon(std::list<std::pair<GLfloat,
+                        Polygon(const Pen &                    pen,
+                                std::list<std::pair<GLfloat,
                                                     GLfloat> > points,
-                                bool                         filled = false,
-                                const Color &                color  = Color());
+                                bool                           filled = false);
 
                         void draw(const HAZE::Point<GLfloat> & where,
                                   GLfloat                     scale    = 1.0f,
                                   GLfloat                     rotation = 0.0f);
 
                 private:
-                        Color                                   color_;
+                        Pen                                     pen_;
                         std::list<std::pair<GLfloat, GLfloat> > points_;
                         bool                                    filled_;
                 };

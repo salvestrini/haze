@@ -72,10 +72,23 @@ namespace HAZE {
                         }
                 }
 
-                Point::Point(const Color & color,
-                             GLfloat       size) :
+                Pen::Pen(const Color & color,
+                         GLfloat       size) :
                         color_(color),
                         size_(size)
+                { }
+
+                Pen::~Pen()
+                { }
+
+                void Pen::set()
+                {
+                        color_.set();
+                        glPointSize(size_);
+                }
+
+                Point::Point(const Pen & pen) :
+                        pen_(pen)
                 { }
 
                 Point::~Point()
@@ -83,18 +96,15 @@ namespace HAZE {
 
                 void Point::draw(const HAZE::Point<GLfloat> & where)
                 {
-                        color_.set();
+                        pen_.set();
 
-                        glPointSize(size_);
                         glBegin(GL_POINTS);
                         glVertex2f(where.x(), where.y());
                         glEnd();
                 }
 
-                Line::Line(const Color & color,
-                           GLfloat       size) :
-                        color_(color),
-                        size_(size)
+                Line::Line(const Pen & pen) :
+                        pen_(pen)
                 { }
 
                 Line::~Line()
@@ -103,21 +113,18 @@ namespace HAZE {
                 void Line::draw(const HAZE::Point<GLfloat> & from,
                                 const HAZE::Point<GLfloat> & to)
                 {
-                        color_.set();
+                        pen_.set();
 
-                        glPointSize(size_);
                         glBegin(GL_LINES);
                         glVertex2f(from.x(), from.y());
                         glVertex2f(to.x(),   to.y());
                         glEnd();
                 }
 
-                Triangle::Triangle(const Color & color,
-                                   bool          filled,
-                                   GLfloat       size) :
-                        color_(color),
-                        filled_(filled),
-                        size_(size)
+                Triangle::Triangle(const Pen & pen,
+                                   bool        filled) :
+                        pen_(pen),
+                        filled_(filled)
                 { }
 
                 Triangle::~Triangle()
@@ -127,15 +134,12 @@ namespace HAZE {
                                     const HAZE::Point<GLfloat> & b,
                                     const HAZE::Point<GLfloat> & c)
                 {
-                        glPointSize(size_);
+                        pen_.set();
 
-                        if (!filled_) {
-                                color_.set();
-                        }
-
-                        glBegin(GL_TRIANGLES);
                         if (filled_) {
-                                color_.set();
+                                glBegin(GL_TRIANGLES);
+                        } else {
+                                glBegin(GL_TRIANGLES);
                         }
                         glVertex3f(a.x(), a.y(), 0.0f);
                         glVertex3f(b.x(), b.y(), 0.0f);
@@ -144,12 +148,10 @@ namespace HAZE {
 
                 }
 
-                Rectangle::Rectangle(const Color & color,
-                                     bool          filled,
-                                     GLfloat       size) :
-                        color_(color),
-                        filled_(filled),
-                        size_(size)
+                Rectangle::Rectangle(const Pen & pen,
+                                     bool        filled) :
+                        pen_(pen),
+                        filled_(filled)
                 { }
 
                 Rectangle::~Rectangle()
@@ -158,9 +160,7 @@ namespace HAZE {
                 void Rectangle::draw(const HAZE::Point<GLfloat> & from,
                                      const HAZE::Point<GLfloat> & to)
                 {
-                        glPointSize(size_);
-
-                        color_.set();
+                        pen_.set();
 
                         if (filled_) {
                                 glBegin(GL_QUADS);
@@ -175,16 +175,14 @@ namespace HAZE {
                         glEnd();
                 }
 
-                Circle::Circle(const Color & color,
-                               GLfloat       radius,
-                               size_t        slices,
-                               bool          filled,
-                               GLfloat       size) :
-                        color_(color),
+                Circle::Circle(const Pen & pen,
+                               GLfloat     radius,
+                               size_t      slices,
+                               bool        filled) :
+                        pen_(pen),
                         radius_(radius),
                         slices_(slices),
-                        filled_(filled),
-                        size_(size)
+                        filled_(filled)
                 { }
 
                 Circle::~Circle()
@@ -196,9 +194,7 @@ namespace HAZE {
 
                 void Circle::draw(const HAZE::Point<GLfloat> & center)
                 {
-                        glPointSize(size_);
-
-                        color_.set();
+                        pen_.set();
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLES);
@@ -218,11 +214,11 @@ namespace HAZE {
                         glEnd();
                 }
 
-                Polygon::Polygon(std::list<std::pair<GLfloat,
+                Polygon::Polygon(const Pen &                    pen,
+                                 std::list<std::pair<GLfloat,
                                                      GLfloat> > points,
-                                 bool                           filled,
-                                 const Color &                  color) :
-                        color_(color),
+                                 bool                           filled) :
+                        pen_(pen),
                         points_(points),
                         filled_(filled)
                 { }
@@ -233,7 +229,7 @@ namespace HAZE {
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-                        color_.set();
+                        pen_.set();
 
                         glPushMatrix();
 
