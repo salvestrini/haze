@@ -47,6 +47,12 @@ namespace HAZE {
                 void height(TYPE value)
                 { height_ = value; }
 
+                void resize(TYPE width,
+                            TYPE height) {
+                        width_  = width;
+                        height_ = height;
+                }
+
                 void resize(const Size & size) {
                         width_  = size.width_;
                         height_ = size.height_;
@@ -57,12 +63,6 @@ namespace HAZE {
                                                              factor));
                         height_ = static_cast<TYPE>(std::abs(float(height_) *
                                                              factor));
-                }
-
-                void resize(TYPE width,
-                            TYPE height) {
-                        width_  = width;
-                        height_ = height;
                 }
 
         private:
