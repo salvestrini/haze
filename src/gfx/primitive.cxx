@@ -26,6 +26,14 @@ namespace HAZE {
 
         namespace GL {
 
+#define DEBUG_GL 1
+
+#if DEBUG_GL
+#define ASSERT_GL_NO_ERROR() { assert(glGetError() == GL_NO_ERROR); }
+#else
+#define ASSERT_GL_NO_ERROR()
+#endif
+
                 Color::Color(GLfloat red,
                              GLfloat green,
                              GLfloat blue,
@@ -344,6 +352,8 @@ namespace HAZE {
                         DBG("Image is %d x %d pixels (%s)",
                             width(), height(),
                             format == GL_BGRA ? "alpha" : "no-alpha");
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Texture::Texture(const Image & image,
@@ -388,6 +398,8 @@ namespace HAZE {
                         glEnd();
 
                         glPopMatrix();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
         }
