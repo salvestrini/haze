@@ -86,8 +86,8 @@ void test(const std::string & datadir)
         GL::Line      line(pen_blue);
         GL::Rectangle rectangle_filled(pen_green, true);
         GL::Rectangle rectangle_empty(pen_green,  false);
-        GL::Circle    circle_filled(pen_green, 5, 8,  true);
-        GL::Circle    circle_empty(pen_blue,   5, 16, false);
+        GL::Circle    circle_filled(pen_green, 180, 8, true);
+        GL::Circle    circle_empty(pen_blue,   220, 8, false);
 
         //
         // Draw
