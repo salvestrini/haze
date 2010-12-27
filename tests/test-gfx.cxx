@@ -84,8 +84,8 @@ void test(const std::string & datadir)
 
         GL::Point     point(pen_white);
         GL::Line      line(pen_blue);
-        GL::Rectangle rectangle_filled(pen_white, true);
-        GL::Rectangle rectangle_empty(pen_blue,   false);
+        GL::Rectangle rectangle_filled(pen_green, true);
+        GL::Rectangle rectangle_empty(pen_green,  false);
         GL::Circle    circle_filled(pen_green, 0.5, 8,  true);
         GL::Circle    circle_empty(pen_blue,   0.5, 16, false);
 
@@ -105,10 +105,10 @@ void test(const std::string & datadir)
                 video.clear();
 
 #if 1
-                for (int k = -100;
-                     k < 100;
+                for (int k = -1000;
+                     k < 1000;
                      k += 5) {
-                        point.draw(Point<GLfloat>(k, k));
+                        point.draw(Point<GLfloat>(k % 100, k));
                 }
 #endif
 
@@ -119,12 +119,12 @@ void test(const std::string & datadir)
                 line.draw(Point<GLfloat>(10, 10), Point<GLfloat>(200, 200));
 #endif
 #if 1
-                rectangle_filled.draw(Point<GLfloat>(10),
-                                 Point<GLfloat>(0.5, 0.5));
+                rectangle_filled.draw(Point<GLfloat>(60, 60),
+                                      Point<GLfloat>(80, 80));
 #endif
-#if 0
+#if 1
                 rectangle_empty.draw(Point<GLfloat>(10, 10),
-                                Point<GLfloat>(30, 30));
+                                     Point<GLfloat>(30, 30));
 #endif
 #if 0
                 circle_filled.draw(Point<GLfloat>(y, x));
