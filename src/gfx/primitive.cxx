@@ -311,6 +311,8 @@ namespace HAZE {
 
                 void Texture::init(const Image & image)
                 {
+                        glEnable(GL_TEXTURE_2D);
+
 #if WANT_TEXTURE_MANAGER
                         if (!textureManager) {
                                 textureManager = new TextureManager;
@@ -320,6 +322,8 @@ namespace HAZE {
 #else
                         glGenTextures(1, &id_);
 #endif
+                        DBG("Texture id = %d", id_);
+
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glTexParameteri(GL_TEXTURE_2D,
@@ -353,6 +357,8 @@ namespace HAZE {
                             width(), height(),
                             format == GL_BGRA ? "alpha" : "no-alpha");
 
+                        glDisable(GL_TEXTURE_2D);
+
                         ASSERT_GL_NO_ERROR();
                 }
 
@@ -373,6 +379,8 @@ namespace HAZE {
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
                 {
+                        glEnable(GL_TEXTURE_2D);
+
                         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                         glBindTexture(GL_TEXTURE_2D, id_);
@@ -398,6 +406,8 @@ namespace HAZE {
                         glEnd();
 
                         glPopMatrix();
+
+                        glDisable(GL_TEXTURE_2D);
 
                         ASSERT_GL_NO_ERROR();
                 }

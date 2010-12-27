@@ -38,6 +38,7 @@ void test(const std::string & datadir)
         //
 
         Video video;
+
         Image glyphs(Path(datadir + "font.png"));
 
         DBG("Glyphs image is %d x %d", glyphs.width(), glyphs.height());
@@ -62,9 +63,10 @@ void test(const std::string & datadir)
                 }
         }
 
-#if 0
+#if 1
         Text text_message("this is a test", font);
-
+#endif
+#if 1
         Text * text_chars[256];
         for (int i = 0; i < 256; i++) {
                 text_chars[i] = new Text(std::string(1, static_cast<char>(i)),
@@ -72,7 +74,7 @@ void test(const std::string & datadir)
         }
 #endif
         Image       star_image(Path(datadir + "star.bmp"));
-#if 0
+#if 1
         GL::Texture star1_texture(star_image);
         GL::Texture star2_texture(star_image);
         GL::Texture star3_texture(star_image);
@@ -135,19 +137,20 @@ void test(const std::string & datadir)
 #if 1
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
-#if 0
+#if 1
                 for (int k = 0; k < 256; k++) {
-                        text_chars[k]->draw(Point<GLfloat>(k % 31));
+                        text_chars[k]->draw(Point<GLfloat>(100 + k % 16 * 32,
+                                                           100 + k / 16 * 32));
                 }
 #endif
-#if 0
+#if 1
                 star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 1);
                 star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle * 4);
                 star3_texture.draw(Point<GLfloat>(video.width()  / 2,
                                                   video.height() / 2),
                                    1, angle * 8);
 #endif
-#if 0
+#if 1
                 text_message.draw(video.width() / 2, video.height() / 2);
 #endif
 
