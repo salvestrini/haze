@@ -62,13 +62,13 @@ namespace HAZE {
                             GLfloat       size  = 1.0f);
                         ~Pen();
 
-                        void    set();
-
                         void    color(const Color & color);
                         Color   color();
 
                         void    size(GLfloat value);
                         GLfloat size();
+
+                        void    set();
 
                 private:
                         Color   color_;
@@ -131,8 +131,8 @@ namespace HAZE {
                 public:
                         Circle(const Pen & pen,
                                GLfloat     radius,
-                               size_t      slices = 8,
-                               bool        filled = false);
+                               size_t      segments = 8,
+                               bool        filled   = false);
                         ~Circle();
 
                         void draw(const HAZE::Point<GLfloat> & center);
@@ -140,7 +140,7 @@ namespace HAZE {
                 private:
                         Pen     pen_;
                         GLfloat radius_;
-                        size_t  slices_;
+                        size_t  segments_;
                         bool    filled_;
                 };
 

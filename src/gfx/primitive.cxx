@@ -189,18 +189,18 @@ namespace HAZE {
 
                 Circle::Circle(const Pen & pen,
                                GLfloat     radius,
-                               size_t      slices,
+                               size_t      segments,
                                bool        filled) :
                         pen_(pen),
                         radius_(radius),
-                        slices_(slices),
+                        segments_(segments),
                         filled_(filled)
                 { }
 
                 Circle::~Circle()
                 {
-                        if (slices_ <= 0) {
-                                slices_ = 1;
+                        if (segments_ <= 0) {
+                                segments_ = 1;
                         }
                 }
 
@@ -209,18 +209,19 @@ namespace HAZE {
                         pen_.set();
 
                         if (filled_) {
-                                glBegin(GL_TRIANGLES);
+                                glBegin(GL_TRIANGLE_FAN);
                         } else {
                                 glBegin(GL_LINE_LOOP);
                         }
 
-                        glVertex2f(center.x(), center.y());
+                        const float increment = 2.0f * M_PI / segments_;
+                        float       theta     = 0.0f;
 
-                        for (float angle = 0;
-                             angle <= 2 * M_PI;
-                             angle += 2 * M_PI / slices_) {
-                                glVertex2f(center.x() + cosf(angle) * radius_,
-                                           center.y() + sinf(angle) * radius_);
+                        for (size_t i = 0; i < segments_; ++i) {
+                                glVertex2f(center.x() + radius_ * cosf(theta),
+                                           center.y() + radius_ * sinf(theta));
+
+                                theta += increment;
                         }
 
                         glEnd();
@@ -247,7 +248,11 @@ namespace HAZE {
 
                         glTranslatef(where.x(), where.y(), 0.0f);
 
-                        glBegin(GL_TRIANGLE_FAN);
+                        if (filled_) {
+                                glBegin(GL_TRIANGLE_FAN);
+                        } else {
+                                glBegin(GL_LINE_LOOP);
+                        }
                         for (std::list<std::pair<GLfloat,
                                                  GLfloat> >::iterator i =
                                      points_.begin();

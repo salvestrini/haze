@@ -67,12 +67,12 @@ void test(const std::string & datadir)
                 text_chars[i] = new Text(std::string(1, static_cast<char>(i)),
                                          font);
         }
-
+#endif
         Image       star_image(Path(datadir + "star.bmp"));
+#if 0
         GL::Texture star1_texture(star_image);
         GL::Texture star2_texture(star_image);
         GL::Texture star3_texture(star_image);
-
 #endif
 
         Delay d(10);
@@ -86,8 +86,8 @@ void test(const std::string & datadir)
         GL::Line      line(pen_blue);
         GL::Rectangle rectangle_filled(pen_green, true);
         GL::Rectangle rectangle_empty(pen_green,  false);
-        GL::Circle    circle_filled(pen_green, 0.5, 8,  true);
-        GL::Circle    circle_empty(pen_blue,   0.5, 16, false);
+        GL::Circle    circle_filled(pen_green, 5, 8,  true);
+        GL::Circle    circle_empty(pen_blue,   5, 16, false);
 
         //
         // Draw
@@ -126,10 +126,10 @@ void test(const std::string & datadir)
                 rectangle_empty.draw(Point<GLfloat>(10, 10),
                                      Point<GLfloat>(30, 30));
 #endif
-#if 0
-                circle_filled.draw(Point<GLfloat>(y, x));
+#if 1
+                circle_filled.draw(Point<GLfloat>(y + 10 , x + 10));
 #endif
-#if 0
+#if 1
                 circle_empty.draw(Point<GLfloat>(x, y));
 #endif
 #if 0
