@@ -183,6 +183,7 @@ namespace HAZE {
         void Video::update()
         {
                 // DBG("Updating video");
+                glFlush();
                 SDL_GL_SwapBuffers();
         }
 
