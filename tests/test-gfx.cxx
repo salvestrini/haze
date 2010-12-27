@@ -43,7 +43,10 @@ void test(const std::string & datadir)
         DBG("Glyphs image is %d x %d", glyphs.width(), glyphs.height());
 
         // Font image is 16x16 chars
-        Rectangle rectangle(0, 0, glyphs.width() / 16, glyphs.height() / 16);
+        Rectangle<size_t, size_t> rectangle(0,
+                                            0,
+                                            glyphs.width()  / 16,
+                                            glyphs.height() / 16);
 
         Font font;
 

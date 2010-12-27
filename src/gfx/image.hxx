@@ -57,7 +57,8 @@ namespace HAZE {
                 size_t       bpp() const;
                 bool         hasAlpha() const;
                 const void * data() const;
-                Image *      clip(const Rectangle & rect) const;
+                Image *      clip(const Rectangle<size_t,
+                                                  size_t> & rect) const;
 
         private:
                 SDL_Surface * surface_;

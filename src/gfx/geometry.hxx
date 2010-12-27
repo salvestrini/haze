@@ -127,36 +127,26 @@ namespace HAZE {
                 TYPE z_;
         };
 
-        class Rectangle {
+        template<typename PTYPE = int,
+                 typename STYPE = size_t> class Rectangle :
+                public Point<PTYPE>,
+                public Size<STYPE> {
         public:
-                Rectangle();
-                Rectangle(int x, int y, size_t w, size_t h);
-                Rectangle(const Point<int> &    origin,
-                          const Size<size_t> &  size);
-                Rectangle(const Point<int> & p1,
-                          const Point<int> & p2);
+                Rectangle() { }
 
-                virtual ~Rectangle();
+                Rectangle(PTYPE x, PTYPE y, STYPE w, STYPE h) :
+                        Point<PTYPE>(x, y),
+                        Size<STYPE>(w, h)
+                { }
 
-                void         move(int x, int y);
-                void         move(const Point<int> & where);
+                Rectangle(const Point<PTYPE> & origin,
+                          const Size<STYPE> &  size) :
+                        Point<PTYPE>(origin),
+                        Size<STYPE>(size)
+                { }
 
-                int          x() const;
-                int          y() const;
-                void         x(int value);
-                void         y(int value);
-
-                size_t       width()  const;
-                size_t       height() const;
-                void         width(size_t v);
-                void         height(size_t v);
-
-                Size<size_t> size() const;
-                void         resize(const Size<size_t> & s);
-
-        private:
-                Size<size_t> size_;
-                Point<int>   origin_;
+                virtual ~Rectangle()
+                { }
         };
 
 }

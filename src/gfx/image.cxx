@@ -64,7 +64,7 @@ namespace HAZE {
                 }
         }
 
-        Image * Image::clip(const Rectangle & rect) const
+        Image * Image::clip(const Rectangle<size_t, size_t> & rect) const
         {
                 SDL_Surface * surface;
                 Uint32        rmask, gmask, bmask, amask;
