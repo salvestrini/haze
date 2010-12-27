@@ -146,7 +146,8 @@ namespace HAZE {
 
                 glViewport(0, 0,
                            static_cast<GLsizei>(width),
-                           static_cast<GLsizei>(height));
+                           static_cast<GLsizei>(height)
+                           );
 
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();

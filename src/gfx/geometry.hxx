@@ -138,21 +138,21 @@ namespace HAZE {
 
                 virtual ~Rectangle();
 
-                void                 move(int x, int y);
-                void                 move(const Point<int> & where);
+                void         move(int x, int y);
+                void         move(const Point<int> & where);
 
-                int                  x() const;
-                int                  y() const;
-                void                 x(int value);
-                void                 y(int value);
-                                     
-                size_t               width()  const;
-                size_t               height() const;
-                void                 width(size_t v);
-                void                 height(size_t v);
+                int          x() const;
+                int          y() const;
+                void         x(int value);
+                void         y(int value);
 
-                const Size<size_t> & size() const;
-                void                 resize(const Size<size_t> & s);
+                size_t       width()  const;
+                size_t       height() const;
+                void         width(size_t v);
+                void         height(size_t v);
+
+                Size<size_t> size() const;
+                void         resize(const Size<size_t> & s);
 
         private:
                 Size<size_t> size_;

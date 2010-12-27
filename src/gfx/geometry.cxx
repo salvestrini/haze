@@ -161,7 +161,7 @@ namespace HAZE {
         void Rectangle::height(size_t v)
         { size_.height(v); }
 
-        const Size<size_t> & Rectangle::size() const
+        Size<size_t> Rectangle::size() const
         { return size_; }
 
         void Rectangle::resize(const Size<size_t> & s)
