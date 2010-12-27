@@ -80,11 +80,12 @@ namespace HAZE {
                 virtual ~Point()
                 { }
 
-                TYPE  x() const   { return x_; }
-                TYPE  y() const   { return y_; }
+                TYPE  x() const { return x_; }
+                TYPE  y() const { return y_; }
 
-                void  x(TYPE v) { x_ = v;    }
-                void  y(TYPE v) { y_ = v;    }
+                void  x(TYPE v) { x_ = v; }
+                void  y(TYPE v) { y_ = v; }
+
                 void  move(TYPE x, TYPE y) {
                         x_ = x;
                         y_ = y;
@@ -93,6 +94,37 @@ namespace HAZE {
         private:
                 TYPE x_;
                 TYPE y_;
+        };
+
+        template<typename TYPE = int> class Vector {
+        public:
+                Vector(TYPE x = 0, TYPE y = 0, TYPE z = 0) :
+                        x_(x),
+                        y_(y),
+                        z_(z)
+                { }
+
+                virtual ~Vector()
+                { }
+
+                TYPE  x() const { return x_; }
+                TYPE  y() const { return y_; }
+                TYPE  z() const { return z_; }
+
+                void  x(TYPE v) { x_ = v; }
+                void  y(TYPE v) { y_ = v; }
+                void  z(TYPE v) { z_ = v; }
+
+                void  move(TYPE x, TYPE y, TYPE z) {
+                        x_ = x;
+                        y_ = y;
+                        z_ = z;
+                }
+
+        private:
+                TYPE x_;
+                TYPE y_;
+                TYPE z_;
         };
 
         class Rectangle {
@@ -123,8 +155,8 @@ namespace HAZE {
                 void                 resize(const Size<size_t> & s);
 
         private:
-                Size<size_t>  size_;
-                Point<int>    origin_;
+                Size<size_t> size_;
+                Point<int>   origin_;
         };
 
 }
