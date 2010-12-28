@@ -1,4 +1,4 @@
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${haze_SOURCE_DIR}/src)
 
 enable_testing()
 
