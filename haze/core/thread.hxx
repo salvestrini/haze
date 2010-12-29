@@ -16,38 +16,37 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
+#ifndef HAZE_CORE_THREAD
+#define HAZE_CORE_THREAD
+
 #include <string>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include <SDL/SDL.h>
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+#include "haze/core/pattern.hxx"
+
+namespace HAZE {
+
+        class Thread : public NonCopyable {
+        public:
+                Thread(const std::string & name = "unknown");
+                virtual ~Thread();
+
+                std::string  name() { return name_; }
+
+                void         start();
+                void         stop();
+                virtual void loop() = 0;
+
+        private:
+                SDL_Thread * thread_;
+                std::string  name_;
+
+                void         join();
+
+                static int   run(void * opaque);
+        };
+
 }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif

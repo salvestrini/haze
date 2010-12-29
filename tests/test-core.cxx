@@ -19,10 +19,9 @@
 #include <cstdlib>
 #include <string>
 
-#include "core/log.hxx"
-#include "core/debug.hxx"
-
-#include "core/thread.hxx"
+#include "haze/core/log.hxx"
+#include "haze/core/debug.hxx"
+#include "haze/core/thread.hxx"
 
 class T : public HAZE::Thread {
 public:

@@ -16,38 +16,36 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
+#include "haze/core/filesystem.hxx"
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+namespace HAZE {
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
-}
+        Path::Path(const std::string & p) :
+                path_(p)
+        { }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
+        Path::~Path()
+        { }
 
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
+        Path Path::basename(const std::string & suffix)
+        { return Path(path_); }
+ 
+        Path Path::dirname()
+        { return Path(path_); }
 
-        int retval = EXIT_FAILURE;
+        bool Path::isFile()
+        { return false; }
 
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
+        bool Path::isDirectory()
+        { return false; }
 
-        DBG("Completed with%s errors", (retval ? "" : "out"));
+        bool Path::exists()
+        { return false; }
 
-        return retval;
+        void Path::remove()
+        { }
+
+        const char * Path::c_str() const
+        { return path_.c_str(); }
+
 }

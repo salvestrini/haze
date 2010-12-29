@@ -16,38 +16,26 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
+#include "haze/core/exception.hxx"
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+namespace HAZE {
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
-}
+        Exception::Exception() :
+                message_()
+        { }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
+        Exception::Exception(const char * what) :
+                message_(what)
+        { }
 
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
+        Exception::Exception(const std::string & what) :
+                message_(what)
+        { }
 
-        int retval = EXIT_FAILURE;
+        Exception::~Exception() throw()
+        { }
 
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
+        const char * Exception::what() const throw()
+        { return message_.c_str(); }
 
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
 }

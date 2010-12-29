@@ -16,38 +16,18 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
+#include "haze/gfx/camera.hxx"
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+namespace HAZE {
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
-}
+        Camera::Camera(GLfloat x, GLfloat y) :
+                Point<GLfloat>(x, y)
+        { }
+ 
+        Camera::~Camera()
+        { }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
+        void Camera::set(GLfloat origin_x, GLfloat origin_y)
+        { x(origin_x); y(origin_y); }
 
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
 }

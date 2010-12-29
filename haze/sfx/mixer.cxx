@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2010 Francesco Salvestrini
+//                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,38 +17,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
-
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
-
-void test(const std::string & datadir)
-{
-        // Put your code here ...
-}
-
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#include "haze/sfx/mixer.hxx"

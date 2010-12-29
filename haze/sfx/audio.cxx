@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2010 Francesco Salvestrini
+//                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,38 +17,36 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
 #include <string>
 
+#include <SDL/SDL.h>
+
 #include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include "haze/sfx/audio.hxx"
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
-}
+namespace HAZE {
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
+        Audio::Audio()
+                throw(CannotInitialize) :
+                channels_(0),
+                frequency_(0)
+        {
+                if (!SDL_WasInit(SDL_INIT_AUDIO)) {
+                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                                throw CannotInitialize(SDL_GetError());
+                        }
+                }
 
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
+                DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
         }
 
-        int retval = EXIT_FAILURE;
+        Audio::~Audio()
+        { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
+        size_t Audio::channels()
+        { return channels_; }
 
-        DBG("Completed with%s errors", (retval ? "" : "out"));
+        size_t Audio::frequency()
+        { return frequency_; }
 
-        return retval;
 }

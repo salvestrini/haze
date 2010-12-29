@@ -16,38 +16,34 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
+#ifndef HAZE_GFX_TEXT
+#define HAZE_GFX_TEXT
+
+#include <GL/gl.h>
+
 #include <string>
+#include <vector>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include "haze/gfx/font.hxx"
+#include "haze/gfx/geometry.hxx"
+#include "haze/gfx/primitive.hxx"
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+namespace HAZE {
+
+        class Text {
+        public:
+                Text(const std::string & message,
+                     const Font &        font);
+                ~Text();
+
+                void         draw(GLfloat x, GLfloat y) const;
+                void         draw(const Point<GLfloat> & origin) const;
+                Size<size_t> size() const;
+
+        private:
+                std::vector<GL::Texture *> chars_;
+        };
+
 }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif

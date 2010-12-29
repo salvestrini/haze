@@ -19,15 +19,14 @@
 #include <cstdlib>
 #include <string>
 
-#include "core/log.hxx"
-#include "core/debug.hxx"
-#include "core/timer.hxx"
-
-#include "gfx/video.hxx"
-#include "gfx/image.hxx"
-#include "gfx/font.hxx"
-#include "gfx/text.hxx"
-#include "gfx/primitive.hxx"
+#include "haze/core/log.hxx"
+#include "haze/core/debug.hxx"
+#include "haze/core/timer.hxx"
+#include "haze/gfx/video.hxx"
+#include "haze/gfx/image.hxx"
+#include "haze/gfx/font.hxx"
+#include "haze/gfx/text.hxx"
+#include "haze/gfx/primitive.hxx"
 
 void test(const std::string & datadir)
 {

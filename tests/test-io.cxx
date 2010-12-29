@@ -19,8 +19,8 @@
 #include <cstdlib>
 #include <string>
 
-#include "core/log.hxx"
-#include "core/debug.hxx"
+#include "haze/core/log.hxx"
+#include "haze/core/debug.hxx"
 
 void test(const std::string & datadir)
 {

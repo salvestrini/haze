@@ -16,38 +16,52 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
+#ifndef HAZE_CORE_SYNCHRONIZATION
+#define HAZE_CORE_SYNCHRONIZATION
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include <SDL/SDL.h>
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+#include "haze/core/pattern.hxx"
+
+namespace HAZE {
+
+        class Semaphore : public NonCopyable {
+        public:
+                Semaphore(int value);
+                virtual ~Semaphore();
+
+                void wait();
+                void signal();
+
+        private:
+                SDL_sem * semaphore_;
+        };
+
+        class Mutex : public NonCopyable {
+	public:
+		Mutex();
+		virtual ~Mutex();
+
+		void lock();
+		void unlock();
+
+	private:
+		SDL_mutex * mutex_;
+        };
+
+        class Guard : public NonCopyable {
+	public:
+		Guard(Mutex & mutex) : mutex_(mutex) {
+			mutex_.lock();
+		}
+
+		virtual ~Guard() {
+			mutex_.unlock();
+		}
+
+	private:
+		Mutex & mutex_;
+        };
+
 }
-
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif

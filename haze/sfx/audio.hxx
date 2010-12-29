@@ -1,5 +1,6 @@
 //
 // Copyright (C) 2010 Francesco Salvestrini
+//                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,38 +17,35 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
+#ifndef HAZE_SFX_AUDIO
+#define HAZE_SFX_AUDIO
+
 #include <string>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include "haze/core/exception.hxx"
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+namespace HAZE {
+
+        class Audio {
+        public:
+                class CannotInitialize : public Exception {
+                public:
+                        CannotInitialize(const std::string & what) :
+                                Exception(what) { }
+                };
+
+                Audio()
+                        throw(CannotInitialize);
+                virtual ~Audio();
+
+                virtual size_t channels();
+                virtual size_t frequency();
+
+        private:
+                size_t channels_;
+                size_t frequency_;
+        };
+
 }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif

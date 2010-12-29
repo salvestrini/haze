@@ -16,38 +16,21 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
+#ifndef HAZE_SFX_SAMPLE
+#define HAZE_SFX_SAMPLE
+
 #include <string>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
+#include "haze/core/filesystem.hxx"
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+namespace HAZE {
+
+        class Sample {
+        public:
+                Sample(const Path & file);
+                ~Sample();
+        };
+
 }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif
