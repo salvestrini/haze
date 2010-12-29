@@ -33,7 +33,7 @@ set(io_SOURCES
   io/mouse.cxx
   )
 
-add_library(${PROJECT_NAME}-core STATIC ${core_SOURCES})
-add_library(${PROJECT_NAME}-gfx  STATIC ${gfx_SOURCES})
-add_library(${PROJECT_NAME}-sfx  STATIC ${sfx_SOURCES})
-add_library(${PROJECT_NAME}-io   STATIC ${io_SOURCES})
+add_library(haze-core STATIC ${core_SOURCES})
+add_library(haze-gfx  STATIC ${gfx_SOURCES})
+add_library(haze-sfx  STATIC ${sfx_SOURCES})
+add_library(haze-io   STATIC ${io_SOURCES})
