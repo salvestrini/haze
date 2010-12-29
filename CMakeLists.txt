@@ -8,8 +8,13 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-set(CMAKE_C_FLAGS   "-Wall -Werror")
-set(CMAKE_CXX_FLAGS "-Wall -Werror")
+if(CMAKE_COMPILER_IS_GNUC)
+  set(CMAKE_C_FLAGS   "-Wall -Werror")
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+  set(CMAKE_CXX_FLAGS "-Wall -Werror")
+endif()
 
 find_package(SDL       REQUIRED)
 find_package(SDL_image REQUIRED)
