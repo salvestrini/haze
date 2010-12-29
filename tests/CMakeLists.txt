@@ -9,7 +9,7 @@ target_link_libraries(test-core
   ${SDL_LIBRARY}
   SDLmain
 
-  core
+  ${PROJECT_NAME}-core
   )
 add_test(NAME test-core CONFIGURATIONS Debug COMMAND test-core ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -23,8 +23,8 @@ target_link_libraries(test-gfx
 
   ${OPENGL_LIBRARIES}
 
-  gfx
-  core
+  ${PROJECT_NAME}-gfx
+  ${PROJECT_NAME}-core
   )
 
 add_test(NAME test-gfx CONFIGURATIONS Debug COMMAND test-gfx ${CMAKE_CURRENT_BINARY_DIR})
@@ -39,8 +39,8 @@ target_link_libraries(test-sfx
 
   ${OPENAL_LIBRARY}
 
-  sfx
-  core
+  ${PROJECT_NAME}-sfx
+  ${PROJECT_NAME}-core
   )
 
 add_test(NAME test-sfx CONFIGURATIONS Debug COMMAND test-sfx ${CMAKE_CURRENT_BINARY_DIR})
@@ -52,8 +52,8 @@ target_link_libraries(test-io
   ${SDL_LIBRARY}
   SDLmain
 
-  io
-  core
+  ${PROJECT_NAME}-io
+  ${PROJECT_NAME}-core
   )
 
 add_test(NAME test-io CONFIGURATIONS Debug COMMAND test-io ${CMAKE_CURRENT_BINARY_DIR})
@@ -70,10 +70,10 @@ target_link_libraries(test-all
   ${OPENGL_LIBRARIES}
   ${OPENAL_LIBRARY}
 
-  io
-  gfx
-  sfx
-  core
+  ${PROJECT_NAME}-io
+  ${PROJECT_NAME}-gfx
+  ${PROJECT_NAME}-sfx
+  ${PROJECT_NAME}-core
   )
 
 add_test(NAME test-all CONFIGURATIONS Debug COMMAND test-all ${CMAKE_CURRENT_BINARY_DIR})

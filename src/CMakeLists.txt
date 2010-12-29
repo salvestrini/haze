@@ -32,7 +32,7 @@ set(io_SOURCES
   io/mouse.cxx
   )
 
-add_library(core STATIC ${core_SOURCES})
-add_library(gfx  STATIC ${gfx_SOURCES})
-add_library(sfx  STATIC ${sfx_SOURCES})
-add_library(io   STATIC ${io_SOURCES})
+add_library(${PROJECT_NAME}-core STATIC ${core_SOURCES})
+add_library(${PROJECT_NAME}-gfx  STATIC ${gfx_SOURCES})
+add_library(${PROJECT_NAME}-sfx  STATIC ${sfx_SOURCES})
+add_library(${PROJECT_NAME}-io   STATIC ${io_SOURCES})
