@@ -148,8 +148,14 @@ namespace HAZE {
                 public:
                         Polygon(const Pen &                    pen,
                                 std::list<std::pair<GLfloat,
-                                                    GLfloat> > points,
+                                                    GLfloat> > points =
+                                std::list<std::pair<GLfloat,
+                                                    GLfloat> >(),
                                 bool                           filled = false);
+
+                        void set(bool filled);
+                        void set(std::list<std::pair<GLfloat,
+                                                     GLfloat> > points);
 
                         void draw(const HAZE::Point<GLfloat> & where,
                                   GLfloat                     scale    = 1.0f,

@@ -244,6 +244,13 @@ namespace HAZE {
                         filled_(filled)
                 { }
 
+                void Polygon::set(bool filled)
+                { filled_ = filled; }
+
+                void Polygon::set(std::list<std::pair<GLfloat,
+                                                      GLfloat> > points)
+                { points_ = points; }
+
                 void Polygon::draw(const HAZE::Point<GLfloat> & where,
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
@@ -322,8 +329,6 @@ namespace HAZE {
 #else
                         glGenTextures(1, &id_);
 #endif
-                        DBG("Texture id = %d", id_);
-
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glTexParameteri(GL_TEXTURE_2D,
@@ -353,7 +358,8 @@ namespace HAZE {
                         width(image.width());
                         height(image.height());
 
-                        DBG("Image is %d x %d pixels (%s)",
+                        DBG("Texture %d is %d x %d pixels (%s)",
+                            id_,
                             width(), height(),
                             format == GL_BGRA ? "alpha" : "no-alpha");
 
