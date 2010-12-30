@@ -235,10 +235,9 @@ namespace HAZE {
                         glEnd();
                 }
 
-                Polygon::Polygon(const Pen &                    pen,
-                                 std::list<std::pair<GLfloat,
-                                                     GLfloat> > points,
-                                 bool                           filled) :
+                Polygon::Polygon(const Pen &                      pen,
+                                 std::list<HAZE::Point<GLfloat> > points,
+                                 bool                             filled) :
                         pen_(pen),
                         points_(points),
                         filled_(filled)
@@ -247,8 +246,7 @@ namespace HAZE {
                 void Polygon::set(bool filled)
                 { filled_ = filled; }
 
-                void Polygon::set(std::list<std::pair<GLfloat,
-                                                      GLfloat> > points)
+                void Polygon::set(std::list<HAZE::Point<GLfloat> > points)
                 { points_ = points; }
 
                 void Polygon::draw(const HAZE::Point<GLfloat> & where,
@@ -268,12 +266,11 @@ namespace HAZE {
                         } else {
                                 glBegin(GL_LINE_LOOP);
                         }
-                        for (std::list<std::pair<GLfloat,
-                                                 GLfloat> >::iterator i =
+                        for (std::list<HAZE::Point<GLfloat> >::iterator i =
                                      points_.begin();
                              i != points_.end();
                              i++) {
-                                glVertex2f((*i).first, (*i).second);
+                                glVertex2f((*i).x(), (*i).y());
                         }
                         glEnd();
 
