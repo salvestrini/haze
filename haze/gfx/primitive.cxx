@@ -47,16 +47,16 @@ namespace HAZE {
                 Color::~Color()
                 { }
 
-                GLfloat Color::red()
+                GLfloat Color::red() const
                 { return red_; }
 
-                GLfloat Color::green()
+                GLfloat Color::green() const
                 { return green_; }
 
-                GLfloat Color::blue()
+                GLfloat Color::blue() const
                 { return blue_; }
 
-                GLfloat Color::alpha()
+                GLfloat Color::alpha() const
                 { return alpha_; }
 
                 void Color::red(GLfloat value)
@@ -71,7 +71,7 @@ namespace HAZE {
                 void Color::alpha(GLfloat value)
                 { alpha_ = value; }
 
-                void Color::program()
+                void Color::program() const
                 {
                         if (alpha_ == 1.0f) {
                                 glColor3f(red_, green_, blue_);
@@ -89,7 +89,7 @@ namespace HAZE {
                 Pen::~Pen()
                 { }
 
-                void Pen::program()
+                void Pen::program() const
                 {
                         color_.program();
                         glPointSize(size_);
@@ -98,13 +98,13 @@ namespace HAZE {
                 void Pen::color(const Color & color)
                 { color_ = color; }
 
-                Color Pen::color()
+                Color Pen::color() const
                 { return color_; }
 
                 void Pen::size(GLfloat value)
                 { size_ = value; }
 
-                GLfloat Pen::size()
+                GLfloat Pen::size() const
                 { return size_; }
 
                 Point::Point(const Pen & pen) :
@@ -114,7 +114,7 @@ namespace HAZE {
                 Point::~Point()
                 { }
 
-                void Point::draw(const HAZE::Point<GLfloat> & where)
+                void Point::draw(const HAZE::Point<GLfloat> & where) const
                 {
                         pen_.program();
 
@@ -131,7 +131,7 @@ namespace HAZE {
                 { }
 
                 void Line::draw(const HAZE::Point<GLfloat> & from,
-                                const HAZE::Point<GLfloat> & to)
+                                const HAZE::Point<GLfloat> & to) const
                 {
                         pen_.program();
 
@@ -152,7 +152,7 @@ namespace HAZE {
 
                 void Triangle::draw(const HAZE::Point<GLfloat> & a,
                                     const HAZE::Point<GLfloat> & b,
-                                    const HAZE::Point<GLfloat> & c)
+                                    const HAZE::Point<GLfloat> & c) const
                 {
                         pen_.program();
 
@@ -178,7 +178,7 @@ namespace HAZE {
                 { }
 
                 void Rectangle::draw(const HAZE::Point<GLfloat> & from,
-                                     const HAZE::Point<GLfloat> & to)
+                                     const HAZE::Point<GLfloat> & to) const
                 {
                         pen_.program();
 
@@ -212,7 +212,7 @@ namespace HAZE {
                         }
                 }
 
-                void Circle::draw(const HAZE::Point<GLfloat> & center)
+                void Circle::draw(const HAZE::Point<GLfloat> & center) const
                 {
                         pen_.program();
 
@@ -252,6 +252,7 @@ namespace HAZE {
                 void Polygon::draw(const HAZE::Point<GLfloat> & where,
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
+                        const
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -266,8 +267,8 @@ namespace HAZE {
                         } else {
                                 glBegin(GL_LINE_LOOP);
                         }
-                        for (std::list<HAZE::Point<GLfloat> >::iterator i =
-                                     points_.begin();
+                        for (std::list<HAZE::Point<GLfloat> >::
+                                     const_iterator i = points_.begin();
                              i != points_.end();
                              i++) {
                                 glVertex2f((*i).x(), (*i).y());
@@ -384,6 +385,7 @@ namespace HAZE {
                 void Texture::draw(const HAZE::Point<GLfloat> & origin,
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
+                        const
                 {
                         glEnable(GL_TEXTURE_2D);
 

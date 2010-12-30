@@ -37,17 +37,17 @@ namespace HAZE {
                               GLfloat alpha = 1.0f);
                         ~Color();
 
-                        GLfloat red();
-                        GLfloat green();
-                        GLfloat blue();
-                        GLfloat alpha();
+                        GLfloat red()   const;
+                        GLfloat green() const;
+                        GLfloat blue()  const;
+                        GLfloat alpha() const;
 
                         void    red(GLfloat   value);
                         void    green(GLfloat value);
                         void    blue(GLfloat  value);
                         void    alpha(GLfloat value);
 
-                        void    program();
+                        void    program() const;
 
                 private:
                         GLfloat red_;
@@ -63,12 +63,12 @@ namespace HAZE {
                         ~Pen();
 
                         void    color(const Color & color);
-                        Color   color();
+                        Color   color() const;
 
                         void    size(GLfloat value);
-                        GLfloat size();
+                        GLfloat size() const;
 
-                        void    program();
+                        void    program() const;
 
                 private:
                         Color   color_;
@@ -80,7 +80,7 @@ namespace HAZE {
                         Point(const Pen & pen);
                         ~Point();
 
-                        void draw(const HAZE::Point<GLfloat> & where);
+                        void draw(const HAZE::Point<GLfloat> & where) const;
 
                 private:
                         Pen pen_;
@@ -92,7 +92,7 @@ namespace HAZE {
                         ~Line();
 
                         void draw(const HAZE::Point<GLfloat> & from,
-                                  const HAZE::Point<GLfloat> & to);
+                                  const HAZE::Point<GLfloat> & to) const;
 
                 private:
                         Pen pen_;
@@ -106,7 +106,7 @@ namespace HAZE {
 
                         void draw(const HAZE::Point<GLfloat> & a,
                                   const HAZE::Point<GLfloat> & b,
-                                  const HAZE::Point<GLfloat> & c);
+                                  const HAZE::Point<GLfloat> & c) const;
 
                 private:
                         Pen  pen_;
@@ -120,7 +120,7 @@ namespace HAZE {
                         ~Rectangle();
 
                         void draw(const HAZE::Point<GLfloat> & from,
-                                  const HAZE::Point<GLfloat> & to);
+                                  const HAZE::Point<GLfloat> & to) const;
 
                 private:
                         Pen  pen_;
@@ -135,7 +135,7 @@ namespace HAZE {
                                bool        filled   = false);
                         ~Circle();
 
-                        void draw(const HAZE::Point<GLfloat> & center);
+                        void draw(const HAZE::Point<GLfloat> & center) const;
 
                 private:
                         Pen     pen_;
@@ -157,7 +157,8 @@ namespace HAZE {
 
                         void draw(const HAZE::Point<GLfloat> & where,
                                   GLfloat                     scale    = 1.0f,
-                                  GLfloat                     rotation = 0.0f);
+                                  GLfloat                     rotation = 0.0f)
+                                const;
 
                 private:
                         Pen                              pen_;
@@ -181,7 +182,8 @@ namespace HAZE {
 
                         void draw(const HAZE::Point<GLfloat> & origin,
                                   GLfloat                     scale    = 1.0f,
-                                  GLfloat                     rotation = 0.0f);
+                                  GLfloat                     rotation = 0.0f)
+                                const;
 
                 private:
                         Color  color_;
