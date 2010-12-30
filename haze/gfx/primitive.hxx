@@ -47,7 +47,7 @@ namespace HAZE {
                         void    blue(GLfloat  value);
                         void    alpha(GLfloat value);
 
-                        void    set();
+                        void    program();
 
                 private:
                         GLfloat red_;
@@ -68,7 +68,7 @@ namespace HAZE {
                         void    size(GLfloat value);
                         GLfloat size();
 
-                        void    set();
+                        void    program();
 
                 private:
                         Color   color_;
@@ -172,6 +172,8 @@ namespace HAZE {
                         Texture(const Image & image,
                                 const Color & color = Color());
                         ~Texture();
+
+                        void set(const Color & color);
 
                         void draw(const HAZE::Point<GLfloat> & origin,
                                   GLfloat                     scale    = 1.0f,

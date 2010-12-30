@@ -23,13 +23,15 @@
 namespace HAZE {
 
         Text::Text(const std::string & message,
-                   const Font &        font)
+                   const Font &        font,
+                   const GL::Color &   color) :
+                color_(color)
         {
                 std::vector<Image *> tmp = font.map(message);
                 for (std::vector<Image *>::const_iterator i = tmp.begin();
                      i != tmp.end();
                      i++) {
-                        chars_.push_back(new GL::Texture(*(*i)));
+                        chars_.push_back(new GL::Texture(*(*i), color_));
                 }
         }
 
@@ -51,6 +53,17 @@ namespace HAZE {
 
         void Text::draw(GLfloat x, GLfloat y) const
         { draw(Point<GLfloat>(x, y)); }
+
+        void Text::set(const GL::Color & color)
+        {
+                color_ = color;
+
+                for (std::vector<GL::Texture *>::iterator i = chars_.begin();
+                     i != chars_.end();
+                     i++) {
+                        (*i)->set(color_);
+                }
+        }
 
         Size<size_t> Text::size() const
         {

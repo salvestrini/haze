@@ -33,15 +33,19 @@ namespace HAZE {
         class Text {
         public:
                 Text(const std::string & message,
-                     const Font &        font);
+                     const Font &        font,
+                     const GL::Color &   color = GL::Color());
                 ~Text();
 
                 void         draw(GLfloat x, GLfloat y) const;
                 void         draw(const Point<GLfloat> & origin) const;
+
+                void         set(const GL::Color & color);
                 Size<size_t> size() const;
 
         private:
                 std::vector<GL::Texture *> chars_;
+                GL::Color                  color_;
         };
 
 }

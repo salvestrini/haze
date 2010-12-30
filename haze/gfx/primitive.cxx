@@ -71,7 +71,7 @@ namespace HAZE {
                 void Color::alpha(GLfloat value)
                 { alpha_ = value; }
 
-                void Color::set()
+                void Color::program()
                 {
                         if (alpha_ == 1.0f) {
                                 glColor3f(red_, green_, blue_);
@@ -89,9 +89,9 @@ namespace HAZE {
                 Pen::~Pen()
                 { }
 
-                void Pen::set()
+                void Pen::program()
                 {
-                        color_.set();
+                        color_.program();
                         glPointSize(size_);
                 }
 
@@ -116,7 +116,7 @@ namespace HAZE {
 
                 void Point::draw(const HAZE::Point<GLfloat> & where)
                 {
-                        pen_.set();
+                        pen_.program();
 
                         glBegin(GL_POINTS);
                         glVertex2f(where.x(), where.y());
@@ -133,7 +133,7 @@ namespace HAZE {
                 void Line::draw(const HAZE::Point<GLfloat> & from,
                                 const HAZE::Point<GLfloat> & to)
                 {
-                        pen_.set();
+                        pen_.program();
 
                         glBegin(GL_LINES);
                         glVertex2f(from.x(), from.y());
@@ -154,7 +154,7 @@ namespace HAZE {
                                     const HAZE::Point<GLfloat> & b,
                                     const HAZE::Point<GLfloat> & c)
                 {
-                        pen_.set();
+                        pen_.program();
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLES);
@@ -180,7 +180,7 @@ namespace HAZE {
                 void Rectangle::draw(const HAZE::Point<GLfloat> & from,
                                      const HAZE::Point<GLfloat> & to)
                 {
-                        pen_.set();
+                        pen_.program();
 
                         if (filled_) {
                                 glBegin(GL_QUADS);
@@ -214,7 +214,7 @@ namespace HAZE {
 
                 void Circle::draw(const HAZE::Point<GLfloat> & center)
                 {
-                        pen_.set();
+                        pen_.program();
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLE_FAN);
@@ -250,7 +250,7 @@ namespace HAZE {
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-                        pen_.set();
+                        pen_.program();
 
                         glPushMatrix();
 
@@ -375,13 +375,16 @@ namespace HAZE {
                 Texture::~Texture()
                 { glDeleteTextures(1, &id_); }
 
+                void Texture::set(const Color & color)
+                { color_ = color; }
+
                 void Texture::draw(const HAZE::Point<GLfloat> & origin,
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
                 {
                         glEnable(GL_TEXTURE_2D);
 
-                        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                        // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                         glBindTexture(GL_TEXTURE_2D, id_);
 
@@ -394,7 +397,7 @@ namespace HAZE {
                         GLfloat w2  = width()  / 2;
                         GLfloat h2  = height() / 2;
 
-                        color_.set();
+                        color_.program();
 
                         glBegin(GL_QUADS);
 
