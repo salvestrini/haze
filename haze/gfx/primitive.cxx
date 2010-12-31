@@ -107,37 +107,45 @@ namespace HAZE {
                 GLfloat Pen::size() const
                 { return size_; }
 
-                Point::Point(const Pen & pen) :
-                        pen_(pen)
+                Point::Point(const Pen &                  pen,
+                             const HAZE::Point<GLfloat> & where) :
+                        pen_(pen),
+                        where_(where)
                 { }
 
                 Point::~Point()
                 { }
 
-                void Point::draw(const HAZE::Point<GLfloat> & where) const
+                void Point::move(const HAZE::Point<GLfloat> & where)
+                { where_ = where; }
+
+                void Point::draw() const
                 {
                         pen_.program();
 
                         glBegin(GL_POINTS);
-                        glVertex2f(where.x(), where.y());
+                        glVertex2f(where_.x(), where_.y());
                         glEnd();
                 }
 
-                Line::Line(const Pen & pen) :
-                        pen_(pen)
+                Line::Line(const Pen &                  pen,
+                           const HAZE::Point<GLfloat> & from,
+                           const HAZE::Point<GLfloat> & to) :
+                        pen_(pen),
+                        from_(from),
+                        to_(to)
                 { }
 
                 Line::~Line()
                 { }
 
-                void Line::draw(const HAZE::Point<GLfloat> & from,
-                                const HAZE::Point<GLfloat> & to) const
+                void Line::draw() const
                 {
                         pen_.program();
 
                         glBegin(GL_LINES);
-                        glVertex2f(from.x(), from.y());
-                        glVertex2f(to.x(),   to.y());
+                        glVertex2f(from_.x(), from_.y());
+                        glVertex2f(to_.x(),   to_.y());
                         glEnd();
                 }
 

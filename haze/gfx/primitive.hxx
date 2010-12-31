@@ -77,25 +77,35 @@ namespace HAZE {
 
                 class Point {
                 public:
-                        Point(const Pen & pen);
+                        Point(const Pen &                  pen,
+                              const HAZE::Point<GLfloat> & where =
+                              HAZE::Point<GLfloat>(0.0f, 0.0f));
                         ~Point();
 
-                        void draw(const HAZE::Point<GLfloat> & where) const;
+                        void move(const HAZE::Point<GLfloat> & where);
+
+                        void draw() const;
 
                 private:
-                        Pen pen_;
+                        Pen                  pen_;
+                        HAZE::Point<GLfloat> where_;
                 };
 
                 class Line {
                 public:
-                        Line(const Pen & pen);
+                        Line(const Pen &                  pen,
+                             const HAZE::Point<GLfloat> & from =
+                             HAZE::Point<GLfloat>(0.0f, 0.0f),
+                             const HAZE::Point<GLfloat> & to =
+                             HAZE::Point<GLfloat>(0.0f, 0.0f));
                         ~Line();
 
-                        void draw(const HAZE::Point<GLfloat> & from,
-                                  const HAZE::Point<GLfloat> & to) const;
+                        void draw() const;
 
                 private:
-                        Pen pen_;
+                        Pen                  pen_;
+                        HAZE::Point<GLfloat> from_;
+                        HAZE::Point<GLfloat> to_;
                 };
 
                 class Triangle {

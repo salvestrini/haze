@@ -87,7 +87,9 @@ void test(const std::string & datadir)
         GL::Pen pen_blue  (GL::Color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
         GL::Point     point(pen_white);
-        GL::Line      line(pen_blue);
+        GL::Line      line(pen_blue,
+                           HAZE::Point<GLfloat>(0.0f, 0.0f),
+                           HAZE::Point<GLfloat>(1.0f, 1.0f));
         GL::Rectangle rectangle_filled(pen_green, true);
         GL::Rectangle rectangle_empty(pen_green,  false);
         GL::Circle    circle_filled(pen_green, 180, 8, true);
@@ -112,15 +114,13 @@ void test(const std::string & datadir)
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
-                        point.draw(Point<GLfloat>(k % 100, k));
+                        point.move(Point<GLfloat>(k % 100, k));
+                        point.draw();
                 }
 #endif
 
 #if 1
-                line.draw(Point<GLfloat>(-1, -1), Point<GLfloat>(  1,   1));
-                line.draw(Point<GLfloat>( 0,  0), Point<GLfloat>(100, 100));
-                line.draw(Point<GLfloat>(50, 50), Point<GLfloat>(150,  50));
-                line.draw(Point<GLfloat>(10, 10), Point<GLfloat>(200, 200));
+                line.draw();
 #endif
 #if 1
                 rectangle_filled.draw(Point<GLfloat>(60, 60),
