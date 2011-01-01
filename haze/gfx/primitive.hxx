@@ -165,23 +165,23 @@ namespace HAZE {
 
                 class Polygon {
                 public:
-                        Polygon(const Pen &                      pen,
-                                std::list<HAZE::Point<GLfloat> > points =
+                        Polygon(const Pen &                        pen,
+                                std::list<HAZE::Point<GLfloat> >   points =
                                 std::list<HAZE::Point<GLfloat> >(),
-                                bool                             filled =
+                                const HAZE::Point<GLfloat> &       where  =
+                                HAZE::Point<GLfloat>(0.0f, 0.0f),
+                                bool                               filled =
                                 false);
 
                         void set(bool filled);
                         void set(std::list<HAZE::Point<GLfloat> > points);
 
-                        void draw(const HAZE::Point<GLfloat> & where,
-                                  GLfloat                     scale    = 1.0f,
-                                  GLfloat                     rotation = 0.0f)
-                                const;
+                        void draw() const;
 
                 private:
                         Pen                              pen_;
                         std::list<HAZE::Point<GLfloat> > points_;
+                        HAZE::Point<GLfloat>             where_;
                         bool                             filled_;
                 };
 

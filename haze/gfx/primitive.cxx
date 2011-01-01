@@ -256,9 +256,11 @@ namespace HAZE {
 
                 Polygon::Polygon(const Pen &                      pen,
                                  std::list<HAZE::Point<GLfloat> > points,
+                                 const HAZE::Point<GLfloat> &     where,
                                  bool                             filled) :
                         pen_(pen),
                         points_(points),
+                        where_(where),
                         filled_(filled)
                 { }
 
@@ -268,9 +270,7 @@ namespace HAZE {
                 void Polygon::set(std::list<HAZE::Point<GLfloat> > points)
                 { points_ = points; }
 
-                void Polygon::draw(const HAZE::Point<GLfloat> & where,
-                                   GLfloat                      scale,
-                                   GLfloat                      rotation)
+                void Polygon::draw()
                         const
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -279,7 +279,7 @@ namespace HAZE {
 
                         glPushMatrix();
 
-                        glTranslatef(where.x(), where.y(), 0.0f);
+                        glTranslatef(where_.x(), where_.y(), 0.0f);
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLE_FAN);
