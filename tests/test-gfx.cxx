@@ -90,10 +90,24 @@ void test(const std::string & datadir)
         GL::Line      line(pen_blue,
                            HAZE::Point<GLfloat>(0.0f, 0.0f),
                            HAZE::Point<GLfloat>(1.0f, 1.0f));
-        GL::Rectangle rectangle_filled(pen_green, true);
-        GL::Rectangle rectangle_empty(pen_green,  false);
-        GL::Circle    circle_filled(pen_green, 180, 8, true);
-        GL::Circle    circle_empty(pen_blue,   220, 8, false);
+        GL::Rectangle rectangle_filled(pen_green,
+                                       Point<GLfloat>(60, 60),
+                                       Point<GLfloat>(80, 80),
+                                       true);
+        GL::Rectangle rectangle_empty(pen_green,
+                                      Point<GLfloat>(10, 10),
+                                      Point<GLfloat>(30, 30),
+                                      false);
+        GL::Circle    circle_filled(pen_green,
+                                    Point<GLfloat>(70, 15),
+                                    180,
+                                    8,
+                                    true);
+        GL::Circle    circle_empty(pen_blue,
+                                   Point<GLfloat>(10, 75),
+                                   220,
+                                   8,
+                                   false);
 
         //
         // Draw
@@ -123,18 +137,16 @@ void test(const std::string & datadir)
                 line.draw();
 #endif
 #if 1
-                rectangle_filled.draw(Point<GLfloat>(60, 60),
-                                      Point<GLfloat>(80, 80));
+                rectangle_filled.draw();
 #endif
 #if 1
-                rectangle_empty.draw(Point<GLfloat>(10, 10),
-                                     Point<GLfloat>(30, 30));
+                rectangle_empty.draw();
 #endif
 #if 1
-                circle_filled.draw(Point<GLfloat>(y + 10 , x + 10));
+                circle_filled.draw();
 #endif
 #if 1
-                circle_empty.draw(Point<GLfloat>(x, y));
+                circle_empty.draw();
 #endif
 #if 1
                 for (int k = 0; k < 256; k++) {

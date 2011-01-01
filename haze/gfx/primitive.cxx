@@ -149,18 +149,22 @@ namespace HAZE {
                         glEnd();
                 }
 
-                Triangle::Triangle(const Pen & pen,
-                                   bool        filled) :
+                Triangle::Triangle(const Pen &                  pen,
+                                   const HAZE::Point<GLfloat> & a,
+                                   const HAZE::Point<GLfloat> & b,
+                                   const HAZE::Point<GLfloat> & c,
+                                   bool                         filled) :
                         pen_(pen),
+                        a_(a),
+                        b_(b),
+                        c_(c),
                         filled_(filled)
                 { }
 
                 Triangle::~Triangle()
                 { }
 
-                void Triangle::draw(const HAZE::Point<GLfloat> & a,
-                                    const HAZE::Point<GLfloat> & b,
-                                    const HAZE::Point<GLfloat> & c) const
+                void Triangle::draw() const
                 {
                         pen_.program();
 
@@ -169,24 +173,27 @@ namespace HAZE {
                         } else {
                                 glBegin(GL_TRIANGLES);
                         }
-                        glVertex3f(a.x(), a.y(), 0.0f);
-                        glVertex3f(b.x(), b.y(), 0.0f);
-                        glVertex3f(c.x(), c.y(), 0.0f);
+                        glVertex3f(a_.x(), a_.y(), 0.0f);
+                        glVertex3f(b_.x(), b_.y(), 0.0f);
+                        glVertex3f(c_.x(), c_.y(), 0.0f);
                         glEnd();
 
                 }
 
-                Rectangle::Rectangle(const Pen & pen,
-                                     bool        filled) :
+                Rectangle::Rectangle(const Pen &                  pen,
+                                     const HAZE::Point<GLfloat> & from,
+                                     const HAZE::Point<GLfloat> & to,
+                                     bool                         filled) :
                         pen_(pen),
+                        from_(from),
+                        to_(to),
                         filled_(filled)
                 { }
 
                 Rectangle::~Rectangle()
                 { }
 
-                void Rectangle::draw(const HAZE::Point<GLfloat> & from,
-                                     const HAZE::Point<GLfloat> & to) const
+                void Rectangle::draw() const
                 {
                         pen_.program();
 
@@ -196,18 +203,20 @@ namespace HAZE {
                                 glBegin(GL_LINE_LOOP);
                         }
 
-                        glVertex2f(from.x(), from.y());
-                        glVertex2f(to.x(),   from.y());
-                        glVertex2f(to.x(),   to.y());
-                        glVertex2f(from.x(), to.y());
+                        glVertex2f(from_.x(), from_.y());
+                        glVertex2f(to_.x(),   from_.y());
+                        glVertex2f(to_.x(),   to_.y());
+                        glVertex2f(from_.x(), to_.y());
                         glEnd();
                 }
 
-                Circle::Circle(const Pen & pen,
-                               GLfloat     radius,
-                               size_t      segments,
-                               bool        filled) :
+                Circle::Circle(const Pen &                  pen,
+                               const HAZE::Point<GLfloat> & center,
+                               GLfloat                      radius,
+                               size_t                       segments,
+                               bool                         filled) :
                         pen_(pen),
+                        center_(center),
                         radius_(radius),
                         segments_(segments),
                         filled_(filled)
@@ -220,7 +229,7 @@ namespace HAZE {
                         }
                 }
 
-                void Circle::draw(const HAZE::Point<GLfloat> & center) const
+                void Circle::draw() const
                 {
                         pen_.program();
 
@@ -234,8 +243,10 @@ namespace HAZE {
                         float       theta     = 0.0f;
 
                         for (size_t i = 0; i < segments_; ++i) {
-                                glVertex2f(center.x() + radius_ * cosf(theta),
-                                           center.y() + radius_ * sinf(theta));
+                                glVertex2f(center_.x() +
+                                           radius_ * cosf(theta),
+                                           center_.y() +
+                                           radius_ * sinf(theta));
 
                                 theta += increment;
                         }
