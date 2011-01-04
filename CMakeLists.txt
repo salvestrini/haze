@@ -26,5 +26,6 @@ add_subdirectory(tools)
 add_subdirectory(haze)
 add_subdirectory(tests)
 
+message(STATUS "Project ${PROJECT_NAME} features:")
 include(FeatureSummary)
 print_enabled_features()
