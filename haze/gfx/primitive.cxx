@@ -270,6 +270,9 @@ namespace HAZE {
                 void Polygon::set(std::list<HAZE::Point<GLfloat> > points)
                 { points_ = points; }
 
+                void Polygon::move(const HAZE::Point<GLfloat> & where)
+                { where_ = where; }
+
                 void Polygon::draw()
                         const
                 {
