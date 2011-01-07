@@ -32,6 +32,8 @@ namespace HAZE {
 
         class Text {
         public:
+                Text(const GL::Color & color = GL::Color());
+
                 Text(const std::string & message,
                      const Font &        font,
                      const GL::Color &   color = GL::Color());
@@ -41,6 +43,8 @@ namespace HAZE {
                 void         draw(const Point<GLfloat> & origin) const;
 
                 void         set(const GL::Color & color);
+                void         set(const Font &        font,
+                                 const std::string & message);
                 Size<size_t> size() const;
 
         private:

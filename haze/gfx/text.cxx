@@ -27,13 +27,11 @@ namespace HAZE {
                    const GL::Color &   color) :
                 color_(color)
         {
-                std::vector<Image *> tmp = font.map(message);
-                for (std::vector<Image *>::const_iterator i = tmp.begin();
-                     i != tmp.end();
-                     i++) {
-                        chars_.push_back(new GL::Texture(*(*i), color_));
-                }
+                set(font, message);
         }
+
+        Text::Text(const GL::Color & color)
+        { }
 
         Text::~Text()
         { }
@@ -48,6 +46,19 @@ namespace HAZE {
                      i++) {
                         (*i)->draw(p);
                         p.x(p.x() + (*i)->width());
+                }
+        }
+
+        void Text::set(const Font &        font,
+                       const std::string & message)
+        {
+                chars_.clear();
+
+                std::vector<Image *> tmp = font.map(message);
+                for (std::vector<Image *>::const_iterator i = tmp.begin();
+                     i != tmp.end();
+                     i++) {
+                        chars_.push_back(new GL::Texture(*(*i), color_));
                 }
         }
 
