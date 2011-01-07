@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CORE_TIMER
-#define HAZE_CORE_TIMER
+#ifndef HAZE_CORE_TIME
+#define HAZE_CORE_TIME
 
 #include <SDL/SDL.h>
 

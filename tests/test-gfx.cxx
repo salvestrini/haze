@@ -21,7 +21,7 @@
 
 #include "haze/core/log.hxx"
 #include "haze/core/debug.hxx"
-#include "haze/core/timer.hxx"
+#include "haze/core/time.hxx"
 #include "haze/gfx/video.hxx"
 #include "haze/gfx/image.hxx"
 #include "haze/gfx/font.hxx"

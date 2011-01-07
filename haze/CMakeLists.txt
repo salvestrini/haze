@@ -9,7 +9,7 @@ set(core_SOURCES
   core/pattern.cxx
   core/synchronization.cxx
   core/thread.cxx
-  core/timer.cxx
+  core/time.cxx
   )
 
 set(gfx_SOURCES

@@ -18,7 +18,7 @@
 
 #include <unistd.h>
 
-#include "haze/core/timer.hxx"
+#include "haze/core/time.hxx"
 #include "haze/core/debug.hxx"
 
 namespace HAZE {
