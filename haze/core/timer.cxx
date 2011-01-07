@@ -89,14 +89,16 @@ namespace HAZE {
                 }
         }
 
-        Delay::Delay(long milliseconds) :
-                timeout_(milliseconds)
+        Time::Time()
         { }
 
-        Delay::~Delay()
+        Time::~Time()
         { }
 
-        void Delay::wait()
-        { usleep(timeout_ * 1000); }
+        void Time::delay(size_t milliseconds) const
+        { SDL_Delay(milliseconds); }
+
+        size_t Time::ticks() const
+        { return SDL_GetTicks(); }
 
 }

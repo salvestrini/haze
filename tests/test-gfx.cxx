@@ -79,7 +79,7 @@ void test(const std::string & datadir)
         GL::Texture star3_texture(star_image);
 #endif
 
-        Delay d(10);
+        Time t;
 
         GL::Pen pen_white (GL::Color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
         GL::Pen pen_red   (GL::Color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
@@ -167,7 +167,7 @@ void test(const std::string & datadir)
 
                 video.update();
 
-                d.wait();
+                t.delay(10);
 
                 x++; y++; angle++;
         }
