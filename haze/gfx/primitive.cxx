@@ -378,11 +378,12 @@ namespace HAZE {
                         width(image.width());
                         height(image.height());
 
+#if 0
                         DBG("Texture %d is %d x %d pixels (%s)",
                             id_,
                             width(), height(),
-                            format == GL_BGRA ? "alpha" : "no-alpha");
-
+                            format == GL_BGRA ? "has-alpha" : "no-alpha");
+#endif
                         glDisable(GL_TEXTURE_2D);
 
                         ASSERT_GL_NO_ERROR();
