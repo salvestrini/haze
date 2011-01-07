@@ -47,9 +47,9 @@ namespace HAZE {
                         throw(CannotInitialize);
                 virtual ~Video();
 
-                unsigned int width();
-                unsigned int height();
-                unsigned int bpp();
+                size_t width();
+                size_t height();
+                size_t bpp();
 
                 void         clear();
                 void         update();

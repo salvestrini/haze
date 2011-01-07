@@ -166,13 +166,13 @@ namespace HAZE {
                 glLoadIdentity();
         }
 
-        unsigned int Video::width()
+        size_t Video::width()
         { return surface_->w; }
 
-        unsigned int Video::height()
+        size_t Video::height()
         { return surface_->h; }
 
-        unsigned int Video::bpp()
+        size_t Video::bpp()
         { return surface_->format->BitsPerPixel; }
 
         void Video::clear()
