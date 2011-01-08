@@ -150,8 +150,9 @@ void test(const std::string & datadir)
 #endif
 #if 1
                 for (int k = 0; k < 256; k++) {
-                        text_chars[k]->draw(Point<GLfloat>(100 + k % 16 * 32,
+                        text_chars[k]->move(Point<GLfloat>(100 + k % 16 * 32,
                                                            100 + k / 16 * 32));
+                        text_chars[k]->draw();
                 }
 #endif
 #if 1
@@ -162,7 +163,9 @@ void test(const std::string & datadir)
                                    1, angle * 8);
 #endif
 #if 1
-                text_message.draw(video.width() / 2, video.height() / 2);
+                text_message.move(Point<GLfloat>(video.width() / 2,
+                                                 video.height() / 2));
+                text_message.draw();
 #endif
 
                 video.update();

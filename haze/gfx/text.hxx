@@ -32,15 +32,17 @@ namespace HAZE {
 
         class Text {
         public:
-                Text(const GL::Color & color = GL::Color());
+                Text(const GL::Color &            color = GL::Color());
 
-                Text(const std::string & message,
-                     const Font &        font,
-                     const GL::Color &   color = GL::Color());
+                Text(const std::string &          message,
+                     const Font &                 font,
+                     const GL::Color &            color = GL::Color(),
+                     const HAZE::Point<GLfloat> & where = HAZE::Point<GLfloat>());
                 ~Text();
 
-                void         draw(GLfloat x, GLfloat y) const;
-                void         draw(const Point<GLfloat> & origin) const;
+                void         draw() const;
+
+                void         move(const HAZE::Point<GLfloat> & where);
 
                 void         set(const GL::Color & color);
                 void         set(const Font &        font,
@@ -50,6 +52,7 @@ namespace HAZE {
         private:
                 std::vector<GL::Texture *> chars_;
                 GL::Color                  color_;
+                HAZE::Point<GLfloat>       where_;
         };
 
 }
