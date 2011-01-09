@@ -257,10 +257,12 @@ namespace HAZE {
                 Polygon::Polygon(const Pen &                      pen,
                                  std::list<HAZE::Point<GLfloat> > points,
                                  const HAZE::Point<GLfloat> &     where,
+                                 GLfloat                          angle,
                                  bool                             filled) :
                         pen_(pen),
                         points_(points),
                         where_(where),
+                        angle_(angle),
                         filled_(filled)
                 { }
 
@@ -269,6 +271,9 @@ namespace HAZE {
 
                 void Polygon::set(std::list<HAZE::Point<GLfloat> > points)
                 { points_ = points; }
+
+                void Polygon::rotate(GLfloat angle)
+                { angle_ = angle; }
 
                 void Polygon::move(const HAZE::Point<GLfloat> & where)
                 { where_ = where; }
@@ -283,6 +288,8 @@ namespace HAZE {
                         glPushMatrix();
 
                         glTranslatef(where_.x(), where_.y(), 0.0f);
+                        //glScalef(scale, scale, 0.0f);
+                        glRotatef(angle_, 0.0f, 0.0f, 1.0f);
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLE_FAN);

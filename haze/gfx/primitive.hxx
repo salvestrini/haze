@@ -170,6 +170,8 @@ namespace HAZE {
                                 std::list<HAZE::Point<GLfloat> >(),
                                 const HAZE::Point<GLfloat> &       where  =
                                 HAZE::Point<GLfloat>(0.0f, 0.0f),
+                                GLfloat                            angle  =
+                                0.0f,
                                 bool                               filled =
                                 false);
 
@@ -177,6 +179,7 @@ namespace HAZE {
                         void set(std::list<HAZE::Point<GLfloat> > points);
 
                         void move(const HAZE::Point<GLfloat> & where);
+                        void rotate(GLfloat angle);
 
                         void draw() const;
 
@@ -184,6 +187,7 @@ namespace HAZE {
                         Pen                              pen_;
                         std::list<HAZE::Point<GLfloat> > points_;
                         HAZE::Point<GLfloat>             where_;
+                        GLfloat                          angle_;
                         bool                             filled_;
                 };
 
