@@ -300,55 +300,12 @@ namespace HAZE {
                         glPopMatrix();
                 }
 
-#define WANT_TEXTURE_MANAGER 0
-
-#ifdef WANT_TEXTURE_MANAGER
-
-#define MAX_TEXTURES 1024
-
-                class TextureManager {
-                public:
-                        TextureManager(size_t count = MAX_TEXTURES) :
-                                current_(0),
-                                size_(count) {
-                                indexes_ = new GLuint[count];
-                                glGenTextures(count, indexes_);
-
-                        }
-
-                        ~TextureManager() {
-                                delete [] indexes_;
-                        }
-
-                        GLuint next() {
-                                if (current_ >= size_) {
-                                        BUG();
-                                }
-                                return indexes_[current_++];
-                        }
-
-                private:
-                        GLuint * indexes_;
-                        size_t   current_;
-                        size_t   size_;
-                };
-
-                TextureManager * textureManager = 0;
-#endif
-
                 void Texture::init(const Image & image)
                 {
                         glEnable(GL_TEXTURE_2D);
 
-#if WANT_TEXTURE_MANAGER
-                        if (!textureManager) {
-                                textureManager = new TextureManager;
-                        }
-
-                        id_ = textureManager->next();
-#else
                         glGenTextures(1, &id_);
-#endif
+
                         glBindTexture(GL_TEXTURE_2D, id_);
 
                         glTexParameteri(GL_TEXTURE_2D,
