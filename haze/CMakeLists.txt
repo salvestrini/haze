@@ -37,3 +37,12 @@ add_library(haze-core STATIC ${core_SOURCES})
 add_library(haze-gfx  STATIC ${gfx_SOURCES})
 add_library(haze-sfx  STATIC ${sfx_SOURCES})
 add_library(haze-io   STATIC ${io_SOURCES})
+
+set(all_SOURCES
+  ${core_SOURCES}
+  ${gfx_SOURCES}
+  ${sfx_SOURCES}
+  ${io_SOURCES}
+  )
+
+add_library(haze STATIC ${all_SOURCES})
