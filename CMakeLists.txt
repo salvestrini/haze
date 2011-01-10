@@ -6,7 +6,7 @@ set(PROJECT_MICRO_VERSION "1")
 
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+#set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 if(CMAKE_COMPILER_IS_GNUC)
   set(CMAKE_C_FLAGS   "-Wall -Werror")
