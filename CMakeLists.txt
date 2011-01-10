@@ -22,9 +22,14 @@ find_package(SDL_mixer REQUIRED)
 find_package(OpenGL    REQUIRED)
 find_package(OpenAL    REQUIRED)
 
+option(HAZE_BUILD_TESTS "Build ${PROJECT_NAME} tests" OFF)
+
+
 add_subdirectory(tools)
 add_subdirectory(haze)
-add_subdirectory(tests)
+if (HAZE_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()
 
 message(STATUS "Project ${PROJECT_NAME} features:")
 include(FeatureSummary)
