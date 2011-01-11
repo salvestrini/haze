@@ -41,11 +41,6 @@ namespace HAZE {
                 return SDL_getFramerate(manager_);
         }
 
-        size_t FPS::current()
-        {
-                return SDL_getFramecount(manager_);
-        }
-
         void  FPS:: compensate()
         {
                 SDL_framerateDelay(manager_);

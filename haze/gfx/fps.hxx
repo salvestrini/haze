@@ -31,7 +31,6 @@ namespace HAZE {
                 void   rate(size_t value);
                 size_t rate(void);
 
-                size_t current();
                 void   compensate();
 
         private:
