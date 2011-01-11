@@ -24,6 +24,7 @@ set(core_HDRS
 
 set(gfx_SRCS
   gfx/video.cxx
+  gfx/fps.cxx
   gfx/image.cxx
   gfx/geometry.cxx
   gfx/primitive.cxx
@@ -33,6 +34,7 @@ set(gfx_SRCS
   )
 set(gfx_HDRS
   gfx/video.hxx
+  gfx/fps.hxx
   gfx/image.hxx
   gfx/geometry.hxx
   gfx/primitive.hxx
