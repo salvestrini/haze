@@ -172,7 +172,9 @@ void test(const std::string & datadir)
 
                 t.delay(10);
 
-                x++; y++; angle++;
+                x++;
+                y++;
+                angle++;
         }
 
 }
