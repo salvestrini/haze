@@ -29,8 +29,10 @@ public:
         
         virtual void loop() {
                 static int i = 0;
-                
-                DBG("loop %d", i++);
+
+                i++;
+
+                DBG("loop %d", i);
         }
 };
 
