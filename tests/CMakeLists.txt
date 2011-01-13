@@ -1,8 +1,6 @@
 include_directories(${haze_SOURCE_DIR})
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-enable_testing()
-
 add_executable(test-core
   test-core.cxx)
 
@@ -10,9 +8,8 @@ target_link_libraries(test-core
   ${SDL_LIBRARY}
   SDLmain
 
-  ${PROJECT_NAME}-core
+  ${PROJECT_NAME}
   )
-add_test(NAME test-core CONFIGURATIONS Debug COMMAND test-core ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(test-gfx
   test-gfx.cxx)
@@ -24,11 +21,8 @@ target_link_libraries(test-gfx
 
   ${OPENGL_LIBRARIES}
 
-  ${PROJECT_NAME}-gfx
-  ${PROJECT_NAME}-core
+  ${PROJECT_NAME}
   )
-
-add_test(NAME test-gfx CONFIGURATIONS Debug COMMAND test-gfx ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(test-sfx
   test-sfx.cxx)
@@ -40,11 +34,8 @@ target_link_libraries(test-sfx
 
   ${OPENAL_LIBRARY}
 
-  ${PROJECT_NAME}-sfx
-  ${PROJECT_NAME}-core
+  ${PROJECT_NAME}
   )
-
-add_test(NAME test-sfx CONFIGURATIONS Debug COMMAND test-sfx ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(test-io
   test-io.cxx)
@@ -53,10 +44,8 @@ target_link_libraries(test-io
   ${SDL_LIBRARY}
   SDLmain
 
-  ${PROJECT_NAME}-core
+  ${PROJECT_NAME}
   )
-
-add_test(NAME test-io CONFIGURATIONS Debug COMMAND test-io ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(test-all
   test-all.cxx)
@@ -70,9 +59,5 @@ target_link_libraries(test-all
   ${OPENGL_LIBRARIES}
   ${OPENAL_LIBRARY}
 
-  ${PROJECT_NAME}-gfx
-  ${PROJECT_NAME}-sfx
-  ${PROJECT_NAME}-core
+  ${PROJECT_NAME}
   )
-
-add_test(NAME test-all CONFIGURATIONS Debug COMMAND test-all ${CMAKE_CURRENT_BINARY_DIR})

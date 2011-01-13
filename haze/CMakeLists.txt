@@ -56,11 +56,7 @@ set(sfx_HDRS
   sfx/sample.hxx
   )
 
-add_library(haze-core STATIC ${core_SRCS} ${core_HDRS})
-add_library(haze-gfx  STATIC ${gfx_SRCS}  ${gfx_HDRS})
-add_library(haze-sfx  STATIC ${sfx_SRCS}  ${sfx_HDRS})
-
-set(all_SRCS ${core_SRCS} ${gfx_SRCS} ${sfx_SRCS} ${io_SRCS})
-set(all_HDRS ${core_HDRS} ${gfx_HDRS} ${sfx_HDRS} ${io_HDRS})
+set(all_SRCS ${core_SRCS} ${gfx_SRCS} ${sfx_SRCS})
+set(all_HDRS ${core_HDRS} ${gfx_HDRS} ${sfx_HDRS})
 
 add_library(haze STATIC ${all_SRCS} ${all_HDRS})
