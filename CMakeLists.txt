@@ -26,8 +26,7 @@ find_package(SDL_mixer REQUIRED)
 find_package(OpenGL    REQUIRED)
 find_package(OpenAL    REQUIRED)
 
-option(HAZE_BUILD_TESTS "Build ${PROJECT_NAME} tests" OFF)
-
+option(HAZE_BUILD_TESTS "Build ${PROJECT_NAME} tests" ON)
 
 add_subdirectory(tools)
 add_subdirectory(haze)
