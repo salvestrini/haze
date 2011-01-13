@@ -53,7 +53,6 @@ target_link_libraries(test-io
   ${SDL_LIBRARY}
   SDLmain
 
-  ${PROJECT_NAME}-io
   ${PROJECT_NAME}-core
   )
 
@@ -71,7 +70,6 @@ target_link_libraries(test-all
   ${OPENGL_LIBRARIES}
   ${OPENAL_LIBRARY}
 
-  ${PROJECT_NAME}-io
   ${PROJECT_NAME}-gfx
   ${PROJECT_NAME}-sfx
   ${PROJECT_NAME}-core

@@ -10,6 +10,7 @@ set(core_SRCS
   core/synchronization.cxx
   core/thread.cxx
   core/time.cxx
+  core/event.cxx
   )
 set(core_HDRS
   core/debug.hxx
@@ -20,6 +21,7 @@ set(core_HDRS
   core/synchronization.hxx
   core/thread.hxx
   core/time.hxx
+  core/event.hxx
   )
 
 set(gfx_SRCS
@@ -54,17 +56,9 @@ set(sfx_HDRS
   sfx/sample.hxx
   )
 
-set(io_SRCS
-  io/event.cxx
-  )
-set(io_HDRS
-  io/event.hxx
-)
-
 add_library(haze-core STATIC ${core_SRCS} ${core_HDRS})
 add_library(haze-gfx  STATIC ${gfx_SRCS}  ${gfx_HDRS})
 add_library(haze-sfx  STATIC ${sfx_SRCS}  ${sfx_HDRS})
-add_library(haze-io   STATIC ${io_SRCS}   ${io_HDRS})
 
 set(all_SRCS ${core_SRCS} ${gfx_SRCS} ${sfx_SRCS} ${io_SRCS})
 set(all_HDRS ${core_HDRS} ${gfx_HDRS} ${sfx_HDRS} ${io_HDRS})
