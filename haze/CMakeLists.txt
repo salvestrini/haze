@@ -56,13 +56,9 @@ set(sfx_HDRS
 
 set(io_SRCS
   io/event.cxx
-  io/keyboard.cxx
-  io/mouse.cxx
   )
 set(io_HDRS
   io/event.hxx
-  io/keyboard.hxx
-  io/mouse.hxx
 )
 
 add_library(haze-core STATIC ${core_SRCS} ${core_HDRS})
