@@ -48,12 +48,10 @@ set(gfx_HDRS
 set(sfx_SRCS
   sfx/audio.cxx
   sfx/mixer.cxx
-  sfx/sample.cxx
   )
 set(sfx_HDRS
   sfx/audio.hxx
   sfx/mixer.hxx
-  sfx/sample.hxx
   )
 
 set(all_SRCS ${core_SRCS} ${gfx_SRCS} ${sfx_SRCS})
