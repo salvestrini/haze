@@ -176,11 +176,7 @@ void test(const std::string & datadir)
 
                                 case IO::Event::VideoResize: {
                                         IO::VideoResize * p =
-<<<<<<< HEAD
                                         dynamic_cast<IO::VideoResize *>(e);
-=======
-                                                dynamic_cast<IO::VideoResize *>(e);
->>>>>>> 90bb9627c238460a848ce0600c4aa57837d87d99
 
                                         video.resize(p->width(), p->height());
                                         break;
