@@ -112,14 +112,10 @@ void test(const std::string & datadir)
 
         IO::EventManager io;
 
-        for (int iteration = 0;
-             iteration < 100;
-             iteration++) {
-                DBG("Iteration %d", iteration);
-
+        for (;;) {
                 video.clear();
 
-#if 1
+#if 0
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
@@ -143,7 +139,7 @@ void test(const std::string & datadir)
 #if 1
                 circle_empty.draw();
 #endif
-#if 1
+#if 0
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->move(Point<GLfloat>(100 + k % 16 * 32,
                                                            100 + k / 16 * 32));
@@ -173,7 +169,28 @@ void test(const std::string & datadir)
 
                 IO::Event * e = io.poll();
                 if (e) {
-                        delete e;
+                        DBG("Got event!");
+                        switch (e->type()) {
+                                case IO::Event::ApplicationQuit:
+                                        return;
+
+                                case IO::Event::VideoResize: {
+                                        IO::VideoResize * p =
+                                                dynamic_cast<IO::VideoResize *>(e);
+
+                                        video.resize(p->width(), p->height());
+                                        break;
+                                }
+                                case IO::Event::KeyDown:
+                                case IO::Event::KeyUp:
+                                        DBG("Got a key-press related event!");
+                                        delete e;
+                                        return;
+                                default:
+                                        break;
+                        }
+                } else {
+                        DBG("Got a messed-up event");
                 }
         }
 
