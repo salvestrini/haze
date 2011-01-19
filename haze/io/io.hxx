@@ -19,6 +19,7 @@
 #ifndef HAZE_IO
 #define HAZE_IO
 
+#include <haze/gfx/video.hxx>
 #include <SDL/SDL_events.h>
 
 namespace HAZE {
@@ -29,7 +30,78 @@ namespace HAZE {
                         Event();
                         ~Event();
 
+                        enum Type {
+                                ApplicationQuit = 1,
+                                VideoResize,
+                                KeyUp,
+                                KeyDown
+                        };
+
+                        virtual Type type() = 0;
+                };
+
+                class ApplicationQuit : public Event {
+                public:
+                        ApplicationQuit();
+                        ~ApplicationQuit();
+
+                        Type type()
+                        { return Event::ApplicationQuit; }
+                };
+
+                class VideoResize : public Event {
+                public:
+                        VideoResize(HAZE::Video::size_type width,
+                                    HAZE::Video::size_type height);
+                        ~VideoResize();
+
+                        Type type()
+                        { return Event::VideoResize; }
+
+                        HAZE::Video::size_type width();
+                        HAZE::Video::size_type height();
+
                 private:
+                        HAZE::Video::size_type width_;
+                        HAZE::Video::size_type height_;
+                };
+
+                class KeyPress : public Event {
+                public:
+                        enum Key {
+                                ARROW_LEFT,
+                                ARROW_RIGHT,
+                                ARROW_UP,
+                                ARROW_DOWN,
+                                SPACEBAR,
+                                ESCAPE
+                        };
+
+                        KeyPress(Key c);
+                        ~KeyPress();
+
+                        Key which();
+
+                private:
+                        Key which_;
+                };
+
+                class KeyUp : public KeyPress {
+                public:
+                        KeyUp(KeyPress::Key c);
+                        ~KeyUp();
+
+                        Type type()
+                        { return Event::KeyUp; }
+                };
+
+                class KeyDown : public KeyPress {
+                public:
+                        KeyDown(KeyPress::Key c);
+                        ~KeyDown();
+
+                        Type type()
+                        { return Event::KeyDown; }
                 };
 
                 class EventManager {
@@ -40,7 +112,7 @@ namespace HAZE {
                         Event * poll();
 
                 private:
-                        SDL_Event event_;
+                        static SDL_Event event_;
                 };
 
         }

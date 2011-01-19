@@ -47,6 +47,9 @@ namespace HAZE {
                         throw(CannotInitialize);
                 virtual ~Video();
 
+                typedef size_t size_type;
+
+                // Width and Height ... we should derive from a Rectangle ...
                 void resize(size_t width,
                             size_t height);
 
