@@ -16,15 +16,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GLOBALS
-#define HAZE_GLOBALS
+#ifndef HAZE_SFX
+#define HAZE_SFX
 
-#include "haze/gfx/camera.hxx"
-
-namespace HAZE {
-
-        Camera camera;
-
-}
+#include "haze/sfx/audio.hxx"
+#include "haze/sfx/mixer.hxx"
+#include "haze/sfx/sfx.hxx"
 
 #endif

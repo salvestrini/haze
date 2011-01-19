@@ -128,18 +128,18 @@ namespace HAZE {
                         glEnd();
                 }
 
-                Line::Line(const Pen &                  pen,
-                           const HAZE::Point<GLfloat> & from,
-                           const HAZE::Point<GLfloat> & to) :
+                Segment::Segment(const Pen &                  pen,
+                                 const HAZE::Point<GLfloat> & from,
+                                 const HAZE::Point<GLfloat> & to) :
                         pen_(pen),
                         from_(from),
                         to_(to)
                 { }
 
-                Line::~Line()
+                Segment::~Segment()
                 { }
 
-                void Line::draw() const
+                void Segment::draw() const
                 {
                         pen_.program();
 

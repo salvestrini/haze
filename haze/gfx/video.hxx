@@ -47,6 +47,9 @@ namespace HAZE {
                         throw(CannotInitialize);
                 virtual ~Video();
 
+                void resize(size_t width,
+                            size_t height);
+
                 size_t width();
                 size_t height();
                 size_t bpp();
@@ -56,8 +59,6 @@ namespace HAZE {
 
         private:
                 void initGL();
-                void resizeWindow(size_t width,
-                                  size_t height);
 
                 SDL_Surface * surface_;
         };

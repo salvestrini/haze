@@ -19,14 +19,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
-#include "haze/core/time.hxx"
-#include "haze/gfx/video.hxx"
-#include "haze/gfx/image.hxx"
-#include "haze/gfx/font.hxx"
-#include "haze/gfx/text.hxx"
-#include "haze/gfx/primitive.hxx"
+#include "haze/haze.hxx"
 
 void test(const std::string & datadir)
 {
@@ -87,9 +80,9 @@ void test(const std::string & datadir)
         GL::Pen pen_blue  (GL::Color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
         GL::Point     point(pen_white);
-        GL::Line      line(pen_blue,
-                           HAZE::Point<GLfloat>(0.0f, 0.0f),
-                           HAZE::Point<GLfloat>(1.0f, 1.0f));
+        GL::Segment   segment(pen_blue,
+                              HAZE::Point<GLfloat>(0.0f, 0.0f),
+                              HAZE::Point<GLfloat>(1.0f, 1.0f));
         GL::Rectangle rectangle_filled(pen_green,
                                        Point<GLfloat>(60, 60),
                                        Point<GLfloat>(80, 80),
@@ -110,13 +103,15 @@ void test(const std::string & datadir)
                                    false);
 
         //
-        // Draw
+        // Main loop
         //
 
         GLfloat x     = 0.0f;
         GLfloat y     = 0.0f;
         GLfloat angle = 0.0f;
-        
+
+        IO io;
+
         for (int iteration = 0;
              iteration < 100;
              iteration++) {
@@ -134,7 +129,7 @@ void test(const std::string & datadir)
 #endif
 
 #if 1
-                line.draw();
+                segment.draw();
 #endif
 #if 1
                 rectangle_filled.draw();
@@ -175,6 +170,11 @@ void test(const std::string & datadir)
                 x++;
                 y++;
                 angle++;
+
+                Event * e = io.poll();
+                if (e) {
+                        delete e;
+                }
         }
 
 }

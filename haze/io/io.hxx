@@ -16,37 +16,31 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
+#ifndef HAZE_IO
+#define HAZE_IO
 
-#include "haze/haze.hxx"
+#include <SDL/SDL_events.h>
 
-void test(const std::string & datadir)
-{
-        // Put your code here ...
+namespace HAZE {
+
+        class Event {
+        public:
+                Event();
+                ~Event();
+
+        private:
+        };
+
+        class IO {
+        public:
+                IO();
+                ~IO();
+
+                Event * poll();
+
+        private:
+                SDL_Event event_;
+        };
 }
 
-int main(int argc, char * argv[])
-{
-        LOG_SETPREFIX("test");
-
-        std::string datadir("./");
-        if (argc > 1) {
-                datadir = std::string(argv[1]);
-        }
-
-        int retval = EXIT_FAILURE;
-
-        try {
-                test(datadir);
-                retval = EXIT_SUCCESS;
-        } catch (std::exception & e) {
-                ERR("%s", e.what());
-        } catch (...) {
-                BUG();
-        }
-
-        DBG("Completed with%s errors", (retval ? "" : "out"));
-
-        return retval;
-}
+#endif

@@ -16,30 +16,12 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_IO_EVENT
-#define HAZE_IO_EVENT
+#ifndef HAZE_HAZE
+#define HAZE_HAZE
 
-#include <SDL/SDL.h>
-
-namespace HAZE {
-
-        class Event {
-        public:
-                Event();
-                ~Event();
-
-        private:
-        };
-
-        class EventManager {
-        public:
-                EventManager();
-                ~EventManager();
-
-                bool poll(Event * e);
-
-        private:
-        };
-}
+#include "haze/core/core.hxx"
+#include "haze/gfx/gfx.hxx"
+#include "haze/sfx/sfx.hxx"
+#include "haze/io/io.hxx"
 
 #endif

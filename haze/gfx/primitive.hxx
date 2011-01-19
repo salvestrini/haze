@@ -91,14 +91,14 @@ namespace HAZE {
                         HAZE::Point<GLfloat> where_;
                 };
 
-                class Line {
+                class Segment {
                 public:
-                        Line(const Pen &                  pen,
+                        Segment(const Pen &                  pen,
                              const HAZE::Point<GLfloat> & from =
                              HAZE::Point<GLfloat>(0.0f, 0.0f),
                              const HAZE::Point<GLfloat> & to =
                              HAZE::Point<GLfloat>(0.0f, 0.0f));
-                        ~Line();
+                        ~Segment();
 
                         void draw() const;
 

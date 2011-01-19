@@ -110,7 +110,7 @@ namespace HAZE {
                 DBG("Video set to %d x %d @ %d", width, height, bpp);
 
                 initGL();
-                resizeWindow(width, height);
+                resize(width, height);
         }
 
         Video::~Video()
@@ -137,8 +137,8 @@ namespace HAZE {
                 DBG("GL initialized");
         }
 
-        void Video::resizeWindow(size_t width,
-                                 size_t height)
+        void Video::resize(size_t width,
+                           size_t height)
         {
                 if ((height == 0) || (height == 0)) {
                         throw CannotResize();
@@ -159,7 +159,7 @@ namespace HAZE {
                         static_cast<GLfloat>(width),
                         static_cast<GLfloat>(height),
                         0,
-                        0,
+                        -1,
                         1);
 
                 glMatrixMode(GL_MODELVIEW);

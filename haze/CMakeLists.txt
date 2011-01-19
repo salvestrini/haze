@@ -10,7 +10,6 @@ set(core_SRCS
   core/synchronization.cxx
   core/thread.cxx
   core/time.cxx
-  core/event.cxx
   )
 set(core_HDRS
   core/debug.hxx
@@ -21,7 +20,15 @@ set(core_HDRS
   core/synchronization.hxx
   core/thread.hxx
   core/time.hxx
-  core/event.hxx
+
+  core/core.hxx
+  )
+
+set(io_SRCS
+  io/io.cxx
+  )
+set(io_HDRS
+  io/io.hxx
   )
 
 set(gfx_SRCS
@@ -33,6 +40,8 @@ set(gfx_SRCS
   gfx/camera.cxx
   gfx/font.cxx
   gfx/text.cxx
+
+  gfx/gfx.hxx
   )
 set(gfx_HDRS
   gfx/video.hxx
@@ -52,9 +61,11 @@ set(sfx_SRCS
 set(sfx_HDRS
   sfx/audio.hxx
   sfx/mixer.hxx
+
+  sfx/sfx.hxx
   )
 
-set(all_SRCS ${core_SRCS} ${gfx_SRCS} ${sfx_SRCS})
-set(all_HDRS ${core_HDRS} ${gfx_HDRS} ${sfx_HDRS})
+set(all_SRCS ${core_SRCS} ${io_SRCS} ${gfx_SRCS} ${sfx_SRCS})
+set(all_HDRS ${core_HDRS} ${io_HDRS} ${gfx_HDRS} ${sfx_HDRS})
 
 add_library(haze STATIC ${all_SRCS} ${all_HDRS})

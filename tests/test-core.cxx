@@ -19,14 +19,12 @@
 #include <cstdlib>
 #include <string>
 
-#include "haze/core/log.hxx"
-#include "haze/core/debug.hxx"
-#include "haze/core/thread.hxx"
+#include "haze/haze.hxx"
 
 class T : public HAZE::Thread {
 public:
         T(const std::string & n) : Thread(n) { }
-        
+
         virtual void loop() {
                 static int i = 0;
 
@@ -43,7 +41,7 @@ void test(const std::string & datadir)
         x.start();
 
         sleep(500);
-                
+
         x.stop();
 }
 
