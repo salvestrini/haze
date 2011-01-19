@@ -22,25 +22,28 @@
 #include <SDL/SDL_events.h>
 
 namespace HAZE {
+        namespace IO {
 
-        class Event {
-        public:
-                Event();
-                ~Event();
+                class Event {
+                public:
+                        Event();
+                        ~Event();
 
-        private:
-        };
+                private:
+                };
 
-        class IO {
-        public:
-                IO();
-                ~IO();
+                class EventManager {
+                public:
+                        EventManager();
+                        ~EventManager();
 
-                Event * poll();
+                        Event * poll();
 
-        private:
-                SDL_Event event_;
-        };
+                private:
+                        SDL_Event event_;
+                };
+
+        }
 }
 
 #endif

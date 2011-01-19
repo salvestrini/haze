@@ -56,11 +56,9 @@ set(gfx_HDRS
 
 set(sfx_SRCS
   sfx/audio.cxx
-  sfx/mixer.cxx
   )
 set(sfx_HDRS
   sfx/audio.hxx
-  sfx/mixer.hxx
 
   sfx/sfx.hxx
   )

@@ -19,7 +19,6 @@
 #ifndef HAZE_CORE
 #define HAZE_CORE
 
-#include "haze/core/core.hxx"
 #include "haze/core/debug.hxx"
 #include "haze/core/exception.hxx"
 #include "haze/core/filesystem.hxx"

@@ -23,7 +23,6 @@
 #include "haze/gfx/font.hxx"
 #include "haze/gfx/fps.hxx"
 #include "haze/gfx/geometry.hxx"
-#include "haze/gfx/gfx.hxx"
 #include "haze/gfx/image.hxx"
 #include "haze/gfx/primitive.hxx"
 #include "haze/gfx/text.hxx"

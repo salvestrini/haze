@@ -18,42 +18,40 @@
 
 #include "haze/io/io.hxx"
 
-namespace HAZE {
+using namespace HAZE::IO;
 
-        Event::Event()
-        { }
+Event::Event()
+{ }
 
-        Event::~Event()
-        { }
+Event::~Event()
+{ }
 
-        IO::IO()
-        { }
+EventManager::EventManager()
+{ }
 
-        IO::~IO()
-        { }
+EventManager::~EventManager()
+{ }
 
-        Event * IO::poll()
-        {
-                Event * tmp = 0;
+Event * EventManager::poll()
+{
+        Event * tmp = 0;
 
-                if (!SDL_PollEvent(&event_)) {
-                        return tmp;
-                }
-
-                switch (event_.type) {
-                        case SDL_KEYUP: {
-                                //KeyUp * tmp = new KeyUp(event_.key.which);
-                                break;
-                        }
-                        case SDL_KEYDOWN: {
-                                //KeyDown * tmp = new KeyDown(event_.key.which);
-                                break;
-                        }
-                        default:
-                                break;
-                }
-
+        if (!SDL_PollEvent(&event_)) {
                 return tmp;
         }
 
+        switch (event_.type) {
+                case SDL_KEYUP: {
+                        //KeyUp * tmp = new KeyUp(event_.key.which);
+                        break;
+                }
+                case SDL_KEYDOWN: {
+                        //KeyDown * tmp = new KeyDown(event_.key.which);
+                        break;
+                }
+                default:
+                        break;
+        }
+
+        return tmp;
 }

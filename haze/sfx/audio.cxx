@@ -24,29 +24,27 @@
 #include "haze/core/log.hxx"
 #include "haze/sfx/audio.hxx"
 
-namespace HAZE {
+using namespace HAZE::SFX;
 
-        Audio::Audio()
-                throw(CannotInitialize) :
-                channels_(0),
-                frequency_(0)
-        {
-                if (!SDL_WasInit(SDL_INIT_AUDIO)) {
-                        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                                throw CannotInitialize(SDL_GetError());
-                        }
+Audio::Audio()
+        throw(CannotInitialize) :
+        channels_(0),
+        frequency_(0)
+{
+        if (!SDL_WasInit(SDL_INIT_AUDIO)) {
+                if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                        throw CannotInitialize(SDL_GetError());
                 }
-
-                DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
         }
 
-        Audio::~Audio()
-        { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
-
-        size_t Audio::channels()
-        { return channels_; }
-
-        size_t Audio::frequency()
-        { return frequency_; }
-
+        DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
 }
+
+Audio::~Audio()
+{ SDL_QuitSubSystem(SDL_INIT_AUDIO); }
+
+size_t Audio::channels()
+{ return channels_; }
+
+size_t Audio::frequency()
+{ return frequency_; }

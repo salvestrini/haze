@@ -110,7 +110,7 @@ void test(const std::string & datadir)
         GLfloat y     = 0.0f;
         GLfloat angle = 0.0f;
 
-        IO io;
+        IO::EventManager io;
 
         for (int iteration = 0;
              iteration < 100;
@@ -171,7 +171,7 @@ void test(const std::string & datadir)
                 y++;
                 angle++;
 
-                Event * e = io.poll();
+                IO::Event * e = io.poll();
                 if (e) {
                         delete e;
                 }

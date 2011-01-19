@@ -20,7 +20,5 @@
 #define HAZE_SFX
 
 #include "haze/sfx/audio.hxx"
-#include "haze/sfx/mixer.hxx"
-#include "haze/sfx/sfx.hxx"
 
 #endif
