@@ -106,7 +106,7 @@ Event * EventManager::poll()
 
                         KeyPress::Key k;
 
-                        switch (event_.key.keysym.mod) {
+                        switch (event_.key.keysym.sym) {
                         case SDLK_UP:    k = KeyPress::ARROW_UP;    break;
                         case SDLK_DOWN:  k = KeyPress::ARROW_DOWN;  break;
                         case SDLK_LEFT:  k = KeyPress::ARROW_LEFT;  break;
