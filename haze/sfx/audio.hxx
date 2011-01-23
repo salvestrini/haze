@@ -41,10 +41,12 @@ namespace HAZE {
 
                         virtual size_t channels();
                         virtual size_t frequency();
+                        virtual size_t buffer();
 
                 private:
                         size_t channels_;
                         size_t frequency_;
+                        size_t buffer_;
                 };
 
         }

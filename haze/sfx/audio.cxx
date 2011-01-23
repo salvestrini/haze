@@ -28,8 +28,9 @@ using namespace HAZE::SFX;
 
 Audio::Audio()
         throw(CannotInitialize) :
-        channels_(0),
-        frequency_(0)
+        channels_(2),
+        frequency_(44100),
+        buffer_(4096)
 {
         if (!SDL_WasInit(SDL_INIT_AUDIO)) {
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
@@ -48,3 +49,7 @@ size_t Audio::channels()
 
 size_t Audio::frequency()
 { return frequency_; }
+
+size_t Audio::buffer()
+{ return buffer_; }
+
