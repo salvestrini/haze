@@ -80,7 +80,8 @@ namespace HAZE {
                         KeyPress(Key c);
                         ~KeyPress();
 
-                        Key which();
+                        Key which()
+                        { return which_; }
 
                 private:
                         Key which_;
