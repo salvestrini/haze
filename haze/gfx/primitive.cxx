@@ -273,7 +273,7 @@ namespace HAZE {
                 { points_ = points; }
 
                 void Polygon::rotate(GLfloat radians)
-                { angle_ = radians * M_PI / 180; }
+                { angle_ = radians * 180 / M_PI; }
 
                 void Polygon::move(const HAZE::Point<GLfloat> & where)
                 { where_ = where; }
