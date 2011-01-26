@@ -82,11 +82,11 @@ Event * EventManager::poll()
         Event * tmp = 0;
 
         if (!SDL_PollEvent(&event_)) {
-                DBG("No event in queue");
+                // DBG("No event in queue");
                 return tmp;
         }
 
-        DBG("Got event type %d", event_.type);
+        // DBG("Got event type %d", event_.type);
 
         switch (event_.type) {
                 case SDL_QUIT:
@@ -95,7 +95,8 @@ Event * EventManager::poll()
                         break;
 
                 case SDL_VIDEORESIZE:
-                        DBG("Got a video-resize event");
+                        DBG("Got a video-resize (%d, %d) event",
+                            event_.resize.w, event_.resize.h);
                         tmp = new VideoResize(event_.resize.w,
                                               event_.resize.h);
                         break;

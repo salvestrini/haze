@@ -179,7 +179,7 @@ namespace HAZE {
                         void set(std::list<HAZE::Point<GLfloat> > points);
 
                         void move(const HAZE::Point<GLfloat> & where);
-                        void rotate(GLfloat angle);
+                        void rotate(GLfloat radians);
 
                         void draw() const;
 
