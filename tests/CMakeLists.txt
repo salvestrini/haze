@@ -1,5 +1,7 @@
+configure_file(config.hxx.in config.hxx)
+
 include_directories(${haze_SOURCE_DIR})
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${haze_BINARY_DIR}/tests)
 
 set(LIBRARIES
   ${SDL_LIBRARY}
@@ -14,6 +16,7 @@ set(LIBRARIES
 )
 
 set(COMMON_SOURCES
+  config.hxx
   common.cxx
 )
 
