@@ -35,25 +35,26 @@ namespace HAZE {
 
                         class WrongArgument : public Exception {
                         public:
-                            WrongArgument(const std::string & what) :
-                                Exception("Wrong argument in " +
-                                          what                 +
+                            WrongArgument(const std::string & which) :
+                                Exception("Wrong argument(s) calling " +
+                                          which                        +
                                           " method") { }
                         };
 
                         Audio()
-                                throw(CannotInitialize, WrongArgument);
+                                throw(CannotInitialize);
                         virtual ~Audio();
 
                         virtual size_t channels();
                         virtual size_t frequency();
                         virtual size_t buffer();
 
-                        virtual size_t open(size_t frequency, 
-                                            size_t format,
-                                            size_t channels,
-                                            size_t chunksize);
-                        virtual size_t close();
+                        virtual void open(size_t frequency,
+                                          size_t format,
+                                          size_t channels,
+                                          size_t chunksize)
+                                throw(CannotInitialize, WrongArgument);
+                        virtual void close();
                 private:
                         size_t channels_;
                         size_t frequency_;

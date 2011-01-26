@@ -29,14 +29,13 @@
 using namespace HAZE::SFX;
 
 Audio::Audio()
-        throw(CannotInitialize, WrongArgument)
+        throw(CannotInitialize)
 {
         if (!SDL_WasInit(SDL_INIT_AUDIO)) {
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                         throw CannotInitialize(SDL_GetError());
                 }
         }
-
 }
 
 Audio::~Audio()
@@ -51,37 +50,33 @@ size_t Audio::frequency()
 size_t Audio::buffer()
 { return buffer_; }
 
-size_t Audio::open(size_t frequency,
-                   size_t format,
-                   size_t channels,
-                   size_t chunksize) {
+void Audio::open(size_t frequency,
+                 size_t format,
+                 size_t channels,
+                 size_t chunksize)
+        throw(CannotInitialize, WrongArgument)
+{
+        if ((frequency > INT32_MAX)  ||
+            (format    > UINT16_MAX) ||
+            (channels  > INT32_MAX)  ||
+            (chunksize > INT32_MAX)) {
+                throw WrongArgument(__PRETTY_FUNCTION__); // We should avoid that ..
+        }
 
-    if ((frequency < 0 || frequency > INT32_MAX)  ||
-        (format    < 0 || format    > UINT16_MAX) ||
-        (channels  < 0 || channels  > INT32_MAX)  ||
-        (chunksize < 0 || chunksize > INT32_MAX))  { 
-        throw WrongArgument("open()");
-    }
+        DBG("Initializing audio:");
+        DBG("  frequency: %d", frequency);
+        DBG("  format   : %x", format);
+        DBG("  channels : %d", channels);
+        DBG("  chunksize: %d", chunksize);
 
-    DBG("Initializing audio\n"
-        "\tfrequency: %d\n"
-        "\tformat   : %x\n"
-        "\tchannels : %d\n"
-        "\tchunksize: %d\n",
-        frequency, format, channels, chunksize);
-
-    if (Mix_OpenAudio(frequency, format, channels, chunksize)) {
-        throw CannotInitialize(SDL_GetError());
-    }
-
-    return 0;
+        if (Mix_OpenAudio(frequency, format, channels, chunksize)) {
+                throw CannotInitialize(SDL_GetError());
+        }
 }
 
-size_t Audio::close() {
-    DBG("Closing audio");
+void Audio::close()
+{
+        DBG("Closing audio");
 
-    Mix_CloseAudio();
-
-    return 0;
+        Mix_CloseAudio();
 }
-
