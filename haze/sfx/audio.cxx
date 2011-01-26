@@ -17,9 +17,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <string>
+#define __STDC_LIMIT_MACROS
+#include <stdint.h>
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 
 #include "haze/core/log.hxx"
 #include "haze/sfx/audio.hxx"
@@ -27,10 +29,7 @@
 using namespace HAZE::SFX;
 
 Audio::Audio()
-        throw(CannotInitialize) :
-        channels_(2),
-        frequency_(44100),
-        buffer_(4096)
+        throw(CannotInitialize, WrongArgument)
 {
         if (!SDL_WasInit(SDL_INIT_AUDIO)) {
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
@@ -38,7 +37,6 @@ Audio::Audio()
                 }
         }
 
-        DBG("Initializing audio %d ch @ %d hz", channels_, frequency_);
 }
 
 Audio::~Audio()
@@ -52,4 +50,38 @@ size_t Audio::frequency()
 
 size_t Audio::buffer()
 { return buffer_; }
+
+size_t Audio::open(size_t frequency,
+                   size_t format,
+                   size_t channels,
+                   size_t chunksize) {
+
+    if ((frequency < 0 || frequency > INT32_MAX)  ||
+        (format    < 0 || format    > UINT16_MAX) ||
+        (channels  < 0 || channels  > INT32_MAX)  ||
+        (chunksize < 0 || chunksize > INT32_MAX))  { 
+        throw WrongArgument("open()");
+    }
+
+    DBG("Initializing audio\n"
+        "\tfrequency: %d\n"
+        "\tformat   : %x\n"
+        "\tchannels : %d\n"
+        "\tchunksize: %d\n",
+        frequency, format, channels, chunksize);
+
+    if (Mix_OpenAudio(frequency, format, channels, chunksize)) {
+        throw CannotInitialize(SDL_GetError());
+    }
+
+    return 0;
+}
+
+size_t Audio::close() {
+    DBG("Closing audio");
+
+    Mix_CloseAudio();
+
+    return 0;
+}
 

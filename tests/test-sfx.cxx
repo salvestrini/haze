@@ -17,11 +17,26 @@
 //
 
 #include <cstdlib>
-#include <string>
+
+#include <SDL/SDL.h>
 
 #include "haze/haze.hxx"
 
+void test_open(HAZE::SFX::Audio & audio) {
+    audio.open(44100, AUDIO_S16, 2, 4096);
+}
+
+void test_close(HAZE::SFX::Audio & audio) {
+    audio.close();
+}
+
 void test(const std::string & datadir)
 {
-        // Put your code here ...
+    using namespace HAZE::SFX;
+
+    Audio audio;
+
+    test_open(audio);
+    test_close(audio);
 }
+

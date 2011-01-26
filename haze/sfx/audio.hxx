@@ -20,8 +20,6 @@
 #ifndef HAZE_SFX_AUDIO
 #define HAZE_SFX_AUDIO
 
-#include <string>
-
 #include "haze/core/exception.hxx"
 
 namespace HAZE {
@@ -31,18 +29,31 @@ namespace HAZE {
                 public:
                         class CannotInitialize : public Exception {
                         public:
-                                CannotInitialize(const std::string & what) :
-                                        Exception(what) { }
+                            CannotInitialize(const std::string & what) :
+                                Exception(what) { }
+                        };
+
+                        class WrongArgument : public Exception {
+                        public:
+                            WrongArgument(const std::string & what) :
+                                Exception("Wrong argument in " +
+                                          what                 +
+                                          " method") { }
                         };
 
                         Audio()
-                                throw(CannotInitialize);
+                                throw(CannotInitialize, WrongArgument);
                         virtual ~Audio();
 
                         virtual size_t channels();
                         virtual size_t frequency();
                         virtual size_t buffer();
 
+                        virtual size_t open(size_t frequency, 
+                                            size_t format,
+                                            size_t channels,
+                                            size_t chunksize);
+                        virtual size_t close();
                 private:
                         size_t channels_;
                         size_t frequency_;
