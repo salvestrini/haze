@@ -28,10 +28,14 @@
 
 using namespace HAZE::SFX;
 
-Audio::Audio()
+Audio::Audio(size_t frequency,
+             size_t format,
+             size_t channels,
+             size_t chunksize)
         throw(CannotInitialize)
 {
         if (!SDL_WasInit(SDL_INIT_AUDIO)) {
+
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                         throw CannotInitialize(SDL_GetError());
                 }
@@ -41,42 +45,15 @@ Audio::Audio()
 Audio::~Audio()
 { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
-size_t Audio::channels()
-{ return channels_; }
-
 size_t Audio::frequency()
 { return frequency_; }
 
-size_t Audio::buffer()
-{ return buffer_; }
+size_t Audio::format()
+{ return Audio::format_; }
 
-void Audio::open(size_t frequency,
-                 size_t format,
-                 size_t channels,
-                 size_t chunksize)
-        throw(CannotInitialize, WrongArgument)
-{
-        if ((frequency > INT32_MAX)  ||
-            (format    > UINT16_MAX) ||
-            (channels  > INT32_MAX)  ||
-            (chunksize > INT32_MAX)) {
-                throw WrongArgument(__PRETTY_FUNCTION__); // We should avoid that ..
-        }
+size_t Audio::channels()
+{ return channels_; }
 
-        DBG("Initializing audio:");
-        DBG("  frequency: %d", frequency);
-        DBG("  format   : %x", format);
-        DBG("  channels : %d", channels);
-        DBG("  chunksize: %d", chunksize);
+size_t Audio::chunksize()
+{ return chunksize_; }
 
-        if (Mix_OpenAudio(frequency, format, channels, chunksize)) {
-                throw CannotInitialize(SDL_GetError());
-        }
-}
-
-void Audio::close()
-{
-        DBG("Closing audio");
-
-        Mix_CloseAudio();
-}

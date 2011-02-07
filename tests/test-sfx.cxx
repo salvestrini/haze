@@ -24,21 +24,16 @@
 
 void test_open(HAZE::SFX::Audio & audio)
 {
-    audio.open(44100, AUDIO_S16, 2, 4096);
 }
 
 void test_close(HAZE::SFX::Audio & audio)
 {
-    audio.close();
 }
 
 void test(const std::string & datadir)
 {
     using namespace HAZE::SFX;
 
-    Audio audio;
-
-    test_open(audio);
-    test_close(audio);
+    Audio(44100, AUDIO_S16, 2, 4096);
 }
 
