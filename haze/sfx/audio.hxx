@@ -33,13 +33,14 @@ namespace HAZE {
                                 Exception(what) { }
                         };
 
-                        Audio(size_t frequency,
-                              size_t channels)
+                        Audio(size_t frequency = 44100,
+                              size_t channels  = 2)
                                 throw(CannotInitialize);
                         ~Audio();
 
                         size_t frequency();
                         size_t channels();
+
                 private:
                         size_t frequency_;
                         size_t channels_;
@@ -48,4 +49,3 @@ namespace HAZE {
 }
 
 #endif
-

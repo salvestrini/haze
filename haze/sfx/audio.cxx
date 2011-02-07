@@ -48,4 +48,3 @@ size_t Audio::frequency()
 
 size_t Audio::channels()
 { return channels_; }
-
