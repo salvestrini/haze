@@ -34,6 +34,6 @@ void test(const std::string & datadir)
 {
     using namespace HAZE::SFX;
 
-    Audio(44100, AUDIO_S16, 2, 4096);
+    Audio(44100, 2);
 }
 

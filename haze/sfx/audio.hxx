@@ -34,21 +34,15 @@ namespace HAZE {
                         };
 
                         Audio(size_t frequency,
-                              size_t format,
-                              size_t channels,
-                              size_t chunksize)
+                              size_t channels)
                                 throw(CannotInitialize);
-                        virtual ~Audio();
+                        ~Audio();
 
-                        virtual size_t frequency();
-                        virtual size_t format();
-                        virtual size_t channels();
-                        virtual size_t chunksize();
+                        size_t frequency();
+                        size_t channels();
                 private:
                         size_t frequency_;
-                        size_t format_;
                         size_t channels_;
-                        size_t chunksize_;
                 };
         }
 }
