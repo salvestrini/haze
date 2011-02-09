@@ -31,6 +31,13 @@ set(io_HDRS
   io/io.hxx
   )
 
+set(math_SRCS
+  math/math.cxx
+  )
+set(sfx_HDRS
+  math/math.hxx
+  )
+
 set(gfx_SRCS
   gfx/video.cxx
   gfx/fps.cxx
