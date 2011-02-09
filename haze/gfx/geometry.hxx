@@ -22,6 +22,8 @@
 #include <cmath>
 #include <utility>
 
+#include "haze/math/math.hxx"
+
 namespace HAZE {
 
         template<typename TYPE = size_t> class Size {
@@ -70,78 +72,21 @@ namespace HAZE {
                 TYPE height_;
         };
 
-        template<typename TYPE = int> class Point {
-        public:
-                Point(TYPE x = 0, TYPE y = 0) :
-                        x_(x),
-                        y_(y)
-                { }
-
-                virtual ~Point()
-                { }
-
-                TYPE  x() const { return x_; }
-                TYPE  y() const { return y_; }
-
-                void  x(TYPE v) { x_ = v; }
-                void  y(TYPE v) { y_ = v; }
-
-                void  move(TYPE x, TYPE y) {
-                        x_ = x;
-                        y_ = y;
-                }
-
-        private:
-                TYPE x_;
-                TYPE y_;
-        };
-
-        template<typename TYPE = int> class Vector {
-        public:
-                Vector(TYPE x = 0, TYPE y = 0, TYPE z = 0) :
-                        x_(x),
-                        y_(y),
-                        z_(z)
-                { }
-
-                virtual ~Vector()
-                { }
-
-                TYPE  x() const { return x_; }
-                TYPE  y() const { return y_; }
-                TYPE  z() const { return z_; }
-
-                void  x(TYPE v) { x_ = v; }
-                void  y(TYPE v) { y_ = v; }
-                void  z(TYPE v) { z_ = v; }
-
-                void  move(TYPE x, TYPE y, TYPE z) {
-                        x_ = x;
-                        y_ = y;
-                        z_ = z;
-                }
-
-        private:
-                TYPE x_;
-                TYPE y_;
-                TYPE z_;
-        };
-
         template<typename PTYPE = int,
                  typename STYPE = size_t> class Rectangle :
-                public Point<PTYPE>,
+                public MATH::Point<PTYPE>,
                 public Size<STYPE> {
         public:
                 Rectangle() { }
 
                 Rectangle(PTYPE x, PTYPE y, STYPE w, STYPE h) :
-                        Point<PTYPE>(x, y),
+                        MATH::Point<PTYPE>(x, y),
                         Size<STYPE>(w, h)
                 { }
 
-                Rectangle(const Point<PTYPE> & origin,
-                          const Size<STYPE> &  size) :
-                        Point<PTYPE>(origin),
+                Rectangle(const MATH::Point<PTYPE> & origin,
+                          const Size<STYPE> &        size) :
+                        MATH::Point<PTYPE>(origin),
                         Size<STYPE>(size)
                 { }
 

@@ -21,7 +21,7 @@
 namespace HAZE {
 
         Camera::Camera(GLfloat x, GLfloat y) :
-                Point<GLfloat>(x, y)
+                MATH::Point<GLfloat>(x, y)
         { }
  
         Camera::~Camera()

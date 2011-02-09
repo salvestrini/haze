@@ -25,7 +25,7 @@ namespace HAZE {
         Text::Text(const std::string &          message,
                    const Font &                 font,
                    const GL::Color &            color,
-                   const HAZE::Point<GLfloat> & where) :
+                   const MATH::Point<GLfloat> & where) :
                 color_(color),
                 where_(where)
         {
@@ -38,12 +38,12 @@ namespace HAZE {
         Text::~Text()
         { }
 
-        void Text::move(const HAZE::Point<GLfloat> & where)
+        void Text::move(const MATH::Point<GLfloat> & where)
         { where_ = where; }
 
         void Text::draw() const
         {
-                Point<GLfloat> p(where_);
+                MATH::Point<GLfloat> p(where_);
 
                 for (std::vector<GL::Texture *>::const_iterator i =
                              chars_.begin();

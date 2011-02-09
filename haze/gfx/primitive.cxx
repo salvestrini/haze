@@ -20,6 +20,7 @@
 
 #include "haze/core/log.hxx"
 #include "haze/core/debug.hxx"
+#include "haze/math/math.hxx"
 #include "haze/gfx/primitive.hxx"
 
 namespace HAZE {
@@ -108,7 +109,7 @@ namespace HAZE {
                 { return size_; }
 
                 Point::Point(const Pen &                  pen,
-                             const HAZE::Point<GLfloat> & where) :
+                             const MATH::Point<GLfloat> & where) :
                         pen_(pen),
                         where_(where)
                 { }
@@ -116,7 +117,7 @@ namespace HAZE {
                 Point::~Point()
                 { }
 
-                void Point::move(const HAZE::Point<GLfloat> & where)
+                void Point::move(const MATH::Point<GLfloat> & where)
                 { where_ = where; }
 
                 void Point::draw() const
@@ -129,8 +130,8 @@ namespace HAZE {
                 }
 
                 Segment::Segment(const Pen &                  pen,
-                                 const HAZE::Point<GLfloat> & from,
-                                 const HAZE::Point<GLfloat> & to) :
+                                 const MATH::Point<GLfloat> & from,
+                                 const MATH::Point<GLfloat> & to) :
                         pen_(pen),
                         from_(from),
                         to_(to)
@@ -150,9 +151,9 @@ namespace HAZE {
                 }
 
                 Triangle::Triangle(const Pen &                  pen,
-                                   const HAZE::Point<GLfloat> & a,
-                                   const HAZE::Point<GLfloat> & b,
-                                   const HAZE::Point<GLfloat> & c,
+                                   const MATH::Point<GLfloat> & a,
+                                   const MATH::Point<GLfloat> & b,
+                                   const MATH::Point<GLfloat> & c,
                                    bool                         filled) :
                         pen_(pen),
                         a_(a),
@@ -181,8 +182,8 @@ namespace HAZE {
                 }
 
                 Rectangle::Rectangle(const Pen &                  pen,
-                                     const HAZE::Point<GLfloat> & from,
-                                     const HAZE::Point<GLfloat> & to,
+                                     const MATH::Point<GLfloat> & from,
+                                     const MATH::Point<GLfloat> & to,
                                      bool                         filled) :
                         pen_(pen),
                         from_(from),
@@ -211,7 +212,7 @@ namespace HAZE {
                 }
 
                 Circle::Circle(const Pen &                  pen,
-                               const HAZE::Point<GLfloat> & center,
+                               const MATH::Point<GLfloat> & center,
                                GLfloat                      radius,
                                size_t                       segments,
                                bool                         filled) :
@@ -255,8 +256,8 @@ namespace HAZE {
                 }
 
                 Polygon::Polygon(const Pen &                      pen,
-                                 std::list<HAZE::Point<GLfloat> > points,
-                                 const HAZE::Point<GLfloat> &     where,
+                                 std::list<MATH::Point<GLfloat> > points,
+                                 const MATH::Point<GLfloat> &     where,
                                  GLfloat                          angle,
                                  bool                             filled) :
                         pen_(pen),
@@ -269,13 +270,13 @@ namespace HAZE {
                 void Polygon::set(bool filled)
                 { filled_ = filled; }
 
-                void Polygon::set(std::list<HAZE::Point<GLfloat> > points)
+                void Polygon::set(std::list<MATH::Point<GLfloat> > points)
                 { points_ = points; }
 
                 void Polygon::rotate(GLfloat radians)
                 { angle_ = radians * 180 / M_PI; }
 
-                void Polygon::move(const HAZE::Point<GLfloat> & where)
+                void Polygon::move(const MATH::Point<GLfloat> & where)
                 { where_ = where; }
 
                 void Polygon::draw()
@@ -296,7 +297,7 @@ namespace HAZE {
                         } else {
                                 glBegin(GL_LINE_LOOP);
                         }
-                        for (std::list<HAZE::Point<GLfloat> >::
+                        for (std::list<MATH::Point<GLfloat> >::
                                      const_iterator i = points_.begin();
                              i != points_.end();
                              i++) {
@@ -369,7 +370,7 @@ namespace HAZE {
                 void Texture::set(const Color & color)
                 { color_ = color; }
 
-                void Texture::draw(const HAZE::Point<GLfloat> & origin,
+                void Texture::draw(const MATH::Point<GLfloat> & origin,
                                    GLfloat                      scale,
                                    GLfloat                      rotation)
                         const

@@ -81,23 +81,23 @@ void test(const std::string & datadir)
 
         GL::Point     point(pen_white);
         GL::Segment   segment(pen_blue,
-                              HAZE::Point<GLfloat>(0.0f, 0.0f),
-                              HAZE::Point<GLfloat>(1.0f, 1.0f));
+                              MATH::Point<GLfloat>(0.0f, 0.0f),
+                              MATH::Point<GLfloat>(1.0f, 1.0f));
         GL::Rectangle rectangle_filled(pen_green,
-                                       Point<GLfloat>(60, 60),
-                                       Point<GLfloat>(80, 80),
+                                       MATH::Point<GLfloat>(60, 60),
+                                       MATH::Point<GLfloat>(80, 80),
                                        true);
         GL::Rectangle rectangle_empty(pen_green,
-                                      Point<GLfloat>(10, 10),
-                                      Point<GLfloat>(30, 30),
+                                      MATH::Point<GLfloat>(10, 10),
+                                      MATH::Point<GLfloat>(30, 30),
                                       false);
         GL::Circle    circle_filled(pen_green,
-                                    Point<GLfloat>(70, 15),
+                                    MATH::Point<GLfloat>(70, 15),
                                     180,
                                     8,
                                     true);
         GL::Circle    circle_empty(pen_blue,
-                                   Point<GLfloat>(10, 75),
+                                   MATH::Point<GLfloat>(10, 75),
                                    220,
                                    8,
                                    false);
@@ -119,7 +119,7 @@ void test(const std::string & datadir)
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
-                        point.move(Point<GLfloat>(k % 100, k));
+                        point.move(MATH::Point<GLfloat>(k % 100, k));
                         point.draw();
                 }
 #endif
@@ -141,21 +141,24 @@ void test(const std::string & datadir)
 #endif
 #if 0
                 for (int k = 0; k < 256; k++) {
-                        text_chars[k]->move(Point<GLfloat>(100 + k % 16 * 32,
-                                                           100 + k / 16 * 32));
+                        text_chars[k]->
+                                move(MATH::Point<GLfloat>(100 + k % 16 * 32,
+                                                          100 + k / 16 * 32));
                         text_chars[k]->draw();
                 }
 #endif
 #if 1
-                star1_texture.draw(Point<GLfloat>(x * 4, y * 4), 1, angle * 1);
-                star2_texture.draw(Point<GLfloat>(x * 8, y * 8), 1, angle * 4);
-                star3_texture.draw(Point<GLfloat>(video.width()  / 2,
-                                                  video.height() / 2),
+                star1_texture.draw(MATH::Point<GLfloat>(x * 4, y * 4),
+                                   1, angle * 1);
+                star2_texture.draw(MATH::Point<GLfloat>(x * 8, y * 8),
+                                   1, angle * 4);
+                star3_texture.draw(MATH::Point<GLfloat>(video.width()  / 2,
+                                                        video.height() / 2),
                                    1, angle * 8);
 #endif
 #if 1
-                text_message.move(Point<GLfloat>(video.width() / 2,
-                                                 video.height() / 2));
+                text_message.move(MATH::Point<GLfloat>(video.width() / 2,
+                                                       video.height() / 2));
                 text_message.draw();
 #endif
 
@@ -176,7 +179,7 @@ void test(const std::string & datadir)
 
                                 case IO::Event::VideoResize: {
                                         IO::VideoResize * p =
-                                        dynamic_cast<IO::VideoResize *>(e);
+                                                dynamic_cast<IO::VideoResize *>(e);
 
                                         video.resize(p->width(), p->height());
                                         break;

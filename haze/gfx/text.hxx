@@ -25,7 +25,7 @@
 #include <vector>
 
 #include "haze/gfx/font.hxx"
-#include "haze/gfx/geometry.hxx"
+#include "haze/math/math.hxx"
 #include "haze/gfx/primitive.hxx"
 
 namespace HAZE {
@@ -37,12 +37,13 @@ namespace HAZE {
                 Text(const std::string &          message,
                      const Font &                 font,
                      const GL::Color &            color = GL::Color(),
-                     const HAZE::Point<GLfloat> & where = HAZE::Point<GLfloat>());
+                     const MATH::Point<GLfloat> & where =
+                     MATH::Point<GLfloat>());
                 ~Text();
 
                 void         draw() const;
 
-                void         move(const HAZE::Point<GLfloat> & where);
+                void         move(const MATH::Point<GLfloat> & where);
 
                 void         set(const GL::Color & color);
                 void         set(const Font &        font,
@@ -52,7 +53,7 @@ namespace HAZE {
         private:
                 std::vector<GL::Texture *> chars_;
                 GL::Color                  color_;
-                HAZE::Point<GLfloat>       where_;
+                MATH::Point<GLfloat>       where_;
         };
 
 }

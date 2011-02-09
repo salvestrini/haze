@@ -78,42 +78,42 @@ namespace HAZE {
                 class Point {
                 public:
                         Point(const Pen &                  pen,
-                              const HAZE::Point<GLfloat> & where =
-                              HAZE::Point<GLfloat>(0.0f, 0.0f));
+                              const MATH::Point<GLfloat> & where =
+                              MATH::Point<GLfloat>(0.0f, 0.0f));
                         ~Point();
 
-                        void move(const HAZE::Point<GLfloat> & where);
+                        void move(const MATH::Point<GLfloat> & where);
 
                         void draw() const;
 
                 private:
                         Pen                  pen_;
-                        HAZE::Point<GLfloat> where_;
+                        MATH::Point<GLfloat> where_;
                 };
 
                 class Segment {
                 public:
                         Segment(const Pen &                  pen,
-                             const HAZE::Point<GLfloat> & from =
-                             HAZE::Point<GLfloat>(0.0f, 0.0f),
-                             const HAZE::Point<GLfloat> & to =
-                             HAZE::Point<GLfloat>(0.0f, 0.0f));
+                             const MATH::Point<GLfloat> & from =
+                             MATH::Point<GLfloat>(0.0f, 0.0f),
+                             const MATH::Point<GLfloat> & to =
+                             MATH::Point<GLfloat>(0.0f, 0.0f));
                         ~Segment();
 
                         void draw() const;
 
                 private:
                         Pen                  pen_;
-                        HAZE::Point<GLfloat> from_;
-                        HAZE::Point<GLfloat> to_;
+                        MATH::Point<GLfloat> from_;
+                        MATH::Point<GLfloat> to_;
                 };
 
                 class Triangle {
                 public:
                         Triangle(const Pen &                  pen,
-                                 const HAZE::Point<GLfloat> & a,
-                                 const HAZE::Point<GLfloat> & b,
-                                 const HAZE::Point<GLfloat> & c,
+                                 const MATH::Point<GLfloat> & a,
+                                 const MATH::Point<GLfloat> & b,
+                                 const MATH::Point<GLfloat> & c,
                                  bool                         filled = false);
                         ~Triangle();
 
@@ -121,17 +121,17 @@ namespace HAZE {
 
                 private:
                         Pen                  pen_;
-                        HAZE::Point<GLfloat> a_;
-                        HAZE::Point<GLfloat> b_;
-                        HAZE::Point<GLfloat> c_;
+                        MATH::Point<GLfloat> a_;
+                        MATH::Point<GLfloat> b_;
+                        MATH::Point<GLfloat> c_;
                         bool                 filled_;
                 };
 
                 class Rectangle {
                 public:
                         Rectangle(const Pen &                  pen,
-                                  const HAZE::Point<GLfloat> & from,
-                                  const HAZE::Point<GLfloat> & to,
+                                  const MATH::Point<GLfloat> & from,
+                                  const MATH::Point<GLfloat> & to,
                                   bool                         filled = false);
                         ~Rectangle();
 
@@ -139,15 +139,15 @@ namespace HAZE {
 
                 private:
                         Pen                  pen_;
-                        HAZE::Point<GLfloat> from_;
-                        HAZE::Point<GLfloat> to_;
+                        MATH::Point<GLfloat> from_;
+                        MATH::Point<GLfloat> to_;
                         bool                 filled_;
                 };
 
                 class Circle {
                 public:
                         Circle(const Pen &                  pen,
-                               const HAZE::Point<GLfloat> & center,
+                               const MATH::Point<GLfloat> & center,
                                GLfloat                      radius,
                                size_t                       segments = 8,
                                bool                         filled   = false);
@@ -157,7 +157,7 @@ namespace HAZE {
 
                 private:
                         Pen                  pen_;
-                        HAZE::Point<GLfloat> center_;
+                        MATH::Point<GLfloat> center_;
                         GLfloat              radius_;
                         size_t               segments_;
                         bool                 filled_;
@@ -166,27 +166,27 @@ namespace HAZE {
                 class Polygon {
                 public:
                         Polygon(const Pen &                        pen,
-                                std::list<HAZE::Point<GLfloat> >   points =
-                                std::list<HAZE::Point<GLfloat> >(),
-                                const HAZE::Point<GLfloat> &       where  =
-                                HAZE::Point<GLfloat>(0.0f, 0.0f),
+                                std::list<MATH::Point<GLfloat> >   points =
+                                std::list<MATH::Point<GLfloat> >(),
+                                const MATH::Point<GLfloat> &       where  =
+                                MATH::Point<GLfloat>(0.0f, 0.0f),
                                 GLfloat                            angle  =
                                 0.0f,
                                 bool                               filled =
                                 false);
 
                         void set(bool filled);
-                        void set(std::list<HAZE::Point<GLfloat> > points);
+                        void set(std::list<MATH::Point<GLfloat> > points);
 
-                        void move(const HAZE::Point<GLfloat> & where);
+                        void move(const MATH::Point<GLfloat> & where);
                         void rotate(GLfloat radians);
 
                         void draw() const;
 
                 private:
                         Pen                              pen_;
-                        std::list<HAZE::Point<GLfloat> > points_;
-                        HAZE::Point<GLfloat>             where_;
+                        std::list<MATH::Point<GLfloat> > points_;
+                        MATH::Point<GLfloat>             where_;
                         GLfloat                          angle_;
                         bool                             filled_;
                 };
@@ -197,7 +197,7 @@ namespace HAZE {
                 public:
                         class CannotCreate : public Exception { };
 
-                        Texture(const Path & file,
+                        Texture(const Path &  file,
                                 const Color & color = Color());
                         Texture(const Image & image,
                                 const Color & color = Color());
@@ -205,9 +205,9 @@ namespace HAZE {
 
                         void set(const Color & color);
 
-                        void draw(const HAZE::Point<GLfloat> & origin,
-                                  GLfloat                     scale    = 1.0f,
-                                  GLfloat                     rotation = 0.0f)
+                        void draw(const MATH::Point<GLfloat> & origin,
+                                  GLfloat                      scale    = 1.0f,
+                                  GLfloat                      rotation = 0.0f)
                                 const;
 
                 private:

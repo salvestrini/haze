@@ -21,11 +21,11 @@
 
 #include <GL/gl.h>
 
-#include "haze/gfx/geometry.hxx"
+#include "haze/math/math.hxx"
 
 namespace HAZE {
 
-        class Camera : public Point<GLfloat> {
+        class Camera : public MATH::Point<GLfloat> {
         public:
                 Camera(GLfloat x = 0.0f, GLfloat y = 0.0f);
                 ~Camera();
