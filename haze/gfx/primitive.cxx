@@ -164,6 +164,22 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
+                Figure::Figure() :
+                        center_(MATH::Point<GLfloat>(0.0f, 0.0f))
+                { }
+
+                Figure::~Figure()
+                { }
+
+                void Figure::move(const MATH::Point<GLfloat> & where)
+                { center_ = where; }
+
+                void Figure::rotate(GLfloat radians)
+                { rotation_ = MATH::radians2angle<GLfloat>(radians); }
+
+                void Figure::scale(GLfloat factor)
+                { scale_ = factor; }
+
                 Triangle::Triangle(const Pen &                  pen,
                                    const MATH::Point<GLfloat> & a,
                                    const MATH::Point<GLfloat> & b,
@@ -276,13 +292,9 @@ namespace HAZE {
 
                 Polygon::Polygon(const Pen &                      pen,
                                  std::list<MATH::Point<GLfloat> > points,
-                                 const MATH::Point<GLfloat> &     where,
-                                 GLfloat                          angle,
                                  bool                             filled) :
                         pen_(pen),
                         points_(points),
-                        where_(where),
-                        angle_(angle),
                         filled_(filled)
                 { }
 
@@ -291,14 +303,6 @@ namespace HAZE {
 
                 void Polygon::set(std::list<MATH::Point<GLfloat> > points)
                 { points_ = points; }
-
-                void Polygon::rotate(GLfloat radians)
-                {
-                        angle_ = MATH::radians2angle<GLfloat>(radians);
-                }
-
-                void Polygon::move(const MATH::Point<GLfloat> & where)
-                { where_ = where; }
 
                 void Polygon::draw()
                         const
@@ -309,9 +313,9 @@ namespace HAZE {
 
                         glPushMatrix();
 
-                        glTranslatef(where_.x(), where_.y(), 0.0f);
+                        glTranslatef(center_.x(), center_.y(), 0.0f);
                         //glScalef(scale, scale, 0.0f);
-                        glRotatef(angle_, 0.0f, 0.0f, 1.0f);
+                        glRotatef(rotation_, 0.0f, 0.0f, 1.0f);
 
                         if (filled_) {
                                 glBegin(GL_TRIANGLE_FAN);
