@@ -127,6 +127,8 @@ namespace HAZE {
                         glBegin(GL_POINTS);
                         glVertex2f(where_.x(), where_.y());
                         glEnd();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Segment::Segment(const Pen &                  pen,
@@ -140,6 +142,16 @@ namespace HAZE {
                 Segment::~Segment()
                 { }
 
+                void Segment::move(const MATH::Point<GLfloat> & where)
+                {
+                        //where_ = where;
+                }
+
+                void Segment::rotate(GLfloat radians)
+                {
+                        //angle_ = MATH::radians2angle<GLfloat>(radians);
+                }
+
                 void Segment::draw() const
                 {
                         pen_.program();
@@ -148,6 +160,8 @@ namespace HAZE {
                         glVertex2f(from_.x(), from_.y());
                         glVertex2f(to_.x(),   to_.y());
                         glEnd();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Triangle::Triangle(const Pen &                  pen,
@@ -179,6 +193,7 @@ namespace HAZE {
                         glVertex3f(c_.x(), c_.y(), 0.0f);
                         glEnd();
 
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Rectangle::Rectangle(const Pen &                  pen,
@@ -209,6 +224,8 @@ namespace HAZE {
                         glVertex2f(to_.x(),   to_.y());
                         glVertex2f(from_.x(), to_.y());
                         glEnd();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Circle::Circle(const Pen &                  pen,
@@ -253,6 +270,8 @@ namespace HAZE {
                         }
 
                         glEnd();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 Polygon::Polygon(const Pen &                      pen,
@@ -274,7 +293,9 @@ namespace HAZE {
                 { points_ = points; }
 
                 void Polygon::rotate(GLfloat radians)
-                { angle_ = radians * 180 / M_PI; }
+                {
+                        angle_ = MATH::radians2angle<GLfloat>(radians);
+                }
 
                 void Polygon::move(const MATH::Point<GLfloat> & where)
                 { where_ = where; }
@@ -306,6 +327,8 @@ namespace HAZE {
                         glEnd();
 
                         glPopMatrix();
+
+                        ASSERT_GL_NO_ERROR();
                 }
 
                 void Texture::init(const Image & image)

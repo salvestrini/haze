@@ -19,8 +19,13 @@
 #ifndef HAZE_MATH
 #define HAZE_MATH
 
+#include <cmath>
+
 namespace HAZE {
         namespace MATH {
+
+                template<typename TYPE> TYPE radians2angle(TYPE radians)
+                { return radians * 180 / M_PI; }
 
                 template<typename TYPE = int> class Point {
                 public:

@@ -94,11 +94,15 @@ namespace HAZE {
                 class Segment {
                 public:
                         Segment(const Pen &                  pen,
-                             const MATH::Point<GLfloat> & from =
-                             MATH::Point<GLfloat>(0.0f, 0.0f),
-                             const MATH::Point<GLfloat> & to =
-                             MATH::Point<GLfloat>(0.0f, 0.0f));
+                                const MATH::Point<GLfloat> & from =
+                                MATH::Point<GLfloat>(0.0f, 0.0f),
+                                const MATH::Point<GLfloat> & to =
+                                MATH::Point<GLfloat>(0.0f, 0.0f));
                         ~Segment();
+
+                        void move(const MATH::Point<GLfloat> & where);
+                        void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
 
                         void draw() const;
 
@@ -116,6 +120,10 @@ namespace HAZE {
                                  const MATH::Point<GLfloat> & c,
                                  bool                         filled = false);
                         ~Triangle();
+
+                        //void move(const MATH::Point<GLfloat> & where);
+                        //void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
 
                         void draw() const;
 
@@ -135,6 +143,10 @@ namespace HAZE {
                                   bool                         filled = false);
                         ~Rectangle();
 
+                        //void move(const MATH::Point<GLfloat> & where);
+                        //void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
+
                         void draw() const;
 
                 private:
@@ -152,6 +164,10 @@ namespace HAZE {
                                size_t                       segments = 8,
                                bool                         filled   = false);
                         ~Circle();
+
+                        //void move(const MATH::Point<GLfloat> & where);
+                        //void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
 
                         void draw() const;
 
@@ -180,6 +196,7 @@ namespace HAZE {
 
                         void move(const MATH::Point<GLfloat> & where);
                         void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
 
                         void draw() const;
 
@@ -204,6 +221,10 @@ namespace HAZE {
                         ~Texture();
 
                         void set(const Color & color);
+
+                        //void move(const MATH::Point<GLfloat> & where);
+                        //void rotate(GLfloat radians);
+                        //void scale(GLfloat factor)
 
                         void draw(const MATH::Point<GLfloat> & origin,
                                   GLfloat                      scale    = 1.0f,
