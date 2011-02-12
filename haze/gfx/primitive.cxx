@@ -165,7 +165,9 @@ namespace HAZE {
                 }
 
                 Figure::Figure() :
-                        center_(MATH::Point<GLfloat>(0.0f, 0.0f))
+                        center_(MATH::Point<GLfloat>(0.0f, 0.0f)),
+                        rotation_(0.0f),
+                        scale_(1.0f)
                 { }
 
                 Figure::~Figure()
@@ -304,8 +306,7 @@ namespace HAZE {
                 void Polygon::set(std::list<MATH::Point<GLfloat> > points)
                 { points_ = points; }
 
-                void Polygon::draw()
-                        const
+                void Polygon::draw() const
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -397,10 +398,7 @@ namespace HAZE {
                 void Texture::set(const Color & color)
                 { color_ = color; }
 
-                void Texture::draw(const MATH::Point<GLfloat> & origin,
-                                   GLfloat                      scale,
-                                   GLfloat                      rotation)
-                        const
+                void Texture::draw() const
                 {
                         glEnable(GL_TEXTURE_2D);
 
@@ -413,9 +411,9 @@ namespace HAZE {
 
                         glPushMatrix();
 
-                        glTranslatef(origin.x(), origin.y(), 0.0f);
-                        glScalef(scale, scale, 0.0f);
-                        glRotatef(rotation, 0.0f, 0.0f, 1.0f);
+                        glTranslatef(center_.x(), center_.y(), 0.0f);
+                        glScalef(scale_, scale_, 0.0f);
+                        glRotatef(rotation_, 0.0f, 0.0f, 1.0f);
 
                         GLfloat w2  = width()  / 2;
                         GLfloat h2  = height() / 2;

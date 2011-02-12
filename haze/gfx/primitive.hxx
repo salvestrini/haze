@@ -138,7 +138,7 @@ namespace HAZE {
                                  bool                         filled = false);
                         ~Triangle();
 
-                        void draw() const;
+                        virtual void draw() const;
 
                 private:
                         Pen                  pen_;
@@ -156,7 +156,7 @@ namespace HAZE {
                                   bool                         filled = false);
                         ~Rectangle();
 
-                        void draw() const;
+                        virtual void draw() const;
 
                 private:
                         Pen                  pen_;
@@ -174,7 +174,7 @@ namespace HAZE {
                                bool                         filled   = false);
                         ~Circle();
 
-                        void draw() const;
+                        virtual void draw() const;
 
                 private:
                         Pen                  pen_;
@@ -195,7 +195,7 @@ namespace HAZE {
                         void set(bool filled);
                         void set(std::list<MATH::Point<GLfloat> > points);
 
-                        void draw() const;
+                        virtual void draw() const;
 
                 private:
                         Pen                              pen_;
@@ -205,7 +205,8 @@ namespace HAZE {
 
                 class Texture :
                         public Size<GLuint>,
-                        public NonCopyable  {
+                        public NonCopyable,
+                        public Figure {
                 public:
                         class CannotCreate : public Exception { };
 
@@ -217,10 +218,7 @@ namespace HAZE {
 
                         void set(const Color & color);
 
-                        void draw(const MATH::Point<GLfloat> & origin,
-                                  GLfloat                      scale    = 1.0f,
-                                  GLfloat                      rotation = 0.0f)
-                                const;
+                        virtual void draw() const;
 
                 private:
                         Color  color_;

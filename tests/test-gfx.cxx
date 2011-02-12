@@ -148,13 +148,19 @@ void test(const std::string & datadir)
                 }
 #endif
 #if 1
-                star1_texture.draw(MATH::Point<GLfloat>(x * 4, y * 4),
-                                   1, angle * 1);
-                star2_texture.draw(MATH::Point<GLfloat>(x * 8, y * 8),
-                                   1, angle * 4);
-                star3_texture.draw(MATH::Point<GLfloat>(video.width()  / 2,
-                                                        video.height() / 2),
-                                   1, angle * 8);
+                star1_texture.move(MATH::Point<GLfloat>(x * 4, y * 4));
+                star1_texture.rotate(angle * 1);
+
+                star2_texture.move(MATH::Point<GLfloat>(x * 8, y * 8));
+                star2_texture.rotate(angle * 4);
+
+                star3_texture.move(MATH::Point<GLfloat>(video.width()  / 2,
+                                                        video.height() / 2));
+                star3_texture.rotate(angle * 8);
+
+                star1_texture.draw();
+                star2_texture.draw();
+                star3_texture.draw();
 #endif
 #if 1
                 text_message.move(MATH::Point<GLfloat>(video.width() / 2,

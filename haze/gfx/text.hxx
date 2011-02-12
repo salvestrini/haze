@@ -30,25 +30,24 @@
 
 namespace HAZE {
 
-        class Text {
+        class Text :
+                public NonCopyable {
         public:
-                Text(const GL::Color &            color = GL::Color());
+                Text(const GL::Color &   color = GL::Color());
 
-                Text(const std::string &          message,
-                     const Font &                 font,
-                     const GL::Color &            color = GL::Color(),
-                     const MATH::Point<GLfloat> & where =
-                     MATH::Point<GLfloat>());
+                Text(const std::string & message,
+                     const Font &        font,
+                     const GL::Color &   color = GL::Color());
                 ~Text();
-
-                void         draw() const;
-
-                void         move(const MATH::Point<GLfloat> & where);
 
                 void         set(const GL::Color & color);
                 void         set(const Font &        font,
                                  const std::string & message);
+
                 Size<size_t> size() const;
+
+                void         draw() const;
+                void         move(const MATH::Point<GLfloat> & where);
 
         private:
                 std::vector<GL::Texture *> chars_;
