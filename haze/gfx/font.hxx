@@ -28,30 +28,39 @@
 
 namespace HAZE {
 
-        class Font {
+        class Glyphs {
         public:
                 class CannotMap : public Exception {
                 public:
                         CannotMap(char c) :
                                 Exception(std::string("Cannot map "
-                                                      "character '") +
-                                          std::string(1, c)          +
+                                                      "character ") +
+                                          std::string("'")          +
+                                          std::string(1, c)         +
                                           std::string("'"))
                         { }
                 };
 
-                Font();
-                ~Font();
+                Glyphs();
+                ~Glyphs();
 
-                void                 clear();
-                void                 add(char c, Image * i);
-                void                 remove(char c);
+                void    clear();
+                void    add(char c, Image * i);
+                void    remove(char c);
 
-                Image *              map(char c) const;
-                std::vector<Image *> map(const std::string & s) const;
+                Image * map(char c) const;
 
         private:
                 std::map<char, Image *> glyphs_;
+        };
+
+        class Font :
+                public Glyphs {
+        public:
+                Font();
+                ~Font();
+
+                std::vector<Image *> map(const std::string & s) const;
         };
 
 }

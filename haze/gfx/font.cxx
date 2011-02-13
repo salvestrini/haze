@@ -20,22 +20,22 @@
 
 namespace HAZE {
 
-        Font::Font()
+        Glyphs::Glyphs()
         { }
 
-        Font::~Font()
+        Glyphs::~Glyphs()
         { }
 
-        void Font::add(char c, Image * i)
+        void Glyphs::add(char c, Image * i)
         { glyphs_[c] = i; }
 
-        void Font::remove(char c)
+        void Glyphs::remove(char c)
         { glyphs_.erase(c); }
 
-        void Font::clear()
+        void Glyphs::clear()
         { glyphs_.clear(); }
 
-        Image * Font::map(char c) const
+        Image * Glyphs::map(char c) const
         {
                 std::map<char, Image *>::const_iterator i = glyphs_.find(c);
                 if (i == glyphs_.end()) {
@@ -45,6 +45,12 @@ namespace HAZE {
                 return (*i).second;
         }
 
+        Font::Font()
+        { }
+
+        Font::~Font()
+        { }
+
         std::vector<Image *> Font::map(const std::string & s) const
         {
                 std::vector<Image *>                    tmp;
@@ -53,12 +59,7 @@ namespace HAZE {
                 for (std::string::const_iterator i = s.begin();
                      i != s.end();
                      i++) {
-                        j = glyphs_.find(*i);
-                        if (j == glyphs_.end()) {
-                                throw CannotMap(*i);
-                        }
-
-                        tmp.push_back((*j).second);
+                        tmp.push_back(Glyphs::map(*i));
                 }
 
                 return tmp;
