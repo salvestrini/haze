@@ -210,8 +210,6 @@ namespace HAZE {
                 public:
                         class CannotCreate : public Exception { };
 
-                        Texture(const Path &  file,
-                                const Color & color = Color());
                         Texture(const Image & image,
                                 const Color & color = Color());
                         ~Texture();

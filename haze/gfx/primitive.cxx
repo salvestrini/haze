@@ -387,11 +387,6 @@ namespace HAZE {
                         color_(color)
                 { init(image); }
 
-                Texture::Texture(const Path &  file,
-                                 const Color & color) :
-                        color_(color)
-                { init(Image(file)); }
-
                 Texture::~Texture()
                 { glDeleteTextures(1, &id_); }
 
