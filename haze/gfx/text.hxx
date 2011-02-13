@@ -31,7 +31,8 @@
 namespace HAZE {
 
         class Text :
-                public NonCopyable {
+                public NonCopyable,
+                public GL::Figure {
         public:
                 Text(const GL::Color &   color = GL::Color());
 
@@ -46,13 +47,12 @@ namespace HAZE {
 
                 Size<size_t> size() const;
 
-                void         draw() const;
-                void         move(const MATH::Point<GLfloat> & where);
+                virtual void draw() const;
+                virtual void move(const MATH::Point<GLfloat> & where);
 
         private:
                 std::vector<GL::Texture *> chars_;
                 GL::Color                  color_;
-                MATH::Point<GLfloat>       where_;
         };
 
 }

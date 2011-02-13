@@ -22,9 +22,9 @@
 
 namespace HAZE {
 
-        Text::Text(const std::string &          message,
-                   const Font &                 font,
-                   const GL::Color &            color) :
+        Text::Text(const std::string & message,
+                   const Font &        font,
+                   const GL::Color &   color) :
                 color_(color)
         { set(font, message); }
 
@@ -32,13 +32,19 @@ namespace HAZE {
         { }
 
         Text::~Text()
-        { }
+        {
+                for (std::vector<GL::Texture *>::iterator i = chars_.begin();
+                     i != chars_.end();
+                     i++) {
+                        delete *i;
+                }
+        }
 
         void Text::move(const MATH::Point<GLfloat> & where)
         {
-                where_ = where;
+                center_ = where;
 
-                MATH::Point<GLfloat> p(where_);
+                MATH::Point<GLfloat> p(center_);
 
                 for (std::vector<GL::Texture *>::const_iterator i =
                              chars_.begin();
