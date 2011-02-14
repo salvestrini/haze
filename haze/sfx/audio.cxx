@@ -48,3 +48,18 @@ size_t Audio::frequency()
 
 size_t Audio::channels()
 { return channels_; }
+
+Music::Music(const Path & file, 
+             size_t       loops)
+    throw(CannotLoad)
+{ }
+
+void Music::play()
+{ }
+
+void Music::stop()
+{ }
+
+void Music::volume()
+{ }
+

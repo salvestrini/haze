@@ -20,7 +20,10 @@
 #ifndef HAZE_SFX_AUDIO
 #define HAZE_SFX_AUDIO
 
+#include <string>
+
 #include "haze/core/exception.hxx"
+#include "haze/core/filesystem.hxx"
 
 namespace HAZE {
         namespace SFX {
@@ -44,6 +47,35 @@ namespace HAZE {
                 private:
                         size_t frequency_;
                         size_t channels_;
+                };
+
+                class Music {
+                public:
+                        class CannotLoad : public Exception {
+                        public:
+                                CannotLoad(const Path &        path,
+                                           const std::string & cause) :
+                                        Exception(std::string("Cannot load ") +
+                                                  std::string(path.c_str())   +
+                                                  (!cause.empty() ?
+                                                   ", " + cause   :
+                                                   ""))
+                                { }
+                        };
+
+                        Music(const Path & file,
+                              size_t       loops = 1)
+                                throw(CannotLoad);
+                        ~Music();
+
+                        void play();
+                        void stop();
+                        void volume();
+
+                private:
+                        size_t loops_;
+                        size_t fade_in;
+                        size_t fade_out;
                 };
         }
 }
