@@ -218,6 +218,8 @@ namespace HAZE {
 
                         virtual void draw() const;
 
+                        // XXX FIXME: Add size_type and size()
+
                 private:
                         Color  color_;
                         GLuint id_;

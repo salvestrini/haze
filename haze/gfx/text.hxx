@@ -34,7 +34,7 @@ namespace HAZE {
                 public NonCopyable,
                 public GL::Figure {
         public:
-                Text(const GL::Color &   color = GL::Color());
+                Text(const GL::Color & color = GL::Color());
 
                 Text(const std::string & message,
                      const Font &        font,
@@ -45,6 +45,7 @@ namespace HAZE {
                 void         set(const Font &        font,
                                  const std::string & message);
 
+                // XXX FIXME: Use size_type
                 Size<size_t> size() const;
 
                 virtual void draw() const;
