@@ -17,11 +17,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#define __STDC_LIMIT_MACROS
-#include <stdint.h>
-
-#include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
+//#define __STDC_LIMIT_MACROS
+//#include <stdint.h>
 
 #include "haze/core/log.hxx"
 #include "haze/sfx/audio.hxx"
@@ -49,17 +46,35 @@ size_t Audio::frequency()
 size_t Audio::channels()
 { return channels_; }
 
-Music::Music(const Path & file, 
-             size_t       loops)
-    throw(CannotLoad)
+Music::Music() :
+        music_(0)
 { }
 
-void Music::play()
+Music::~Music()
+{ stop(); }
+
+void Music::play(const Path & file,
+                 size_t       loops,
+                 milliseconds fade_in)
+{ }
+
+void Music::pause()
+{ }
+
+void Music::resume()
+{ }
+
+void Music::rewind()
 { }
 
 void Music::stop()
 { }
 
-void Music::volume()
+void Music::fade(milliseconds time)
 { }
 
+size_t Music::volume()
+{ return 0; }
+
+void Music::volume(size_t value)
+{ }

@@ -22,6 +22,9 @@
 
 #include <string>
 
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
+
 #include "haze/core/exception.hxx"
 #include "haze/core/filesystem.hxx"
 
@@ -63,20 +66,27 @@ namespace HAZE {
                                 { }
                         };
 
-                        Music(const Path & file,
-                              size_t       loops = 1)
-                                throw(CannotLoad);
+                        Music();
                         ~Music();
 
-                        void play();
-                        void stop();
-                        void volume();
+                        typedef size_t milliseconds;
+
+                        void   play(const Path & file,
+                                    size_t       loops    = -1,
+                                    milliseconds fade_in  = 0);
+                        void   pause();
+                        void   resume();
+                        void   rewind();
+                        void   stop();
+                        void   fade(milliseconds time = 0);
+
+                        void   volume(size_t value);
+                        size_t volume();
 
                 private:
-                        size_t loops_;
-                        size_t fade_in;
-                        size_t fade_out;
+                        Mix_Music * music_;
                 };
+
         }
 }
 
