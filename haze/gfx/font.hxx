@@ -44,14 +44,18 @@ namespace HAZE {
                 Glyphs();
                 ~Glyphs();
 
-                void    clear();
-                void    add(char c, Image * i);
-                void    remove(char c);
+                void                         clear();
+                void                         add(char c, Image * i);
+                void                         remove(char c);
 
-                Image * map(char c) const;
+                Image *                      map(char c) const;
+
+                HAZE::Size<Image::size_type> max_glyph_size() const;
 
         private:
-                std::map<char, Image *> glyphs_;
+                std::map<char, Image *>      glyphs_;
+
+                HAZE::Size<Image::size_type> max_;
         };
 
         class Font :

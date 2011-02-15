@@ -26,14 +26,34 @@ namespace HAZE {
         Glyphs::~Glyphs()
         { }
 
+        HAZE::Size<Image::size_type> Glyphs::max_glyph_size() const
+        { return max_; }
+
         void Glyphs::add(char c, Image * i)
-        { glyphs_[c] = i; }
+        {
+                glyphs_[c] = i;
+
+                max_ = HAZE::max<Image::size_type>(max_, *i);
+        }
 
         void Glyphs::remove(char c)
-        { glyphs_.erase(c); }
+        {
+                glyphs_.erase(c);
+
+                for (std::map<char, Image *>::iterator i = glyphs_.begin();
+                     i != glyphs_.end();
+                     i++) {
+                        max_ = HAZE::max<Image::size_type>(max_,
+                                                           (*i).second->
+                                                           size());
+                }
+        }
 
         void Glyphs::clear()
-        { glyphs_.clear(); }
+        {
+                glyphs_.clear();
+                max_.clear();
+        }
 
         Image * Glyphs::map(char c) const
         {

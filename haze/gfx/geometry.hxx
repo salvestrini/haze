@@ -37,6 +37,8 @@ namespace HAZE {
                 virtual ~Size()
                 { }
 
+                typedef TYPE size_type;
+
                 TYPE width() const
                 { return width_; }
 
@@ -67,10 +69,28 @@ namespace HAZE {
                                                              factor));
                 }
 
+                void clear() {
+                        width_ = height_ = 0;
+                }
+
+                Size<size_t> size() const
+                { return *this; }
+
         private:
                 TYPE width_;
                 TYPE height_;
         };
+
+        template<typename TYPE>
+        Size<TYPE> max(const Size<TYPE> & a,
+                       const Size<TYPE> & b)
+        {
+                // XXX FIXME: What a shame ...
+                return Size<TYPE>(a.width()  > b.width()  ?
+                                  a.width()  : b.width() ,
+                                  a.height() > b.height() ?
+                                  a.height() : b.height());
+        }
 
         template<typename PTYPE = int,
                  typename STYPE = size_t> class Rectangle :
