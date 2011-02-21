@@ -30,7 +30,9 @@ namespace HAZE {
                      size_t height,
                      size_t bpp)
                 throw(CannotInitialize) :
-                surface_(0)
+                surface_(0),
+                flags_(0),
+                bpp_(0)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
@@ -107,7 +109,10 @@ namespace HAZE {
                         throw CannotInitialize(SDL_GetError());
                 }
 
-                DBG("Video set to %d x %d @ %d", width, height, bpp);
+                flags_ = flags;
+                bpp_   = bpp;
+
+                DBG("Video set to %d x %d @ %d", width, height, bpp_);
 
                 initGL();
                 resize(width, height);
@@ -140,14 +145,21 @@ namespace HAZE {
         void Video::resize(size_t width,
                            size_t height)
         {
-                if ((height == 0) || (height == 0)) {
-                        throw CannotResize();
+                if ((width == 0) || (height == 0)) {
+                        throw CannotResize("Wrong dimensions");
+                }
+
+                surface_ = SDL_SetVideoMode(width,
+                                            height,
+                                            bpp_,
+                                            flags_);
+                if (!surface_) {
+                        throw CannotResize(SDL_GetError());
                 }
 
                 glViewport(0, 0,
                            static_cast<GLsizei>(width),
-                           static_cast<GLsizei>(height)
-                           );
+                           static_cast<GLsizei>(height));
 
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
@@ -155,12 +167,9 @@ namespace HAZE {
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
                 // the bottom right hand corner
-                glOrtho(0,
-                        static_cast<GLfloat>(width),
-                        static_cast<GLfloat>(height),
-                        0,
-                        -1,
-                        1);
+                glOrtho(0, static_cast<GLfloat>(width),
+                        static_cast<GLfloat>(height), 0,
+                        -1, 1);
 
                 glMatrixMode(GL_MODELVIEW);
                 glLoadIdentity();

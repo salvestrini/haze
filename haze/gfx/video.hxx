@@ -39,7 +39,11 @@ namespace HAZE {
                                 Exception(what) { }
                 };
 
-                class CannotResize : public Exception { };
+                class CannotResize : public Exception {
+                public:
+                        CannotResize(const std::string what) :
+                                Exception(what) { }
+                };
 
                 Video(size_t width     = VIDEO_DEFAULT_WIDTH,
                       size_t height    = VIDEO_DEFAULT_HEIGHT,
@@ -63,7 +67,11 @@ namespace HAZE {
         private:
                 void initGL();
 
+                // SDL specific
                 SDL_Surface * surface_;
+                Uint32        flags_;
+
+                int           bpp_;
         };
 
 }
