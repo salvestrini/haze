@@ -78,3 +78,80 @@ size_t Music::volume()
 
 void Music::volume(size_t value)
 { }
+
+Sample::Sample()
+{ }
+
+Sample::~Sample()
+{ }
+
+size_t Sample::volume(size_t volume)
+{ return 0; }
+
+Channels::Channels(size_t amount)
+{ }
+
+Channels::~Channels()
+{ }
+
+size_t Channels::allocate(size_t amount)
+{ return 0; }
+
+size_t Channels::reserve(size_t index)
+{ return 0; }
+
+void Channels::play(int          index,
+                    Sample *     sample,
+                    int          loops,
+                    milliseconds fade_in,
+                    milliseconds delay)
+{ }
+
+void Channels::stop(int          index,
+                    milliseconds delay)
+{ }
+
+void Channels::fade(int          index,
+                    milliseconds time)
+{ }
+
+void Channels::pause(int index)
+{ }
+
+void Channels::resume(int index)
+{ }
+
+Groups::Groups(size_t amount)
+{ }
+
+Groups::~Groups()
+{ }
+
+size_t Groups::assign(size_t channel,
+                      int    index)
+{ return 0; }
+
+size_t Groups::assign_range(size_t channels_from,
+                            size_t channels_to,
+                            int    index)
+{ return 0; }
+
+void Groups::stop(int          index,
+                  milliseconds delay)
+{ }
+
+void Groups::fade(int          index,
+                  milliseconds time)
+{ }
+
+size_t Groups::get_count(size_t index)
+{ return 0; }
+
+int Groups::get_available(size_t index)
+{ return 0; }
+
+int Groups::get_oldest(size_t index)
+{ return 0; }
+
+int Groups::get_newer(size_t index)
+{ return 0; }

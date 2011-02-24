@@ -20,7 +20,9 @@
 #ifndef HAZE_SFX_AUDIO
 #define HAZE_SFX_AUDIO
 
+#include <map>
 #include <string>
+#include <vector>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
@@ -87,6 +89,80 @@ namespace HAZE {
                         Mix_Music * music_;
                 };
 
+                class Sample {
+                public:
+                        class CannotLoad : public Exception {
+                        public:
+                                CannotLoad(const Path &        path,
+                                           const std::string & cause) :
+                                        Exception(std::string("Cannot load ") +
+                                                  std::string(path.c_str())   +
+                                                  (!cause.empty() ?
+                                                   ", " + cause   :
+                                                   ""))
+                                { }
+                        };
+
+                        Sample();
+                        ~Sample();
+
+                        size_t volume(size_t volume);
+
+                private:
+                        Mix_Chunk * sample_;
+                        size_t      volume_;
+                };
+
+                class Channels {
+                public:
+                        Channels(size_t amount = 16);
+                        ~Channels();
+
+                        typedef size_t milliseconds;
+
+                        size_t allocate(size_t amount);
+                        size_t reserve(size_t index);
+                        void   play(int          index,
+                                    Sample *     sample,
+                                    int          loops   = -1,
+                                    milliseconds fade_in = 0,
+                                    milliseconds delay   = 0);
+                        void   stop(int          index,
+                                    milliseconds delay = 0);
+                        void   fade(int          index,
+                                    milliseconds time = 0);
+                        void   pause(int index);
+                        void   resume(int index);
+
+                private:
+                        size_t              amount_;
+                        std::vector<size_t> reserved_;
+                };
+
+                class Groups {
+                public:
+                        Groups(size_t amount = 16);
+                        ~Groups();
+
+                        typedef size_t milliseconds;
+
+                        size_t assign(size_t channel,
+                                      int    index);
+                        size_t assign_range(size_t channel_from,
+                                            size_t channel_to,
+                                            int    index);
+                        void   stop(int          index,
+                                    milliseconds delay = 0);
+                        void   fade(int          index,
+                                    milliseconds time = 0);
+                        size_t get_count(size_t index);
+                        int    get_available(size_t index);
+                        int    get_oldest(size_t index);
+                        int    get_newer(size_t index);
+                private:
+                        std::map<size_t, std::vector<size_t> > relations;
+                        std::vector<size_t>                    reserved_;
+                };
         }
 }
 
