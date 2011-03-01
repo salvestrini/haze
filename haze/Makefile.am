@@ -83,8 +83,13 @@ sfx_HDRS =					\
 						\
 	sfx/sfx.hxx
 
-all_SRCS = haze.cxx $(core_SRCS) $(io_SRCS) $(gfx_SRCS) $(sfx_SRCS)
-all_HDRS = haze.hxx $(core_HDRS) $(io_HDRS) $(gfx_HDRS) $(sfx_HDRS)
+all_SRCS =								\
+	haze.cxx							\
+	$(core_SRCS) $(io_SRCS) $(gfx_SRCS) $(sfx_SRCS) $(math_SRCS)
+
+all_HDRS =								\
+	haze.hxx settings.hxx						\
+	$(core_HDRS) $(io_HDRS) $(gfx_HDRS) $(sfx_HDRS) $(math_HDRS)
 
 lib_LTLIBRARIES = libhaze.la
 

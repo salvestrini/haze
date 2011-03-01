@@ -34,7 +34,6 @@ DISTCLEANFILES += AUTHORS
 
 EXTRA_DIST +=					\
 	AUTHORS					\
-	LICENSE					\
 	NEWS					\
 	README					\
 	bootstrap
