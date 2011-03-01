@@ -1,0 +1,12 @@
+*.ac    crlf
+*.in    crlf
+*.am    crlf
+
+*.m4    crlf
+
+*.h     crlf
+*.c     crlf
+*.hxx   crlf
+*.cxx   crlf
+*.h++   crlf
+*.c++   crlf
