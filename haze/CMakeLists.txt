@@ -70,7 +70,11 @@ set(sfx_HDRS
   sfx/sfx.hxx
   )
 
-set(all_SRCS ${core_SRCS} ${io_SRCS} ${gfx_SRCS} ${sfx_SRCS})
-set(all_HDRS ${core_HDRS} ${io_HDRS} ${gfx_HDRS} ${sfx_HDRS})
+set(all_SRCS haze.cxx ${core_SRCS} ${io_SRCS} ${gfx_SRCS} ${sfx_SRCS})
+set(all_HDRS haze.hxx ${core_HDRS} ${io_HDRS} ${gfx_HDRS} ${sfx_HDRS})
 
-add_library(haze STATIC ${all_SRCS} ${all_HDRS})
+add_library(haze ${all_SRCS} ${all_HDRS})
+
+install(TARGETS haze
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib)
