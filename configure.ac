@@ -50,10 +50,6 @@ AC_PROG_CXX_C_O
 LT_PREREQ([2.2.6])
 LT_INIT([disable-shared])
 
-#
-# Configuration related checks
-#
-
 AC_CONFIG_FILES([
         Makefile
 

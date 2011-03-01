@@ -17,3 +17,76 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+
+core_SRCS =					\
+	core/debug.cxx				\
+	core/exception.cxx			\
+	core/filesystem.cxx			\
+	core/log.cxx				\
+	core/pattern.cxx			\
+	core/synchronization.cxx		\
+	core/thread.cxx				\
+	core/time.cxx
+
+core_HDRS =					\
+	core/debug.hxx				\
+	core/exception.hxx			\
+	core/filesystem.hxx			\
+	core/log.hxx				\
+	core/pattern.hxx			\
+	core/synchronization.hxx		\
+	core/thread.hxx				\
+	core/time.hxx				\
+						\
+	core/core.hxx
+
+io_SRCS =					\
+	io/io.cxx
+
+io_HDRS =					\
+	io/io.hxx
+
+math_SRCS =					\
+	math/math.cxx
+
+math_HDRS =					\
+	math/math.hxx
+
+
+gfx_SRCS =					\
+	gfx/video.cxx				\
+	gfx/fps.cxx				\
+	gfx/image.cxx				\
+	gfx/geometry.cxx			\
+	gfx/primitive.cxx			\
+	gfx/camera.cxx				\
+	gfx/font.cxx				\
+	gfx/text.cxx				\
+						\
+	gfx/gfx.hxx
+
+gfx_HDRS =					\
+	gfx/video.hxx				\
+	gfx/fps.hxx				\
+	gfx/image.hxx				\
+	gfx/geometry.hxx			\
+	gfx/primitive.hxx			\
+	gfx/camera.hxx				\
+	gfx/font.hxx				\
+	gfx/text.hxx
+
+sfx_SRCS =					\
+	sfx/audio.cxx
+
+sfx_HDRS =					\
+	sfx/audio.hxx				\
+						\
+	sfx/sfx.hxx
+
+all_SRCS = haze.cxx $(core_SRCS) $(io_SRCS) $(gfx_SRCS) $(sfx_SRCS)
+all_HDRS = haze.hxx $(core_HDRS) $(io_HDRS) $(gfx_HDRS) $(sfx_HDRS)
+
+lib_LTLIBRARIES = libhaze.la
+
+libhaze_la_SOURCES  = $(all_SRCS) $(all_HDRS)
+libhaze_la_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
