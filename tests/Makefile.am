@@ -31,3 +31,39 @@ TESTS       = $(PASS_TESTS) $(FAIL_TESTS)
 XFAIL_TESTS = $(FAIL_TESTS)
 
 check_PROGRAMS = $(PASS_TESTS) $(FAIL_TESTS)
+
+COMMONCPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
+
+noinst_LIBRARIES = libcommon.a
+libcommon_a_SOURCES =				\
+	common.cxx				\
+	common.hxx
+libcommon_a_CPPFLAGS = $(TESTSCPPFLAGS)
+
+TESTSCPPFLAGS = $(COMMONCPPFLAGS) -DDATAPATH='"$(abs_srcdir)"'
+TESTSLDADD    = $(GL_LIBS) $(top_builddir)/haze/libhaze.la libcommon.a
+
+test_core_SOURCES  = test-core.cxx
+test_core_CPPFLAGS = $(TESTSCPPFLAGS)
+test_core_LDADD    = $(TESTSLDADD)
+test_core_LDFLAGS  = 
+
+test_gfx_SOURCES   = test-gfx.cxx
+test_gfx_CPPFLAGS  = $(TESTSCPPFLAGS)
+test_gfx_LDADD     = $(TESTSLDADD)
+test_gfx_LDFLAGS   =
+
+test_sfx_SOURCES   = test-sfx.cxx
+test_sfx_CPPFLAGS  = $(TESTSCPPFLAGS)
+test_sfx_LDADD     = $(TESTSLDADD)
+test_sfx_LDFLAGS   =
+
+test_io_SOURCES    = test-io.cxx
+test_io_CPPFLAGS   = $(TESTSCPPFLAGS)
+test_io_LDADD      = $(TESTSLDADD)
+test_io_LDFLAGS    =
+
+test_all_SOURCES   = test-all.cxx
+test_all_CPPFLAGS  = $(TESTSCPPFLAGS)
+test_all_LDADD     = $(TESTSLDADD)
+test_all_LDFLAGS   =
