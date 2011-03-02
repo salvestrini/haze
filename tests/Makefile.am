@@ -17,3 +17,17 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+
+PASS_TESTS =					\
+	test-core				\
+	test-gfx				\
+	test-sfx				\
+	test-io					\
+	test-all
+
+FAIL_TESTS =
+
+TESTS       = $(PASS_TESTS) $(FAIL_TESTS)
+XFAIL_TESTS = $(FAIL_TESTS)
+
+check_PROGRAMS = $(PASS_TESTS) $(FAIL_TESTS)

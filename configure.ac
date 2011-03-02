@@ -47,6 +47,19 @@ AC_PROG_CXXCPP
 AC_PROG_CXX
 AC_PROG_CXX_C_O
 
+AC_CHECK_LIB([SDL], [ SDL_Init ],, [
+    AC_MSG_ERROR([Your system lacks SDL library])
+],)
+
+AC_CHECK_LIB([SDL_mixer], [ Mix_OpenAudio ],, [
+    AC_MSG_ERROR([Your system lacks SDL_mixer library])
+], [ -lpthread ])
+
+AX_CHECK_GL
+AS_IF([ x"$no_gl" = x"" ],[
+    AC_MSG_ERROR([Cannot find a suitable OpenGL library])
+])
+
 LT_PREREQ([2.2.6])
 LT_INIT([disable-shared])
 
