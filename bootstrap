@@ -24,6 +24,7 @@
 me=bootstrap
 
 echo "${me}: Bootstrapping directory $PWD"
-autoreconf -i -f -Wall -Werror $@ || exit 1
+#autoreconf -i -f -Wall -Werror $@ || exit 1
+autoreconf -i -f -Wall $@ || exit 1
 
 exit 0

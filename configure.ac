@@ -20,7 +20,7 @@
 
 AC_INIT([haze],[m4_esyscmd(build-aux/git-version-gen .tarball-version)],[salvestrini@gmail.com],[haze])
 
-AC_PREREQ([2.61])
+AC_PREREQ([2.65])
 
 AC_CONFIG_HEADERS([haze/config.h])
 AC_CONFIG_SRCDIR([haze/haze.cxx])
@@ -49,6 +49,10 @@ AC_PROG_CXX_C_O
 
 AC_CHECK_LIB([SDL], [ SDL_Init ],, [
     AC_MSG_ERROR([Your system lacks SDL library])
+],)
+
+AC_CHECK_LIB([SDL_image], [ IMG_Init ],, [
+    AC_MSG_ERROR([Your system lacks SDL_image library])
 ],)
 
 AC_CHECK_LIB([SDL_mixer], [ Mix_OpenAudio ],, [
