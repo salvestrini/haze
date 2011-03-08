@@ -34,14 +34,13 @@ check_PROGRAMS = $(PASS_TESTS) $(FAIL_TESTS)
 
 COMMONCPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
 
-noinst_LIBRARIES = libcommon.a
-libcommon_a_SOURCES =				\
-	common.cxx				\
-	common.hxx
-libcommon_a_CPPFLAGS = $(TESTSCPPFLAGS)
+noinst_LIBRARIES     = libcommon.a
 
-TESTSCPPFLAGS = $(COMMONCPPFLAGS) -DDATAPATH='"$(abs_srcdir)"'
-TESTSLDADD    = $(GL_LIBS) $(top_builddir)/haze/libhaze.la libcommon.a
+libcommon_a_SOURCES  = common.cxx common.hxx
+libcommon_a_CPPFLAGS = $(COMMONCPPFLAGS) -DDATAPATH='"$(abs_srcdir)"'
+
+TESTSCPPFLAGS = $(COMMONCPPFLAGS)
+TESTSLDADD    = libcommon.a $(GL_LIBS) $(top_builddir)/haze/libhaze.la
 
 test_core_SOURCES  = test-core.cxx
 test_core_CPPFLAGS = $(TESTSCPPFLAGS)
