@@ -42,8 +42,6 @@ namespace HAZE {
                 SDL_Thread * thread_;
                 std::string  name_;
 
-                void         join();
-
                 static int   run(void * opaque);
         };
 

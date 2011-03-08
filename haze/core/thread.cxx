@@ -37,9 +37,7 @@ namespace HAZE {
 
         Thread::Thread(const std::string & name) :
                 name_(name)
-        {
-                DBG("Thread %s created", name_.c_str());
-        }
+        { DBG("Thread %s created", name_.c_str()); }
 
         void Thread::start()
         {
@@ -54,7 +52,8 @@ namespace HAZE {
                 if (thread_ == 0) {
                         throw Exception(std::string("Unable to "
                                                     "create thread ") +
-                                        name_ +
+                                        name_                         +
+                                        " "                           +
                                         SDL_GetError());
                 }
 
