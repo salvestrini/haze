@@ -16,9 +16,6 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-#include <string>
-
 #include "haze/haze.hxx"
 
 void test(const std::string & datadir)

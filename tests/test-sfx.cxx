@@ -16,19 +16,15 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <cstdlib>
-
 #include <SDL/SDL.h>
 
 #include "haze/haze.hxx"
 
 void test_open(HAZE::SFX::Audio & audio)
-{
-}
+{ }
 
 void test_close(HAZE::SFX::Audio & audio)
-{
-}
+{ }
 
 void test(const std::string & datadir)
 {
