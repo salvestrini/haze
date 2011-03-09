@@ -44,3 +44,14 @@ SUBDIRS =					\
 
 pkgconfigdir   = $(libdir)/pkgconfig
 pkgconfig_DATA = haze.pc
+
+.PHONY: ChangeLog
+ChangeLog:
+	rm -f ChangeLog &&                                                   \
+	$(GIT) log --decorate --format="%aN <%aE>:%d%n  %s%n" --date-order > \
+	        ChangeLog || {                                               \
+	        rm -f ChangeLog ;                                            \
+	        exit 1 ;                                                     \
+	}
+
+EXTRA_DIST += ChangeLog
