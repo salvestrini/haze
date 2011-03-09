@@ -19,14 +19,13 @@
 #ifndef HAZE_GFX_TEXT
 #define HAZE_GFX_TEXT
 
-#include <GL/gl.h>
-
 #include <string>
 #include <vector>
 
-#include "haze/gfx/font.hxx"
 #include "haze/math/math.hxx"
+#include "haze/gfx/font.hxx"
 #include "haze/gfx/primitive.hxx"
+#include "haze/gfx/gl.hxx"
 
 namespace HAZE {
 

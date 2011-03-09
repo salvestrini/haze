@@ -19,9 +19,8 @@
 #ifndef HAZE_GFX_CAMERA
 #define HAZE_GFX_CAMERA
 
-#include <GL/gl.h>
-
 #include "haze/math/math.hxx"
+#include "haze/gfx/gl.hxx"
 
 namespace HAZE {
 

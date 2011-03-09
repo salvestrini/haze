@@ -19,10 +19,9 @@
 #include <string>
 #include <cassert>
 
-#include <GL/gl.h>
-
 #include "haze/core/log.hxx"
 #include "haze/gfx/video.hxx"
+#include "haze/gfx/gl.hxx"
 
 namespace HAZE {
 

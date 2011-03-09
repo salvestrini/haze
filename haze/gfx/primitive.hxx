@@ -19,11 +19,10 @@
 #ifndef HAZE_GFX_PRIMITIVE
 #define HAZE_GFX_PRIMITIVE
 
-#include <GL/gl.h>
-
 #include "haze/core/filesystem.hxx"
 #include "haze/gfx/image.hxx"
 #include "haze/gfx/geometry.hxx"
+#include "haze/gfx/gl.hxx"
 
 namespace HAZE {
 
