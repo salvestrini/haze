@@ -54,6 +54,7 @@ math_HDRS =					\
 
 
 gfx_SRCS =					\
+	gfx/gl.cxx				\
 	gfx/video.cxx				\
 	gfx/fps.cxx				\
 	gfx/image.cxx				\
@@ -66,6 +67,7 @@ gfx_SRCS =					\
 	gfx/gfx.hxx
 
 gfx_HDRS =					\
+	gfx/gl.hxx				\
 	gfx/video.hxx				\
 	gfx/fps.hxx				\
 	gfx/image.hxx				\
@@ -94,4 +96,9 @@ all_HDRS =								\
 lib_LTLIBRARIES = libhaze.la
 
 libhaze_la_SOURCES  = $(all_SRCS) $(all_HDRS)
-libhaze_la_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
+libhaze_la_CPPFLAGS =				\
+	-I$(top_srcdir) -I$(top_builddir)	\
+	$(SDL_CFLAGS)				\
+	$(SDL_IMAGE_CFLAGS)			\
+	$(SDL_MIXER_CFLAGS)			\
+	$(GL_CFLAGS)
