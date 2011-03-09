@@ -6,5 +6,5 @@ includedir=@includedir@
 Name: Haze
 Description: Haze library
 Version: @VERSION@
-Libs: -L${libdir}
-Cflags: -I${includedir}
+Libs: -L${libdir} @SDL_LIBS@ @SDL_IMAGE_LIBS@ @SDL_MIXER_LIBS@ @GL_LIBS@ @GL_LIBS@
+Cflags: -I${includedir} @SDL_CFLAGS@ @SDL_IMAGE_CFLAGS@ @SDL_MIXER_CFLAGS@ @GL_CFLAGS@ @GL_CFLAGS@
