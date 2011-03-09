@@ -27,20 +27,33 @@ PASS_TESTS =					\
 
 FAIL_TESTS =
 
-TESTS       = $(PASS_TESTS) $(FAIL_TESTS)
-XFAIL_TESTS = $(FAIL_TESTS)
+#TESTS       = $(PASS_TESTS) $(FAIL_TESTS)
+#XFAIL_TESTS = $(FAIL_TESTS)
+#
+#check_PROGRAMS = $(TESTS)
 
-check_PROGRAMS = $(PASS_TESTS) $(FAIL_TESTS)
+noinst_PROGRAMS = $(PASS_TESTS)
 
 COMMONCPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
 
 noinst_LIBRARIES     = libcommon.a
 
-libcommon_a_SOURCES  = common.cxx common.hxx
+libcommon_a_SOURCES  = common.cxx
 libcommon_a_CPPFLAGS = $(COMMONCPPFLAGS) -DDATAPATH='"$(abs_srcdir)"'
 
-TESTSCPPFLAGS = $(COMMONCPPFLAGS)
-TESTSLDADD    = libcommon.a $(GL_LIBS) $(top_builddir)/haze/libhaze.la
+TESTSCPPFLAGS =					\
+	$(SDL_CFLAGS)				\
+	$(SDL_IMAGE_CFLAGS)			\
+	$(SDL_MIXER_CFLAGS)			\
+	$(GL_CFLAGS)				\
+	$(COMMONCPPFLAGS)
+TESTSLDADD    =					\
+	$(SDL_LIBS)				\
+	$(SDL_IMAGE_LIBS)			\
+	$(SDL_MIXER_LIBS)			\
+	$(GL_LIBS)				\
+	libcommon.a				\
+	$(top_builddir)/haze/libhaze.la
 
 test_core_SOURCES  = test-core.cxx
 test_core_CPPFLAGS = $(TESTSCPPFLAGS)

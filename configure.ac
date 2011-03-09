@@ -50,14 +50,20 @@ AC_PROG_CXX_C_O
 AC_CHECK_LIB([SDL], [ SDL_Init ],, [
     AC_MSG_ERROR([Your system lacks SDL library])
 ],)
+AC_SUBST([SDL_LIBS],  [-lSDL])
+AC_SUBST([SDL_CFLAGS],[])
 
 AC_CHECK_LIB([SDL_image], [ IMG_Init ],, [
     AC_MSG_ERROR([Your system lacks SDL_image library])
 ],)
+AC_SUBST([SDL_IMAGE_LIBS],  [-lSDL_image])
+AC_SUBST([SDL_IMAGE_CFLAGS],[])
 
 AC_CHECK_LIB([SDL_mixer], [ Mix_OpenAudio ],, [
     AC_MSG_ERROR([Your system lacks SDL_mixer library])
 ], [ -lpthread ])
+AC_SUBST([SDL_MIXER_LIBS],  [-lSDL_mixer])
+AC_SUBST([SDL_MIXER_CFLAGS],[])
 
 AX_CHECK_GL
 AS_IF([ x"$no_gl" = x"" ],[
