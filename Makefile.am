@@ -30,20 +30,8 @@ AUTHORS:
 		exit 1 ;						   \
         }
 
+EXTRA_DIST     += AUTHORS
 DISTCLEANFILES += AUTHORS
-
-EXTRA_DIST +=					\
-	AUTHORS					\
-	NEWS					\
-	README					\
-	bootstrap
-
-SUBDIRS =					\
-	haze					\
-	tests
-
-pkgconfigdir   = $(libdir)/pkgconfig
-pkgconfig_DATA = haze.pc
 
 .PHONY: ChangeLog
 ChangeLog:
@@ -54,4 +42,17 @@ ChangeLog:
 	        exit 1 ;                                                     \
 	}
 
-EXTRA_DIST += ChangeLog
+EXTRA_DIST     += ChangeLog
+DISTCLEANFILES += ChangeLog
+
+EXTRA_DIST +=					\
+	NEWS					\
+	README					\
+	bootstrap
+
+SUBDIRS =					\
+	haze					\
+	tests
+
+pkgconfigdir   = $(libdir)/pkgconfig
+pkgconfig_DATA = haze.pc
