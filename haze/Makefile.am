@@ -62,9 +62,7 @@ gfx_SRCS =					\
 	gfx/primitive.cxx			\
 	gfx/camera.cxx				\
 	gfx/font.cxx				\
-	gfx/text.cxx				\
-						\
-	gfx/gfx.hxx
+	gfx/text.cxx
 
 gfx_HDRS =					\
 	gfx/gl.hxx				\
@@ -75,7 +73,9 @@ gfx_HDRS =					\
 	gfx/primitive.hxx			\
 	gfx/camera.hxx				\
 	gfx/font.hxx				\
-	gfx/text.hxx
+	gfx/text.hxx				\
+						\
+	gfx/gfx.hxx
 
 sfx_SRCS =					\
 	sfx/audio.cxx
@@ -93,11 +93,13 @@ all_HDRS =								\
 	haze.hxx settings.hxx						\
 	$(core_HDRS) $(io_HDRS) $(gfx_HDRS) $(sfx_HDRS) $(math_HDRS)
 
+nobase_pkginclude_HEADERS = $(all_HDRS)
 lib_LTLIBRARIES = libhaze.la
 
 libhaze_la_SOURCES  = $(all_SRCS) $(all_HDRS)
 libhaze_la_CPPFLAGS =				\
 	-I$(top_srcdir) -I$(top_builddir)	\
+	-Wall -Werror				\
 	$(SDL_CFLAGS)				\
 	$(SDL_IMAGE_CFLAGS)			\
 	$(SDL_MIXER_CFLAGS)			\
