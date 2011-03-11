@@ -47,28 +47,39 @@ AC_PROG_CXXCPP
 AC_PROG_CXX
 AC_PROG_CXX_C_O
 
-AC_CHECK_LIB([SDL], [ SDL_Init ],, [
+AC_SEARCH_LIBS([SDL_Init], [SDL],[
+    AC_SUBST([SDL_LIBS],  [-lSDL])
+    AC_SUBST([SDL_CFLAGS],[])
+],[
     AC_MSG_ERROR([Your system lacks SDL library])
 ],)
-AC_SUBST([SDL_LIBS],  [-lSDL])
-AC_SUBST([SDL_CFLAGS],[])
 
-AC_CHECK_LIB([SDL_image], [ IMG_Init ],, [
+AC_SEARCH_LIBS([IMG_Init], [SDL_image],[
+    AC_SUBST([SDL_IMAGE_LIBS],  [-lSDL_image])
+    AC_SUBST([SDL_IMAGE_CFLAGS],[])
+], [
     AC_MSG_ERROR([Your system lacks SDL_image library])
 ],)
-AC_SUBST([SDL_IMAGE_LIBS],  [-lSDL_image])
-AC_SUBST([SDL_IMAGE_CFLAGS],[])
 
-AC_CHECK_LIB([SDL_mixer], [ Mix_OpenAudio ],, [
+AC_SEARCH_LIBS([Mix_OpenAudio], [SDL_mixer], [
+    AC_SUBST([SDL_MIXER_LIBS],  [-lSDL_mixer])
+    AC_SUBST([SDL_MIXER_CFLAGS],[])
+],[
     AC_MSG_ERROR([Your system lacks SDL_mixer library])
 ], [ -lpthread ])
-AC_SUBST([SDL_MIXER_LIBS],  [-lSDL_mixer])
-AC_SUBST([SDL_MIXER_CFLAGS],[])
 
 AX_CHECK_GL
 AS_IF([ x"$no_gl" = x"" ],[
     AC_MSG_ERROR([Cannot find a suitable OpenGL library])
 ])
+
+#AH_TOP([
+##ifndef CONFIG_H
+##define CONFIG_H
+#])
+#AH_BOTTOM([
+##endif
+#])
 
 LT_PREREQ([2.2.6])
 LT_INIT([disable-shared])
