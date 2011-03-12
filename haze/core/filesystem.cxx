@@ -28,7 +28,11 @@ namespace HAZE {
         { }
 
         Path Path::basename(const std::string & suffix)
-        { return Path(path_); }
+        {
+                // XXX FIXME: Add code here
+                (void) suffix;
+                return Path(path_);
+        }
  
         Path Path::dirname()
         { return Path(path_); }
