@@ -144,11 +144,16 @@ namespace HAZE {
 
                 void Segment::move(const MATH::Point<GLfloat> & where)
                 {
+                        // XXX FIXME: Add code here
+                        (void) where;
                         //where_ = where;
                 }
 
                 void Segment::rotate(GLfloat radians)
                 {
+                        // XXX FIXME: Add code here
+                        (void) radians;
+
                         //angle_ = MATH::radians2angle<GLfloat>(radians);
                 }
 

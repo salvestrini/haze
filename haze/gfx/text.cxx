@@ -28,7 +28,8 @@ namespace HAZE {
                 color_(color)
         { set(font, message); }
 
-        Text::Text(const GL::Color & color)
+        Text::Text(const GL::Color & color) :
+                color_(color)
         { }
 
         Text::~Text()

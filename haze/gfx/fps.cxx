@@ -23,7 +23,9 @@ namespace HAZE {
         FPS::FPS(size_t fps)
         {
                 manager_ = new FPSmanager;
+
                 SDL_initFramerate(manager_);
+                SDL_setFramerate(manager_, fps);
         }
 
         FPS::~FPS()
@@ -41,7 +43,7 @@ namespace HAZE {
                 return SDL_getFramerate(manager_);
         }
 
-        void  FPS:: compensate()
+        void  FPS::compensate()
         {
                 SDL_framerateDelay(manager_);
         }
