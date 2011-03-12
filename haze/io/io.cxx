@@ -108,12 +108,17 @@ Event * EventManager::poll()
                         KeyPress::Key k;
 
                         switch (event_.key.keysym.sym) {
-                        case SDLK_UP:    k = KeyPress::ARROW_UP;    break;
-                        case SDLK_DOWN:  k = KeyPress::ARROW_DOWN;  break;
-                        case SDLK_LEFT:  k = KeyPress::ARROW_LEFT;  break;
-                        case SDLK_RIGHT: k = KeyPress::ARROW_RIGHT; break;
-                        case SDLK_SPACE: k = KeyPress::SPACEBAR;    break;
-                        default:
+                                case SDLK_UP:    k = KeyPress::ARROW_UP;
+                                        break;
+                                case SDLK_DOWN:  k = KeyPress::ARROW_DOWN;
+                                        break;
+                                case SDLK_LEFT:  k = KeyPress::ARROW_LEFT;
+                                        break;
+                                case SDLK_RIGHT: k = KeyPress::ARROW_RIGHT;
+                                        break;
+                                case SDLK_SPACE: k = KeyPress::SPACEBAR;
+                                        break;
+                                default:
                                 return tmp;
                         }
 
