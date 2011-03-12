@@ -21,8 +21,6 @@
 
 #include <cstdio>
 
-#include "haze/settings.hxx"
-
 extern const char * prefix_;
 
 #define LOG_SETPREFIX(X) { prefix_ = X; }
