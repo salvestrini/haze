@@ -104,3 +104,13 @@ libhaze_la_CPPFLAGS =				\
 	$(SDL_IMAGE_CFLAGS)			\
 	$(SDL_MIXER_CFLAGS)			\
 	$(GL_CFLAGS)
+
+check-includes-config-h:
+	$(GREP) include $(nobase_pkginclude_HEADERS) | $(GREP) config\.h || { \
+		echo "Do not include config.h into installed headers !!!" ;   \
+		exit 1 ;						      \
+	}
+
+check-includes: check-includes-config-h
+
+check-local: check-includes
