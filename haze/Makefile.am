@@ -99,7 +99,7 @@ lib_LTLIBRARIES = libhaze.la
 libhaze_la_SOURCES  = $(all_SRCS) $(all_HDRS)
 libhaze_la_CPPFLAGS =				\
 	-I$(top_srcdir) -I$(top_builddir)	\
-	-Wall -Werror				\
+	$(TEMP_CPPFLAGS)			\
 	$(SDL_CFLAGS)				\
 	$(SDL_IMAGE_CFLAGS)			\
 	$(SDL_MIXER_CFLAGS)			\
