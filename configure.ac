@@ -81,6 +81,55 @@ AS_IF([ x"$no_gl" = x"" ],[
 ##endif
 #])
 
+# C Preprocessor flags
+TEMP_CPPFLAGS=""
+AX_CPP_CHECK_FLAG([-W],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -W"
+])
+AX_CPP_CHECK_FLAG([-Wall],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wall"
+])
+AX_CPP_CHECK_FLAG([-Werror],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Werror"
+])
+AX_CPP_CHECK_FLAG([-Wendif-labels],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wendif-labels"
+])
+AX_CPP_CHECK_FLAG([-Wcast-align],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wcast-align"
+])
+AX_CPP_CHECK_FLAG([-Wredundant-decls],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wredundant-decls"
+])
+AX_CPP_CHECK_FLAG([-Wswitch],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wswitch"
+])
+AX_CPP_CHECK_FLAG([-Wparentheses],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wparentheses"
+])
+AX_CPP_CHECK_FLAG([-Wimplicit],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wimplicit"
+])
+AX_CPP_CHECK_FLAG([-Wunused],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wunused"
+])
+AX_CPP_CHECK_FLAG([-Wmissing-braces],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wmissing-braces"
+])
+AX_CPP_CHECK_FLAG([-Wreturn-type],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wreturn-type"
+])
+AX_CPP_CHECK_FLAG([-Wundef],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wundef"
+])
+AX_CPP_CHECK_FLAG([-Wswitch-default],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wswitch-default"
+])
+AX_CPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wchar-subscripts"
+])
+AC_SUBST([TEMP_CPPFLAGS], ["$TEMP_CPPFLAGS"])
+
 LT_PREREQ([2.2.6])
 LT_INIT([disable-shared])
 
