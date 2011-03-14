@@ -85,13 +85,29 @@ sfx_HDRS =					\
 						\
 	sfx/sfx.hxx
 
-all_SRCS =								\
-	haze.cxx							\
-	$(core_SRCS) $(io_SRCS) $(gfx_SRCS) $(sfx_SRCS) $(math_SRCS)
+misc_SRCS =					\
+	haze.cxx
 
-all_HDRS =								\
-	haze.hxx settings.hxx						\
-	$(core_HDRS) $(io_HDRS) $(gfx_HDRS) $(sfx_HDRS) $(math_HDRS)
+misc_HDRS =					\
+	haze.hxx				\
+	haze-config.h				\
+	settings.hxx
+
+all_SRCS =					\
+	$(misc_SRCS)				\
+	$(core_SRCS)				\
+	$(io_SRCS)				\
+	$(gfx_SRCS)				\
+	$(sfx_SRCS)				\
+	$(math_SRCS)
+
+all_HDRS =					\
+	$(misc_HDRS)				\
+	$(core_HDRS)				\
+	$(io_HDRS)				\
+	$(gfx_HDRS)				\
+	$(sfx_HDRS)				\
+	$(math_HDRS)
 
 nobase_pkginclude_HEADERS = $(all_HDRS)
 lib_LTLIBRARIES = libhaze.la
@@ -101,15 +117,21 @@ libhaze_la_CPPFLAGS =				\
 	-I$(top_srcdir) -I$(top_builddir)	\
 	$(TEMP_CPPFLAGS)			\
 	$(SDL_CFLAGS)				\
+	$(SDL_GFX_CFLAGS)			\
 	$(SDL_IMAGE_CFLAGS)			\
 	$(SDL_MIXER_CFLAGS)			\
 	$(GL_CFLAGS)
 
+DISTCLEANFILES = haze-config.h
+
 check-includes-config-h:
-	$(GREP) include $(nobase_pkginclude_HEADERS) | $(GREP) config\.h || { \
-		echo "Do not include config.h into installed headers !!!" ;   \
-		exit 1 ;						      \
-	}
+	for i in `$(GREP) -l "^[ \t]*\#[ \t]*include[ \t]\+" $(nobase_pkginclude_HEADERS)` ; do				\
+		echo "Checking $$i" ;											\
+		if $(GREP) "\"config\.h\"" $$i ; then									\
+			echo "Do not include config.h into $$i (installed header), use haze-config.h instead !!!" ;	\
+			exit 1 ;											\
+		fi ;													\
+	done
 
 check-includes: check-includes-config-h
 
