@@ -101,6 +101,8 @@ void test(const std::string & datadir)
                                    8,
                                    false);
 
+        FPS::FPS fps(30);
+
         //
         // Main loop
         //
@@ -174,6 +176,8 @@ void test(const std::string & datadir)
                 x++;
                 y++;
                 angle++;
+
+                (void) fps.rate();
 
                 IO::Event * e = io.poll();
                 if (e) {

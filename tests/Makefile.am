@@ -43,12 +43,14 @@ libcommon_a_CPPFLAGS = $(COMMONCPPFLAGS) -DDATAPATH='"$(abs_srcdir)"'
 
 TESTSCPPFLAGS =					\
 	$(SDL_CFLAGS)				\
+	$(SDL_GFX_CFLAGS)			\
 	$(SDL_IMAGE_CFLAGS)			\
 	$(SDL_MIXER_CFLAGS)			\
 	$(GL_CFLAGS)				\
 	$(COMMONCPPFLAGS)
 TESTSLDADD    =					\
 	$(SDL_LIBS)				\
+	$(SDL_GFX_LIBS)				\
 	$(SDL_IMAGE_LIBS)			\
 	$(SDL_MIXER_LIBS)			\
 	$(GL_LIBS)				\
