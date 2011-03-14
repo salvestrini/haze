@@ -21,3 +21,5 @@ Makefile.in
 
 /AUTHORS
 /ChangeLog
+
+/_configs.sed
