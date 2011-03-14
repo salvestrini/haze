@@ -31,7 +31,7 @@ AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
 
-AM_INIT_AUTOMAKE([1.10 foreign no-installman no-installinfo -Wall])
+AM_INIT_AUTOMAKE([1.11 foreign no-installman no-installinfo -Wall])
 
 AC_PROG_SED
 AC_PROG_GREP
@@ -52,30 +52,38 @@ AC_SEARCH_LIBS([SDL_Init], [SDL],[
     AC_SUBST([SDL_CFLAGS],[])
 ],[
     AC_MSG_ERROR([Your system lacks SDL library])
-],)
+],[])
+
+AC_SEARCH_LIBS([SDL_initFramerate], [SDL_gfx],[
+    AC_SUBST([SDL_GFX_LIBS],  [-lSDL_gfx])
+    AC_SUBST([SDL_GFX_CFLAGS],[])
+], [
+    AC_MSG_ERROR([Your system lacks SDL_image library])
+],[-lSDL])
 
 AC_SEARCH_LIBS([IMG_Init], [SDL_image],[
     AC_SUBST([SDL_IMAGE_LIBS],  [-lSDL_image])
     AC_SUBST([SDL_IMAGE_CFLAGS],[])
 ], [
     AC_MSG_ERROR([Your system lacks SDL_image library])
-],)
+],[-lSDL])
 
 AC_SEARCH_LIBS([Mix_OpenAudio], [SDL_mixer], [
     AC_SUBST([SDL_MIXER_LIBS],  [-lSDL_mixer])
     AC_SUBST([SDL_MIXER_CFLAGS],[])
 ],[
     AC_MSG_ERROR([Your system lacks SDL_mixer library])
-], [ -lpthread ])
+], [-lSDL])
 
 AX_CHECK_GL
-AS_IF([ x"$no_gl" = x"" ],[
+AS_IF([test x"$no_gl" = x"yes" ],[
     AC_MSG_ERROR([Cannot find a suitable OpenGL library])
 ])
 
+AX_PREFIX_CONFIG_H([haze/haze-config.h], [HAZE], [haze/config.h])
 #AH_TOP([
-##ifndef CONFIG_H
-##define CONFIG_H
+##ifndef HAZE_CONFIG_H
+##define HAZE_CONFIG_H
 #])
 #AH_BOTTOM([
 ##endif
@@ -131,7 +139,8 @@ AX_CPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
 AC_SUBST([TEMP_CPPFLAGS], ["$TEMP_CPPFLAGS"])
 
 LT_PREREQ([2.2.6])
-LT_INIT([disable-shared])
+#LT_INIT([disable-shared])
+LT_INIT
 
 AC_CONFIG_FILES([
         Makefile
