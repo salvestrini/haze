@@ -29,23 +29,15 @@ namespace HAZE {
         }
 
         FPS::~FPS()
-        {
-                delete manager_;
-        }
+        { delete manager_; }
 
         void FPS::rate(size_t value)
-        {
-                SDL_setFramerate(manager_, value);
-        }
+        { SDL_setFramerate(manager_, value); }
 
         size_t FPS::rate(void)
-        {
-                return SDL_getFramerate(manager_);
-        }
+        { return SDL_getFramerate(manager_); }
 
         void  FPS::compensate()
-        {
-                SDL_framerateDelay(manager_);
-        }
+        { SDL_framerateDelay(manager_); }
 
 }
