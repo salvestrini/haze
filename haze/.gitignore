@@ -7,3 +7,5 @@
 *.a
 *.lo
 *.la
+
+/haze-config.h
