@@ -54,5 +54,7 @@ SUBDIRS =					\
 	haze					\
 	tests
 
+DISTCLEANFILES += _configs.sed
+
 pkgconfigdir   = $(libdir)/pkgconfig
 pkgconfig_DATA = haze.pc
