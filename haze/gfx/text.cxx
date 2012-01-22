@@ -99,7 +99,8 @@ namespace HAZE {
                      i != chars_.end();
                      i++) {
                         t.width(t.width() + (*i)->width());
-                        t.height(std::max(t.height(), (*i)->height()));
+                        t.height(std::max(t.height(),
+                                          static_cast<size_t>((*i)->height())));
                 }
 
                 return t;

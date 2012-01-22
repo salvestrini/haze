@@ -19,6 +19,7 @@
 #ifndef HAZE_GFX_GEOMETRY
 #define HAZE_GFX_GEOMETRY
 
+#include <cstdlib>
 #include <cmath>
 #include <utility>
 

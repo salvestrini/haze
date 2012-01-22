@@ -60,7 +60,7 @@ TESTSLDADD    =					\
 test_core_SOURCES  = test-core.cxx
 test_core_CPPFLAGS = $(TESTSCPPFLAGS)
 test_core_LDADD    = $(TESTSLDADD)
-test_core_LDFLAGS  = 
+test_core_LDFLAGS  =
 
 test_gfx_SOURCES   = test-gfx.cxx
 test_gfx_CPPFLAGS  = $(TESTSCPPFLAGS)

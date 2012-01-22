@@ -39,7 +39,7 @@ namespace HAZE {
                         }
                 }
 
-                DBG("Initializing video %d x %d @ %d", width, height, bpp);
+                DBG("Initializing video %ld x %ld @ %ld", width, height, bpp);
 
                 const SDL_VideoInfo * info = SDL_GetVideoInfo();
                 if (!info) {
@@ -74,7 +74,7 @@ namespace HAZE {
                 // XXX FIXME: Ugly ...
                 if (static_cast<size_t>(closest) != bpp) {
                         bpp = closest;
-                        DBG("Closest video mode is %d bpp", bpp);
+                        DBG("Closest video mode is %ld bpp", bpp);
                 }
 
                 // Set the GL attributes
@@ -111,7 +111,7 @@ namespace HAZE {
                 flags_ = flags;
                 bpp_   = bpp;
 
-                DBG("Video set to %d x %d @ %d", width, height, bpp_);
+                DBG("Video set to %ld x %ld @ %ld", width, height, bpp_);
 
                 initGL();
                 resize(width, height);

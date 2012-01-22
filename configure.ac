@@ -75,10 +75,16 @@ AC_SEARCH_LIBS([Mix_OpenAudio], [SDL_mixer], [
     AC_MSG_ERROR([Your system lacks SDL_mixer library])
 ], [-lSDL])
 
-AX_CHECK_GL
-AS_IF([test x"$no_gl" = x"yes" ],[
+AX_HAVE_GL
+AS_IF([test x"$have_GL" = x"no" ],[
     AC_MSG_ERROR([Cannot find a suitable OpenGL library])
+],[
+     AC_DEFINE([HAVE_GL], [1], [Define to 1 if GL libraries are available])
 ])
+#AX_CHECK_GL
+#AS_IF([test x"$no_gl" = x"yes" ],[
+#    AC_MSG_ERROR([Cannot find a suitable OpenGL library])
+#])
 
 AX_PREFIX_CONFIG_H([haze/haze-config.h], [HAZE], [haze/config.h])
 #AH_TOP([
@@ -114,9 +120,6 @@ AX_CPP_CHECK_FLAG([-Wswitch],[],[],[
 ])
 AX_CPP_CHECK_FLAG([-Wparentheses],[],[],[
   TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wparentheses"
-])
-AX_CPP_CHECK_FLAG([-Wimplicit],[],[],[
-  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wimplicit"
 ])
 AX_CPP_CHECK_FLAG([-Wunused],[],[],[
   TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wunused"

@@ -71,7 +71,7 @@ namespace HAZE {
                 SDL_Surface * surface_;
                 Uint32        flags_;
 
-                int           bpp_;
+                size_t        bpp_;
         };
 
 }
