@@ -16,28 +16,61 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <SDL/SDL.h>
+
 #include "haze/gfx/fps.hxx"
 
 namespace HAZE {
 
         FPS::FPS(size_t fps)
         {
-                manager_ = new FPSmanager;
+                framecount_ = 0;
+                rate_       = FPS_DEFAULT;
+                rateticks_  = (1000.0f / (float) FPS_DEFAULT);
+                lastticks_  = SDL_GetTicks();
 
-                SDL_initFramerate(manager_);
-                SDL_setFramerate(manager_, fps);
+                rate(fps);
         }
 
         FPS::~FPS()
-        { delete manager_; }
+        { }
 
         void FPS::rate(size_t value)
-        { SDL_setFramerate(manager_, value); }
+        {
+                if (value < FPS_LOWER_LIMIT) {
+                        rate_ = FPS_LOWER_LIMIT;
+                } else if (value > FPS_UPPER_LIMIT) {
+                        rate_ = FPS_UPPER_LIMIT;
+                } else {
+                        rate_ = value;
+                }
+
+                framecount_ = 0;
+                rateticks_  = (1000.0f / (float) rate_);
+        }
 
         size_t FPS::rate(void)
-        { return SDL_getFramerate(manager_); }
+        { return rate_; }
 
         void  FPS::compensate()
-        { SDL_framerateDelay(manager_); }
+        {
+                Uint32 current_ticks;
+                Uint32 target_ticks;
+                Uint32 the_delay;
+
+                framecount_++;
+
+                current_ticks = SDL_GetTicks();
+                target_ticks  = lastticks_ +
+                        (Uint32) ((float) framecount_ * rateticks_);
+
+                if (current_ticks <= target_ticks) {
+                        the_delay = target_ticks - current_ticks;
+                        SDL_Delay(the_delay);
+                } else {
+                        framecount_ = 0;
+                        lastticks_  = SDL_GetTicks();
+                }
+        }
 
 }

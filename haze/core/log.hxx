@@ -28,12 +28,12 @@ extern const char * prefix_;
 #define LOG_SETPREFIX(X) { prefix_ = X; }
 
 #if DEBUG
-#define DBG(FMT, ARGS...) fprintf(stdout, "%s: " FMT "\n", prefix_, ##ARGS)
+#define DBG(FMT, ...) fprintf(stdout, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
 #else
-#define DBG(FMT, ARGS...)
+#define DBG(FMT, ...)
 #endif
 
-#define WRN(FMT, ARGS...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##ARGS)
-#define ERR(FMT, ARGS...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##ARGS)
+#define WRN(FMT, ...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
+#define ERR(FMT, ...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
 
 #endif

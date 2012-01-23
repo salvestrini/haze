@@ -19,6 +19,6 @@
 #ifndef CONFIG_HXX
 #define CONFIG_HXX
 
-#define DATAPATH "${CMAKE_CURRENT_SOURCE_DIR}"
+#define DATAPATH "@CMAKE_CURRENT_SOURCE_DIR@"
 
 #endif

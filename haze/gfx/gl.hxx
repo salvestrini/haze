@@ -19,16 +19,12 @@
 #ifndef HAZE_GFX_GL
 #define HAZE_GFX_GL
 
-#include "haze/haze-config.h"
+#include "haze/config.h"
 
-#if HAZE_HAVE_GL_GL_H
- #include <GL/gl.h>
+#if OPENGL_FOUND
+  #include <GL/gl.h>
 #else
- #if HAVE_HAVE_OPENGL_GL_H
- #include <OpenGL/gl.h>
- #else
-#error I have no GL header to use ...
- #endif
+  #error I have no GL header to use ...
 #endif
 
 #endif

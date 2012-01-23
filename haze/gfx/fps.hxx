@@ -19,13 +19,17 @@
 #ifndef HAZE_GFX_FPS
 #define HAZE_GFX_FPS
 
-#include <SDL/SDL_framerate.h>
+#include <cstdlib>
 
 namespace HAZE {
 
+#define FPS_UPPER_LIMIT 100
+#define FPS_LOWER_LIMIT 1
+#define FPS_DEFAULT     30
+
         class FPS {
         public:
-                FPS(size_t fps);
+                FPS(size_t fps = FPS_DEFAULT);
                 ~FPS();
 
                 void   rate(size_t value);
@@ -34,7 +38,10 @@ namespace HAZE {
                 void   compensate();
 
         private:
-                FPSmanager * manager_;
+                Uint32 framecount_;
+                float  rateticks_;
+                Uint32 lastticks_;
+                Uint32 rate_;
         };
 
 }

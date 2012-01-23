@@ -21,7 +21,7 @@
 
 #include "haze/haze.hxx"
 
-#include "config.h"
+#include "config.hxx"
 
 extern void test(const std::string & datapath);
 

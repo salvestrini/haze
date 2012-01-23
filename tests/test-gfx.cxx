@@ -32,7 +32,7 @@ void test(const std::string & datadir)
 
         Image glyphs(Path(datadir + "font.png"));
 
-        DBG("Glyphs image is %d x %d", glyphs.width(), glyphs.height());
+        DBG("Glyphs image is %lu x %lu", glyphs.width(), glyphs.height());
 
         // Font image is 16x16 chars
         Rectangle<size_t, size_t> rectangle(0,
@@ -101,7 +101,7 @@ void test(const std::string & datadir)
                                    8,
                                    false);
 
-        FPS::FPS fps(30);
+        FPS fps(30);
 
         //
         // Main loop
