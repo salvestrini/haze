@@ -43,6 +43,8 @@ namespace HAZE {
                         virtual ~Point()
                         { }
 
+                        typedef TYPE size_type;
+
                         TYPE  x() const { return x_; }
                         TYPE  y() const { return y_; }
 
@@ -77,6 +79,8 @@ namespace HAZE {
                         virtual ~Rectangle()
                         { }
 
+                        typedef TYPE size_type;
+
                         virtual TYPE width() const
                         { return std::abs(to_.x() - from_.x()); }
 
@@ -100,6 +104,8 @@ namespace HAZE {
 
                         virtual ~Vector()
                         { }
+
+                        typedef TYPE size_type;
 
                         TYPE  x() const { return x_; }
                         TYPE  y() const { return y_; }
