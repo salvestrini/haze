@@ -27,8 +27,7 @@ namespace HAZE {
 
         Video::Video(size_t width,
                      size_t height,
-                     size_t bpp)
-                throw(CannotInitialize) :
+                     size_t bpp) :
                 surface_(0),
                 flags_(0),
                 bpp_(0)

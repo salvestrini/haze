@@ -28,7 +28,7 @@ namespace HAZE {
 
         class NonCopyable {
         public:
-                NonCopyable() { };
+                NonCopyable()  { };
                 ~NonCopyable() { };
 
         private:
@@ -46,7 +46,7 @@ namespace HAZE {
                 int count_;
         };
 
-        template <typename T> class SmartPointer {
+        template<typename T> class SmartPointer {
         public:
                 SmartPointer() :
                         data_(0), reference_(0) {

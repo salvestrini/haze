@@ -23,6 +23,7 @@
 
 #include <SDL/SDL.h>
 
+#include "haze/core/pattern.hxx"
 #include "haze/core/exception.hxx"
 
 namespace HAZE {
@@ -31,7 +32,7 @@ namespace HAZE {
 #define VIDEO_DEFAULT_HEIGHT    480
 #define VIDEO_DEFAULT_BPP        32
 
-        class Video {
+        class Video : public NonCopyable {
         public:
                 class CannotInitialize : public Exception {
                 public:
@@ -45,10 +46,9 @@ namespace HAZE {
                                 Exception(what) { }
                 };
 
-                Video(size_t width     = VIDEO_DEFAULT_WIDTH,
-                      size_t height    = VIDEO_DEFAULT_HEIGHT,
-                      size_t bpp       = VIDEO_DEFAULT_BPP)
-                        throw(CannotInitialize);
+                Video(size_t width  = VIDEO_DEFAULT_WIDTH,
+                      size_t height = VIDEO_DEFAULT_HEIGHT,
+                      size_t bpp    = VIDEO_DEFAULT_BPP);
                 virtual ~Video();
 
                 typedef size_t size_type;
@@ -61,8 +61,8 @@ namespace HAZE {
                 size_t height();
                 size_t bpp();
 
-                void         clear();
-                void         update();
+                void   clear();
+                void   update();
 
         private:
                 void initGL();
