@@ -32,6 +32,8 @@ void test(const std::string & datadir)
 
         Video video;
 
+        Camera camera;
+
         Image glyphs(Path(datadir + "font.png"));
 
         DBG("Glyphs image is %lu x %lu", glyphs.width(), glyphs.height());
@@ -49,7 +51,8 @@ void test(const std::string & datadir)
         for (int y = 0; y < 16; y++) {
                 for (int x = 0; x < 16; x++) {
                         rectangle.move(x * rectangle.width(),
-                                       y * rectangle.height());
+                                       y * rectangle.height(),
+                                       0.0f);
                         font.add(c, glyphs.clip(rectangle));
 
                         c++;
@@ -117,6 +120,9 @@ void test(const std::string & datadir)
 
         for (;;) {
                 video.clear();
+
+                //camera.direction(angle, angle);
+                //camera.position(x, y, -25.0f);
 
 #if 0
                 for (int k = -1000;

@@ -31,13 +31,16 @@ namespace HAZE {
                 public:
                         Point(const Point & p) :
                                 x_(p.x()),
-                                y_(p.y())
+                                y_(p.y()),
+                                z_(p.z())
                         { }
 
                         Point(TYPE x = 0,
-                              TYPE y = 0) :
+                              TYPE y = 0,
+                              TYPE z = 0) :
                                 x_(x),
-                                y_(y)
+                                y_(y),
+                                z_(z)
                         { }
 
                         virtual ~Point()
@@ -47,19 +50,24 @@ namespace HAZE {
 
                         TYPE  x() const { return x_; }
                         TYPE  y() const { return y_; }
+                        TYPE  z() const { return z_; }
 
                         void  x(TYPE v) { x_ = v; }
                         void  y(TYPE v) { y_ = v; }
+                        void  z(TYPE v) { z_ = v; }
 
                         void  move(TYPE x,
-                                   TYPE y) {
+                                   TYPE y,
+                                   TYPE z) {
                                 x_ = x;
                                 y_ = y;
+                                z_ = z;
                         }
 
                 private:
                         TYPE x_;
                         TYPE y_;
+                        TYPE z_;
                 };
 
                 template<typename TYPE = int> class Rectangle {

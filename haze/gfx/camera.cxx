@@ -17,17 +17,3 @@
 //
 
 #include "haze/gfx/camera.hxx"
-
-namespace HAZE {
-
-        Camera::Camera(GLfloat x, GLfloat y) :
-                MATH::Point<GLfloat>(x, y)
-        { }
- 
-        Camera::~Camera()
-        { }
-
-        void Camera::set(GLfloat origin_x, GLfloat origin_y)
-        { x(origin_x); y(origin_y); }
-
-}

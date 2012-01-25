@@ -22,6 +22,7 @@
 #include "haze/core/log.hxx"
 #include "haze/gfx/video.hxx"
 #include "haze/gfx/gl.hxx"
+#include "haze/gfx/camera.hxx"
 
 namespace HAZE {
 
@@ -163,8 +164,8 @@ namespace HAZE {
                            static_cast<GLsizei>(width()),
                            static_cast<GLsizei>(height()));
 
-                glMatrixMode(GL_PROJECTION);
-                glLoadIdentity();
+                //glMatrixMode(GL_PROJECTION);
+                //glLoadIdentity();
 
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
@@ -173,8 +174,11 @@ namespace HAZE {
                         static_cast<GLfloat>(height()), 0,
                         -1, 1);
 
-                glMatrixMode(GL_MODELVIEW);
-                glLoadIdentity();
+                //glMatrixMode(GL_MODELVIEW);
+                //glLoadIdentity();
+
+                //camera->position(0.0f, 0.0f, 0.0f);
+                //camera->direction(0.0f, 0.0f);
         }
 
         size_t Video::bpp()

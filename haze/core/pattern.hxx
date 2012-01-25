@@ -99,9 +99,9 @@ namespace HAZE {
                 ReferenceCounter * reference_;
         };
 
-        template<class T> class Singleton : public NonCopyable {
+        template<typename T> class Singleton : public NonCopyable {
         public:
-                Singleton() { };
+                Singleton() { }
                 ~Singleton() {
                         if (instance_) {
                                 delete instance_;
@@ -116,8 +116,10 @@ namespace HAZE {
                 }
 
         private:
-                static T * instance_ = 0;
+                static T * instance_;
         };
+
+        template <typename T> T * Singleton<T>::instance_ = 0;
 
 #if 0
         template<class Key, class Type> class Factory {
