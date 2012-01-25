@@ -104,6 +104,12 @@ namespace HAZE {
                                 to_.y(c + v / 2);
                         }
 
+                        virtual void resize(const TYPE & w,
+                                            const TYPE & h) {
+                                width(w);
+                                height(h);
+                        }
+
                 private:
                         Point<TYPE> from_;
                         Point<TYPE> to_;

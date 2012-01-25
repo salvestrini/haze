@@ -149,8 +149,7 @@ namespace HAZE {
                         throw CannotResize("Wrong dimensions");
                 }
 
-                width(w);
-                height(h);
+                MATH::Rectangle<size_t>::resize(w, h);
 
                 surface_ = SDL_SetVideoMode(width(),
                                             height(),
