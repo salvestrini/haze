@@ -142,15 +142,18 @@ namespace HAZE {
                 DBG("GL initialized");
         }
 
-        void Video::resize(size_t width,
-                           size_t height)
+        void Video::resize(size_t w,
+                           size_t h)
         {
-                if ((width == 0) || (height == 0)) {
+                if ((w == 0) || (h == 0)) {
                         throw CannotResize("Wrong dimensions");
                 }
 
-                surface_ = SDL_SetVideoMode(width,
-                                            height,
+                width(w);
+                height(h);
+
+                surface_ = SDL_SetVideoMode(width(),
+                                            height(),
                                             bpp_,
                                             flags_);
                 if (!surface_) {
@@ -158,8 +161,8 @@ namespace HAZE {
                 }
 
                 glViewport(0, 0,
-                           static_cast<GLsizei>(width),
-                           static_cast<GLsizei>(height));
+                           static_cast<GLsizei>(width()),
+                           static_cast<GLsizei>(height()));
 
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
@@ -167,8 +170,8 @@ namespace HAZE {
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
                 // the bottom right hand corner
-                glOrtho(0, static_cast<GLfloat>(width),
-                        static_cast<GLfloat>(height), 0,
+                glOrtho(0, static_cast<GLfloat>(width()),
+                        static_cast<GLfloat>(height()), 0,
                         -1, 1);
 
                 glMatrixMode(GL_MODELVIEW);

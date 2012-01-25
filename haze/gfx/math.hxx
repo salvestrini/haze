@@ -84,8 +84,16 @@ namespace HAZE {
                         virtual TYPE width() const
                         { return std::abs(to_.x() - from_.x()); }
 
+                        // XXX FIXME: Do resizing around the center
+                        virtual void width(const TYPE & v)
+                        { to_.x(v); }
+
                         virtual TYPE height() const
                         { return std::abs(to_.y() - from_.y()); }
+
+                        // XXX FIXME: Do resizing around the center
+                        virtual void height(const TYPE & v)
+                        { to_.y(v);}
 
                 private:
                         Point<TYPE> from_;
