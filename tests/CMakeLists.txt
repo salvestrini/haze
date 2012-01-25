@@ -10,11 +10,9 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 link_directories(${CMAKE_BINARY_DIR}/haze)
 
-add_library(common STATIC common.cxx)
-
 add_executable(test
   test.cxx
-  common.cxx)
+  )
 
 target_link_libraries(test
   haze
