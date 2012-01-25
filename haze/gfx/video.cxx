@@ -25,9 +25,10 @@
 
 namespace HAZE {
 
-        Video::Video(size_t width,
-                     size_t height,
+        Video::Video(size_t w,
+                     size_t h,
                      size_t bpp) :
+                MATH::Rectangle<size_t>(w, h),
                 surface_(0),
                 flags_(0),
                 bpp_(0)
@@ -38,7 +39,8 @@ namespace HAZE {
                         }
                 }
 
-                DBG("Initializing video %ld x %ld @ %ld", width, height, bpp);
+                DBG("Initializing video %ld x %ld @ %ld",
+                    width(), height(), bpp);
 
                 const SDL_VideoInfo * info = SDL_GetVideoInfo();
                 if (!info) {
@@ -65,7 +67,7 @@ namespace HAZE {
                         SDL_HWSURFACE |
                         0;
 
-                int closest = SDL_VideoModeOK(width, height, bpp, flags);
+                int closest = SDL_VideoModeOK(width(), height(), bpp, flags);
                 if (closest <= 0) {
                         throw CannotInitialize("Video mode unsupported");
                 }
@@ -102,7 +104,7 @@ namespace HAZE {
 #endif
 
                 // Create the GL drawing context
-                surface_ = SDL_SetVideoMode(width, height, bpp, flags);
+                surface_ = SDL_SetVideoMode(width(), height(), bpp, flags);
                 if (!surface_) {
                         throw CannotInitialize(SDL_GetError());
                 }
@@ -110,10 +112,10 @@ namespace HAZE {
                 flags_ = flags;
                 bpp_   = bpp;
 
-                DBG("Video set to %ld x %ld @ %ld", width, height, bpp_);
+                DBG("Video set to %ld x %ld @ %ld", width(), height(), bpp_);
 
                 initGL();
-                resize(width, height);
+                resize(width(), height());
         }
 
         Video::~Video()
@@ -172,12 +174,6 @@ namespace HAZE {
                 glMatrixMode(GL_MODELVIEW);
                 glLoadIdentity();
         }
-
-        size_t Video::width()
-        { return surface_->w; }
-
-        size_t Video::height()
-        { return surface_->h; }
 
         size_t Video::bpp()
         { return surface_->format->BitsPerPixel; }

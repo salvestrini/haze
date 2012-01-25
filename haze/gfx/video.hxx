@@ -25,6 +25,7 @@
 
 #include "haze/core/pattern.hxx"
 #include "haze/core/exception.hxx"
+#include "haze/gfx/math.hxx"
 
 namespace HAZE {
 
@@ -32,7 +33,9 @@ namespace HAZE {
 #define VIDEO_DEFAULT_HEIGHT    480
 #define VIDEO_DEFAULT_BPP        32
 
-        class Video : public NonCopyable {
+        class Video :
+                public MATH::Rectangle<size_t>,
+                public NonCopyable {
         public:
                 class CannotInitialize : public Exception {
                 public:
@@ -57,10 +60,7 @@ namespace HAZE {
                 void resize(size_t width,
                             size_t height);
 
-                size_t width();
-                size_t height();
                 size_t bpp();
-
                 void   clear();
                 void   update();
 

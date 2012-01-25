@@ -29,6 +29,11 @@ namespace HAZE {
 
                 template<typename TYPE = int> class Point {
                 public:
+                        Point(const Point & p) :
+                                x_(p.x()),
+                                y_(p.y())
+                        { }
+
                         Point(TYPE x = 0,
                               TYPE y = 0) :
                                 x_(x),
@@ -57,8 +62,14 @@ namespace HAZE {
 
                 template<typename TYPE = int> class Rectangle {
                 public:
-                        Rectangle(Point<TYPE> from,
-                                  Point<TYPE> to) :
+                        Rectangle(TYPE width,
+                                  TYPE height) :
+                                from_(0, 0),
+                                to_(width, height)
+                        { }
+
+                        Rectangle(const Point<TYPE> & from,
+                                  const Point<TYPE> & to) :
                                 from_(from),
                                 to_(to)
                         { }
@@ -66,15 +77,15 @@ namespace HAZE {
                         virtual ~Rectangle()
                         { }
 
-                        TYPE width() const
+                        virtual TYPE width() const
                         { return std::abs(to_.x() - from_.x()); }
 
-                        TYPE height() const
-                        { return std::abs(to_.y() - to_.y()); }
+                        virtual TYPE height() const
+                        { return std::abs(to_.y() - from_.y()); }
 
                 private:
-                        TYPE from_;
-                        TYPE to_;
+                        Point<TYPE> from_;
+                        Point<TYPE> to_;
                 };
 
                 template<typename TYPE = int> class Vector {

@@ -225,7 +225,7 @@ int main(int argc, char * argv[])
                 test(datadir);
                 retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
-                ERR("%s", e.what());
+                ERR("Got exception: %s", e.what());
         } catch (...) {
                 BUG();
         }
