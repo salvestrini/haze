@@ -23,10 +23,10 @@
 #include <iostream>
 #include <cassert>
 
-// XXX FIXME: Add code here ...
-#define BACKTRACE()
+void dump_backtrace();
 
-// XXX FIXME: Add code here ...
+#define BACKTRACE() dump_backtrace()
+
 #define ASSERT_HEADER()                                 \
 {                                                       \
         do {                                            \

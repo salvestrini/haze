@@ -20,7 +20,6 @@
 #define HAZE_HAZE
 
 #include "haze/core/core.hxx"
-#include "haze/math/math.hxx"
 #include "haze/gfx/gfx.hxx"
 #include "haze/sfx/sfx.hxx"
 #include "haze/io/io.hxx"

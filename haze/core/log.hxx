@@ -23,17 +23,41 @@
 
 #include "haze/settings.hxx"
 
-extern const char * prefix_;
+extern const char * log_prefix_;
 
-#define LOG_SETPREFIX(X) { prefix_ = X; }
+#if WANT_LOGS
+#define LOG_SETPREFIX(X)                        \
+        do {                                    \
+                if (X) {                        \
+                        log_prefix_ = X;        \
+                }                               \
+        } while (0)
 
-#if DEBUG
-#define DBG(FMT, ...) fprintf(stdout, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
+#if WANT_DEBUG
+#define DBG(FMT, ...)                           \
+        fprintf(stdout,                         \
+                "%s: " FMT "\n",                \
+                log_prefix_,                    \
+                ##__VA_ARGS__)
 #else
 #define DBG(FMT, ...)
 #endif
 
-#define WRN(FMT, ...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
-#define ERR(FMT, ...) fprintf(stderr, "%s: " FMT "\n", prefix_, ##__VA_ARGS__)
+#define WRN(FMT, ...)                           \
+        fprintf(stderr,                         \
+                "%s: " FMT "\n",                \
+                log_prefix_,                    \
+                ##__VA_ARGS__)
+#define ERR(FMT, ...)                           \
+        fprintf(stderr,                         \
+                "%s: " FMT "\n",                \
+                log_prefix_,                    \
+                ##__VA_ARGS__)
+#else
+#define LOG_SETPREFIX(X)
+#define DBG(FMT, ...)
+#define WRN(FMT, ...)
+#define ERR(FMT, ...)
+#endif
 
 #endif

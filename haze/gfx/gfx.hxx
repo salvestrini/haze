@@ -19,6 +19,7 @@
 #ifndef HAZE_GFX
 #define HAZE_GFX
 
+#include "haze/gfx/math.hxx"
 #include "haze/gfx/camera.hxx"
 #include "haze/gfx/font.hxx"
 #include "haze/gfx/fps.hxx"

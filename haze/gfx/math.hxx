@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_MATH
-#define HAZE_MATH
+#ifndef HAZE_GFX_MATH
+#define HAZE_GFX_MATH
 
 #include <cmath>
 

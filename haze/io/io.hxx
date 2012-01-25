@@ -20,6 +20,7 @@
 #define HAZE_IO
 
 #include <haze/gfx/video.hxx>
+
 #include <SDL/SDL_events.h>
 
 namespace HAZE {

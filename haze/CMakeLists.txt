@@ -17,6 +17,7 @@ add_library(haze SHARED
   core/thread.cxx
   core/time.cxx
 
+  gfx/math.cxx
   gfx/camera.cxx
   gfx/font.cxx
   gfx/fps.cxx
@@ -30,7 +31,5 @@ add_library(haze SHARED
   sfx/audio.cxx
 
   io/io.cxx
-
-  math/math.cxx
 )
 

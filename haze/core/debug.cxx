@@ -21,9 +21,9 @@
 #include "haze/settings.hxx"
 #include "haze/core/log.hxx"
 
-void dumpBacktrace()
+void dump_backtrace()
 {
-	ERR("Backtrace:");
+	ERR("Backtrace: <Missing support>");
 }
 
 

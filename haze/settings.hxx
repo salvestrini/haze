@@ -19,6 +19,7 @@
 #ifndef HAZE_SETTINGS
 #define HAZE_SETTINGS
 
-#define DEBUG 1
+#define WANT_DEBUG 1
+#define WANT_LOGS  1
 
 #endif

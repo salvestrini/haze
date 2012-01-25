@@ -18,4 +18,4 @@
 
 #include "haze/core/log.hxx"
 
-const char * prefix_ = 0;
+const char * log_prefix_ = "NONE";

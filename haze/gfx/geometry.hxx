@@ -23,7 +23,7 @@
 #include <cmath>
 #include <utility>
 
-#include "haze/math/math.hxx"
+#include "haze/gfx/math.hxx"
 
 namespace HAZE {
 

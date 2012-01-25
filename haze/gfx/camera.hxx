@@ -19,7 +19,7 @@
 #ifndef HAZE_GFX_CAMERA
 #define HAZE_GFX_CAMERA
 
-#include "haze/math/math.hxx"
+#include "haze/gfx/math.hxx"
 #include "haze/gfx/gl.hxx"
 
 namespace HAZE {
