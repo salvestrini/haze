@@ -56,7 +56,6 @@ namespace HAZE {
         {
                 Uint32 current_ticks;
                 Uint32 target_ticks;
-                Uint32 the_delay;
 
                 framecount_++;
 
@@ -65,8 +64,7 @@ namespace HAZE {
                         (Uint32) ((float) framecount_ * rateticks_);
 
                 if (current_ticks <= target_ticks) {
-                        the_delay = target_ticks - current_ticks;
-                        SDL_Delay(the_delay);
+                        SDL_Delay(target_ticks - current_ticks);
                 } else {
                         framecount_ = 0;
                         lastticks_  = SDL_GetTicks();
