@@ -17,6 +17,3 @@
 //
 
 #include "haze/gfx/geometry.hxx"
-
-namespace HAZE {
-}
