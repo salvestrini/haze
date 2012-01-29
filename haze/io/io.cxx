@@ -21,65 +21,10 @@
 
 using namespace HAZE::IO;
 
-Event::Event()
-{ }
-
-Event::~Event()
-{ }
-
-ApplicationQuit::ApplicationQuit()
-{ }
-
-ApplicationQuit::~ApplicationQuit()
-{ }
-
-VideoResize::VideoResize(HAZE::Video::size_type width,
-                         HAZE::Video::size_type height) :
-        width_(width),
-        height_(height)
-{ }
-
-VideoResize::~VideoResize()
-{ }
-
-HAZE::Video::size_type VideoResize::width()
-{ return width_; }
-
-HAZE::Video::size_type VideoResize::height()
-{ return height_; }
-
-KeyPress::KeyPress(Key c) :
-        which_(c)
-{ }
-
-KeyPress::~KeyPress()
-{ }
-
-KeyUp::KeyUp(KeyPress::Key c) :
-        KeyPress(c)
-{ }
-
-KeyUp::~KeyUp()
-{ }
-
-KeyDown::KeyDown(KeyPress::Key c) :
-        KeyPress(c)
-{ }
-
-KeyDown::~KeyDown()
-{ }
-
-SDL_Event EventManager::event_;
-
-EventManager::EventManager()
-{ }
-
-EventManager::~EventManager()
-{ }
-
 Event * EventManager::poll()
 {
-        Event * tmp = 0;
+        SDL_Event event_;
+        Event *   tmp = 0;
 
         if (!SDL_PollEvent(&event_)) {
                 // DBG("No event in queue");
@@ -103,8 +48,6 @@ Event * EventManager::poll()
 
                 case SDL_KEYUP:
                 case SDL_KEYDOWN: {
-                        DBG("Got key-press");
-
                         KeyPress::Key k;
 
                         switch (event_.key.keysym.sym) {
@@ -119,20 +62,47 @@ Event * EventManager::poll()
                                 case SDLK_SPACE: k = KeyPress::SPACEBAR;
                                         break;
                                 default:
-                                return tmp;
+                                        return tmp;
                         }
 
                         if (event_.type == SDL_KEYUP) {
-                                DBG("It's a key-up");
+                                DBG("Got a key-up");
                                 tmp = new KeyUp(k);
                         } else {
-                                DBG("It's a key-down");
+                                DBG("Got a key-down");
                                 tmp = new KeyDown(k);
                         }
                         break;
                 }
+                case SDL_MOUSEMOTION: {
+                        DBG("Got mouse-motion (%d, %d, %d, %d)",
+                            event_.motion.x,
+                            event_.motion.y,
+                            event_.motion.xrel,
+                            event_.motion.yrel);
+                        tmp = new MouseMotion(event_.motion.x,
+                                              event_.motion.y,
+                                              event_.motion.xrel,
+                                              event_.motion.yrel);
+                }
+                case SDL_MOUSEBUTTONDOWN:
+                case SDL_MOUSEBUTTONUP: {
+                        if (event_.button.button == SDL_BUTTON_LEFT) {
+                                DBG("Unhandled mouse-press");
+                                return tmp;
+                        }
+
+                        switch (event_.button.button) {
+                                case SDL_PRESSED:
+                                        DBG("Got a mouse-down");
+                                        break;
+                                case SDL_RELEASED:
+                                        DBG("Got a mouse-up");
+                                        break;
+                        }
+                }
                 default:
-                        DBG("Unhandled event in queue");
+                        DBG("Unhandled event 0x%x in queue", event_.type);
                         break;
         }
 

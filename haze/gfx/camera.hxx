@@ -57,6 +57,18 @@ namespace HAZE {
                         update();
                 }
 
+                void set(GLfloat x,
+                         GLfloat y,
+                         GLfloat z,
+                         GLfloat pitch,
+                         GLfloat heading)
+                {
+                        move(x, y, z);
+                        pitch_   = pitch;
+                        heading_ = heading;
+                        update();
+                }
+
         private:
                 GLfloat heading_;
                 GLfloat pitch_;

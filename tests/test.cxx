@@ -192,6 +192,7 @@ void test(const std::string & datadir)
                         DBG("Got event!");
                         switch (e->type()) {
                                 case IO::Event::ApplicationQuit:
+                                        delete e;
                                         return;
 
                                 case IO::Event::VideoResize: {
@@ -203,14 +204,14 @@ void test(const std::string & datadir)
                                 }
                                 case IO::Event::KeyDown:
                                 case IO::Event::KeyUp:
-                                        DBG("Got a key-press related event!");
-                                        delete e;
-                                        return;
+                                        break;
                                 default:
                                         break;
                         }
+
+                        delete e;
                 } else {
-                        DBG("Got a messed-up event");
+                        //DBG("No event in queue");
                 }
         }
 

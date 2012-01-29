@@ -28,39 +28,54 @@ namespace HAZE {
 
                 class Event {
                 public:
-                        Event();
-                        ~Event();
+                        Event()
+                        { }
+
+                        virtual ~Event()
+                        { }
 
                         enum Type {
                                 ApplicationQuit = 1,
                                 VideoResize,
                                 KeyUp,
-                                KeyDown
+                                KeyDown,
+                                MouseMotion
                         };
 
-                        virtual Type type() = 0;
+                        virtual Type type() const = 0;
                 };
 
                 class ApplicationQuit : public Event {
                 public:
-                        ApplicationQuit();
-                        ~ApplicationQuit();
+                        ApplicationQuit()
+                        { }
 
-                        Type type()
+                        virtual ~ApplicationQuit()
+                        { }
+
+                        Type type() const
                         { return Event::ApplicationQuit; }
                 };
 
                 class VideoResize : public Event {
                 public:
                         VideoResize(HAZE::Video::size_type width,
-                                    HAZE::Video::size_type height);
-                        ~VideoResize();
+                                    HAZE::Video::size_type height) :
+                                width_(width),
+                                height_(height)
+                        { }
 
-                        Type type()
+                        virtual ~VideoResize()
+                        { }
+
+                        Type type() const
                         { return Event::VideoResize; }
 
-                        HAZE::Video::size_type width();
-                        HAZE::Video::size_type height();
+                        HAZE::Video::size_type width() const
+                        { return width_; }
+
+                        HAZE::Video::size_type height() const
+                        { return height_; }
 
                 private:
                         HAZE::Video::size_type width_;
@@ -78,8 +93,12 @@ namespace HAZE {
                                 ESCAPE
                         };
 
-                        KeyPress(Key c);
-                        ~KeyPress();
+                        KeyPress(Key c) :
+                                which_(c)
+                        { }
+
+                        virtual ~KeyPress()
+                        { }
 
                         Key which()
                         { return which_; }
@@ -90,31 +109,83 @@ namespace HAZE {
 
                 class KeyUp : public KeyPress {
                 public:
-                        KeyUp(KeyPress::Key c);
-                        ~KeyUp();
+                        KeyUp(KeyPress::Key c) :
+                                KeyPress(c)
+                        { }
 
-                        Type type()
+                        virtual ~KeyUp()
+                        { }
+
+                        Type type() const
                         { return Event::KeyUp; }
                 };
 
                 class KeyDown : public KeyPress {
                 public:
-                        KeyDown(KeyPress::Key c);
-                        ~KeyDown();
+                        KeyDown(KeyPress::Key c) :
+                                KeyPress(c)
+                        { }
 
-                        Type type()
+                        virtual ~KeyDown()
+                        { }
+
+                        Type type() const
                         { return Event::KeyDown; }
                 };
 
+                class MouseMotion : public Event {
+                public:
+                        MouseMotion(int          x,
+                                    int          y,
+                                    unsigned int rel_x,
+                                    unsigned int rel_y) :
+                                x_(x),
+                                y_(y),
+                                rel_x_(rel_x),
+                                rel_y_(rel_y)
+                        { }
+
+                        virtual ~MouseMotion()
+                        { }
+
+                        Type type() const
+                        { return Event::MouseMotion; }
+
+                        int x() const          { return x_;     }
+                        int y() const          { return y_;     }
+                        int relative_x() const { return rel_x_; }
+                        int relative_y() const { return rel_y_; }
+
+                private:
+                        int          x_;
+                        int          y_;
+                        unsigned int rel_x_;
+                        unsigned int rel_y_;
+                };
+
+#if 0
+                class MousePress : public Event {
+                };
+
+                class MouseButton : public MousePress {
+                };
+
+                class MouseWheel : public MousePress {
+                };
+#endif
+
                 class EventManager {
                 public:
-                        EventManager();
-                        ~EventManager();
+                        EventManager()
+                        { }
+
+                        virtual ~EventManager()
+                        { }
 
                         Event * poll();
 
                 private:
-                        static SDL_Event event_;
+                        SDL_Event event_;
                 };
 
         }
