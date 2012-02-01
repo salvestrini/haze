@@ -23,6 +23,7 @@
 #include "haze/gfx/video.hxx"
 #include "haze/gfx/gl.hxx"
 #include "haze/gfx/camera.hxx"
+#include "haze/gfx/view.hxx"
 
 namespace HAZE {
 
@@ -117,6 +118,9 @@ namespace HAZE {
 
                 initGL();
                 resize(width(), height());
+
+                HAZE::VIEW::orthogonal(static_cast<GLdouble>(width()),
+                                       static_cast<GLdouble>(height()));
         }
 
         Video::~Video()
@@ -170,9 +174,10 @@ namespace HAZE {
                 // This sets up the OpenGL window so that (0,0) corresponds
                 // to the top left corner, and (width, height) corresponds to
                 // the bottom right hand corner
-                glOrtho(0, static_cast<GLfloat>(width()),
-                        static_cast<GLfloat>(height()), 0,
-                        -1, 1);
+                //glOrtho(0,
+                //        static_cast<GLfloat>(width()),
+                //        static_cast<GLfloat>(height()),
+                //        0, -1, 1);
 
                 //glMatrixMode(GL_MODELVIEW);
                 //glLoadIdentity();
