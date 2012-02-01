@@ -24,7 +24,7 @@
 
 #include "haze/gfx/math.hxx"
 #include "haze/gfx/font.hxx"
-#include "haze/gfx/gl.hxx"
+#include "haze/gfx/backends/backend.hxx"
 
 namespace HAZE {
 

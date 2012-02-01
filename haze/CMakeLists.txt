@@ -1,3 +1,8 @@
+find_package(OpenGL    REQUIRED)
+find_package(SDL       REQUIRED)
+find_package(SDL_image REQUIRED)
+find_package(SDL_mixer REQUIRED)
+
 configure_file(config.h.in config.h)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
@@ -17,13 +22,14 @@ add_library(haze SHARED
   core/thread.cxx
   core/time.cxx
 
+  gfx/backends/gl.cxx
+
   gfx/math.cxx
   gfx/view.cxx
   gfx/camera.cxx
   gfx/font.cxx
   gfx/fps.cxx
   gfx/geometry.cxx
-  gfx/gl.cxx
   gfx/image.cxx
   gfx/text.cxx
   gfx/video.cxx

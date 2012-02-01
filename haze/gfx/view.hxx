@@ -20,7 +20,7 @@
 #define HAZE_GFX_VIEW
 
 #include "haze/core/log.hxx"
-#include "haze/gfx/gl.hxx"
+#include "haze/gfx/backends/backend.hxx"
 
 namespace HAZE {
 

@@ -21,9 +21,9 @@
 #include "haze/core/debug.hxx"
 #include "haze/core/log.hxx"
 #include "haze/gfx/video.hxx"
-#include "haze/gfx/gl.hxx"
 #include "haze/gfx/camera.hxx"
 #include "haze/gfx/view.hxx"
+#include "haze/gfx/backends/backend.hxx"
 
 namespace HAZE {
 
