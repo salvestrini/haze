@@ -46,16 +46,17 @@ void test(const std::string & datadir)
 
         Font font;
 
-        char c = 0;
-
-        for (int y = 0; y < 16; y++) {
-                for (int x = 0; x < 16; x++) {
-                        rectangle.move(x * rectangle.width(),
-                                       y * rectangle.height(),
-                                       0.0f);
-                        font.add(c, glyphs.clip(rectangle));
-
-                        c++;
+        {
+                char c = 0;
+                for (int y = 0; y < 16; y++) {
+                        for (int x = 0; x < 16; x++) {
+                                rectangle.move(x * rectangle.width(),
+                                               y * rectangle.height(),
+                                               0.0f);
+                                font.add(c, glyphs.clip(rectangle));
+                                
+                                c++;
+                        }
                 }
         }
 
@@ -121,8 +122,8 @@ void test(const std::string & datadir)
         for (;;) {
                 video.clear();
 
-                camera.direction(angle, angle, angle);
-                camera.position(x, y, -25.0f);
+                //camera.direction(angle, angle, angle);
+                //camera.position(x, y, +25.0f);
 
 #if 0
                 for (int k = -1000;
