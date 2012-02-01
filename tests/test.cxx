@@ -30,7 +30,7 @@ void test(const std::string & datadir)
         // Setup
         //
 
-        Video video;
+        Video  video;
 
         Camera camera;
 
@@ -54,7 +54,7 @@ void test(const std::string & datadir)
                                                y * rectangle.height(),
                                                0.0f);
                                 font.add(c, glyphs.clip(rectangle));
-                                
+
                                 c++;
                         }
                 }
@@ -118,6 +118,8 @@ void test(const std::string & datadir)
         GLfloat angle = 0.0f;
 
         IO::EventManager io;
+
+        VIEW::Orthogonal view(video.width(), video.height());
 
         for (;;) {
                 video.clear();
