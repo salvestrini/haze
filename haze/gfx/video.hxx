@@ -65,12 +65,8 @@ namespace HAZE {
                 void   update();
 
         private:
-                void initGL();
-
-                // SDL specific
                 SDL_Surface * surface_;
                 Uint32        flags_;
-
                 size_t        bpp_;
         };
 

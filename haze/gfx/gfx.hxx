@@ -21,6 +21,7 @@
 
 #include "haze/gfx/math.hxx"
 #include "haze/gfx/camera.hxx"
+#include "haze/gfx/view.hxx"
 #include "haze/gfx/font.hxx"
 #include "haze/gfx/fps.hxx"
 #include "haze/gfx/geometry.hxx"

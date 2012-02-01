@@ -17,6 +17,9 @@
 //
 
 #include <cmath>
+#include <cstring>
+#include <vector>
+#include <sstream>
 
 #include "haze/core/log.hxx"
 #include "haze/core/debug.hxx"
@@ -31,10 +34,87 @@ namespace HAZE {
 #define DEBUG_GL 1
 
 #if DEBUG_GL
-#define ASSERT_GL_NO_ERROR() { assert(glGetError() == GL_NO_ERROR); }
+#define ASSERT_GL_NO_ERROR() {                                  \
+        GLenum err = glGetError();                              \
+        if (err != GL_NO_ERROR) {                               \
+                const char * e = 0;                             \
+                switch (err) {                                  \
+                        case GL_INVALID_ENUM:                   \
+                                e = "Invalid enum";             \
+                                break;                          \
+                        case GL_INVALID_VALUE:                  \
+                                e = "Invalid value";            \
+                                break;                          \
+                        case GL_INVALID_OPERATION:              \
+                                e = "Invalid operation";        \
+                                break;                          \
+                        case GL_STACK_OVERFLOW:                 \
+                                e = "Stack overflow";           \
+                                break;                          \
+                        case GL_OUT_OF_MEMORY:                  \
+                                e = "Out of memory";            \
+                                break;                          \
+                        case GL_TABLE_TOO_LARGE:                \
+                                e = "Table too large";          \
+                                break;                          \
+                        default:                                \
+                                e = "Unkwnon"; break;           \
+                }                                               \
+                ERR("Got GL error 0x%x (%s)", err, e);          \
+                BUG();                                          \
+        }                                                       \
+}
 #else
 #define ASSERT_GL_NO_ERROR()
 #endif
+
+                static void dumpExtensions()
+                {
+                        const GLubyte * strings =
+                                glGetString(GL_EXTENSIONS);
+                        ASSERT_GL_NO_ERROR();
+                        ASSERT(strings);
+
+                        std::string extensions(reinterpret_cast<const char *>(strings));
+                        std::stringstream        ss(extensions);
+                        std::vector<std::string> tokens;
+                        std::string              buffer;
+
+                        while (ss >> buffer) {
+                                tokens.push_back(buffer);
+                        }
+
+                        DBG("GL Extensions:");
+                        for (std::vector<std::string>::const_iterator i =
+                                     tokens.begin();
+                             i != tokens.end();
+                             i++) {
+                                DBG("  %s", (*i).c_str());
+                        }
+                }
+
+                void init()
+                {
+                        DBG("GL initializing");
+
+                        glEnable(GL_LINE_SMOOTH);
+                        glEnable(GL_POINT_SMOOTH);
+                        glEnable(GL_POLYGON_SMOOTH);
+                        glEnable(GL_TEXTURE_2D);
+                        glDisable(GL_DEPTH_TEST);
+                        glEnable(GL_BLEND);
+
+                        // glShadeModel(GL_FLAT);
+                        // glShadeModel(GL_SMOOTH);
+
+                        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                        // glClearDepth(1.0f);
+
+                        // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+                        DBG("GL initialized");
+
+                        dumpExtensions();
+                }
 
                 Color::Color(GLfloat red,
                              GLfloat green,
@@ -125,9 +205,10 @@ namespace HAZE {
                 {
                         pen_.program();
 
-                        glBegin(GL_POINTS);
-                        glVertex2f(where_.x(), where_.y());
-                        glEnd();
+                        {
+                                DrawGuard d(GL_POINTS);
+                                glVertex2f(where_.x(), where_.y());
+                        }
 
                         ASSERT_GL_NO_ERROR();
                 }
@@ -162,10 +243,11 @@ namespace HAZE {
                 {
                         pen_.program();
 
-                        glBegin(GL_LINES);
-                        glVertex2f(from_.x(), from_.y());
-                        glVertex2f(to_.x(),   to_.y());
-                        glEnd();
+                        {
+                                DrawGuard d(GL_LINES);
+                                glVertex2f(from_.x(), from_.y());
+                                glVertex2f(to_.x(),   to_.y());
+                        }
 
                         ASSERT_GL_NO_ERROR();
                 }
@@ -207,15 +289,14 @@ namespace HAZE {
                 {
                         pen_.program();
 
-                        if (filled_) {
-                                glBegin(GL_TRIANGLES);
-                        } else {
-                                glBegin(GL_TRIANGLES);
+                        {
+                                DrawGuard d(filled_      ?
+                                            GL_TRIANGLES :
+                                            GL_TRIANGLES);
+                                glVertex3f(a_.x(), a_.y(), 0.0f);
+                                glVertex3f(b_.x(), b_.y(), 0.0f);
+                                glVertex3f(c_.x(), c_.y(), 0.0f);
                         }
-                        glVertex3f(a_.x(), a_.y(), 0.0f);
-                        glVertex3f(b_.x(), b_.y(), 0.0f);
-                        glVertex3f(c_.x(), c_.y(), 0.0f);
-                        glEnd();
 
                         ASSERT_GL_NO_ERROR();
                 }
@@ -237,17 +318,13 @@ namespace HAZE {
                 {
                         pen_.program();
 
-                        if (filled_) {
-                                glBegin(GL_QUADS);
-                        } else {
-                                glBegin(GL_LINE_LOOP);
+                        {
+                                DrawGuard d(filled_ ? GL_QUADS : GL_LINE_LOOP);
+                                glVertex2f(from_.x(), from_.y());
+                                glVertex2f(to_.x(),   from_.y());
+                                glVertex2f(to_.x(),   to_.y());
+                                glVertex2f(from_.x(), to_.y());
                         }
-
-                        glVertex2f(from_.x(), from_.y());
-                        glVertex2f(to_.x(),   from_.y());
-                        glVertex2f(to_.x(),   to_.y());
-                        glVertex2f(from_.x(), to_.y());
-                        glEnd();
 
                         ASSERT_GL_NO_ERROR();
                 }
@@ -275,25 +352,24 @@ namespace HAZE {
                 {
                         pen_.program();
 
-                        if (filled_) {
-                                glBegin(GL_TRIANGLE_FAN);
-                        } else {
-                                glBegin(GL_LINE_LOOP);
+                        {
+                                const float increment =
+                                        2.0f * M_PI / segments_;
+                                float       theta     = 0.0f;
+
+                                DrawGuard d(filled_         ?
+                                            GL_TRIANGLE_FAN :
+                                            GL_LINE_LOOP);
+
+                                for (size_t i = 0; i < segments_; ++i) {
+                                        glVertex2f(center_.x() +
+                                                   radius_ * cosf(theta),
+                                                   center_.y() +
+                                                   radius_ * sinf(theta));
+
+                                        theta += increment;
+                                }
                         }
-
-                        const float increment = 2.0f * M_PI / segments_;
-                        float       theta     = 0.0f;
-
-                        for (size_t i = 0; i < segments_; ++i) {
-                                glVertex2f(center_.x() +
-                                           radius_ * cosf(theta),
-                                           center_.y() +
-                                           radius_ * sinf(theta));
-
-                                theta += increment;
-                        }
-
-                        glEnd();
 
                         ASSERT_GL_NO_ERROR();
                 }
@@ -324,18 +400,19 @@ namespace HAZE {
                         //glScalef(scale, scale, 0.0f);
                         glRotatef(rotation_, 0.0f, 0.0f, 1.0f);
 
-                        if (filled_) {
-                                glBegin(GL_TRIANGLE_FAN);
-                        } else {
-                                glBegin(GL_LINE_LOOP);
+                        {
+                                DrawGuard d(filled_         ?
+                                            GL_TRIANGLE_FAN :
+                                            GL_LINE_LOOP);
+
+                                for (std::list<MATH::Point<GLfloat> >::
+                                             const_iterator i =
+                                             points_.begin();
+                                     i != points_.end();
+                                     i++) {
+                                        glVertex2f((*i).x(), (*i).y());
+                                }
                         }
-                        for (std::list<MATH::Point<GLfloat> >::
-                                     const_iterator i = points_.begin();
-                             i != points_.end();
-                             i++) {
-                                glVertex2f((*i).x(), (*i).y());
-                        }
-                        glEnd();
 
                         glPopMatrix();
 
@@ -421,14 +498,14 @@ namespace HAZE {
 
                         color_.program();
 
-                        glBegin(GL_QUADS);
+                        {
+                                DrawGuard d(GL_QUADS);
 
-                        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w2, -h2);
-                        glTexCoord2f(1.0f, 0.0f); glVertex2f( w2, -h2);
-                        glTexCoord2f(1.0f, 1.0f); glVertex2f( w2,  h2);
-                        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w2,  h2);
-
-                        glEnd();
+                                glTexCoord2f(0.0f, 0.0f); glVertex2f(-w2, -h2);
+                                glTexCoord2f(1.0f, 0.0f); glVertex2f( w2, -h2);
+                                glTexCoord2f(1.0f, 1.0f); glVertex2f( w2,  h2);
+                                glTexCoord2f(0.0f, 1.0f); glVertex2f(-w2,  h2);
+                        }
 
                         glPopMatrix();
 

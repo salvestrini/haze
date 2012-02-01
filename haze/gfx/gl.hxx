@@ -35,6 +35,19 @@ namespace HAZE {
 
         namespace GL {
 
+                void init();
+
+                class DrawGuard {
+                public:
+                        DrawGuard(GLenum mode) {
+                                glBegin(mode);
+                        }
+
+                        ~DrawGuard() {
+                                glEnd();
+                        }
+                };
+
                 class Color {
                 public:
                         Color(GLfloat red   = 1.0f,

@@ -19,13 +19,68 @@
 #ifndef HAZE_GFX_VIEW
 #define HAZE_GFX_VIEW
 
+#include "haze/core/log.hxx"
+#include "haze/gfx/gl.hxx"
+
 namespace HAZE {
 
         namespace VIEW {
 
-                void perspective();
-                void orthogonal(GLdouble width,
-                                GLdouble height);
+                class Perspective {
+                public:
+                        Perspective() {
+                                glMatrixMode(GL_PROJECTION);
+                                glPushMatrix();
+
+                                glMatrixMode(GL_MODELVIEW);
+                                glPushMatrix();
+
+                                DBG("Perspective enabled");
+
+                                glEnable(GL_DEPTH_TEST);
+                        }
+
+                        virtual ~Perspective() {
+                                glPopMatrix();
+                                glPopMatrix();
+
+                                DBG("Perspective disabled");
+
+                                glDisable(GL_DEPTH_TEST);
+                        }
+                };
+
+                class Orthogonal {
+                public:
+                        Orthogonal(GLdouble width,
+                                   GLdouble height) {
+                                glMatrixMode(GL_PROJECTION);
+                                glPushMatrix();
+
+                                glLoadIdentity();
+
+                                glOrtho(0,       // Left
+                                        width,   // Right
+                                        height,  // Bottom
+                                        0,       // Top
+                                        -1,      // near
+                                        1);      // far
+
+                                glMatrixMode(GL_MODELVIEW);
+                                glPushMatrix();
+
+                                glLoadIdentity();
+
+                                DBG("Orthogonal enabled");
+                        }
+
+                        virtual ~Orthogonal() {
+                                glPopMatrix();
+                                glPopMatrix();
+
+                                DBG("Orthogonal disabled");
+                        }
+                };
 
         }
 }

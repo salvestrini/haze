@@ -16,39 +16,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/gfx/gl.hxx"
 #include "haze/gfx/view.hxx"
-
-namespace HAZE {
-
-        namespace VIEW {
-
-                void perspective()
-                {
-                        glMatrixMode(GL_PROJECTION);
-                        glPopMatrix();
-                        glMatrixMode(GL_MODELVIEW);
-                        glPopMatrix();
-                        glEnable(GL_DEPTH_TEST);
-                }
-
-                void orthogonal(GLdouble width,
-                                GLdouble height)
-                {
-                        glMatrixMode(GL_PROJECTION);
-                        glPushMatrix();
-                        glLoadIdentity();
-                        glOrtho(0,       // Left
-                                width,   // Right
-                                height,  // Bottom
-                                0,       // Top
-                                -1,      // near
-                                1);      // far
-                        glMatrixMode(GL_MODELVIEW);
-                        glPushMatrix();
-                        glLoadIdentity();
-                        glDisable(GL_DEPTH_TEST);
-                }
-
-        }
-}

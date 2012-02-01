@@ -17,8 +17,8 @@
 //
 
 #include <string>
-#include <cassert>
 
+#include "haze/core/debug.hxx"
 #include "haze/core/log.hxx"
 #include "haze/gfx/video.hxx"
 #include "haze/gfx/gl.hxx"
@@ -84,7 +84,7 @@ namespace HAZE {
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 #if 0
-                assert(bpp != 0);
+                ASSERT(bpp != 0);
                 int tmp = bpp / 4;
 
                 if (SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   tmp) != 0) {
@@ -116,36 +116,13 @@ namespace HAZE {
 
                 DBG("Video set to %ld x %ld @ %ld", width(), height(), bpp_);
 
-                initGL();
-                resize(width(), height());
+                HAZE::GL::init();
 
-                HAZE::VIEW::orthogonal(static_cast<GLdouble>(width()),
-                                       static_cast<GLdouble>(height()));
+                resize(width(), height());
         }
 
         Video::~Video()
         { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
-
-        void Video::initGL()
-        {
-                DBG("GL initializing");
-
-                glEnable(GL_LINE_SMOOTH);
-                glEnable(GL_POINT_SMOOTH);
-                glEnable(GL_POLYGON_SMOOTH);
-                glEnable(GL_TEXTURE_2D);
-                glDisable(GL_DEPTH_TEST);
-                glEnable(GL_BLEND);
-
-                // glShadeModel(GL_FLAT);
-                // glShadeModel(GL_SMOOTH);
-
-                glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                // glClearDepth(1.0f);
-
-                // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-                DBG("GL initialized");
-        }
 
         void Video::resize(size_t w,
                            size_t h)

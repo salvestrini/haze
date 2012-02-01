@@ -48,6 +48,7 @@ namespace HAZE {
                               GLfloat z = 0.0f)
                 {
                         move(x, y, z);
+
                         update();
                 }
 
@@ -58,6 +59,7 @@ namespace HAZE {
                         pitch_   = pitch;
                         heading_ = heading;
                         roll_    = roll;
+
                         update();
                 }
 
@@ -69,9 +71,11 @@ namespace HAZE {
                          GLfloat roll)
                 {
                         move(x, y, z);
+
                         pitch_   = pitch;
                         heading_ = heading;
                         roll_    = roll;
+
                         update();
                 }
 
