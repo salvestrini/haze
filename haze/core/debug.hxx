@@ -27,14 +27,9 @@ void dump_backtrace();
 
 #define BACKTRACE() dump_backtrace()
 
-#define ASSERT_HEADER()                                 \
-{                                                       \
-        do {                                            \
-                std::cerr << "Got bug in "              \
-                          << __PRETTY_FUNCTION__        \
-                          << ":"                        \
-                          << __LINE__;                  \
-        } while (0);                                    \
+#define ASSERT_HEADER()                         \
+{                                               \
+	BUG();                                  \
 }
 
 // Redefine assert() as our ASSERT()
@@ -60,11 +55,12 @@ void dump_backtrace();
 
 #include "haze/core/log.hxx"
 
-#define BUG() \
-do { \
-	ERR("Got a bug at %s:%d", __FILE__, __LINE__); \
-	BACKTRACE(); \
-	exit(-1); \
+#define BUG()                                           \
+do {                                                    \
+	ERR("Got a bug in '%s' (%s:%d)",                \
+	    __PRETTY_FUNCTION__, __FILE__, __LINE__);   \
+	BACKTRACE();                                    \
+	exit(-1);                                       \
 } while (0)
 
 #endif
