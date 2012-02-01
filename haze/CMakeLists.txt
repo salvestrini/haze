@@ -18,6 +18,7 @@ add_library(haze SHARED
   core/time.cxx
 
   gfx/math.cxx
+  gfx/view.cxx
   gfx/camera.cxx
   gfx/font.cxx
   gfx/fps.cxx
