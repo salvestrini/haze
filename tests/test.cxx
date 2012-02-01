@@ -121,8 +121,8 @@ void test(const std::string & datadir)
         for (;;) {
                 video.clear();
 
-                //camera.direction(angle, angle);
-                //camera.position(x, y, -25.0f);
+                camera.direction(angle, angle, angle);
+                camera.position(x, y, -25.0f);
 
 #if 0
                 for (int k = -1000;
