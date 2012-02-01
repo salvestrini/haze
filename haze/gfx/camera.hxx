@@ -31,11 +31,13 @@ namespace HAZE {
                        GLfloat y = 0.0f,
                        GLfloat z = 0.0f,
                        GLfloat p = 0.0f,
-                       GLfloat h = 0.0f) :
+                       GLfloat h = 0.0f,
+                       GLfloat r = 0.0f) :
                         MATH::Point<GLfloat>(x, y, z)
                 {
                         heading_ = h;
                         pitch_   = p;
+                        roll_    = r;
                 }
 
                 virtual ~Camera()
@@ -50,10 +52,12 @@ namespace HAZE {
                 }
 
                 void direction(GLfloat pitch,
-                               GLfloat heading)
+                               GLfloat heading,
+                               GLfloat roll)
                 {
                         pitch_   = pitch;
                         heading_ = heading;
+                        roll_    = roll;
                         update();
                 }
 
@@ -61,17 +65,20 @@ namespace HAZE {
                          GLfloat y,
                          GLfloat z,
                          GLfloat pitch,
-                         GLfloat heading)
+                         GLfloat heading,
+                         GLfloat roll)
                 {
                         move(x, y, z);
                         pitch_   = pitch;
                         heading_ = heading;
+                        roll_    = roll;
                         update();
                 }
 
         private:
                 GLfloat heading_;
                 GLfloat pitch_;
+                GLfloat roll_;
 
                 void update()
                 {
@@ -85,8 +92,10 @@ namespace HAZE {
                         glMatrixMode(GL_MODELVIEW);
                         glLoadIdentity();
 
-                        glRotatef(0, 1, 0, -heading_);
-                        glRotatef(1, 0, 0, -pitch_);
+                        glRotatef(-pitch_,   1, 0, 0); // pitch   -> X
+                        glRotatef(-roll_,    0, 1 ,0); // roll    -> Y
+                        glRotatef(-heading_, 0, 0, 1); // heading -> Z
+
                         glTranslatef(-x(), -y(), -z());
 
                         //glPopMatrix();
