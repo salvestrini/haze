@@ -24,7 +24,6 @@ add_library(haze SHARED
   gfx/geometry.cxx
   gfx/gl.cxx
   gfx/image.cxx
-  gfx/primitive.cxx
   gfx/text.cxx
   gfx/video.cxx
 
