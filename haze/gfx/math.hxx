@@ -125,18 +125,12 @@ namespace HAZE {
 
                 template<typename TYPE = float> class Vector {
                 public:
-                        Vector(TYPE xv = 0,
-                               TYPE yv = 0,
-                               TYPE zv = 0) :
-                                x(xv),
-                                y(yv),
-                                z(zv)
+                        Vector(TYPE xv = 0, TYPE yv = 0, TYPE zv = 0) :
+                                x(xv), y(yv), z(zv)
                         { }
 
                         Vector(const Vector & other) :
-                                x(other.x),
-                                y(other.y),
-                                z(other.z)
+                                x(other.x), y(other.y), z(other.z)
                         { }
 
                         virtual ~Vector()
@@ -164,17 +158,11 @@ namespace HAZE {
                 template<typename TYPE = float> class Vertex {
                 public:
                         Vertex(const Vertex & other) :
-                                x(other.x),
-                                y(other.y),
-                                z(other.z)
+                                x(other.x), y(other.y), z(other.z)
                         { }
 
-                        Vertex(TYPE xv = 0,
-                               TYPE yv = 0,
-                               TYPE zv = 0) :
-                                x(xv),
-                                y(yv),
-                                z(zv)
+                        Vertex(TYPE xv = 0, TYPE yv = 0, TYPE zv = 0) :
+                                x(xv), y(yv), z(zv)
                         { }
 
                         virtual ~Vertex()
