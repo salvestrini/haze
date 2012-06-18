@@ -27,7 +27,7 @@ namespace HAZE {
                 template<typename TYPE> TYPE radians2angle(TYPE radians)
                 { return radians * 180 / M_PI; }
 
-                template<typename TYPE = int> class Point {
+                template<typename TYPE = float> class Point {
                 public:
                         Point(const Point & p) :
                                 x_(p.x()),
@@ -123,14 +123,20 @@ namespace HAZE {
                         Point<TYPE> to_;
                 };
 
-                template<typename TYPE = int> class Vector {
+                template<typename TYPE = float> class Vector {
                 public:
-                        Vector(TYPE x = 0,
-                               TYPE y = 0,
-                               TYPE z = 0) :
-                                x_(x),
-                                y_(y),
-                                z_(z)
+                        Vector(TYPE xv = 0,
+                               TYPE yv = 0,
+                               TYPE zv = 0) :
+                                x(xv),
+                                y(yv),
+                                z(zv)
+                        { }
+
+                        Vector(const Vector & other) :
+                                x(other.x),
+                                y(other.y),
+                                z(other.z)
                         { }
 
                         virtual ~Vector()
@@ -138,26 +144,47 @@ namespace HAZE {
 
                         typedef TYPE size_type;
 
-                        TYPE  x() const { return x_; }
-                        TYPE  y() const { return y_; }
-                        TYPE  z() const { return z_; }
+                        inline Vector operator + (const Vector & v)
+                        { return Vector(v.x + x, v.y + y, v.z + z); }
 
-                        void  x(TYPE v) { x_ = v; }
-                        void  y(TYPE v) { y_ = v; }
-                        void  z(TYPE v) { z_ = v; }
+                        inline Vector operator - (const Vector &v)
+                        { return Vector(x - v.x, y - v.y, z - v.z); }
 
-                        void  move(TYPE x,
-                                   TYPE y,
-                                   TYPE z) {
-                                x_ = x;
-                                y_ = y;
-                                z_ = z;
-                        }
+                        inline Vector operator * (TYPE value)
+                        { return Vector(x * value, y * value, z * value); }
 
-                private:
-                        TYPE x_;
-                        TYPE y_;
-                        TYPE z_;
+                        inline Vector operator / (TYPE value)
+                        { return Vector(x / value, y / value, z / value); }
+
+                        TYPE x;
+                        TYPE y;
+                        TYPE z;
+                };
+
+                template<typename TYPE = float> class Vertex {
+                public:
+                        Vertex(const Vertex & other) :
+                                x(other.x),
+                                y(other.y),
+                                z(other.z)
+                        { }
+
+                        Vertex(TYPE xv = 0,
+                               TYPE yv = 0,
+                               TYPE zv = 0) :
+                                x(xv),
+                                y(yv),
+                                z(zv)
+                        { }
+
+                        virtual ~Vertex()
+                        { }
+
+                        typedef TYPE size_type;
+
+                        TYPE x;
+                        TYPE y;
+                        TYPE z;
                 };
 
         }
