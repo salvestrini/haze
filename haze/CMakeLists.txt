@@ -38,4 +38,3 @@ add_library(haze SHARED
 
   io/io.cxx
 )
-
