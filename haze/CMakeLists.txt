@@ -1,4 +1,6 @@
 find_package(OpenGL    REQUIRED)
+find_package(OpenAL    REQUIRED)
+
 find_package(SDL       REQUIRED)
 find_package(SDL_image REQUIRED)
 find_package(SDL_mixer REQUIRED)
