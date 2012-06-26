@@ -37,4 +37,6 @@ add_library(haze SHARED
   sfx/audio.cxx
 
   io/io.cxx
+
+  haze.cxx
 )
