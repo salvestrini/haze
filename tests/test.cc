@@ -20,7 +20,7 @@
 
 #include "haze/haze.hh"
 
-#include "config.hh"
+#include "data.hh"
 
 void test(const std::string & datadir)
 {

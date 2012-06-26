@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef CONFIG_HXX
-#define CONFIG_HXX
+#ifndef DATA_HH
+#define DATA_HH
 
 #define DATAPATH "@CMAKE_CURRENT_SOURCE_DIR@"
 

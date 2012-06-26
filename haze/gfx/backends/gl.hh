@@ -19,7 +19,7 @@
 #ifndef HAZE_GFX_BACKENDS_GL
 #define HAZE_GFX_BACKENDS_GL
 
-#include "haze/config.h"
+#include "haze/config.hh"
 
 #if OPENGL_FOUND
   #include <GL/gl.h>

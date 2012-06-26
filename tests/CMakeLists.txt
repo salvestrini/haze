@@ -4,7 +4,8 @@ include_directories(${CMAKE_SOURCE_DIR}/haze)
 include_directories(${CMAKE_BINARY_DIR})
 include_directories(${CMAKE_BINARY_DIR}/haze)
 
-configure_file(config.hh.in config.hh)
+configure_file(data.hh.in data.hh)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
