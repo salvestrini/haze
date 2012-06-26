@@ -13,30 +13,30 @@ include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR})
 
 add_library(haze SHARED
-  core/debug.cxx
-  core/exception.cxx
-  core/filesystem.cxx
-  core/log.cxx
-  core/pattern.cxx
-  core/synchronization.cxx
-  core/thread.cxx
-  core/time.cxx
+  core/debug.cc
+  core/exception.cc
+  core/filesystem.cc
+  core/log.cc
+  core/pattern.cc
+  core/synchronization.cc
+  core/thread.cc
+  core/time.cc
 
-  gfx/backends/gl.cxx
+  gfx/backends/gl.cc
 
-  gfx/math.cxx
-  gfx/view.cxx
-  gfx/camera.cxx
-  gfx/font.cxx
-  gfx/fps.cxx
-  gfx/geometry.cxx
-  gfx/image.cxx
-  gfx/text.cxx
-  gfx/video.cxx
+  gfx/math.cc
+  gfx/view.cc
+  gfx/camera.cc
+  gfx/font.cc
+  gfx/fps.cc
+  gfx/geometry.cc
+  gfx/image.cc
+  gfx/text.cc
+  gfx/video.cc
 
-  sfx/audio.cxx
+  sfx/audio.cc
 
-  io/io.cxx
+  io/io.cc
 
-  haze.cxx
+  haze.cc
 )
