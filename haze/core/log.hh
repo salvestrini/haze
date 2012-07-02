@@ -19,45 +19,38 @@
 #ifndef HAZE_CORE_LOG
 #define HAZE_CORE_LOG
 
-#include <cstdio>
-
 #include "haze/settings.hh"
 
-extern const char * log_prefix_;
+#include <cstdio>
+#include <iostream>
 
 #if WANT_LOGS
+extern const char * log_prefix_;
+
 #define LOG_SETPREFIX(X)                        \
         do {                                    \
                 if (X) {                        \
                         log_prefix_ = X;        \
                 }                               \
-        } while (0)
+        } while (false)
+
+#define _LOG(STREAM, MSG)                               \
+	do {                                            \
+	        if (log_prefix_)                        \
+		        STREAM << log_prefix_ << ": ";  \
+		STREAM << MSG << std::endl;             \
+	} while (false)
+#else
+#define LOG_SETPREFIX(X)  do { } while (false)
+#define _LOG(STREAM, MSG) do { } while (false)
+#endif
 
 #if WANT_DEBUG
-#define DBG(FMT, ...)                           \
-        fprintf(stdout,                         \
-                "%s: " FMT "\n",                \
-                log_prefix_,                    \
-                ##__VA_ARGS__)
+#define DBG(MSG) _LOG(std::cout, MSG)
 #else
-#define DBG(FMT, ...)
+#define DBG(MSG)
 #endif
-
-#define WRN(FMT, ...)                           \
-        fprintf(stderr,                         \
-                "%s: " FMT "\n",                \
-                log_prefix_,                    \
-                ##__VA_ARGS__)
-#define ERR(FMT, ...)                           \
-        fprintf(stderr,                         \
-                "%s: " FMT "\n",                \
-                log_prefix_,                    \
-                ##__VA_ARGS__)
-#else
-#define LOG_SETPREFIX(X)
-#define DBG(FMT, ...)
-#define WRN(FMT, ...)
-#define ERR(FMT, ...)
-#endif
+#define WRN(MSG) _LOG(std::cout, MSG)
+#define ERR(MSG) _LOG(std::cout, MSG)
 
 #endif

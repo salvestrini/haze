@@ -29,7 +29,7 @@ namespace HAZE {
 
                 Thread * t = reinterpret_cast<Thread *>(opaque);
 
-                DBG("Running thread %s loop", t->name().c_str());
+                DBG("Running thread '" <<  t->name() << "' loop");
                 t->loop();
 
                 return 0;
@@ -37,16 +37,16 @@ namespace HAZE {
 
         Thread::Thread(const std::string & name) :
                 name_(name)
-        { DBG("Thread %s created", name_.c_str()); }
+        { DBG("Thread '" << name_ << "'%s created"); }
 
         void Thread::start()
         {
                 if (thread_) {
-                        WRN("Thread %s already started", name_.c_str());
+                        WRN("Thread '" << name_ << "' already started");
                         return;
                 }
 
-                DBG("Starting thread %s", name_.c_str());
+                DBG("Starting thread '" << name_ << "'");
 
                 thread_ = SDL_CreateThread(run, this);
                 if (thread_ == 0) {
@@ -63,16 +63,14 @@ namespace HAZE {
         void Thread::stop()
         {
                 if (thread_) {
-                        DBG("Stopping thread %s", name_.c_str());
-
+                        DBG("Stopping thread '" << name_ << "'");
                         int status;
 
                         SDL_WaitThread(thread_, &status);
 
                         thread_ = 0;
-                } else {
-                        WRN("Thread %s already stopped", name_.c_str());
-                }
+                } else
+                        WRN("Thread '" << name_ << "' already stopped");
 
                 ASSERT(!thread_);
         }
@@ -81,7 +79,7 @@ namespace HAZE {
         {
                 stop();
 
-                DBG("Thread %s destroyed", name_.c_str());
+                DBG("Thread '" << name_ << "' destroyed");
         }
 
 }

@@ -40,8 +40,10 @@ Event * EventManager::poll()
                         break;
 
                 case SDL_VIDEORESIZE:
-                        DBG("Got a video-resize (%d, %d) event",
-                            event_.resize.w, event_.resize.h);
+                        DBG("Got a video-resize event " <<
+                            "("  << event_.resize.w     <<
+                            ", " << event_.resize.h     <<
+                            ")");
                         tmp = new VideoResize(event_.resize.w,
                                               event_.resize.h);
                         break;
@@ -75,11 +77,16 @@ Event * EventManager::poll()
                         break;
                 }
                 case SDL_MOUSEMOTION: {
-                        DBG("Got mouse-motion (%d, %d, %d, %d)",
-                            event_.motion.x,
-                            event_.motion.y,
-                            event_.motion.xrel,
-                            event_.motion.yrel);
+                        DBG("Got mouse-motion " <<
+                            "("                 <<
+                            event_.motion.x     <<
+                            ", "                <<
+                            event_.motion.y     <<
+                            ", "                <<
+                            event_.motion.xrel  <<
+                            ", "                <<
+                            event_.motion.yrel  <<
+                            ")");
                         tmp = new MouseMotion(event_.motion.x,
                                               event_.motion.y,
                                               event_.motion.xrel,
@@ -102,7 +109,9 @@ Event * EventManager::poll()
                         }
                 }
                 default:
-                        DBG("Unhandled event 0x%x in queue", event_.type);
+                        DBG("Unhandled event " <<
+                            int(event_.type)   <<
+                            " in queue");
                         break;
         }
 

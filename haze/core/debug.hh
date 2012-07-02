@@ -27,6 +27,8 @@ void dump_backtrace();
 
 #define BACKTRACE() dump_backtrace()
 
+#define ABORT() std::abort()
+
 #define ASSERT_HEADER()                         \
 {                                               \
 	BUG();                                  \
@@ -48,19 +50,20 @@ void dump_backtrace();
                 if (!(X)) {                     \
                         ASSERT_HEADER();        \
                         BACKTRACE();            \
+                        ABORT();		\
                 }                               \
-        } while (0);                            \
+        } while (false);                        \
 }
 #endif
 
 #include "haze/core/log.hh"
 
-#define BUG()                                           \
-do {                                                    \
-	ERR("Got a bug in '%s' (%s:%d)",                \
-	    __PRETTY_FUNCTION__, __FILE__, __LINE__);   \
-	BACKTRACE();                                    \
-	exit(-1);                                       \
-} while (0)
+#define BUG()                                                   \
+do {                                                            \
+	ERR("Got a bug in '" <<  __PRETTY_FUNCTION__ << "' " << \
+	     "(" << __FILE__ << ":" << __LINE__ << ")");        \
+	BACKTRACE();                                            \
+        ABORT();	                                        \
+} while (false)
 
 #endif

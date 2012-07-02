@@ -16,6 +16,9 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/settings.hh"
 #include "haze/core/log.hh"
 
+#if WANT_LOGS
 const char * log_prefix_ = "NONE";
+#endif

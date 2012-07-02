@@ -41,26 +41,26 @@ namespace HAZE {
                         }
                 }
 
-                DBG("Initializing video %ld x %ld @ %ld",
-                    width(), height(), bpp);
+                DBG("Initializing video " <<
+                    width() << " x " << height() << " @ "<< bpp);
 
                 const SDL_VideoInfo * info = SDL_GetVideoInfo();
                 if (!info) {
                         throw CannotInitialize(SDL_GetError());
                 }
                 DBG("Video infos:");
-                DBG("  hw_available = %d", info->hw_available);
-                DBG("  wm_available = %d", info->wm_available);
-                DBG("  blit_hw      = %d", info->blit_hw     );
-                DBG("  blit_hw_CC   = %d", info->blit_hw_CC  );
-                DBG("  blit_hw_A    = %d", info->blit_hw_A   );
-                DBG("  blit_sw      = %d", info->blit_sw     );
-                DBG("  blit_sw_CC   = %d", info->blit_sw_CC  );
-                DBG("  blit_sw_A    = %d", info->blit_sw_A   );
-                DBG("  blit_fill    = %d", info->blit_fill   );
-                DBG("  video_mem    = %d", info->video_mem   );
-                DBG("  current_w    = %d", info->current_w   );
-                DBG("  current_h    = %d", info->current_h   );
+                DBG("  hw_available = " << info->hw_available);
+                DBG("  wm_available = " << info->wm_available);
+                DBG("  blit_hw      = " << info->blit_hw     );
+                DBG("  blit_hw_CC   = " << info->blit_hw_CC  );
+                DBG("  blit_hw_A    = " << info->blit_hw_A   );
+                DBG("  blit_sw      = " << info->blit_sw     );
+                DBG("  blit_sw_CC   = " << info->blit_sw_CC  );
+                DBG("  blit_sw_A    = " << info->blit_sw_A   );
+                DBG("  blit_fill    = " << info->blit_fill   );
+                DBG("  video_mem    = " << info->video_mem   );
+                DBG("  current_w    = " << info->current_w   );
+                DBG("  current_h    = " << info->current_h   );
 
                 Uint32 flags =
                         SDL_OPENGL    |
@@ -77,7 +77,7 @@ namespace HAZE {
                 // XXX FIXME: Ugly ...
                 if (static_cast<size_t>(closest) != bpp) {
                         bpp = closest;
-                        DBG("Closest video mode is %ld bpp", bpp);
+                        DBG("Closest video mode is " << bpp << " bpp");
                 }
 
                 // Set the GL attributes
@@ -114,7 +114,8 @@ namespace HAZE {
                 flags_ = flags;
                 bpp_   = bpp;
 
-                DBG("Video set to %ld x %ld @ %ld", width(), height(), bpp_);
+                DBG("Video set to " <<
+                    width() << " x " << height() << " @ " << bpp_);
 
                 HAZE::GL::init();
 

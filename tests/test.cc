@@ -36,7 +36,7 @@ void test(const std::string & datadir)
 
         Image glyphs(Path(datadir + "font.png"));
 
-        DBG("Glyphs image is %lu x %lu", glyphs.width(), glyphs.height());
+        DBG("Glyphs image is " << glyphs.width() << " x " << glyphs.height());
 
         // Font image is 16x16 chars
         Rectangle<size_t, size_t> rectangle(0,
@@ -235,12 +235,12 @@ int main(int argc, char * argv[])
                 test(datadir);
                 retval = EXIT_SUCCESS;
         } catch (std::exception & e) {
-                ERR("Got exception: %s", e.what());
+                ERR("Got exception: " << e.what());
         } catch (...) {
                 BUG();
         }
 
-        DBG("Completed with%s errors", (retval ? "" : "out"));
+        DBG("Completed with" <<  (retval ? "" : "out") << " errors");
 
         return retval;
 }

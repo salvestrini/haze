@@ -59,7 +59,8 @@ namespace HAZE {
                         default:                                \
                                 e = "Unkwnon"; break;           \
                 }                                               \
-                ERR("Got GL error 0x%x (%s)", err, e);          \
+                ERR("Got GL error " << int(err) << " " <<       \
+                    "(" << e << ")");                           \
                 BUG();                                          \
         }                                                       \
 }
@@ -88,7 +89,7 @@ namespace HAZE {
                                      tokens.begin();
                              i != tokens.end();
                              i++) {
-                                DBG("  %s", (*i).c_str());
+                                DBG("  " << *i);
                         }
                 }
 
