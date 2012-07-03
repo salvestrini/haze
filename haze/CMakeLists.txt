@@ -23,9 +23,9 @@ add_library(haze SHARED
   core/synchronization.cc
   core/thread.cc
   core/time.cc
+  core/core.cc
 
   gfx/backends/gl.cc
-
   gfx/math.cc
   gfx/view.cc
   gfx/camera.cc
@@ -35,8 +35,10 @@ add_library(haze SHARED
   gfx/image.cc
   gfx/text.cc
   gfx/video.cc
+  gfx/gfx.cc
 
   sfx/audio.cc
+  sfx/sfx.cc
 
   io/io.cc
 

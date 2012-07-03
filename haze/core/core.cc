@@ -16,40 +16,4 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/core/filesystem.hh"
-
-namespace HAZE {
-
-        Path::Path(const std::string & p) :
-                path_(p)
-        { }
-
-        Path::~Path()
-        { }
-
-        Path Path::basename(const std::string & suffix)
-        {
-                // XXX FIXME: Add code here
-                (void) suffix;
-                return Path(path_);
-        }
-
-        Path Path::dirname()
-        { return Path(path_); }
-
-        bool Path::isFile()
-        { return false; }
-
-        bool Path::isDirectory()
-        { return false; }
-
-        bool Path::exists()
-        { return false; }
-
-        void Path::remove()
-        { }
-
-        const char * Path::c_str() const
-        { return path_.c_str(); }
-
-}
+#include "haze/core/core.hh"
