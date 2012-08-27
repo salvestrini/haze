@@ -24,6 +24,7 @@
 
 namespace HAZE {
 
+        // A common base for all our exceptions ...
         class Exception : public std::exception {
         public:
                 Exception();

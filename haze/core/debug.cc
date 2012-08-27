@@ -22,8 +22,6 @@
 #include "haze/core/log.hh"
 
 void dump_backtrace()
-{
-	ERR("Backtrace: <Missing support>");
-}
+{ ERR("Backtrace: <Missing support>"); }
 
 
