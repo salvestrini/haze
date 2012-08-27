@@ -41,7 +41,7 @@ namespace HAZE {
                         }
                 }
 
-                DBG("Initializing video " <<
+                DBG("Initializing video to " <<
                     width() << " x " << height() << " @ "<< bpp);
 
                 const SDL_VideoInfo * info = SDL_GetVideoInfo();

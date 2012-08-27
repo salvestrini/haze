@@ -25,21 +25,55 @@ namespace HAZE {
 
         class Path {
         public:
-                Path(const std::string & p);
-                ~Path();
+                Path(const std::string & p) :
+                        path_(p)
+                { }
 
-                Path basename(const std::string & suffix = "");
-                Path dirname();
+                virtual ~Path()
+                { }
 
-                bool isFile();
-                bool isDirectory();
-                bool exists();
-                void remove();
+                virtual bool isFile()
+                { return false; }
 
-                const char * c_str() const;
+                virtual bool isDirectory()
+                { return false; }
+
+                virtual bool exists()
+                { return false; }
+
+                virtual const char * c_str() const
+                { return path_.c_str(); }
 
         private:
                 std::string path_;
+        };
+
+        class File : public Path {
+        public:
+                File(const std::string & p);
+                ~File();
+
+                virtual bool isFile()
+                { return true; }
+
+                virtual bool isDirectory()
+                { return false; }
+
+        private:
+        };
+
+        class Directory : public Path {
+        public:
+                Directory(const std::string & p);
+                virtual ~Directory();
+
+                virtual bool isFile()
+                { return false;}
+
+                virtual bool isDirectory()
+                { return true; }
+
+        private:
         };
 
 }
