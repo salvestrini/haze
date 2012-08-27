@@ -61,7 +61,7 @@ namespace HAZE {
                                 CannotLoad(const Path &        path,
                                            const std::string & cause) :
                                         Exception(std::string("Cannot load ") +
-                                                  std::string(path.c_str())   +
+                                                  path.str()                  +
                                                   (!cause.empty() ?
                                                    ", " + cause   :
                                                    ""))
@@ -96,7 +96,7 @@ namespace HAZE {
                                 CannotLoad(const Path &        path,
                                            const std::string & cause) :
                                         Exception(std::string("Cannot load ") +
-                                                  std::string(path.c_str())   +
+                                                  path.str()                  +
                                                   (!cause.empty() ?
                                                    ", " + cause   :
                                                    ""))

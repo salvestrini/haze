@@ -46,7 +46,7 @@ namespace HAZE {
                         count_++;
                 }
 
-                surface_ = IMG_Load(file.c_str());
+                surface_ = IMG_Load(file.str().c_str());
                 if (!surface_) {
                         throw CannotLoad(file, SDL_GetError());
                 }

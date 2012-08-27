@@ -28,17 +28,17 @@ namespace HAZE {
                 Path(const std::string & p) : path_(p) { }
                 virtual ~Path() { }
 
-                virtual bool isFile()
+                virtual bool isFile() const
                 { return false; }
 
-                virtual bool isDirectory()
+                virtual bool isDirectory() const
                 { return false; }
 
-                virtual bool exists()
+                virtual bool exists() const
                 { return false; }
 
-                virtual const char * c_str() const
-                { return path_.c_str(); }
+                virtual std::string str() const
+                { return path_; }
 
         private:
                 std::string path_;
@@ -49,10 +49,10 @@ namespace HAZE {
                 File(const std::string & p) : Path(p) { }
                 virtual ~File() { }
 
-                virtual bool isFile()
+                virtual bool isFile() const
                 { return true; }
 
-                virtual bool isDirectory()
+                virtual bool isDirectory() const
                 { return false; }
 
         private:
@@ -63,10 +63,10 @@ namespace HAZE {
                 Directory(const std::string & p) : Path(p) { }
                 virtual ~Directory() { }
 
-                virtual bool isFile()
+                virtual bool isFile() const
                 { return false;}
 
-                virtual bool isDirectory()
+                virtual bool isDirectory() const
                 { return true; }
 
         private:
