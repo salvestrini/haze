@@ -20,6 +20,9 @@
 #define HAZE_CORE_FILESYSTEM
 
 #include <string>
+#include <set>
+
+#include "haze/core/exception.hh"
 
 namespace HAZE {
 
@@ -38,6 +41,9 @@ namespace HAZE {
                 { return false; }
 
                 virtual std::string str() const
+                { return path_; }
+
+                std::string name() const
                 { return path_; }
 
         private:
@@ -68,6 +74,16 @@ namespace HAZE {
 
                 virtual bool isDirectory() const
                 { return true; }
+
+                class CannotWalk : public Exception {
+                public:
+                        CannotWalk(const std::string & what) :
+                                Exception(what) { }
+                        CannotWalk(const char * what) :
+                                Exception(what) { }
+                };
+
+                std::set<Path *> items();
 
         private:
         };

@@ -16,4 +16,41 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <string.h>
+#include <errno.h>
+
+#include <sys/types.h>
+#include <dirent.h>
+
+#include "haze/core/utils.hh"
 #include "haze/core/filesystem.hh"
+
+namespace HAZE {
+
+        std::set<Path *> Directory::items()
+        {
+                DIR * dir = opendir(name().c_str());
+                if (dir == 0)
+                        throw CannotWalk(strerror(errno));
+
+                std::set<Path *> tmp;
+
+                // Ugly use of dirent follows ...
+                struct dirent * d;
+                while ((d = readdir(dir)) != 0) {
+                        if (d->d_type == DT_DIR) {
+                                tmp.insert(new Directory(d->d_name));
+                        } else if (d->d_type == DT_REG) {
+                                tmp.insert(new File(d->d_name));
+                        } else {
+                                closedir(dir);
+                                throw CannotWalk("Unhandled type for path " +
+                                                 quote(d->d_name));
+                        }
+                }
+
+                closedir(dir);
+                return tmp;
+        }
+
+}
