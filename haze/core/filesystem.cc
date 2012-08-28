@@ -73,9 +73,6 @@ namespace HAZE {
                 while ((d = readdir(dir)) != 0) {
                         std::string name(d->d_name);
 
-                        DBG("  name=" << quote(name) <<
-                            ", type=" << tostring(d->d_type));
-
                         if (d->d_type == DT_DIR) {
                                 if ((name == ".") || (name == ".."))
                                         continue;
