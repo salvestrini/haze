@@ -21,6 +21,8 @@
 
 #include <string>
 
+#define _STR(X) #X
+
 namespace HAZE {
 
         std::string quote(const std::string & s);
