@@ -1,3 +1,14 @@
+#CheckCXXCompilerFlag
+#CHECK_CXX_COMPILER_FLAG(-Wall WALL)
+
+include(CheckIncludeFile)
+CHECK_INCLUDE_FILE(execinfo.h HAVE_EXECINFO_H)
+
+include(CheckSymbolExists)
+CHECK_SYMBOL_EXISTS(backtrace execinfo.h HAVE_BACKTRACE)
+CHECK_SYMBOL_EXISTS(backtrace_symbols execinfo.h HAVE_BACKTRACE_SYMBOLS)
+
+
 find_package(OpenGL    REQUIRED)
 find_package(OpenAL    REQUIRED)
 

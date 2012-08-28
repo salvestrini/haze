@@ -22,4 +22,8 @@
 #cmakedefine01 OPENGL_FOUND
 #cmakedefine01 OPENAL_FOUND
 
+#cmakedefine01 HAVE_EXECINFO_H
+#cmakedefine01 HAVE_BACKTRACE
+#cmakedefine01 HAVE_BACKTRACE_SYMBOLS
+
 #endif

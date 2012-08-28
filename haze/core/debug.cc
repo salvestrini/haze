@@ -16,9 +16,17 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/config.hh"
+
+#if HAVE_EXECINFO_H
+#include <execinfo.h>
+#endif
+
 #include "haze/settings.hh"
 #include "haze/core/log.hh"
 #include "haze/core/debug.hh"
+
+#define MAX_BACKTRACE_FRAMES 200
 
 std::vector<std::string> backtrace()
 {
