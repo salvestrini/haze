@@ -16,6 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include <sstream>
+
 #include "haze/core/debug.hh"
 #include "haze/core/utils.hh"
 
@@ -26,5 +28,14 @@ namespace HAZE {
 
         std::string quote(const char * s)
         { ASSERT(s != 0); return quote(std::string(s)); }
+
+        std::string tostring(int i)
+        {
+                std::stringstream s;
+
+                s << i;
+
+                return s.str();
+        }
 
 }

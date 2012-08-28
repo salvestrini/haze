@@ -26,6 +26,8 @@ namespace HAZE {
         std::string quote(const std::string & s);
         std::string quote(const char * s);
 
+        std::string tostring(int i);
+
 }
 
 #endif
