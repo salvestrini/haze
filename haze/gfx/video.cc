@@ -28,6 +28,16 @@
 
 namespace HAZE {
 
+        bool Video::isModeOk(size_t width,
+                             size_t height,
+                             size_t bpp,
+                             Uint32 flags)
+        {
+                if (SDL_VideoModeOK(width, height, bpp, flags) <= 0)
+                        return false;
+                return true;
+        }
+
         Video::Video(size_t w,
                      size_t h,
                      size_t bpp) :
@@ -83,10 +93,8 @@ namespace HAZE {
                                 bpp = info->vfmt->BitsPerPixel;
                 }
 
-                int closest = SDL_VideoModeOK(width(), height(), bpp, flags);
-                if (closest <= 0) {
+                if (!isModeOk(width(), height(), bpp, flags))
                         throw CannotInitialize("Video mode unsupported");
-                }
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -117,6 +125,9 @@ namespace HAZE {
                 if ((w == 0) || (h == 0)) {
                         throw CannotResize("Wrong dimensions");
                 }
+
+                if (!isModeOk(w, h, bpp_, flags_))
+                        throw CannotInitialize("Video mode unsupported");
 
                 MATH::Rectangle<size_t>::resize(w, h);
 

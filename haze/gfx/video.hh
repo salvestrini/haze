@@ -65,6 +65,11 @@ namespace HAZE {
                 void   update();
 
         private:
+                bool   isModeOk(size_t width,
+                                size_t height,
+                                size_t bpp,
+                                Uint32 flags);
+
                 SDL_Surface * surface_;
                 Uint32        flags_;
                 size_t        bpp_;
