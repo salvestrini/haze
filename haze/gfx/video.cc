@@ -19,6 +19,7 @@
 #include <string>
 
 #include "haze/core/debug.hh"
+#include "haze/core/utils.hh"
 #include "haze/core/log.hh"
 #include "haze/gfx/video.hh"
 #include "haze/gfx/camera.hh"
@@ -61,6 +62,7 @@ namespace HAZE {
                 DBG("  video_mem    = " << info->video_mem   );
                 DBG("  current_w    = " << info->current_w   );
                 DBG("  current_h    = " << info->current_h   );
+                DBG("  bpp          = " << tostring(info->vfmt->BitsPerPixel));
 
                 Uint32 flags =
                         SDL_OPENGL    |
@@ -69,16 +71,30 @@ namespace HAZE {
                         SDL_HWSURFACE |
                         0;
 
+                {
+                        size_t wt = static_cast<size_t>(info->current_w);
+                        size_t ht = static_cast<size_t>(info->current_h);
+
+                        if (width() > wt)
+                                width(wt);
+                        if (height() > ht)
+                                height(ht);
+                        if (bpp > info->vfmt->BitsPerPixel)
+                                bpp = info->vfmt->BitsPerPixel;
+                }
+
                 int closest = SDL_VideoModeOK(width(), height(), bpp, flags);
                 if (closest <= 0) {
                         throw CannotInitialize("Video mode unsupported");
                 }
 
+#if 0
                 // XXX FIXME: Ugly ...
                 if (static_cast<size_t>(closest) != bpp) {
                         bpp = closest;
                         DBG("Closest video mode is " << bpp << " bpp");
                 }
+#endif
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -93,15 +109,15 @@ namespace HAZE {
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp) != 0) {
                         throw CannotInitialize("Cannot set "
-                                               "SDL_GL_RED_SIZE attribute");
+                                               "SDL_GL_GREEN_SIZE attribute");
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, tmp) != 0) {
                         throw CannotInitialize("Cannot set "
-                                               "SDL_GL_RED_SIZE attribute");
+                                               "SDL_GL_BLUE_SIZE attribute");
                 }
                 if (SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, tmp) != 0) {
                         throw CannotInitialize("Cannot set "
-                                               "SDL_GL_RED_SIZE attribute");
+                                               "SDL_GL_ALPHA_SIZE attribute");
                 }
 #endif
 
