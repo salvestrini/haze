@@ -16,12 +16,30 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <string>
-
 #include "haze/settings.hh"
 #include "haze/core/log.hh"
+#include "haze/core/debug.hh"
 
-void dump_backtrace()
-{ ERR("Backtrace: <Missing support>"); }
+std::vector<std::string> backtrace()
+{
+        std::vector<std::string> tmp;
 
+#if HAVE_BACKTRACE && HAVE_BACKTRACE_SYMBOLS
+        void *  array[MAX_BACKTRACE_FRAMES];
+        size_t  size;
+        char ** strings;
+        size_t  i;
 
+        size    = backtrace(array, MAX_BACKTRACE_FRAMES);
+        strings = backtrace_symbols(array, size);
+
+        if (strings) {
+                for (i = 0; i < size; i++)
+                        tmp.push_back(strings[i]);
+
+                free(strings);
+        }
+#endif
+
+        return tmp;
+}

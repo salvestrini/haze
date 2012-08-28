@@ -21,18 +21,34 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <string>
+#include <vector>
 #include <cassert>
 
-void dump_backtrace();
+#include "haze/core/log.hh"
+#include "haze/core/utils.hh"
 
-#define BACKTRACE() dump_backtrace()
+std::vector<std::string> backtrace();
+
+#define BACKTRACE_DUMP()                                                \
+do {                                                                    \
+        std::vector<std::string> tmp(backtrace());                      \
+                                                                        \
+        ERR("");                                                        \
+        if (tmp.size() != 0) {                                          \
+                ERR("Backtrace (" << tmp.size() << " stack frames):");  \
+                for (std::vector<std::string>::const_iterator i =       \
+			tmp.begin();                                    \
+                     i != tmp.end();                                    \
+                     i++)                                               \
+                        ERR("  " << *i);                                \
+        } else {                                                        \
+                WRN("Backtrace is empty ...");                          \
+        }                                                               \
+        ERR("");                                                        \
+} while (false)
 
 #define ABORT() std::abort()
-
-#define ASSERT_HEADER()                         \
-{                                               \
-	BUG();                                  \
-}
 
 // Redefine assert() as our ASSERT()
 #ifdef assert
@@ -44,26 +60,25 @@ void dump_backtrace();
 #ifdef NDEBUG
 #define ASSERT(X)
 #else
-#define ASSERT(X)                               \
-{                                               \
-        do {                                    \
-                if (!(X)) {                     \
-                        ASSERT_HEADER();        \
-                        BACKTRACE();            \
-                        ABORT();		\
-                }                               \
-        } while (false);                        \
-}
+#define ASSERT(X)                                                       \
+        do {                                                            \
+                if (!(X)) {                                             \
+                        ERR("Assertion " << quote(_STR(X)) << " " <<    \
+			    "failed in "                          <<    \
+			    "'" <<  __PRETTY_FUNCTION__ << "' "   <<    \
+	                    "(" << __FILE__ << ":" << __LINE__ << ")"); \
+                        BACKTRACE_DUMP();                               \
+                        ABORT();                                        \
+                }                                                       \
+        } while (false)
 #endif
 
-#include "haze/core/log.hh"
-
-#define BUG()                                                   \
-do {                                                            \
-	ERR("Got a bug in '" <<  __PRETTY_FUNCTION__ << "' " << \
-	     "(" << __FILE__ << ":" << __LINE__ << ")");        \
-	BACKTRACE();                                            \
-        ABORT();	                                        \
-} while (false)
+#define BUG()                                                           \
+	do {                                                            \
+		ERR("Got a bug in '" <<  __PRETTY_FUNCTION__ << "' " << \
+		     "(" << __FILE__ << ":" << __LINE__ << ")");        \
+		BACKTRACE_DUMP();                                       \
+	        ABORT();	                                        \
+	} while (false)
 
 #endif
