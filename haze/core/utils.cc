@@ -24,7 +24,7 @@ namespace HAZE {
         std::string quote(const std::string & s)
         { return std::string("`") + s + std::string("'"); }
 
-        std::string HAZE::quote(const char * s)
+        std::string quote(const char * s)
         { ASSERT(s != 0); return quote(std::string(s)); }
 
 }
