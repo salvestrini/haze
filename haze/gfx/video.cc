@@ -88,38 +88,8 @@ namespace HAZE {
                         throw CannotInitialize("Video mode unsupported");
                 }
 
-#if 0
-                // XXX FIXME: Ugly ...
-                if (static_cast<size_t>(closest) != bpp) {
-                        bpp = closest;
-                        DBG("Closest video mode is " << bpp << " bpp");
-                }
-#endif
-
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-#if 0
-                ASSERT(bpp != 0);
-                int tmp = bpp / 4;
-
-                if (SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   tmp) != 0) {
-                        throw CannotInitialize("Cannot set "
-                                               "SDL_GL_RED_SIZE attribute");
-                }
-                if (SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, tmp) != 0) {
-                        throw CannotInitialize("Cannot set "
-                                               "SDL_GL_GREEN_SIZE attribute");
-                }
-                if (SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, tmp) != 0) {
-                        throw CannotInitialize("Cannot set "
-                                               "SDL_GL_BLUE_SIZE attribute");
-                }
-                if (SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, tmp) != 0) {
-                        throw CannotInitialize("Cannot set "
-                                               "SDL_GL_ALPHA_SIZE attribute");
-                }
-#endif
 
                 // Create the GL drawing context
                 surface_ = SDL_SetVideoMode(width(), height(), bpp, flags);
