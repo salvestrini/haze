@@ -55,25 +55,18 @@ namespace HAZE {
                 File(const std::string & p) : Path(p) { }
                 virtual ~File() { }
 
+        private:
                 virtual bool isFile() const
                 { return true; }
 
                 virtual bool isDirectory() const
                 { return false; }
-
-        private:
         };
 
         class Directory : public Path {
         public:
                 Directory(const std::string & p) : Path(p) { }
                 virtual ~Directory() { }
-
-                virtual bool isFile() const
-                { return false;}
-
-                virtual bool isDirectory() const
-                { return true; }
 
                 class CannotWalk : public Exception {
                 public:
@@ -83,9 +76,14 @@ namespace HAZE {
                                 Exception(what) { }
                 };
 
-                std::set<Path *> items();
+                std::set<Path *> entries() const;
 
         private:
+                virtual bool isFile() const
+                { return false;}
+
+                virtual bool isDirectory() const
+                { return true; }
         };
 
 }

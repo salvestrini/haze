@@ -27,7 +27,7 @@
 
 namespace HAZE {
 
-        std::set<Path *> Directory::items()
+        std::set<Path *> Directory::entries() const
         {
                 DIR * dir = opendir(name().c_str());
                 if (dir == 0)
