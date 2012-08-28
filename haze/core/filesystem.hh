@@ -60,12 +60,13 @@ namespace HAZE {
                 File(const std::string & p) : Path(p) { }
                 virtual ~File() { }
 
-        private:
                 virtual bool isFile() const
                 { return true; }
 
                 virtual bool isDirectory() const
                 { return false; }
+
+        private:
         };
 
         class Directory : public Path {
@@ -83,12 +84,13 @@ namespace HAZE {
 
                 std::set<Path *> entries() const;
 
-        private:
                 virtual bool isFile() const
                 { return false;}
 
                 virtual bool isDirectory() const
                 { return true; }
+
+        private:
         };
 
 }

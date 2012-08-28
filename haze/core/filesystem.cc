@@ -77,6 +77,8 @@ namespace HAZE {
                             ", type=" << tostring(d->d_type));
 
                         if (d->d_type == DT_DIR) {
+                                if ((name == ".") || (name == ".."))
+                                        continue;
                                 tmp.insert(new Directory(name));
                         } else if (d->d_type == DT_REG) {
                                 tmp.insert(new File(name));
