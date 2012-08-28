@@ -31,11 +31,16 @@ namespace HAZE {
                 Path(const std::string & p) : path_(p) { }
                 virtual ~Path() { }
 
-                virtual bool isFile() const
-                { return false; }
+                class CannotStat : public Exception {
+                public:
+                        CannotStat(const std::string & what) :
+                                Exception(what) { }
+                        CannotStat(const char * what) :
+                                Exception(what) { }
+                };
 
-                virtual bool isDirectory() const
-                { return false; }
+                virtual bool isFile() const;
+                virtual bool isDirectory() const;
 
                 virtual bool exists() const
                 { return false; }

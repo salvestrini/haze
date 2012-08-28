@@ -20,12 +20,45 @@
 #include <errno.h>
 
 #include <sys/types.h>
+
+// For opendir()/readdir()/closedir()
 #include <dirent.h>
 
+// For stat()
+#include <sys/stat.h>
+#include <unistd.h>
+
+#include "haze/core/log.hh"
 #include "haze/core/utils.hh"
 #include "haze/core/filesystem.hh"
 
 namespace HAZE {
+
+        bool Path::isFile() const
+        {
+                struct stat buf;
+
+                if (stat(path_.c_str(), &buf) != 0)
+                        throw CannotStat("Cannot stat path "        +
+                                         quote(path_)               +
+                                         "(" + strerror(errno) + ")");
+
+                if (S_ISREG(buf.st_mode)) return true;
+                return false;
+        }
+
+        bool Path::isDirectory() const
+        {
+                struct stat buf;
+
+                if (stat(path_.c_str(), &buf) != 0)
+                        throw CannotStat("Cannot stat path "        +
+                                         quote(path_)               +
+                                         "(" + strerror(errno) + ")");
+                
+                if (S_ISDIR(buf.st_mode)) return true;
+                return false;
+        }
 
         std::set<Path *> Directory::entries() const
         {
@@ -38,14 +71,19 @@ namespace HAZE {
                 // Ugly use of dirent follows ...
                 struct dirent * d;
                 while ((d = readdir(dir)) != 0) {
+                        std::string name(d->d_name);
+
+                        DBG("  name=" << quote(name) <<
+                            ", type=" << tostring(d->d_type));
+
                         if (d->d_type == DT_DIR) {
-                                tmp.insert(new Directory(d->d_name));
+                                tmp.insert(new Directory(name));
                         } else if (d->d_type == DT_REG) {
-                                tmp.insert(new File(d->d_name));
+                                tmp.insert(new File(name));
                         } else {
                                 closedir(dir);
                                 throw CannotWalk("Unhandled type for path " +
-                                                 quote(d->d_name));
+                                                 quote(name));
                         }
                 }
 
