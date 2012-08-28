@@ -25,32 +25,33 @@
 #include <iostream>
 
 #if WANT_LOGS
-extern const char * log_prefix_;
+extern const char * logs_prefix_;
 
-#define LOG_SETPREFIX(X)                        \
+#define LOGS_PREFIX_SET(X)                      \
         do {                                    \
                 if (X) {                        \
-                        log_prefix_ = X;        \
+                        logs_prefix_ = X;       \
                 }                               \
         } while (false)
 
-#define _LOG(STREAM, MSG)                               \
+#define _LOG(STREAM, TXT)                               \
 	do {                                            \
-	        if (log_prefix_)                        \
-		        STREAM << log_prefix_ << ": ";  \
-		STREAM << MSG << std::endl;             \
+	        if (logs_prefix_)                       \
+		        STREAM << logs_prefix_ << ": "; \
+		STREAM << TXT << std::endl;             \
 	} while (false)
 #else
-#define LOG_SETPREFIX(X)  do { } while (false)
-#define _LOG(STREAM, MSG) do { } while (false)
+#define LOGS_PREFIX_SET(X) do { } while (false)
+#define _LOG(STREAM, TXT)  do { } while (false)
 #endif
 
 #if WANT_DEBUG
-#define DBG(MSG) _LOG(std::cout, MSG)
+#define DBG(TXT) _LOG(std::cout, TXT)
 #else
-#define DBG(MSG)
+#define DBG(TXT)
 #endif
-#define WRN(MSG) _LOG(std::cout, MSG)
-#define ERR(MSG) _LOG(std::cout, MSG)
+#define MSG(TXT) _LOG(std::cout, TXT)
+#define WRN(TXT) _LOG(std::cout, TXT)
+#define ERR(TXT) _LOG(std::cout, TXT)
 
 #endif

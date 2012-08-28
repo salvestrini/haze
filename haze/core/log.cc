@@ -20,5 +20,5 @@
 #include "haze/core/log.hh"
 
 #if WANT_LOGS
-const char * log_prefix_ = "NONE";
+const char * logs_prefix_ = "NONE";
 #endif
