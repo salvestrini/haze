@@ -19,6 +19,7 @@ add_library(haze SHARED
   core/exception.cc
   core/filesystem.cc
   core/log.cc
+  core/utils.cc
   core/pattern.cc
   core/synchronization.cc
   core/thread.cc
