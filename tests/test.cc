@@ -222,7 +222,7 @@ void test(const std::string & datadir)
 
 int main(int argc, char * argv[])
 {
-        LOG_SETPREFIX("test");
+        LOGS_PREFIX_SET("test");
 
         std::string datadir(std::string(DATAPATH) + "/");
         if (argc > 1) {
