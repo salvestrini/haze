@@ -59,6 +59,7 @@ namespace HAZE {
                 if (!info) {
                         throw CannotInitialize(SDL_GetError());
                 }
+
                 DBG("Video infos:");
                 DBG("  hw_available = " << info->hw_available);
                 DBG("  wm_available = " << info->wm_available);
