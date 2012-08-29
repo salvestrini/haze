@@ -29,8 +29,6 @@
 #include <vector>
 #include <string>
 
-#define REGEX_MAX_MATCHES 5
-
 namespace HAZE {
 
         class Regex {
@@ -39,14 +37,14 @@ namespace HAZE {
                 Regex(const std::string & expression);
                 virtual ~Regex();
 
-                std::vector<std::string> matches(const std::string & input);
+                std::vector<std::string> matches(const std::string & input,
+                                                 size_t              mcount);
 
         private:
                 void compile(const char * expression);
 
 #if HAVE_REGEX_H
-                regex_t    buffer_;
-                regmatch_t matches_[REGEX_MAX_MATCHES];
+                regex_t buffer_;
 #endif
         };
 

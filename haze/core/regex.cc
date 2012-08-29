@@ -64,24 +64,28 @@ namespace HAZE {
                 ASSERT(rc == 0);
         }
 
-        std::vector<std::string> Regex::matches(const std::string & input)
+        std::vector<std::string> Regex::matches(const std::string & input,
+                                                size_t              mcount)
         {
                 DBG("Matching " << quote(input) << " against regex buffer");
 
+                ASSERT(mcount >= 1);
+
+                regmatch_t               matches[mcount];
                 std::vector<std::string> tmp;
 
                 if (regexec(&buffer_,
                             input.c_str(),
-                            REGEX_MAX_MATCHES,
-                            matches_,
+                            mcount,
+                            matches,
                             0) == 0) {
                         DBG("Got matches:");
-                        for (size_t i = 0; i < REGEX_MAX_MATCHES; i++) {
+                        for (size_t i = 0; i < mcount; i++) {
                                 std::string s(input.c_str() +
-                                              matches_[i].rm_so,
-                                              (matches_[i].rm_eo -
-                                               matches_[i].rm_so));
-                                if (matches_[i].rm_so != -1) {
+                                              matches[i].rm_so,
+                                              (matches[i].rm_eo -
+                                               matches[i].rm_so));
+                                if (matches[i].rm_so != -1) {
                                         tmp.push_back(s);
                                 }
                         }
