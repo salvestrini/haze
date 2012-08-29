@@ -16,20 +16,40 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CONFIG
-#define HAZE_CONFIG
+#ifndef HAZE_CORE_REGEX
+#define HAZE_CORE_REGEX
 
-#cmakedefine01 OPENGL_FOUND
-#cmakedefine01 OPENAL_FOUND
+#include "haze/config.hh"
 
-#cmakedefine01 HAVE_EXECINFO_H
-#cmakedefine01 HAVE_BACKTRACE
-#cmakedefine01 HAVE_BACKTRACE_SYMBOLS
+#if HAVE_REGEX_H
+#include <sys/types.h>
+#include <regex.h>
+#endif
 
-#cmakedefine01 HAVE_REGEX_H
-#cmakedefine01 HAVE_REGEXEC
-#cmakedefine01 HAVE_REGCOMP
-#cmakedefine01 HAVE_REGERROR
-#cmakedefine01 HAVE_REGFREE
+#include <vector>
+#include <string>
+
+#define REGEX_MAX_MATCHES 5
+
+namespace HAZE {
+
+        class Regex {
+        public:
+                Regex(const char *);
+                Regex(const std::string & expression);
+                virtual ~Regex();
+
+                std::vector<std::string> matches(const std::string & input);
+
+        private:
+                void compile(const char * expression);
+
+#if HAVE_REGEX_H
+                regex_t    buffer_;
+                regmatch_t matches_[REGEX_MAX_MATCHES];
+#endif
+        };
+
+}
 
 #endif
