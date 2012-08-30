@@ -1,40 +1,39 @@
-macro(GIT_VERSION_GEN)
+macro(GIT_VERSION_GEN _default_version)
 
 include(FindGit)
 
-find_program(SORT "sort")
-find_program(TAIL "tail")
+find_program(_sort "sort")
+find_program(_tail "tail")
 
-if(GIT_FOUND AND SORT AND TAIL)
+if(GIT_FOUND AND _sort AND _tail)
   execute_process(
     COMMAND ${GIT_EXECUTABLE} tag -l -n0
-    COMMAND ${SORT} -V
-    COMMAND ${TAIL} -n 1
-    OUTPUT_VARIABLE _command_output
-    RESULT_VARIABLE _command_result
+    COMMAND ${_sort} -V
+    COMMAND ${_tail} -n 1
+    OUTPUT_VARIABLE _git_tag
+    RESULT_VARIABLE _git_result
     OUTPUT_STRIP_TRAILING_WHITESPACE)
-  if(NOT ${_command_result} EQUAL 0)
+  if(NOT ${_git_result} EQUAL 0)
     message(FATAL_ERROR "Cannot fetch repository tag")
   endif()
-  message(STATUS "Repository tag is: ${_command_output}")
+  message(STATUS "Repository tag is: ${_git_tag}")
 
-  string(REGEX REPLACE
-    "[^0-9]*([0-9]+)\\.[0-9]+\\.[0-9]+.*" "\\1"
-    _major "${_command_output}")
-  string(REGEX REPLACE
-    "[^0-9]*[0-9]+\\.([0-9]+)\\.[0-9]+.*" "\\1"
-    _minor "${_command_output}")
-  string(REGEX REPLACE
-    "[^0-9]*[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1"
-    _micro "${_command_output}")
-
-  set(PACKAGE_VERSION_MAJOR "${_major}")
-  set(PACKAGE_VERSION_MINOR "${_minor}")
-  set(PACKAGE_VERSION_MICRO "${_micro}")
 else(GIT_FOUND)
-  set(PACKAGE_VERSION_MAJOR -1)
-  set(PACKAGE_VERSION_MINOR -1)
-  set(PACKAGE_VERSION_MICRO -1)
+  set(_git_tag "${_default_version}")
 endif()
+
+string(REGEX REPLACE
+  "[^0-9]*([0-9]+)\\.[0-9]+\\.[0-9]+.*" "\\1"
+  _version_major "${_git_tag}")
+string(REGEX REPLACE
+  "[^0-9]*[0-9]+\\.([0-9]+)\\.[0-9]+.*" "\\1"
+  _version_minor "${_git_tag}")
+string(REGEX REPLACE
+  "[^0-9]*[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1"
+  _version_micro "${_git_tag}")
+
+set(PACKAGE_VERSION_MAJOR "${_version_major}")
+set(PACKAGE_VERSION_MINOR "${_version_minor}")
+set(PACKAGE_VERSION_MICRO "${_version_micro}")
 
 endmacro(GIT_VERSION_GEN)

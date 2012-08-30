@@ -8,7 +8,7 @@ add_subdirectory(haze)
 add_subdirectory(tests)
 
 include(GitVersionGen)
-GIT_VERSION_GEN()
+GIT_VERSION_GEN("0.0.0")
 
 message(STATUS "Package version is: ${PACKAGE_VERSION_MAJOR}.${PACKAGE_VERSION_MINOR}.${PACKAGE_VERSION_MICRO}")
 
