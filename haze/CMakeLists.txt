@@ -1,7 +1,4 @@
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-Wall"   CXX_SUPPORTS_WALL)
-CHECK_CXX_COMPILER_FLAG("-Werror" CXX_SUPPORTS_WERROR)
-CHECK_CXX_COMPILER_FLAG("-Wundef" CXX_SUPPORTS_WUNDEF)
+enable_language(CXX)
 
 include(CheckIncludeFile)
 include(CheckSymbolExists)
@@ -68,6 +65,11 @@ add_library(haze SHARED
 
   haze.cc
 )
+
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-Wall"   CXX_SUPPORTS_WALL)
+CHECK_CXX_COMPILER_FLAG("-Werror" CXX_SUPPORTS_WERROR)
+CHECK_CXX_COMPILER_FLAG("-Wundef" CXX_SUPPORTS_WUNDEF)
 
 include(MacroAddCompileFlags)
 if("${CXX_SUPPORTS_WALL}")
