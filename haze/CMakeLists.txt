@@ -63,6 +63,7 @@ add_library(haze SHARED
 
   io/io.cc
 
+  version.cc
   haze.cc
 )
 

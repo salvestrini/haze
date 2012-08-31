@@ -1,4 +1,4 @@
- //
+//
 // Copyright (C) 2012 Francesco Salvestrini
 //
 // This program is free software; you can redistribute it and/or modify
@@ -16,20 +16,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_VERSION
-#define HAZE_VERSION
-
-#include <string>
-
-#define HAZE_VERSION_MAJOR  @PACKAGE_VERSION_MAJOR@
-#define HAZE_VERSION_MINOR  @PACKAGE_VERSION_MINOR@
-#define HAZE_VERSION_MICRO  @PACKAGE_VERSION_MICRO@
-#define HAZE_VERSION_STRING "@PACKAGE_VERSION_MAJOR@.@PACKAGE_VERSION_MINOR@.@PACKAGE_VERSION_MICRO@"
+#include "haze/version.hh"
 
 namespace HAZE {
 
-std::string version_string();
+std::string version()
+{ return HAZE_VERSION_STRING; }
 
 }
-
-#endif
