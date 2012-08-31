@@ -17,10 +17,3 @@
 //
 
 #include "haze/version.hh"
-
-namespace HAZE {
-
-std::string version()
-{ return HAZE_VERSION_STRING; }
-
-}
