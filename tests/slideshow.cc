@@ -31,10 +31,10 @@ bool core(const HAZE::Directory & datadir)
         for (std::set<Path *>::iterator iter = entries.begin();
              iter != entries.end();
              iter++) {
-                DBG("  " << (*iter)->name() << " " <<
+                DBG("  " << (*iter)->str() << " " <<
                     "(" << ((*iter)->isFile() ? "file" : "directory") << ")");
                 if ((*iter)->isFile())
-                        pictures.insert((*iter)->name());
+                        pictures.insert((*iter)->str());
                 delete *iter;
         }
 
@@ -255,7 +255,7 @@ int main(int argc, char * argv[])
                         return EXIT_FAILURE;
                 }
 
-                HAZE::Directory * dir = new HAZE::Directory(datadir.name());
+                HAZE::Directory * dir = new HAZE::Directory(datadir.str());
                 retval = core(*dir) ? EXIT_SUCCESS : EXIT_FAILURE;
                 delete dir;
 
