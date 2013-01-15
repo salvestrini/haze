@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2012 Francesco Salvestrini
+// Copyright (C) 2012, 2013 Francesco Salvestrini
 //                    Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
