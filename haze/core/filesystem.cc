@@ -34,6 +34,14 @@
 
 namespace HAZE {
 
+#define PATH_SEPARATOR "/"
+
+        Path Path::operator+(const Path & rhs)
+        { return Path(path_ + PATH_SEPARATOR + rhs.path_); }
+
+        bool Path::exists() const
+        { return false; }
+
         bool Path::isFile() const
         {
                 struct stat buf;
@@ -62,7 +70,7 @@ namespace HAZE {
 
         std::set<Path *> Directory::entries() const
         {
-                DIR * dir = opendir(name().c_str());
+                DIR * dir = opendir(str().c_str());
                 if (dir == 0)
                         throw CannotWalk(strerror(errno));
 

@@ -41,15 +41,12 @@ namespace HAZE {
 
                 virtual bool isFile() const;
                 virtual bool isDirectory() const;
-
-                virtual bool exists() const
-                { return false; }
+                virtual bool exists() const;
 
                 virtual std::string str() const
                 { return path_; }
 
-                std::string name() const
-                { return path_; }
+                Path operator+(const Path & rhs);
 
         private:
                 std::string path_;
