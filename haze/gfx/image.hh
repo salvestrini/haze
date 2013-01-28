@@ -29,35 +29,35 @@
 
 namespace HAZE {
 
-        class Image : public Size<size_t>, public NonCopyable {
+        class image : public bounding_box<size_t>, public non_copyable {
         public:
-                class CannotLoad : public Exception {
+                class cannot_load : public exception {
                 public:
-                        CannotLoad(const Path &        path,
+                        cannot_load(const path &        path,
                                    const std::string & cause) :
-                                Exception(std::string("Cannot load ") +
+                                exception(std::string("Cannot load ") +
                                           path.str()                  +
                                           (!cause.empty() ? ", " + cause : ""))
                         { }
                 };
 
-                class CannotCreate : public Exception {
+                class cannot_create : public exception {
                 };
 
 #if 0
-                Image(void * data,
+                image(void * data,
                       int    width, int height,
                       int    depth, int pitch,
                       Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
 #endif
-                Image(SDL_Surface * surface);
-                Image(const Path & file);
-                virtual ~Image();
+                image(SDL_Surface * surface);
+                image(const path & file);
+                virtual ~image();
 
                 size_t       bpp() const;
                 bool         hasAlpha() const;
                 const void * data() const;
-                Image *      clip(const Rectangle<size_t,
+                image *      clip(const rectangle<size_t,
                                                   size_t> & rect) const;
 
         private:

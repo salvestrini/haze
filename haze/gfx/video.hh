@@ -33,42 +33,42 @@ namespace HAZE {
 #define VIDEO_DEFAULT_HEIGHT 10000
 #define VIDEO_DEFAULT_BPP    10000
 
-        class Video :
-                public MATH::Rectangle<size_t>,
-                public NonCopyable {
+        class video :
+                public MATH::rectangle<size_t>,
+                public non_copyable {
         public:
-                class CannotInitialize : public Exception {
+                class cannot_initialize : public exception {
                 public:
-                        CannotInitialize(const std::string what) :
-                                Exception(what) { }
+                        cannot_initialize(const std::string what) :
+                                exception(what) { }
                 };
 
-                class CannotResize : public Exception {
+                class cannot_resize : public exception {
                 public:
-                        CannotResize(const std::string what) :
-                                Exception(what) { }
+                        cannot_resize(const std::string what) :
+                                exception(what) { }
                 };
 
-                Video(size_t width  = VIDEO_DEFAULT_WIDTH,
+                video(size_t width  = VIDEO_DEFAULT_WIDTH,
                       size_t height = VIDEO_DEFAULT_HEIGHT,
                       size_t bpp    = VIDEO_DEFAULT_BPP);
-                virtual ~Video();
+                virtual ~video();
 
                 typedef size_t size_type;
 
-                // Width and Height ... we should derive from a Rectangle ...
-                void resize(size_t width,
-                            size_t height);
+                // Width and height ... we should derive from a rectangle ...
+                void   resize(size_t width,
+                              size_t height);
 
                 size_t bpp();
                 void   clear();
                 void   update();
 
         private:
-                bool   isModeOk(size_t width,
-                                size_t height,
-                                size_t bpp,
-                                Uint32 flags);
+                bool   is_mode_ok(size_t width,
+                                  size_t height,
+                                  size_t bpp,
+                                  Uint32 flags);
 
                 SDL_Surface * surface_;
                 Uint32        flags_;

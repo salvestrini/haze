@@ -23,16 +23,16 @@
 
 namespace HAZE {
 
-        Uint32 timerCallback(Uint32 interval, void * param)
+        static Uint32 timer_callback(Uint32 interval, void * param)
         {
-                Timer * this_ = reinterpret_cast<Timer *>(param);
+                timer * this_ = reinterpret_cast<timer *>(param);
 
                 this_->fire();
 
                 switch (this_->mode()) {
-                        case Timer::ONESHOT:
+                        case timer::ONESHOT:
                                 return 0;
-                        case Timer::PERIODIC:
+                        case timer::PERIODIC:
                                 return interval;
                         default:
                                 BUG();
@@ -40,14 +40,14 @@ namespace HAZE {
                 }
         }
 
-        Timer::Timer(unsigned int period, // ms
+        timer::timer(unsigned int period, // ms
                      type         mode) :
                 id_(NULL),
                 period_(period),
                 mode_(mode)
         { }
 
-        Timer::~Timer()
+        timer::~timer()
         {
                 try {
                         cancel();
@@ -56,13 +56,13 @@ namespace HAZE {
                 }
         }
 
-        bool Timer::isRunning()
+        bool timer::is_running()
         { return (id_ != NULL) ? true : false; }
 
-        Timer::type Timer::mode()
+        timer::type timer::mode()
         { return mode_; }
 
-        void Timer::start()
+        void timer::start()
         {
                 if (id_ != NULL) {
                         // Timer already started ...
@@ -70,35 +70,31 @@ namespace HAZE {
                 }
 
                 id_ = SDL_AddTimer(period_,
-                                   timerCallback,
+                                   timer_callback,
                                    reinterpret_cast<void *>(this));
-                if (id_ == NULL) {
-                        throw CantStart();
-                }
+                if (id_ == NULL)
+                        throw cannot_start();
         }
 
-        void Timer::cancel()
+        void timer::cancel()
         {
-                if (id_ == NULL) {
-                        // Timer not started
+                if (id_ == NULL)
                         return;
-                }
 
-                if (SDL_RemoveTimer(id_) != SDL_TRUE) {
-                        throw CantCancel();
-                }
+                if (SDL_RemoveTimer(id_) != SDL_TRUE)
+                        throw cannot_cancel();
         }
 
-        Time::Time()
+        time::time()
         { }
 
-        Time::~Time()
+        time::~time()
         { }
 
-        void Time::delay(size_t milliseconds) const
+        void time::delay(size_t milliseconds) const
         { SDL_Delay(milliseconds); }
 
-        size_t Time::ticks() const
+        size_t time::ticks() const
         { return SDL_GetTicks(); }
 
 }

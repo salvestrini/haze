@@ -33,42 +33,42 @@ namespace HAZE {
 #define DEBUG_GL 1
 
 #if DEBUG_GL
-#define ASSERT_GL_NO_ERROR() {                                  \
-        GLenum err = glGetError();                              \
-        if (err != GL_NO_ERROR) {                               \
-                const char * e = 0;                             \
-                switch (err) {                                  \
-                        case GL_INVALID_ENUM:                   \
-                                e = "Invalid enum";             \
-                                break;                          \
-                        case GL_INVALID_VALUE:                  \
-                                e = "Invalid value";            \
-                                break;                          \
-                        case GL_INVALID_OPERATION:              \
-                                e = "Invalid operation";        \
-                                break;                          \
-                        case GL_STACK_OVERFLOW:                 \
-                                e = "Stack overflow";           \
-                                break;                          \
-                        case GL_OUT_OF_MEMORY:                  \
-                                e = "Out of memory";            \
-                                break;                          \
-                        case GL_TABLE_TOO_LARGE:                \
-                                e = "Table too large";          \
-                                break;                          \
-                        default:                                \
-                                e = "Unkwnon"; break;           \
-                }                                               \
-                ERR("Got GL error " << int(err) << " " <<       \
-                    "(" << e << ")");                           \
-                BUG();                                          \
-        }                                                       \
-}
+#define ASSERT_GL_NO_ERROR() {                                            \
+                        GLenum err = glGetError();                        \
+                        if (err != GL_NO_ERROR) {                         \
+                                const char * e = 0;                       \
+                                switch (err) {                            \
+                                        case GL_INVALID_ENUM:             \
+                                                e = "Invalid enum";       \
+                                                break;                    \
+                                        case GL_INVALID_VALUE:            \
+                                                e = "Invalid value";      \
+                                                break;                    \
+                                        case GL_INVALID_OPERATION:        \
+                                                e = "Invalid operation";  \
+                                                break;                    \
+                                        case GL_STACK_OVERFLOW:           \
+                                                e = "Stack overflow";     \
+                                                break;                    \
+                                        case GL_OUT_OF_MEMORY:            \
+                                                e = "Out of memory";      \
+                                                break;                    \
+                                        case GL_TABLE_TOO_LARGE:          \
+                                                e = "Table too large";    \
+                                                break;                    \
+                                        default:                          \
+                                                e = "Unkwnon"; break;     \
+                                }                                         \
+                                ERR("Got GL error " << int(err) << " " << \
+                                    "(" << e << ")");                     \
+                                BUG();                                    \
+                        }                                                 \
+                }
 #else
 #define ASSERT_GL_NO_ERROR()
 #endif
 
-                static void dumpExtensions()
+                static void dump_extensions()
                 {
                         const GLubyte * strings =
                                 glGetString(GL_EXTENSIONS);
@@ -113,10 +113,10 @@ namespace HAZE {
                         // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
                         DBG("GL initialized");
 
-                        dumpExtensions();
+                        dump_extensions();
                 }
 
-                Color::Color(GLfloat red,
+                color::color(GLfloat red,
                              GLfloat green,
                              GLfloat blue,
                              GLfloat alpha) :
@@ -126,34 +126,34 @@ namespace HAZE {
                         alpha_(alpha)
                 { }
 
-                Color::~Color()
+                color::~color()
                 { }
 
-                GLfloat Color::red() const
+                GLfloat color::red() const
                 { return red_; }
 
-                GLfloat Color::green() const
+                GLfloat color::green() const
                 { return green_; }
 
-                GLfloat Color::blue() const
+                GLfloat color::blue() const
                 { return blue_; }
 
-                GLfloat Color::alpha() const
+                GLfloat color::alpha() const
                 { return alpha_; }
 
-                void Color::red(GLfloat value)
+                void color::red(GLfloat value)
                 { red_ = value; }
 
-                void Color::green(GLfloat value)
+                void color::green(GLfloat value)
                 { green_ = value; }
 
-                void Color::blue(GLfloat value)
+                void color::blue(GLfloat value)
                 { blue_ = value; }
 
-                void Color::alpha(GLfloat value)
+                void color::alpha(GLfloat value)
                 { alpha_ = value; }
 
-                void Color::program() const
+                void color::program() const
                 {
                         if (alpha_ == 1.0f) {
                                 glColor3f(red_, green_, blue_);
@@ -162,76 +162,76 @@ namespace HAZE {
                         }
                 }
 
-                Pen::Pen(const Color & color,
-                         GLfloat       size) :
-                        color_(color),
+                pen::pen(const GL::color & c,
+                         GLfloat           size) :
+                        color_(c),
                         size_(size)
                 { }
 
-                Pen::~Pen()
+                pen::~pen()
                 { }
 
-                void Pen::program() const
+                void pen::program() const
                 {
                         color_.program();
                         glPointSize(size_);
                 }
 
-                void Pen::color(const Color & color)
-                { color_ = color; }
+                void pen::color(const GL::color & c)
+                { color_ = c; }
 
-                Color Pen::color() const
+                color pen::color() const
                 { return color_; }
 
-                void Pen::size(GLfloat value)
+                void pen::size(GLfloat value)
                 { size_ = value; }
 
-                GLfloat Pen::size() const
+                GLfloat pen::size() const
                 { return size_; }
 
-                Point::Point(const Pen &                  pen,
-                             const MATH::Point<GLfloat> & where) :
+                point::point(const pen &                  pen,
+                             const MATH::point<GLfloat> & where) :
                         pen_(pen),
                         where_(where)
                 { }
 
-                Point::~Point()
+                point::~point()
                 { }
 
-                void Point::move(const MATH::Point<GLfloat> & where)
+                void point::move(const MATH::point<GLfloat> & where)
                 { where_ = where; }
 
-                void Point::draw() const
+                void point::draw() const
                 {
                         pen_.program();
 
                         {
-                                DrawGuard d(GL_POINTS);
+                                draw_guard d(GL_POINTS);
                                 glVertex2f(where_.x(), where_.y());
                         }
 
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Segment::Segment(const Pen &                  pen,
-                                 const MATH::Point<GLfloat> & from,
-                                 const MATH::Point<GLfloat> & to) :
+                segment::segment(const pen &                  pen,
+                                 const MATH::point<GLfloat> & from,
+                                 const MATH::point<GLfloat> & to) :
                         pen_(pen),
                         from_(from),
                         to_(to)
                 { }
 
-                Segment::~Segment()
+                segment::~segment()
                 { }
 
-                void Segment::move(const MATH::Point<GLfloat> & where)
+                void segment::move(const MATH::point<GLfloat> & where)
                 {
                         // XXX FIXME: Add code here
                         (void) where;
                         //where_ = where;
                 }
 
-                void Segment::rotate(GLfloat radians)
+                void segment::rotate(GLfloat radians)
                 {
                         // XXX FIXME: Add code here
                         (void) radians;
@@ -239,12 +239,12 @@ namespace HAZE {
                         //angle_ = MATH::radians2angle<GLfloat>(radians);
                 }
 
-                void Segment::draw() const
+                void segment::draw() const
                 {
                         pen_.program();
 
                         {
-                                DrawGuard d(GL_LINES);
+                                draw_guard d(GL_LINES);
                                 glVertex2f(from_.x(), from_.y());
                                 glVertex2f(to_.x(),   to_.y());
                         }
@@ -252,28 +252,28 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Figure::Figure() :
-                        center_(MATH::Point<GLfloat>(0.0f, 0.0f)),
+                figure::figure() :
+                        center_(MATH::point<GLfloat>(0.0f, 0.0f)),
                         rotation_(0.0f),
                         scale_(1.0f)
                 { }
 
-                Figure::~Figure()
+                figure::~figure()
                 { }
 
-                void Figure::move(const MATH::Point<GLfloat> & where)
+                void figure::move(const MATH::point<GLfloat> & where)
                 { center_ = where; }
 
-                void Figure::rotate(GLfloat radians)
+                void figure::rotate(GLfloat radians)
                 { rotation_ = MATH::radians2angle<GLfloat>(radians); }
 
-                void Figure::scale(GLfloat factor)
+                void figure::scale(GLfloat factor)
                 { scale_ = factor; }
 
-                Triangle::Triangle(const Pen &                  pen,
-                                   const MATH::Point<GLfloat> & a,
-                                   const MATH::Point<GLfloat> & b,
-                                   const MATH::Point<GLfloat> & c,
+                triangle::triangle(const pen &                  pen,
+                                   const MATH::point<GLfloat> & a,
+                                   const MATH::point<GLfloat> & b,
+                                   const MATH::point<GLfloat> & c,
                                    bool                         filled) :
                         pen_(pen),
                         a_(a),
@@ -282,17 +282,17 @@ namespace HAZE {
                         filled_(filled)
                 { }
 
-                Triangle::~Triangle()
+                triangle::~triangle()
                 { }
 
-                void Triangle::draw() const
+                void triangle::draw() const
                 {
                         pen_.program();
 
                         {
-                                DrawGuard d(filled_      ?
-                                            GL_TRIANGLES :
-                                            GL_TRIANGLES);
+                                draw_guard d(filled_      ?
+                                             GL_TRIANGLES :
+                                             GL_TRIANGLES);
                                 glVertex3f(a_.x(), a_.y(), 0.0f);
                                 glVertex3f(b_.x(), b_.y(), 0.0f);
                                 glVertex3f(c_.x(), c_.y(), 0.0f);
@@ -301,9 +301,9 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Rectangle::Rectangle(const Pen &                  pen,
-                                     const MATH::Point<GLfloat> & from,
-                                     const MATH::Point<GLfloat> & to,
+                rectangle::rectangle(const pen &                  pen,
+                                     const MATH::point<GLfloat> & from,
+                                     const MATH::point<GLfloat> & to,
                                      bool                         filled) :
                         pen_(pen),
                         from_(from),
@@ -311,15 +311,17 @@ namespace HAZE {
                         filled_(filled)
                 { }
 
-                Rectangle::~Rectangle()
+                rectangle::~rectangle()
                 { }
 
-                void Rectangle::draw() const
+                void rectangle::draw() const
                 {
                         pen_.program();
 
                         {
-                                DrawGuard d(filled_ ? GL_QUADS : GL_LINE_LOOP);
+                                draw_guard d(filled_ ?
+                                             GL_QUADS : GL_LINE_LOOP);
+
                                 glVertex2f(from_.x(), from_.y());
                                 glVertex2f(to_.x(),   from_.y());
                                 glVertex2f(to_.x(),   to_.y());
@@ -329,8 +331,8 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Circle::Circle(const Pen &                  pen,
-                               const MATH::Point<GLfloat> & center,
+                circle::circle(const pen &                  pen,
+                               const MATH::point<GLfloat> & center,
                                GLfloat                      radius,
                                size_t                       segments,
                                bool                         filled) :
@@ -341,14 +343,14 @@ namespace HAZE {
                         filled_(filled)
                 { }
 
-                Circle::~Circle()
+                circle::~circle()
                 {
                         if (segments_ <= 0) {
                                 segments_ = 1;
                         }
                 }
 
-                void Circle::draw() const
+                void circle::draw() const
                 {
                         pen_.program();
 
@@ -357,9 +359,9 @@ namespace HAZE {
                                         2.0f * M_PI / segments_;
                                 float       theta     = 0.0f;
 
-                                DrawGuard d(filled_         ?
-                                            GL_TRIANGLE_FAN :
-                                            GL_LINE_LOOP);
+                                draw_guard d(filled_         ?
+                                             GL_TRIANGLE_FAN :
+                                             GL_LINE_LOOP);
 
                                 for (size_t i = 0; i < segments_; ++i) {
                                         glVertex2f(center_.x() +
@@ -374,21 +376,21 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Polygon::Polygon(const Pen &                      pen,
-                                 std::list<MATH::Point<GLfloat> > points,
+                polygon::polygon(const pen &                      pen,
+                                 std::list<MATH::point<GLfloat> > points,
                                  bool                             filled) :
                         pen_(pen),
                         points_(points),
                         filled_(filled)
                 { }
 
-                void Polygon::set(bool filled)
+                void polygon::set(bool filled)
                 { filled_ = filled; }
 
-                void Polygon::set(std::list<MATH::Point<GLfloat> > points)
+                void polygon::set(std::list<MATH::point<GLfloat> > points)
                 { points_ = points; }
 
-                void Polygon::draw() const
+                void polygon::draw() const
                 {
                         // glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -401,11 +403,11 @@ namespace HAZE {
                         glRotatef(rotation_, 0.0f, 0.0f, 1.0f);
 
                         {
-                                DrawGuard d(filled_         ?
-                                            GL_TRIANGLE_FAN :
-                                            GL_LINE_LOOP);
+                                draw_guard d(filled_         ?
+                                             GL_TRIANGLE_FAN :
+                                             GL_LINE_LOOP);
 
-                                for (std::list<MATH::Point<GLfloat> >::
+                                for (std::list<MATH::point<GLfloat> >::
                                              const_iterator i =
                                              points_.begin();
                                      i != points_.end();
@@ -419,7 +421,7 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                void Texture::init(const Image & image)
+                void texture::init(const image & image)
                 {
                         glEnable(GL_TEXTURE_2D);
 
@@ -455,7 +457,7 @@ namespace HAZE {
                         height(image.height());
 
 #if 0
-                        DBG("Texture %d is %d x %d pixels (%s)",
+                        DBG("texture %d is %d x %d pixels (%s)",
                             id_,
                             width(), height(),
                             format == GL_BGRA ? "has-alpha" : "no-alpha");
@@ -465,18 +467,18 @@ namespace HAZE {
                         ASSERT_GL_NO_ERROR();
                 }
 
-                Texture::Texture(const Image & image,
-                                 const Color & color) :
-                        color_(color)
+                texture::texture(const image & image,
+                                 const color & c) :
+                        color_(c)
                 { init(image); }
 
-                Texture::~Texture()
+                texture::~texture()
                 { glDeleteTextures(1, &id_); }
 
-                void Texture::set(const Color & color)
-                { color_ = color; }
+                void texture::set(const color & c)
+                { color_ = c; }
 
-                void Texture::draw() const
+                void texture::draw() const
                 {
                         glEnable(GL_TEXTURE_2D);
 
@@ -499,7 +501,7 @@ namespace HAZE {
                         color_.program();
 
                         {
-                                DrawGuard d(GL_QUADS);
+                                draw_guard d(GL_QUADS);
 
                                 glTexCoord2f(0.0f, 0.0f); glVertex2f(-w2, -h2);
                                 glTexCoord2f(1.0f, 0.0f); glVertex2f( w2, -h2);

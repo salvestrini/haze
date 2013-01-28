@@ -36,45 +36,45 @@ namespace HAZE {
 
 #define PATH_SEPARATOR "/"
 
-        Path Path::operator+(const Path & rhs)
-        { return Path(path_ + PATH_SEPARATOR + rhs.path_); }
+        path path::operator+(const path & rhs)
+        { return path(path_ + PATH_SEPARATOR + rhs.path_); }
 
-        bool Path::exists() const
+        bool path::exists() const
         { return false; }
 
-        bool Path::isFile() const
+        bool path::is_file() const
         {
                 struct stat buf;
 
                 if (stat(path_.c_str(), &buf) != 0)
-                        throw CannotStat("Cannot stat path "        +
-                                         quote(path_)               +
-                                         "(" + strerror(errno) + ")");
+                        throw cannot_stat("Cannot stat path "         +
+                                          quote(path_)                +
+                                          " (" + strerror(errno) + ")");
 
                 if (S_ISREG(buf.st_mode)) return true;
                 return false;
         }
 
-        bool Path::isDirectory() const
+        bool path::is_directory() const
         {
                 struct stat buf;
 
                 if (stat(path_.c_str(), &buf) != 0)
-                        throw CannotStat("Cannot stat path "        +
-                                         quote(path_)               +
-                                         "(" + strerror(errno) + ")");
+                        throw cannot_stat("Cannot stat path "         +
+                                          quote(path_)                +
+                                          " (" + strerror(errno) + ")");
                 
                 if (S_ISDIR(buf.st_mode)) return true;
                 return false;
         }
 
-        std::set<Path *> Directory::entries() const
+        std::set<path *> directory::entries() const
         {
                 DIR * dir = opendir(str().c_str());
                 if (dir == 0)
-                        throw CannotWalk(strerror(errno));
+                        throw cannot_walk(strerror(errno));
 
-                std::set<Path *> tmp;
+                std::set<path *> tmp;
 
                 // Ugly use of dirent follows ...
                 struct dirent * d;
@@ -84,13 +84,13 @@ namespace HAZE {
                         if (d->d_type == DT_DIR) {
                                 if ((name == ".") || (name == ".."))
                                         continue;
-                                tmp.insert(new Directory(name));
+                                tmp.insert(new directory(name));
                         } else if (d->d_type == DT_REG) {
-                                tmp.insert(new File(name));
+                                tmp.insert(new file(name));
                         } else {
                                 closedir(dir);
-                                throw CannotWalk("Unhandled type for path " +
-                                                 quote(name));
+                                throw cannot_walk("Unhandled type for path " +
+                                                  quote(name));
                         }
                 }
 

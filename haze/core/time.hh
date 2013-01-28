@@ -26,25 +26,25 @@
 
 namespace HAZE {
 
-        class Timer : public NonCopyable {
+        class timer : public non_copyable {
         public:
                 enum type {
                         ONESHOT,
                         PERIODIC
                 };
 
-                Timer(unsigned int period, // ms
+                timer(unsigned int period, // ms
                       type         mode);
-                ~Timer();
+                ~timer();
 
                 virtual void fire() = 0;
 
-                class CantStart  : public Exception { };
-                class CantCancel : public Exception { };
+                class cannot_start  : public exception { };
+                class cannot_cancel : public exception { };
 
                 void start();
                 void cancel();
-                bool isRunning();
+                bool is_running();
                 type mode();
 
         private:
@@ -53,10 +53,10 @@ namespace HAZE {
                 type         mode_;
         };
 
-        class Time {
+        class time {
         public:
-                Time();
-                ~Time();
+                time();
+                ~time();
 
                 void   delay(size_t milliseconds) const;
                 size_t ticks() const;

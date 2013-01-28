@@ -20,66 +20,66 @@
 
 namespace HAZE {
 
-        Glyphs::Glyphs()
+        glyphs::glyphs()
         { }
 
-        Glyphs::~Glyphs()
+        glyphs::~glyphs()
         { }
 
-        HAZE::Size<Image::size_type> Glyphs::max_glyph_size() const
+        bounding_box<image::size_type> glyphs::max_glyph_size() const
         { return max_; }
 
-        void Glyphs::add(char c, Image * i)
+        void glyphs::add(char c, image * i)
         {
                 glyphs_[c] = i;
 
-                max_ = HAZE::max<Image::size_type>(max_, *i);
+                max_ = HAZE::max<image::size_type>(max_, *i);
         }
 
-        void Glyphs::remove(char c)
+        void glyphs::remove(char c)
         {
                 glyphs_.erase(c);
 
-                for (std::map<char, Image *>::iterator i = glyphs_.begin();
+                for (std::map<char, image *>::iterator i = glyphs_.begin();
                      i != glyphs_.end();
                      i++) {
-                        max_ = HAZE::max<Image::size_type>(max_,
+                        max_ = HAZE::max<image::size_type>(max_,
                                                            (*i).second->
                                                            size());
                 }
         }
 
-        void Glyphs::clear()
+        void glyphs::clear()
         {
                 glyphs_.clear();
                 max_.clear();
         }
 
-        Image * Glyphs::map(char c) const
+        image * glyphs::map(char c) const
         {
-                std::map<char, Image *>::const_iterator i = glyphs_.find(c);
+                std::map<char, image *>::const_iterator i = glyphs_.find(c);
                 if (i == glyphs_.end()) {
-                        throw CannotMap(c);
+                        throw cannot_map(c);
                 }
 
                 return (*i).second;
         }
 
-        Font::Font()
+        font::font()
         { }
 
-        Font::~Font()
+        font::~font()
         { }
 
-        std::vector<Image *> Font::map(const std::string & s) const
+        std::vector<image *> font::map(const std::string & s) const
         {
-                std::vector<Image *>                    tmp;
-                std::map<char, Image *>::const_iterator j;
+                std::vector<image *>                    tmp;
+                std::map<char, image *>::const_iterator j;
 
                 for (std::string::const_iterator i = s.begin();
                      i != s.end();
                      i++) {
-                        tmp.push_back(Glyphs::map(*i));
+                        tmp.push_back(glyphs::map(*i));
                 }
 
                 return tmp;

@@ -25,13 +25,13 @@
 namespace HAZE {
 
         // A common base for all our exceptions ...
-        class Exception : public std::exception {
+        class exception : public std::exception {
         public:
-                Exception();
-                Exception(const char * what);
-                Exception(const std::string & what);
+                exception();
+                exception(const char * what);
+                exception(const std::string & what);
 
-                virtual ~Exception() throw();
+                virtual ~exception() throw();
 
                 virtual const char * what() const throw();
 

@@ -27,15 +27,15 @@ namespace HAZE {
                 template<typename TYPE> TYPE radians2angle(TYPE radians)
                 { return radians * 180 / M_PI; }
 
-                template<typename TYPE = float> class Point {
+                template<typename TYPE = float> class point {
                 public:
-                        Point(const Point & p) :
+                        point(const point & p) :
                                 x_(p.x()),
                                 y_(p.y()),
                                 z_(p.z())
                         { }
 
-                        Point(TYPE x = 0,
+                        point(TYPE x = 0,
                               TYPE y = 0,
                               TYPE z = 0) :
                                 x_(x),
@@ -43,7 +43,7 @@ namespace HAZE {
                                 z_(z)
                         { }
 
-                        virtual ~Point()
+                        virtual ~point()
                         { }
 
                         typedef TYPE size_type;
@@ -70,21 +70,21 @@ namespace HAZE {
                         TYPE z_;
                 };
 
-                template<typename TYPE = int> class Rectangle {
+                template<typename TYPE = int> class rectangle {
                 public:
-                        Rectangle(TYPE width,
+                        rectangle(TYPE width,
                                   TYPE height) :
                                 from_(0, 0),
                                 to_(width, height)
                         { }
 
-                        Rectangle(const Point<TYPE> & from,
-                                  const Point<TYPE> & to) :
+                        rectangle(const point<TYPE> & from,
+                                  const point<TYPE> & to) :
                                 from_(from),
                                 to_(to)
                         { }
 
-                        virtual ~Rectangle()
+                        virtual ~rectangle()
                         { }
 
                         typedef TYPE size_type;
@@ -119,8 +119,8 @@ namespace HAZE {
                         }
 
                 private:
-                        Point<TYPE> from_;
-                        Point<TYPE> to_;
+                        point<TYPE> from_;
+                        point<TYPE> to_;
                 };
 
                 template<typename TYPE = float> class Vector {

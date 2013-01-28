@@ -23,11 +23,11 @@
 
 namespace HAZE {
 
-        int Thread::run(void * opaque)
+        int thread::run(void * opaque)
         {
                 ASSERT(opaque != 0);
 
-                Thread * t = reinterpret_cast<Thread *>(opaque);
+                thread * t = reinterpret_cast<thread *>(opaque);
 
                 DBG("Running thread '" <<  t->name() << "' loop");
                 t->loop();
@@ -35,11 +35,11 @@ namespace HAZE {
                 return 0;
         }
 
-        Thread::Thread(const std::string & name) :
+        thread::thread(const std::string & name) :
                 name_(name)
         { DBG("Thread '" << name_ << "'%s created"); }
 
-        void Thread::start()
+        void thread::start()
         {
                 if (thread_) {
                         WRN("Thread '" << name_ << "' already started");
@@ -50,7 +50,7 @@ namespace HAZE {
 
                 thread_ = SDL_CreateThread(run, this);
                 if (thread_ == 0) {
-                        throw Exception(std::string("Unable to "
+                        throw exception(std::string("Unable to "
                                                     "create thread ") +
                                         name_                         +
                                         " "                           +
@@ -60,7 +60,7 @@ namespace HAZE {
                 ASSERT(thread_);
         }
 
-        void Thread::stop()
+        void thread::stop()
         {
                 if (thread_) {
                         DBG("Stopping thread '" << name_ << "'");
@@ -75,7 +75,7 @@ namespace HAZE {
                 ASSERT(!thread_);
         }
 
-        Thread::~Thread()
+        thread::~thread()
         {
                 stop();
 

@@ -21,10 +21,10 @@
 
 using namespace HAZE::IO;
 
-Event * EventManager::poll()
+event * event_manager::poll()
 {
         SDL_Event event_;
-        Event *   tmp = 0;
+        event *   tmp = 0;
 
         if (!SDL_PollEvent(&event_)) {
                 // DBG("No event in queue");
@@ -36,7 +36,7 @@ Event * EventManager::poll()
         switch (event_.type) {
                 case SDL_QUIT:
                         DBG("Got an application-quit event");
-                        tmp = new ApplicationQuit();
+                        tmp = new application_quit();
                         break;
 
                 case SDL_VIDEORESIZE:
@@ -44,24 +44,24 @@ Event * EventManager::poll()
                             "("  << event_.resize.w     <<
                             ", " << event_.resize.h     <<
                             ")");
-                        tmp = new VideoResize(event_.resize.w,
+                        tmp = new video_resize(event_.resize.w,
                                               event_.resize.h);
                         break;
 
                 case SDL_KEYUP:
                 case SDL_KEYDOWN: {
-                        KeyPress::Key k;
+                        key_press::Key k;
 
                         switch (event_.key.keysym.sym) {
-                                case SDLK_UP:    k = KeyPress::ARROW_UP;
+                                case SDLK_UP:    k = key_press::ARROW_UP;
                                         break;
-                                case SDLK_DOWN:  k = KeyPress::ARROW_DOWN;
+                                case SDLK_DOWN:  k = key_press::ARROW_DOWN;
                                         break;
-                                case SDLK_LEFT:  k = KeyPress::ARROW_LEFT;
+                                case SDLK_LEFT:  k = key_press::ARROW_LEFT;
                                         break;
-                                case SDLK_RIGHT: k = KeyPress::ARROW_RIGHT;
+                                case SDLK_RIGHT: k = key_press::ARROW_RIGHT;
                                         break;
-                                case SDLK_SPACE: k = KeyPress::SPACEBAR;
+                                case SDLK_SPACE: k = key_press::SPACEBAR;
                                         break;
                                 default:
                                         return tmp;
@@ -69,10 +69,10 @@ Event * EventManager::poll()
 
                         if (event_.type == SDL_KEYUP) {
                                 DBG("Got a key-up");
-                                tmp = new KeyUp(k);
+                                tmp = new key_up(k);
                         } else {
                                 DBG("Got a key-down");
-                                tmp = new KeyDown(k);
+                                tmp = new key_down(k);
                         }
                         break;
                 }
@@ -87,7 +87,7 @@ Event * EventManager::poll()
                             ", "                <<
                             event_.motion.yrel  <<
                             ")");
-                        tmp = new MouseMotion(event_.motion.x,
+                        tmp = new mouse_motion(event_.motion.x,
                                               event_.motion.y,
                                               event_.motion.xrel,
                                               event_.motion.yrel);

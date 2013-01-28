@@ -25,22 +25,22 @@
 
 namespace HAZE {
 
-        class Camera : public MATH::Point<GLfloat> {
+        class camera : public MATH::point<GLfloat> {
         public:
-                Camera(GLfloat x = 0.0f,
+                camera(GLfloat x = 0.0f,
                        GLfloat y = 0.0f,
                        GLfloat z = 0.0f,
                        GLfloat p = 0.0f,
                        GLfloat h = 0.0f,
                        GLfloat r = 0.0f) :
-                        MATH::Point<GLfloat>(x, y, z)
+                        MATH::point<GLfloat>(x, y, z)
                 {
                         heading_ = h;
                         pitch_   = p;
                         roll_    = r;
                 }
 
-                virtual ~Camera()
+                virtual ~camera()
                 { }
 
                 void position(GLfloat x = 0.0f,

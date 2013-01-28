@@ -27,15 +27,15 @@
 
 namespace HAZE {
 
-        template<typename TYPE = size_t> class Size {
+        template<typename TYPE = size_t> class bounding_box {
         public:
-                Size(TYPE width  = 0,
-                     TYPE height = 0) :
+                bounding_box(TYPE width  = 0,
+                             TYPE height = 0) :
                         width_(width),
                         height_(height)
                 { }
 
-                virtual ~Size()
+                virtual ~bounding_box()
                 { }
 
                 typedef TYPE size_type;
@@ -58,9 +58,9 @@ namespace HAZE {
                         height_ = height;
                 }
 
-                void resize(const Size & size) {
-                        width_  = size.width_;
-                        height_ = size.height_;
+                void resize(const bounding_box & bbox) {
+                        width_  = bbox.width_;
+                        height_ = bbox.height_;
                 }
 
                 void resize(float factor) {
@@ -74,7 +74,7 @@ namespace HAZE {
                         width_ = height_ = 0;
                 }
 
-                Size<size_t> size() const
+                HAZE::bounding_box<TYPE> size() const
                 { return *this; }
 
         private:
@@ -83,35 +83,35 @@ namespace HAZE {
         };
 
         template<typename TYPE>
-        Size<TYPE> max(const Size<TYPE> & a,
-                       const Size<TYPE> & b)
+        bounding_box<TYPE> max(const bounding_box<TYPE> & a,
+                               const bounding_box<TYPE> & b)
         {
                 // XXX FIXME: What a shame ...
-                return Size<TYPE>(a.width()  > b.width()  ?
-                                  a.width()  : b.width() ,
-                                  a.height() > b.height() ?
-                                  a.height() : b.height());
+                return bounding_box<TYPE>(a.width()  > b.width()  ?
+                                          a.width()  : b.width()  ,
+                                          a.height() > b.height() ?
+                                          a.height() : b.height());
         }
 
         template<typename PTYPE = int,
-                 typename STYPE = size_t> class Rectangle :
-                public MATH::Point<PTYPE>,
-                public Size<STYPE> {
+                 typename STYPE = size_t> class rectangle :
+                public MATH::point<PTYPE>,
+                public bounding_box<STYPE> {
         public:
-                Rectangle() { }
+                rectangle() { }
 
-                Rectangle(PTYPE x, PTYPE y, STYPE w, STYPE h) :
-                        MATH::Point<PTYPE>(x, y),
-                        Size<STYPE>(w, h)
+                rectangle(PTYPE x, PTYPE y, STYPE w, STYPE h) :
+                        MATH::point<PTYPE>(x, y),
+                        bounding_box<STYPE>(w, h)
                 { }
 
-                Rectangle(const MATH::Point<PTYPE> & origin,
-                          const Size<STYPE> &        size) :
-                        MATH::Point<PTYPE>(origin),
-                        Size<STYPE>(size)
+                rectangle(const MATH::point<PTYPE> &  origin,
+                          const bounding_box<STYPE> & bbox) :
+                        MATH::point<PTYPE>(origin),
+                        bounding_box<STYPE>(bbox)
                 { }
 
-                virtual ~Rectangle()
+                virtual ~rectangle()
                 { }
         };
 

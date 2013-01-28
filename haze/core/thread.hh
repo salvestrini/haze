@@ -27,10 +27,10 @@
 
 namespace HAZE {
 
-        class Thread : public NonCopyable {
+        class thread : public non_copyable {
         public:
-                Thread(const std::string & name = "unknown");
-                virtual ~Thread();
+                thread(const std::string & name = "unknown");
+                virtual ~thread();
 
                 std::string  name() { return name_; }
 

@@ -31,11 +31,11 @@
 
 namespace HAZE {
 
-        class Regex {
+        class regex {
         public:
-                Regex(const char *);
-                Regex(const std::string & expression);
-                virtual ~Regex();
+                regex(const char *);
+                regex(const std::string & expression);
+                virtual ~regex();
 
                 std::vector<std::string> matches(const std::string & input,
                                                  size_t              mcount);

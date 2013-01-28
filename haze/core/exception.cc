@@ -20,22 +20,22 @@
 
 namespace HAZE {
 
-        Exception::Exception() :
+        exception::exception() :
                 message_()
         { }
 
-        Exception::Exception(const char * what) :
+        exception::exception(const char * what) :
                 message_(what)
         { }
 
-        Exception::Exception(const std::string & what) :
+        exception::exception(const std::string & what) :
                 message_(what)
         { }
 
-        Exception::~Exception() throw()
+        exception::~exception() throw()
         { }
 
-        const char * Exception::what() const throw()
+        const char * exception::what() const throw()
         { return message_.c_str(); }
 
 }

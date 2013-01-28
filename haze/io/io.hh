@@ -26,63 +26,63 @@
 namespace HAZE {
         namespace IO {
 
-                class Event {
+                class event {
                 public:
-                        Event()
+                        event()
                         { }
 
-                        virtual ~Event()
+                        virtual ~event()
                         { }
 
                         enum Type {
-                                ApplicationQuit = 1,
-                                VideoResize,
-                                KeyUp,
-                                KeyDown,
-                                MouseMotion
+                                application_quit = 1,
+                                video_resize,
+                                key_up,
+                                key_down,
+                                mouse_motion
                         };
 
                         virtual Type type() const = 0;
                 };
 
-                class ApplicationQuit : public Event {
+                class application_quit : public event {
                 public:
-                        ApplicationQuit()
+                        application_quit()
                         { }
 
-                        virtual ~ApplicationQuit()
+                        virtual ~application_quit()
                         { }
 
                         Type type() const
-                        { return Event::ApplicationQuit; }
+                        { return event::application_quit; }
                 };
 
-                class VideoResize : public Event {
+                class video_resize : public event {
                 public:
-                        VideoResize(HAZE::Video::size_type width,
-                                    HAZE::Video::size_type height) :
+                        video_resize(HAZE::video::size_type width,
+                                    HAZE::video::size_type height) :
                                 width_(width),
                                 height_(height)
                         { }
 
-                        virtual ~VideoResize()
+                        virtual ~video_resize()
                         { }
 
                         Type type() const
-                        { return Event::VideoResize; }
+                        { return event::video_resize; }
 
-                        HAZE::Video::size_type width() const
+                        HAZE::video::size_type width() const
                         { return width_; }
 
-                        HAZE::Video::size_type height() const
+                        HAZE::video::size_type height() const
                         { return height_; }
 
                 private:
-                        HAZE::Video::size_type width_;
-                        HAZE::Video::size_type height_;
+                        HAZE::video::size_type width_;
+                        HAZE::video::size_type height_;
                 };
 
-                class KeyPress : public Event {
+                class key_press : public event {
                 public:
                         enum Key {
                                 ARROW_LEFT,
@@ -93,11 +93,11 @@ namespace HAZE {
                                 ESCAPE
                         };
 
-                        KeyPress(Key c) :
+                        key_press(Key c) :
                                 which_(c)
                         { }
 
-                        virtual ~KeyPress()
+                        virtual ~key_press()
                         { }
 
                         Key which()
@@ -107,35 +107,35 @@ namespace HAZE {
                         Key which_;
                 };
 
-                class KeyUp : public KeyPress {
+                class key_up : public key_press {
                 public:
-                        KeyUp(KeyPress::Key c) :
-                                KeyPress(c)
+                        key_up(key_press::Key c) :
+                                key_press(c)
                         { }
 
-                        virtual ~KeyUp()
+                        virtual ~key_up()
                         { }
 
                         Type type() const
-                        { return Event::KeyUp; }
+                        { return event::key_up; }
                 };
 
-                class KeyDown : public KeyPress {
+                class key_down : public key_press {
                 public:
-                        KeyDown(KeyPress::Key c) :
-                                KeyPress(c)
+                        key_down(key_press::Key c) :
+                                key_press(c)
                         { }
 
-                        virtual ~KeyDown()
+                        virtual ~key_down()
                         { }
 
                         Type type() const
-                        { return Event::KeyDown; }
+                        { return event::key_down; }
                 };
 
-                class MouseMotion : public Event {
+                class mouse_motion : public event {
                 public:
-                        MouseMotion(int          x,
+                        mouse_motion(int          x,
                                     int          y,
                                     unsigned int rel_x,
                                     unsigned int rel_y) :
@@ -145,11 +145,11 @@ namespace HAZE {
                                 rel_y_(rel_y)
                         { }
 
-                        virtual ~MouseMotion()
+                        virtual ~mouse_motion()
                         { }
 
                         Type type() const
-                        { return Event::MouseMotion; }
+                        { return event::mouse_motion; }
 
                         int x() const          { return x_;     }
                         int y() const          { return y_;     }
@@ -164,25 +164,25 @@ namespace HAZE {
                 };
 
 #if 0
-                class MousePress : public Event {
+                class mouse_press : public event {
                 };
 
-                class MouseButton : public MousePress {
+                class mouse_button : public mouse_press {
                 };
 
-                class MouseWheel : public MousePress {
+                class mouse_wheel : public mouse_press {
                 };
 #endif
 
-                class EventManager {
+                class event_manager {
                 public:
-                        EventManager()
+                        event_manager()
                         { }
 
-                        virtual ~EventManager()
+                        virtual ~event_manager()
                         { }
 
-                        Event * poll();
+                        event * poll();
 
                 private:
                         SDL_Event event_;

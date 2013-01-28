@@ -43,16 +43,16 @@ namespace HAZE {
         }
 #endif
 
-        Regex::Regex(const std::string & expression)
+        regex::regex(const std::string & expression)
         { compile(expression.c_str()); }
 
-        Regex::Regex(const char * expression)
+        regex::regex(const char * expression)
         { compile(expression); }
 
-        Regex::~Regex()
+        regex::~regex()
         { regfree(&buffer_); }
 
-        void Regex::compile(const char * expression)
+        void regex::compile(const char * expression)
         {
                 ASSERT(expression != 0);
 
@@ -64,7 +64,7 @@ namespace HAZE {
                 ASSERT(rc == 0);
         }
 
-        std::vector<std::string> Regex::matches(const std::string & input,
+        std::vector<std::string> regex::matches(const std::string & input,
                                                 size_t              mcount)
         {
                 DBG("Matching " << quote(input) << " against regex buffer");

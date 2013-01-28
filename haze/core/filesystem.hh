@@ -26,65 +26,65 @@
 
 namespace HAZE {
 
-        class Path {
+        class path {
         public:
-                Path(const std::string & p) : path_(p) { }
-                virtual ~Path() { }
+                path(const std::string & p) : path_(p) { }
+                virtual ~path() { }
 
-                class CannotStat : public Exception {
+                class cannot_stat : public exception {
                 public:
-                        CannotStat(const std::string & what) :
-                                Exception(what) { }
-                        CannotStat(const char * what) :
-                                Exception(what) { }
+                        cannot_stat(const std::string & what) :
+                                exception(what) { }
+                        cannot_stat(const char * what) :
+                                exception(what) { }
                 };
 
-                virtual bool isFile() const;
-                virtual bool isDirectory() const;
+                virtual bool is_file() const;
+                virtual bool is_directory() const;
                 virtual bool exists() const;
 
                 virtual std::string str() const
                 { return path_; }
 
-                Path operator+(const Path & rhs);
+                path operator+(const path & rhs);
 
         private:
                 std::string path_;
         };
 
-        class File : public Path {
+        class file : public path {
         public:
-                File(const std::string & p) : Path(p) { }
-                virtual ~File() { }
+                file(const std::string & p) : path(p) { }
+                virtual ~file() { }
 
-                virtual bool isFile() const
+                virtual bool is_file() const
                 { return true; }
 
-                virtual bool isDirectory() const
+                virtual bool is_directory() const
                 { return false; }
 
         private:
         };
 
-        class Directory : public Path {
+        class directory : public path {
         public:
-                Directory(const std::string & p) : Path(p) { }
-                virtual ~Directory() { }
+                directory(const std::string & p) : path(p) { }
+                virtual ~directory() { }
 
-                class CannotWalk : public Exception {
+                class cannot_walk : public exception {
                 public:
-                        CannotWalk(const std::string & what) :
-                                Exception(what) { }
-                        CannotWalk(const char * what) :
-                                Exception(what) { }
+                        cannot_walk(const std::string & what) :
+                                exception(what) { }
+                        cannot_walk(const char * what) :
+                                exception(what) { }
                 };
 
-                std::set<Path *> entries() const;
+                std::set<path *> entries() const;
 
-                virtual bool isFile() const
-                { return false;}
+                virtual bool is_file() const
+                { return false; }
 
-                virtual bool isDirectory() const
+                virtual bool is_directory() const
                 { return true; }
 
         private:

@@ -22,11 +22,11 @@
 
 namespace HAZE {
 
-        Semaphore::Semaphore(int value)
+        semaphore::semaphore(int value)
         {
                 semaphore_ = SDL_CreateSemaphore(value);
                 if (semaphore_ == NULL) {
-                        throw Exception(std::string("Unable to "
+                        throw exception(std::string("Unable to "
                                                     "create semaphore, ") +
                                         SDL_GetError());
                 }
@@ -34,32 +34,32 @@ namespace HAZE {
                 ASSERT(semaphore_);
         }
 
-        Semaphore::~Semaphore()
+        semaphore::~semaphore()
         { SDL_DestroySemaphore(semaphore_); }
 
-        void Semaphore::wait()
+        void semaphore::wait()
         {
                 if (SDL_SemWait(semaphore_)) {
-                        throw Exception(std::string("Unable to wait "
+                        throw exception(std::string("Unable to wait "
                                                     "semaphore, ") +
                                         SDL_GetError());
                 }
         }
 
-        void Semaphore::signal()
+        void semaphore::signal()
         {
                 if (SDL_SemPost(semaphore_)) {
-                        throw Exception(std::string("Unable to signal "
+                        throw exception(std::string("Unable to signal "
                                                     "semaphore, ") +
                                         SDL_GetError());
                 }
         }
 
-        Mutex::Mutex()
+        mutex::mutex()
         {
                 mutex_ = SDL_CreateMutex();
                 if (mutex_ == NULL) {
-                        throw Exception(std::string("Unable to "
+                        throw exception(std::string("Unable to "
                                                     "create mutex, ") +
                                         SDL_GetError());
                 }
@@ -67,22 +67,22 @@ namespace HAZE {
                 ASSERT(mutex_);
         }
 
-        Mutex::~Mutex()
+        mutex::~mutex()
         { SDL_DestroyMutex(mutex_); }
 
-        void Mutex::lock()
+        void mutex::lock()
         {
                 if (SDL_LockMutex(mutex_)) {
-                        throw Exception(std::string("Unable to lock "
+                        throw exception(std::string("Unable to lock "
                                                     "mutex, ") +
                                         SDL_GetError());
                 }
         }
 
-        void Mutex::unlock()
+        void mutex::unlock()
         {
                 if (SDL_UnlockMutex(mutex_)) {
-                        throw Exception(std::string("Unable to unlock "
+                        throw exception(std::string("Unable to unlock "
                                                     "mutex, ") +
                                         SDL_GetError());
                 }

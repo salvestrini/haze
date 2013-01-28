@@ -26,9 +26,9 @@ namespace HAZE {
 
         namespace VIEW {
 
-                class Perspective {
+                class perspective {
                 public:
-                        Perspective() {
+                        perspective() {
                                 glMatrixMode(GL_PROJECTION);
                                 glPushMatrix();
 
@@ -40,7 +40,7 @@ namespace HAZE {
                                 glEnable(GL_DEPTH_TEST);
                         }
 
-                        virtual ~Perspective() {
+                        virtual ~perspective() {
                                 glPopMatrix();
                                 glPopMatrix();
 
@@ -50,9 +50,9 @@ namespace HAZE {
                         }
                 };
 
-                class Orthogonal {
+                class orthogonal {
                 public:
-                        Orthogonal(GLdouble width,
+                        orthogonal(GLdouble width,
                                    GLdouble height) {
                                 glMatrixMode(GL_PROJECTION);
                                 glPushMatrix();
@@ -71,14 +71,14 @@ namespace HAZE {
 
                                 glLoadIdentity();
 
-                                DBG("Orthogonal enabled");
+                                DBG("orthogonal enabled");
                         }
 
-                        virtual ~Orthogonal() {
+                        virtual ~orthogonal() {
                                 glPopMatrix();
                                 glPopMatrix();
 
-                                DBG("Orthogonal disabled");
+                                DBG("orthogonal disabled");
                         }
                 };
 

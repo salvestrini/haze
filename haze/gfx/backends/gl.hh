@@ -37,24 +37,24 @@ namespace HAZE {
 
                 void init();
 
-                class DrawGuard {
+                class draw_guard {
                 public:
-                        DrawGuard(GLenum mode) {
+                        draw_guard(GLenum mode) {
                                 glBegin(mode);
                         }
 
-                        ~DrawGuard() {
+                        ~draw_guard() {
                                 glEnd();
                         }
                 };
 
-                class Color {
+                class color {
                 public:
-                        Color(GLfloat red   = 1.0f,
+                        color(GLfloat red   = 1.0f,
                               GLfloat green = 1.0f,
                               GLfloat blue  = 1.0f,
                               GLfloat alpha = 1.0f);
-                        ~Color();
+                        ~color();
 
                         GLfloat red()   const;
                         GLfloat green() const;
@@ -75,175 +75,175 @@ namespace HAZE {
                         GLfloat alpha_;
                 };
 
-                class Pen {
+                class pen {
                 public:
-                        Pen(const Color & color = Color(),
-                            GLfloat       size  = 1.0f);
-                        ~Pen();
+                        pen(const color & c    = GL::color(),
+                            GLfloat       size = 1.0f);
+                        ~pen();
 
-                        void    color(const Color & color);
-                        Color   color() const;
+                        void      color(const GL::color & c);
+                        GL::color color() const;
 
-                        void    size(GLfloat value);
-                        GLfloat size() const;
+                        void      size(GLfloat value);
+                        GLfloat   size() const;
 
-                        void    program() const;
+                        void      program() const;
 
                 private:
-                        Color   color_;
-                        GLfloat size_;
+                        GL::color color_;
+                        GLfloat   size_;
                 };
 
-                class Point {
+                class point {
                 public:
-                        Point(const Pen &                  pen,
-                              const MATH::Point<GLfloat> & where =
-                              MATH::Point<GLfloat>(0.0f, 0.0f));
-                        ~Point();
+                        point(const pen &                  pen,
+                              const MATH::point<GLfloat> & where =
+                              MATH::point<GLfloat>(0.0f, 0.0f));
+                        ~point();
 
-                        void move(const MATH::Point<GLfloat> & where);
+                        void move(const MATH::point<GLfloat> & where);
 
                         void draw() const;
 
                 private:
-                        Pen                  pen_;
-                        MATH::Point<GLfloat> where_;
+                        pen                  pen_;
+                        MATH::point<GLfloat> where_;
                 };
 
-                class Segment {
+                class segment {
                 public:
-                        Segment(const Pen &                  pen,
-                                const MATH::Point<GLfloat> & from =
-                                MATH::Point<GLfloat>(0.0f, 0.0f),
-                                const MATH::Point<GLfloat> & to =
-                                MATH::Point<GLfloat>(0.0f, 0.0f));
-                        ~Segment();
+                        segment(const pen &                  pen,
+                                const MATH::point<GLfloat> & from =
+                                MATH::point<GLfloat>(0.0f, 0.0f),
+                                const MATH::point<GLfloat> & to =
+                                MATH::point<GLfloat>(0.0f, 0.0f));
+                        ~segment();
 
-                        void move(const MATH::Point<GLfloat> & where);
+                        void move(const MATH::point<GLfloat> & where);
                         void rotate(GLfloat radians);
                         //void scale(GLfloat factor)
 
                         void draw() const;
 
                 private:
-                        Pen                  pen_;
-                        MATH::Point<GLfloat> from_;
-                        MATH::Point<GLfloat> to_;
+                        pen                  pen_;
+                        MATH::point<GLfloat> from_;
+                        MATH::point<GLfloat> to_;
                 };
 
-                class Figure {
+                class figure {
                 public:
-                        Figure();
-                        virtual ~Figure();
+                        figure();
+                        virtual ~figure();
 
-                        virtual void move(const MATH::Point<GLfloat> & where);
+                        virtual void move(const MATH::point<GLfloat> & where);
                         virtual void rotate(GLfloat radians);
                         virtual void scale(GLfloat factor);
 
                         virtual void draw() const = 0;
 
                 protected:
-                        MATH::Point<GLfloat> center_;
+                        MATH::point<GLfloat> center_;
                         GLfloat              rotation_; // degrees
                         GLfloat              scale_;
                 };
 
-                class Triangle : public Figure {
+                class triangle : public figure {
                 public:
-                        Triangle(const Pen &                  pen,
-                                 const MATH::Point<GLfloat> & a,
-                                 const MATH::Point<GLfloat> & b,
-                                 const MATH::Point<GLfloat> & c,
+                        triangle(const pen &                  pen,
+                                 const MATH::point<GLfloat> & a,
+                                 const MATH::point<GLfloat> & b,
+                                 const MATH::point<GLfloat> & c,
                                  bool                         filled = false);
-                        ~Triangle();
+                        ~triangle();
 
                         virtual void draw() const;
 
                 private:
-                        Pen                  pen_;
-                        MATH::Point<GLfloat> a_;
-                        MATH::Point<GLfloat> b_;
-                        MATH::Point<GLfloat> c_;
+                        pen                  pen_;
+                        MATH::point<GLfloat> a_;
+                        MATH::point<GLfloat> b_;
+                        MATH::point<GLfloat> c_;
                         bool                 filled_;
                 };
 
-                class Rectangle : public Figure {
+                class rectangle : public figure {
                 public:
-                        Rectangle(const Pen &                  pen,
-                                  const MATH::Point<GLfloat> & from,
-                                  const MATH::Point<GLfloat> & to,
+                        rectangle(const pen &                  pen,
+                                  const MATH::point<GLfloat> & from,
+                                  const MATH::point<GLfloat> & to,
                                   bool                         filled = false);
-                        ~Rectangle();
+                        ~rectangle();
 
                         virtual void draw() const;
 
                 private:
-                        Pen                  pen_;
-                        MATH::Point<GLfloat> from_;
-                        MATH::Point<GLfloat> to_;
+                        pen                  pen_;
+                        MATH::point<GLfloat> from_;
+                        MATH::point<GLfloat> to_;
                         bool                 filled_;
                 };
 
-                class Circle : public Figure {
+                class circle : public figure {
                 public:
-                        Circle(const Pen &                  pen,
-                               const MATH::Point<GLfloat> & center,
+                        circle(const pen &                  pen,
+                               const MATH::point<GLfloat> & center,
                                GLfloat                      radius,
                                size_t                       segments = 8,
                                bool                         filled   = false);
-                        ~Circle();
+                        ~circle();
 
                         virtual void draw() const;
 
                 private:
-                        Pen                  pen_;
-                        MATH::Point<GLfloat> center_;
+                        pen                  pen_;
+                        MATH::point<GLfloat> center_;
                         GLfloat              radius_;
                         size_t               segments_;
                         bool                 filled_;
                 };
 
-                class Polygon : public Figure {
+                class polygon : public figure {
                 public:
-                        Polygon(const Pen &                        pen,
-                                std::list<MATH::Point<GLfloat> >   points =
-                                std::list<MATH::Point<GLfloat> >(),
+                        polygon(const pen &                        pen,
+                                std::list<MATH::point<GLfloat> >   points =
+                                std::list<MATH::point<GLfloat> >(),
                                 bool                               filled =
                                 false);
 
                         void set(bool filled);
-                        void set(std::list<MATH::Point<GLfloat> > points);
+                        void set(std::list<MATH::point<GLfloat> > points);
 
                         virtual void draw() const;
 
                 private:
-                        Pen                              pen_;
-                        std::list<MATH::Point<GLfloat> > points_;
+                        pen                              pen_;
+                        std::list<MATH::point<GLfloat> > points_;
                         bool                             filled_;
                 };
 
-                class Texture :
-                        public Size<GLuint>,
-                        public NonCopyable,
-                        public Figure {
+                class texture :
+                        public bounding_box<GLuint>,
+                        public non_copyable,
+                        public figure {
                 public:
-                        class CannotCreate : public Exception { };
+                        class cannot_create : public exception { };
 
-                        Texture(const Image & image,
-                                const Color & color = Color());
-                        ~Texture();
+                        texture(const image & image,
+                                const color & c = color());
+                        ~texture();
 
-                        void set(const Color & color);
+                        void set(const color & c);
 
                         virtual void draw() const;
 
                         // XXX FIXME: Add size_type and size()
 
                 private:
-                        Color  color_;
+                        color  color_;
                         GLuint id_;
 
-                        void init(const Image & image);
+                        void init(const image & image);
                 };
         }
 

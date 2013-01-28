@@ -25,37 +25,37 @@
 
 using namespace HAZE::SFX;
 
-Audio::Audio(size_t frequency,
+audio::audio(size_t frequency,
              size_t channels)
-        throw(CannotInitialize) :
+        throw(cannot_initialize) :
         frequency_(frequency),
         channels_(channels)
 {
         if (!SDL_WasInit(SDL_INIT_AUDIO)) {
 
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                        throw CannotInitialize(SDL_GetError());
+                        throw cannot_initialize(SDL_GetError());
                 }
         }
 }
 
-Audio::~Audio()
+audio::~audio()
 { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
-size_t Audio::frequency()
+size_t audio::frequency()
 { return frequency_; }
 
-size_t Audio::channels()
+size_t audio::channels()
 { return channels_; }
 
-Music::Music() :
+music::music() :
         music_(0)
 { }
 
-Music::~Music()
+music::~music()
 { stop(); }
 
-void Music::play(const Path & file,
+void music::play(const path & file,
                  size_t       loops,
                  milliseconds fade_in)
 {
@@ -64,112 +64,112 @@ void Music::play(const Path & file,
         (void) fade_in;
 }
 
-void Music::pause()
+void music::pause()
 { }
 
-void Music::resume()
+void music::resume()
 { }
 
-void Music::rewind()
+void music::rewind()
 { }
 
-void Music::stop()
+void music::stop()
 { }
 
-void Music::fade(milliseconds time)
+void music::fade(milliseconds time)
 {
         (void) time;
 }
 
-size_t Music::volume()
+size_t music::volume()
 { return 0; }
 
-void Music::volume(size_t value)
+void music::volume(size_t value)
 {
         (void) value;
 }
 
-Sample::Sample()
+sample::sample()
 { }
 
-Sample::~Sample()
+sample::~sample()
 { }
 
-size_t Sample::volume(size_t volume)
+size_t sample::volume(size_t volume)
 {
         (void) volume;
 
         return 0;
 }
 
-Channels::Channels(size_t amount)
+channels::channels(size_t amount)
 {
         (void) amount;
 }
 
-Channels::~Channels()
+channels::~channels()
 { }
 
-size_t Channels::allocate(size_t amount)
+size_t channels::allocate(size_t amount)
 {
         (void) amount;
 
         return 0;
 }
 
-size_t Channels::reserve(size_t index)
+size_t channels::reserve(size_t index)
 {
         (void) index;
 
         return 0;
 }
 
-void Channels::play(int          index,
-                    Sample *     sample,
+void channels::play(int          index,
+                    sample *     s,
                     int          loops,
                     milliseconds fade_in,
                     milliseconds delay)
 {
         (void) index;
-        (void) sample;
+        (void) s;
         (void) loops;
         (void) fade_in;
         (void) delay;
 }
 
-void Channels::stop(int          index,
+void channels::stop(int          index,
                     milliseconds delay)
 {
         (void) index;
         (void) delay;
 }
 
-void Channels::fade(int          index,
+void channels::fade(int          index,
                     milliseconds time)
 {
         (void) index;
         (void) time;
 }
 
-void Channels::pause(int index)
+void channels::pause(int index)
 {
         (void) index;
 }
 
-void Channels::resume(int index)
+void channels::resume(int index)
 {
         (void) index;
 }
 
-Groups::Groups(size_t amount)
+groups::groups(size_t amount)
 {
         (void) amount;
 }
 
-Groups::~Groups()
+groups::~groups()
 { }
 
-size_t Groups::assign(size_t channel,
+size_t groups::assign(size_t channel,
                       int    index)
 {
         (void) channel;
@@ -178,7 +178,7 @@ size_t Groups::assign(size_t channel,
         return 0;
 }
 
-size_t Groups::assign_range(size_t channels_from,
+size_t groups::assign_range(size_t channels_from,
                             size_t channels_to,
                             int    index)
 {
@@ -189,41 +189,41 @@ size_t Groups::assign_range(size_t channels_from,
         return 0;
 }
 
-void Groups::stop(int          index,
+void groups::stop(int          index,
                   milliseconds delay)
 {
         (void) index;
         (void) delay;
 }
 
-void Groups::fade(int          index,
+void groups::fade(int          index,
                   milliseconds time)
 {
         (void) index;
         (void) time;
 }
 
-size_t Groups::get_count(size_t index)
+size_t groups::get_count(size_t index)
 {
         (void) index;
         return 0;
 }
 
-int Groups::get_available(size_t index)
-{
-        (void) index;
-
-        return 0;
-}
-
-int Groups::get_oldest(size_t index)
+int groups::get_available(size_t index)
 {
         (void) index;
 
         return 0;
 }
 
-int Groups::get_newer(size_t index)
+int groups::get_oldest(size_t index)
+{
+        (void) index;
+
+        return 0;
+}
+
+int groups::get_newer(size_t index)
 {
         (void) index;
 

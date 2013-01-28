@@ -22,32 +22,32 @@
 
 namespace HAZE {
 
-        Text::Text(const std::string & message,
-                   const Font &        font,
-                   const GL::Color &   color) :
+        text::text(const std::string & message,
+                   const font &        fnt,
+                   const GL::color &   color) :
                 color_(color)
-        { set(font, message); }
+        { set(fnt, message); }
 
-        Text::Text(const GL::Color & color) :
+        text::text(const GL::color & color) :
                 color_(color)
         { }
 
-        Text::~Text()
+        text::~text()
         {
-                for (std::vector<GL::Texture *>::iterator i = chars_.begin();
+                for (std::vector<GL::texture *>::iterator i = chars_.begin();
                      i != chars_.end();
                      i++) {
                         delete *i;
                 }
         }
 
-        void Text::move(const MATH::Point<GLfloat> & where)
+        void text::move(const MATH::point<GLfloat> & where)
         {
                 center_ = where;
 
-                MATH::Point<GLfloat> p(center_);
+                MATH::point<GLfloat> p(center_);
 
-                for (std::vector<GL::Texture *>::const_iterator i =
+                for (std::vector<GL::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {
@@ -56,9 +56,9 @@ namespace HAZE {
                 }
         }
 
-        void Text::draw() const
+        void text::draw() const
         {
-                for (std::vector<GL::Texture *>::const_iterator i =
+                for (std::vector<GL::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {
@@ -66,35 +66,35 @@ namespace HAZE {
                 }
         }
 
-        void Text::set(const Font &        font,
+        void text::set(const font &        fnt,
                        const std::string & message)
         {
                 chars_.clear();
 
-                std::vector<Image *> tmp = font.map(message);
-                for (std::vector<Image *>::const_iterator i = tmp.begin();
+                std::vector<image *> tmp = fnt.map(message);
+                for (std::vector<image *>::const_iterator i = tmp.begin();
                      i != tmp.end();
                      i++) {
-                        chars_.push_back(new GL::Texture(*(*i), color_));
+                        chars_.push_back(new GL::texture(*(*i), color_));
                 }
         }
 
-        void Text::set(const GL::Color & color)
+        void text::set(const GL::color & color)
         {
                 color_ = color;
 
-                for (std::vector<GL::Texture *>::iterator i = chars_.begin();
+                for (std::vector<GL::texture *>::iterator i = chars_.begin();
                      i != chars_.end();
                      i++) {
                         (*i)->set(color_);
                 }
         }
 
-        Size<size_t> Text::size() const
+        bounding_box<size_t> text::size() const
         {
-                Size<size_t> t;
+                bounding_box<size_t> t;
 
-                for (std::vector<GL::Texture *>::const_iterator i =
+                for (std::vector<GL::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {

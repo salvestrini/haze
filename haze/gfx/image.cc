@@ -22,12 +22,12 @@
 
 namespace HAZE {
 
-        int Image::count_ = 0;
+        int image::count_ = 0;
 
-        Image::Image(SDL_Surface * surface)
+        image::image(SDL_Surface * surface)
         {
                 if (!surface) {
-                        throw CannotCreate();
+                        throw cannot_create();
                 }
 
                 surface_ = surface;
@@ -36,11 +36,11 @@ namespace HAZE {
                 height(surface_->h);
         }
 
-        Image::Image(const Path & file)
+        image::image(const path & file)
         {
                 if (count_ == 0) {
                         if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
-                                throw CannotLoad(file, "unknown format");
+                                throw cannot_load(file, "unknown format");
                         }
 
                         count_++;
@@ -48,14 +48,14 @@ namespace HAZE {
 
                 surface_ = IMG_Load(file.str().c_str());
                 if (!surface_) {
-                        throw CannotLoad(file, SDL_GetError());
+                        throw cannot_load(file, SDL_GetError());
                 }
 
                 width(surface_->w);
                 height(surface_->h);
         }
 
-        Image::~Image()
+        image::~image()
         {
                 SDL_FreeSurface(surface_);
                 count_--;
@@ -64,7 +64,7 @@ namespace HAZE {
                 }
         }
 
-        Image * Image::clip(const Rectangle<size_t, size_t> & rect) const
+        image * image::clip(const rectangle<size_t, size_t> & rect) const
         {
                 SDL_Surface * surface;
                 Uint32        rmask, gmask, bmask, amask;
@@ -86,7 +86,7 @@ namespace HAZE {
                                                32,
                                                rmask, gmask, bmask, amask);
                 if (surface == NULL) {
-                        throw CannotCreate();
+                        throw cannot_create();
                 }
 
                 SDL_Rect r;
@@ -97,19 +97,19 @@ namespace HAZE {
                 r.h = rect.height();
 
                 if (SDL_BlitSurface(surface_, &r, surface, NULL) != 0) {
-                        throw CannotCreate();
+                        throw cannot_create();
                 }
 
-                return new Image(surface);
+                return new image(surface);
         }
 
-        bool Image::hasAlpha() const
+        bool image::hasAlpha() const
         { return surface_->format->Amask ? true : false; }
 
-        const void * Image::data() const
+        const void * image::data() const
         { return surface_->pixels; }
 
-        size_t Image::bpp() const
+        size_t image::bpp() const
         { return surface_->format->BitsPerPixel; }
 
 }

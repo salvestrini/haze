@@ -22,7 +22,7 @@
 
 namespace HAZE {
 
-        FPS::FPS(size_t fps)
+        fps::fps(size_t fps)
         {
                 framecount_ = 0;
                 rate_       = FPS_DEFAULT;
@@ -32,10 +32,10 @@ namespace HAZE {
                 rate(fps);
         }
 
-        FPS::~FPS()
+        fps::~fps()
         { }
 
-        void FPS::rate(size_t value)
+        void fps::rate(size_t value)
         {
                 if (value < FPS_LOWER_LIMIT) {
                         rate_ = FPS_LOWER_LIMIT;
@@ -49,10 +49,10 @@ namespace HAZE {
                 rateticks_  = (1000.0f / (float) rate_);
         }
 
-        size_t FPS::rate(void)
+        size_t fps::rate(void)
         { return rate_; }
 
-        void  FPS::compensate()
+        void  fps::compensate()
         {
                 Uint32 current_ticks;
                 Uint32 target_ticks;

@@ -28,12 +28,12 @@
 
 namespace HAZE {
 
-        class Glyphs {
+        class glyphs {
         public:
-                class CannotMap : public Exception {
+                class cannot_map : public exception {
                 public:
-                        CannotMap(char c) :
-                                Exception(std::string("Cannot map "
+                        cannot_map(char c) :
+                                exception(std::string("Cannot map "
                                                       "character ") +
                                           std::string("'")          +
                                           std::string(1, c)         +
@@ -41,30 +41,29 @@ namespace HAZE {
                         { }
                 };
 
-                Glyphs();
-                ~Glyphs();
+                glyphs();
+                ~glyphs();
 
-                void                         clear();
-                void                         add(char c, Image * i);
-                void                         remove(char c);
+                void                           clear();
+                void                           add(char c, image * i);
+                void                           remove(char c);
 
-                Image *                      map(char c) const;
+                image *                        map(char c) const;
 
-                HAZE::Size<Image::size_type> max_glyph_size() const;
+                bounding_box<image::size_type> max_glyph_size() const;
 
         private:
-                std::map<char, Image *>      glyphs_;
-
-                HAZE::Size<Image::size_type> max_;
+                std::map<char, image *>        glyphs_;
+                bounding_box<image::size_type> max_;
         };
 
-        class Font :
-                public Glyphs {
+        class font :
+                public glyphs {
         public:
-                Font();
-                ~Font();
+                font();
+                ~font();
 
-                std::vector<Image *> map(const std::string & s) const;
+                std::vector<image *> map(const std::string & s) const;
         };
 
 }

@@ -33,18 +33,18 @@
 namespace HAZE {
         namespace SFX {
 
-                class Audio {
+                class audio {
                 public:
-                        class CannotInitialize : public Exception {
+                        class cannot_initialize : public exception {
                         public:
-                            CannotInitialize(const std::string & what) :
-                                Exception(what) { }
+                            cannot_initialize(const std::string & what) :
+                                exception(what) { }
                         };
 
-                        Audio(size_t frequency = 44100,
+                        audio(size_t frequency = 44100,
                               size_t channels  = 2)
-                                throw(CannotInitialize);
-                        ~Audio();
+                                throw(cannot_initialize);
+                        ~audio();
 
                         size_t frequency();
                         size_t channels();
@@ -54,13 +54,13 @@ namespace HAZE {
                         size_t channels_;
                 };
 
-                class Music {
+                class music {
                 public:
-                        class CannotLoad : public Exception {
+                        class cannot_load : public exception {
                         public:
-                                CannotLoad(const Path &        path,
+                                cannot_load(const path &        path,
                                            const std::string & cause) :
-                                        Exception(std::string("Cannot load ") +
+                                        exception(std::string("Cannot load ") +
                                                   path.str()                  +
                                                   (!cause.empty() ?
                                                    ", " + cause   :
@@ -68,12 +68,12 @@ namespace HAZE {
                                 { }
                         };
 
-                        Music();
-                        ~Music();
+                        music();
+                        ~music();
 
                         typedef size_t milliseconds;
 
-                        void   play(const Path & file,
+                        void   play(const path & file,
                                     size_t       loops    = -1,
                                     milliseconds fade_in  = 0);
                         void   pause();
@@ -89,13 +89,13 @@ namespace HAZE {
                         Mix_Music * music_;
                 };
 
-                class Sample {
+                class sample {
                 public:
-                        class CannotLoad : public Exception {
+                        class cannot_load : public exception {
                         public:
-                                CannotLoad(const Path &        path,
+                                cannot_load(const path &        path,
                                            const std::string & cause) :
-                                        Exception(std::string("Cannot load ") +
+                                        exception(std::string("Cannot load ") +
                                                   path.str()                  +
                                                   (!cause.empty() ?
                                                    ", " + cause   :
@@ -103,8 +103,8 @@ namespace HAZE {
                                 { }
                         };
 
-                        Sample();
-                        ~Sample();
+                        sample();
+                        ~sample();
 
                         size_t volume(size_t volume);
 
@@ -113,17 +113,17 @@ namespace HAZE {
                         size_t      volume_;
                 };
 
-                class Channels {
+                class channels {
                 public:
-                        Channels(size_t amount = 16);
-                        ~Channels();
+                        channels(size_t amount = 16);
+                        ~channels();
 
                         typedef size_t milliseconds;
 
                         size_t allocate(size_t amount);
                         size_t reserve(size_t index);
                         void   play(int          index,
-                                    Sample *     sample,
+                                    sample *     sample,
                                     int          loops   = -1,
                                     milliseconds fade_in = 0,
                                     milliseconds delay   = 0);
@@ -139,10 +139,10 @@ namespace HAZE {
                         std::vector<size_t> reserved_;
                 };
 
-                class Groups {
+                class groups {
                 public:
-                        Groups(size_t amount = 16);
-                        ~Groups();
+                        groups(size_t amount = 16);
+                        ~groups();
 
                         typedef size_t milliseconds;
 

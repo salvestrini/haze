@@ -28,27 +28,27 @@
 
 namespace HAZE {
 
-        bool Video::isModeOk(size_t width,
-                             size_t height,
-                             size_t bpp,
-                             Uint32 flags)
+        bool video::is_mode_ok(size_t width,
+                               size_t height,
+                               size_t bpp,
+                               Uint32 flags)
         {
                 if (SDL_VideoModeOK(width, height, bpp, flags) <= 0)
                         return false;
                 return true;
         }
 
-        Video::Video(size_t w,
+        video::video(size_t w,
                      size_t h,
                      size_t bpp) :
-                MATH::Rectangle<size_t>(w, h),
+                MATH::rectangle<size_t>(w, h),
                 surface_(0),
                 flags_(0),
                 bpp_(0)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
-                                throw CannotInitialize(SDL_GetError());
+                                throw cannot_initialize(SDL_GetError());
                         }
                 }
 
@@ -57,7 +57,7 @@ namespace HAZE {
 
                 const SDL_VideoInfo * info = SDL_GetVideoInfo();
                 if (!info) {
-                        throw CannotInitialize(SDL_GetError());
+                        throw cannot_initialize(SDL_GetError());
                 }
 
                 DBG("Video infos:");
@@ -94,8 +94,8 @@ namespace HAZE {
                                 bpp = info->vfmt->BitsPerPixel;
                 }
 
-                if (!isModeOk(width(), height(), bpp, flags))
-                        throw CannotInitialize("Video mode unsupported");
+                if (!is_mode_ok(width(), height(), bpp, flags))
+                        throw cannot_initialize("Video mode unsupported");
 
                 // Set the GL attributes
                 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -103,7 +103,7 @@ namespace HAZE {
                 // Create the GL drawing context
                 surface_ = SDL_SetVideoMode(width(), height(), bpp, flags);
                 if (!surface_) {
-                        throw CannotInitialize(SDL_GetError());
+                        throw cannot_initialize(SDL_GetError());
                 }
 
                 flags_ = flags;
@@ -117,27 +117,27 @@ namespace HAZE {
                 resize(width(), height());
         }
 
-        Video::~Video()
+        video::~video()
         { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
 
-        void Video::resize(size_t w,
+        void video::resize(size_t w,
                            size_t h)
         {
                 if ((w == 0) || (h == 0)) {
-                        throw CannotResize("Wrong dimensions");
+                        throw cannot_resize("Wrong dimensions");
                 }
 
-                if (!isModeOk(w, h, bpp_, flags_))
-                        throw CannotInitialize("Video mode unsupported");
+                if (!is_mode_ok(w, h, bpp_, flags_))
+                        throw cannot_initialize("Video mode unsupported");
 
-                MATH::Rectangle<size_t>::resize(w, h);
+                MATH::rectangle<size_t>::resize(w, h);
 
                 surface_ = SDL_SetVideoMode(width(),
                                             height(),
                                             bpp_,
                                             flags_);
                 if (!surface_) {
-                        throw CannotResize(SDL_GetError());
+                        throw cannot_resize(SDL_GetError());
                 }
 
                 glViewport(0, 0,
@@ -162,16 +162,16 @@ namespace HAZE {
                 //camera->direction(0.0f, 0.0f);
         }
 
-        size_t Video::bpp()
+        size_t video::bpp()
         { return surface_->format->BitsPerPixel; }
 
-        void Video::clear()
+        void video::clear()
         {
                 // DBG("Clearing video");
                 glClear(GL_COLOR_BUFFER_BIT); // | GL_DEPTH_BUFFER_BIT
         }
 
-        void Video::update()
+        void video::update()
         {
                 // DBG("Updating video");
                 glFlush();

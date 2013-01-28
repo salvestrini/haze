@@ -25,10 +25,10 @@
 
 namespace HAZE {
 
-        class Semaphore : public NonCopyable {
+        class semaphore : public non_copyable {
         public:
-                Semaphore(int value);
-                virtual ~Semaphore();
+                semaphore(int value);
+                virtual ~semaphore();
 
                 void wait();
                 void signal();
@@ -37,10 +37,10 @@ namespace HAZE {
                 SDL_sem * semaphore_;
         };
 
-        class Mutex : public NonCopyable {
+        class mutex : public non_copyable {
 	public:
-		Mutex();
-		virtual ~Mutex();
+		mutex();
+		virtual ~mutex();
 
 		void lock();
 		void unlock();
@@ -49,18 +49,18 @@ namespace HAZE {
 		SDL_mutex * mutex_;
         };
 
-        class Guard : public NonCopyable {
+        class guard : public non_copyable {
 	public:
-		Guard(Mutex & mutex) : mutex_(mutex) {
+		guard(mutex & mutex) : mutex_(mutex) {
 			mutex_.lock();
 		}
 
-		virtual ~Guard() {
+		virtual ~guard() {
 			mutex_.unlock();
 		}
 
 	private:
-		Mutex & mutex_;
+		mutex & mutex_;
         };
 
 }

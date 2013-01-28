@@ -28,30 +28,30 @@
 
 namespace HAZE {
 
-        class Text :
-                public NonCopyable,
-                public GL::Figure {
+        class text :
+                public non_copyable,
+                public GL::figure {
         public:
-                Text(const GL::Color & color = GL::Color());
+                text(const GL::color & color = GL::color());
 
-                Text(const std::string & message,
-                     const Font &        font,
-                     const GL::Color &   color = GL::Color());
-                ~Text();
+                text(const std::string & message,
+                     const font &        font,
+                     const GL::color &   color = GL::color());
+                ~text();
 
-                void         set(const GL::Color & color);
-                void         set(const Font &        font,
+                void         set(const GL::color & color);
+                void         set(const font &        font,
                                  const std::string & message);
 
                 // XXX FIXME: Use size_type
-                Size<size_t> size() const;
+                bounding_box<size_t> size() const;
 
                 virtual void draw() const;
-                virtual void move(const MATH::Point<GLfloat> & where);
+                virtual void move(const MATH::point<GLfloat> & where);
 
         private:
-                std::vector<GL::Texture *> chars_;
-                GL::Color                  color_;
+                std::vector<GL::texture *> chars_;
+                GL::color                  color_;
         };
 
 }

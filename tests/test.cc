@@ -30,21 +30,21 @@ void test(const std::string & datadir)
         // Setup
         //
 
-        Video  video;
+        HAZE::video  video;
 
-        Camera camera;
+        HAZE::camera camera;
 
-        Image glyphs(Path(datadir + "font.png"));
+        image        glyphs(path(datadir + "font.png"));
 
         DBG("Glyphs image is " << glyphs.width() << " x " << glyphs.height());
 
         // Font image is 16x16 chars
-        Rectangle<size_t, size_t> rectangle(0,
-                                            0,
-                                            glyphs.width()  / 16,
-                                            glyphs.height() / 16);
+        HAZE::rectangle<size_t, size_t> rectangle(0,
+                                                  0,
+                                                  glyphs.width()  / 16,
+                                                  glyphs.height() / 16);
 
-        Font font;
+        HAZE::font font;
 
         {
                 char c = 0;
@@ -61,53 +61,53 @@ void test(const std::string & datadir)
         }
 
 #if 1
-        Text text_message("this is a test", font);
+        text text_message("this is a test", font);
 #endif
 #if 1
-        Text * text_chars[256];
+        text * text_chars[256];
         for (int i = 0; i < 256; i++) {
-                text_chars[i] = new Text(std::string(1, static_cast<char>(i)),
+                text_chars[i] = new text(std::string(1, static_cast<char>(i)),
                                          font);
         }
 #endif
-        Image       star_image(Path(datadir + "star.bmp"));
+        image star_image(path(datadir + "star.bmp"));
 #if 1
-        GL::Texture star1_texture(star_image);
-        GL::Texture star2_texture(star_image);
-        GL::Texture star3_texture(star_image);
+        GL::texture star1_texture(star_image);
+        GL::texture star2_texture(star_image);
+        GL::texture star3_texture(star_image);
 #endif
 
-        Time t;
+        HAZE::time t;
 
-        GL::Pen pen_white (GL::Color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
-        GL::Pen pen_red   (GL::Color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
-        GL::Pen pen_green (GL::Color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
-        GL::Pen pen_blue  (GL::Color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
+        GL::pen pen_white (GL::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
+        GL::pen pen_red   (GL::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
+        GL::pen pen_green (GL::color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
+        GL::pen pen_blue  (GL::color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
-        GL::Point     point(pen_white);
-        GL::Segment   segment(pen_blue,
-                              MATH::Point<GLfloat>(0.0f, 0.0f),
-                              MATH::Point<GLfloat>(1.0f, 1.0f));
-        GL::Rectangle rectangle_filled(pen_green,
-                                       MATH::Point<GLfloat>(60, 60),
-                                       MATH::Point<GLfloat>(80, 80),
+        GL::point     point(pen_white);
+        GL::segment   segment(pen_blue,
+                              MATH::point<GLfloat>(0.0f, 0.0f),
+                              MATH::point<GLfloat>(1.0f, 1.0f));
+        GL::rectangle rectangle_filled(pen_green,
+                                       MATH::point<GLfloat>(60, 60),
+                                       MATH::point<GLfloat>(80, 80),
                                        true);
-        GL::Rectangle rectangle_empty(pen_green,
-                                      MATH::Point<GLfloat>(10, 10),
-                                      MATH::Point<GLfloat>(30, 30),
+        GL::rectangle rectangle_empty(pen_green,
+                                      MATH::point<GLfloat>(10, 10),
+                                      MATH::point<GLfloat>(30, 30),
                                       false);
-        GL::Circle    circle_filled(pen_green,
-                                    MATH::Point<GLfloat>(70, 15),
+        GL::circle    circle_filled(pen_green,
+                                    MATH::point<GLfloat>(70, 15),
                                     180,
                                     8,
                                     true);
-        GL::Circle    circle_empty(pen_blue,
-                                   MATH::Point<GLfloat>(10, 75),
+        GL::circle    circle_empty(pen_blue,
+                                   MATH::point<GLfloat>(10, 75),
                                    220,
                                    8,
                                    false);
 
-        FPS fps(30);
+        HAZE::fps fps(30);
 
         //
         // Main loop
@@ -117,9 +117,9 @@ void test(const std::string & datadir)
         GLfloat y     = 0.0f;
         GLfloat angle = 0.0f;
 
-        IO::EventManager io;
+        IO::event_manager io;
 
-        VIEW::Orthogonal view(video.width(), video.height());
+        VIEW::orthogonal view(video.width(), video.height());
 
         for (;;) {
                 video.clear();
@@ -131,7 +131,7 @@ void test(const std::string & datadir)
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
-                        point.move(MATH::Point<GLfloat>(k % 100, k));
+                        point.move(MATH::point<GLfloat>(k % 100, k));
                         point.draw();
                 }
 #endif
@@ -154,19 +154,19 @@ void test(const std::string & datadir)
 #if 0
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->
-                                move(MATH::Point<GLfloat>(100 + k % 16 * 32,
+                                move(MATH::point<GLfloat>(100 + k % 16 * 32,
                                                           100 + k / 16 * 32));
                         text_chars[k]->draw();
                 }
 #endif
 #if 1
-                star1_texture.move(MATH::Point<GLfloat>(x * 4, y * 4));
+                star1_texture.move(MATH::point<GLfloat>(x * 4, y * 4));
                 star1_texture.rotate(angle * 1);
 
-                star2_texture.move(MATH::Point<GLfloat>(x * 8, y * 8));
+                star2_texture.move(MATH::point<GLfloat>(x * 8, y * 8));
                 star2_texture.rotate(angle * 4);
 
-                star3_texture.move(MATH::Point<GLfloat>(video.width()  / 2,
+                star3_texture.move(MATH::point<GLfloat>(video.width()  / 2,
                                                         video.height() / 2));
                 star3_texture.rotate(angle * 8);
 
@@ -175,7 +175,7 @@ void test(const std::string & datadir)
                 star3_texture.draw();
 #endif
 #if 1
-                text_message.move(MATH::Point<GLfloat>(video.width() / 2,
+                text_message.move(MATH::point<GLfloat>(video.width() / 2,
                                                        video.height() / 2));
                 text_message.draw();
 #endif
@@ -190,23 +190,23 @@ void test(const std::string & datadir)
 
                 (void) fps.rate();
 
-                IO::Event * e = io.poll();
+                IO::event * e = io.poll();
                 if (e) {
                         DBG("Got event!");
                         switch (e->type()) {
-                                case IO::Event::ApplicationQuit:
+                                case IO::event::application_quit:
                                         delete e;
                                         return;
 
-                                case IO::Event::VideoResize: {
-                                        IO::VideoResize * p =
-                                                dynamic_cast<IO::VideoResize *>(e);
+                                case IO::event::video_resize: {
+                                        IO::video_resize * p =
+                                                dynamic_cast<IO::video_resize *>(e);
 
                                         video.resize(p->width(), p->height());
                                         break;
                                 }
-                                case IO::Event::KeyDown:
-                                case IO::Event::KeyUp:
+                                case IO::event::key_down:
+                                case IO::event::key_up:
                                         break;
                                 default:
                                         break;

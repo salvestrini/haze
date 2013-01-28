@@ -20,20 +20,20 @@
 
 #include "haze/haze.hh"
 
-bool core(const HAZE::Directory & datadir)
+bool core(const HAZE::directory & datadir)
 {
         using namespace HAZE;
 
-        std::set<Path *>      entries = datadir.entries();
+        std::set<path *>      entries = datadir.entries();
         std::set<std::string> pictures;
 
         DBG("Got the following entries:");
-        for (std::set<Path *>::iterator iter = entries.begin();
+        for (std::set<path *>::iterator iter = entries.begin();
              iter != entries.end();
              iter++) {
                 DBG("  " << (*iter)->str() << " " <<
-                    "(" << ((*iter)->isFile() ? "file" : "directory") << ")");
-                if ((*iter)->isFile())
+                    "(" << ((*iter)->is_file() ? "file" : "directory") << ")");
+                if ((*iter)->is_file())
                         pictures.insert((*iter)->str());
                 delete *iter;
         }
@@ -44,8 +44,8 @@ bool core(const HAZE::Directory & datadir)
              iter++)
                 DBG("  " << *iter);
 
-        Video  video;
-        Camera camera;
+        video  video;
+        HAZE::camera camera;
 
 #if 0
         Image image(datadir + "font.png"));
@@ -58,7 +58,7 @@ bool core(const HAZE::Directory & datadir)
                                             glyphs.width()  / 16,
                                             glyphs.height() / 16);
 
-        Font font;
+        font font;
 
         {
                 char c = 0;
@@ -75,53 +75,53 @@ bool core(const HAZE::Directory & datadir)
         }
 
 #if 1
-        Text text_message("this is a test", font);
+        text text_message("this is a test", font);
 #endif
 #if 1
-        Text * text_chars[256];
+        text * text_chars[256];
         for (int i = 0; i < 256; i++) {
-                text_chars[i] = new Text(std::string(1, static_cast<char>(i)),
+                text_chars[i] = new text(std::string(1, static_cast<char>(i)),
                                          font);
         }
 #endif
-        Image       star_image(Path(datadir + "star.bmp"));
+        Image       star_image(path(datadir + "star.bmp"));
 #if 1
-        GL::Texture star1_texture(star_image);
-        GL::Texture star2_texture(star_image);
-        GL::Texture star3_texture(star_image);
+        GL::texture star1_texture(star_image);
+        GL::texture star2_texture(star_image);
+        GL::texture star3_texture(star_image);
 #endif
 
-        Time t;
+        time t;
 
-        GL::Pen pen_white (GL::Color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
-        GL::Pen pen_red   (GL::Color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
-        GL::Pen pen_green (GL::Color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
-        GL::Pen pen_blue  (GL::Color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
+        GL::Pen pen_white (GL::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
+        GL::Pen pen_red   (GL::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
+        GL::Pen pen_green (GL::color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
+        GL::Pen pen_blue  (GL::color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
-        GL::Point     point(pen_white);
-        GL::Segment   segment(pen_blue,
-                              MATH::Point<GLfloat>(0.0f, 0.0f),
-                              MATH::Point<GLfloat>(1.0f, 1.0f));
+        GL::point     point(pen_white);
+        GL::segment   segment(pen_blue,
+                              MATH::point<GLfloat>(0.0f, 0.0f),
+                              MATH::point<GLfloat>(1.0f, 1.0f));
         GL::Rectangle rectangle_filled(pen_green,
-                                       MATH::Point<GLfloat>(60, 60),
-                                       MATH::Point<GLfloat>(80, 80),
+                                       MATH::point<GLfloat>(60, 60),
+                                       MATH::point<GLfloat>(80, 80),
                                        true);
         GL::Rectangle rectangle_empty(pen_green,
-                                      MATH::Point<GLfloat>(10, 10),
-                                      MATH::Point<GLfloat>(30, 30),
+                                      MATH::point<GLfloat>(10, 10),
+                                      MATH::point<GLfloat>(30, 30),
                                       false);
-        GL::Circle    circle_filled(pen_green,
-                                    MATH::Point<GLfloat>(70, 15),
+        GL::circle    circle_filled(pen_green,
+                                    MATH::point<GLfloat>(70, 15),
                                     180,
                                     8,
                                     true);
-        GL::Circle    circle_empty(pen_blue,
-                                   MATH::Point<GLfloat>(10, 75),
+        GL::circle    circle_empty(pen_blue,
+                                   MATH::point<GLfloat>(10, 75),
                                    220,
                                    8,
                                    false);
 
-        FPS fps(30);
+        fps fps(30);
 
         //
         // Main loop
@@ -131,7 +131,7 @@ bool core(const HAZE::Directory & datadir)
         GLfloat y     = 0.0f;
         GLfloat angle = 0.0f;
 
-        IO::EventManager io;
+        IO::event_manager io;
 
         VIEW::Orthogonal view(video.width(), video.height());
 
@@ -145,7 +145,7 @@ bool core(const HAZE::Directory & datadir)
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
-                        point.move(MATH::Point<GLfloat>(k % 100, k));
+                        point.move(MATH::point<GLfloat>(k % 100, k));
                         point.draw();
                 }
 #endif
@@ -168,19 +168,19 @@ bool core(const HAZE::Directory & datadir)
 #if 0
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->
-                                move(MATH::Point<GLfloat>(100 + k % 16 * 32,
+                                move(MATH::point<GLfloat>(100 + k % 16 * 32,
                                                           100 + k / 16 * 32));
                         text_chars[k]->draw();
                 }
 #endif
 #if 1
-                star1_texture.move(MATH::Point<GLfloat>(x * 4, y * 4));
+                star1_texture.move(MATH::point<GLfloat>(x * 4, y * 4));
                 star1_texture.rotate(angle * 1);
 
-                star2_texture.move(MATH::Point<GLfloat>(x * 8, y * 8));
+                star2_texture.move(MATH::point<GLfloat>(x * 8, y * 8));
                 star2_texture.rotate(angle * 4);
 
-                star3_texture.move(MATH::Point<GLfloat>(video.width()  / 2,
+                star3_texture.move(MATH::point<GLfloat>(video.width()  / 2,
                                                         video.height() / 2));
                 star3_texture.rotate(angle * 8);
 
@@ -189,7 +189,7 @@ bool core(const HAZE::Directory & datadir)
                 star3_texture.draw();
 #endif
 #if 1
-                text_message.move(MATH::Point<GLfloat>(video.width() / 2,
+                text_message.move(MATH::point<GLfloat>(video.width() / 2,
                                                        video.height() / 2));
                 text_message.draw();
 #endif
@@ -204,23 +204,23 @@ bool core(const HAZE::Directory & datadir)
 
                 (void) fps.rate();
 
-                IO::Event * e = io.poll();
+                IO::event * e = io.poll();
                 if (e) {
                         DBG("Got event!");
                         switch (e->type()) {
-                                case IO::Event::ApplicationQuit:
+                                case IO::event::application_quit:
                                         delete e;
                                         return;
 
-                                case IO::Event::VideoResize: {
-                                        IO::VideoResize * p =
-                                                dynamic_cast<IO::VideoResize *>(e);
+                                case IO::event::video_resize: {
+                                        IO::video_resize * p =
+                                                dynamic_cast<IO::video_resize *>(e);
 
                                         video.resize(p->width(), p->height());
                                         break;
                                 }
-                                case IO::Event::KeyDown:
-                                case IO::Event::KeyUp:
+                                case IO::event::key_down:
+                                case IO::event::key_up:
                                         break;
                                 default:
                                         break;
@@ -248,14 +248,14 @@ int main(int argc, char * argv[])
                         return EXIT_FAILURE;
                 }
 
-                HAZE::Path datadir(argv[1]);
-                if (!datadir.isDirectory()) {
-                        ERR("Path " << datadir.str() << " "
+                HAZE::path datadir(argv[1]);
+                if (!datadir.is_directory()) {
+                        ERR("path " << datadir.str() << " "
                             "is not a directory");
                         return EXIT_FAILURE;
                 }
 
-                HAZE::Directory * dir = new HAZE::Directory(datadir.str());
+                HAZE::directory * dir = new HAZE::directory(datadir.str());
                 retval = core(*dir) ? EXIT_SUCCESS : EXIT_FAILURE;
                 delete dir;
 

@@ -27,10 +27,10 @@ namespace HAZE {
 #define FPS_LOWER_LIMIT 1
 #define FPS_DEFAULT     30
 
-        class FPS {
+        class fps {
         public:
-                FPS(size_t fps = FPS_DEFAULT);
-                ~FPS();
+                fps(size_t fps = FPS_DEFAULT);
+                ~fps();
 
                 void   rate(size_t value);
                 size_t rate(void);
