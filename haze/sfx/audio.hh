@@ -37,8 +37,8 @@ namespace HAZE {
                 public:
                         class cannot_initialize : public exception {
                         public:
-                            cannot_initialize(const std::string & what) :
-                                exception(what) { }
+                                cannot_initialize(const std::string & what) :
+                                        exception(what) { }
                         };
 
                         audio(size_t frequency = 44100,
@@ -59,7 +59,7 @@ namespace HAZE {
                         class cannot_load : public exception {
                         public:
                                 cannot_load(const path &        path,
-                                           const std::string & cause) :
+                                            const std::string & cause) :
                                         exception(std::string("Cannot load ") +
                                                   path.str()                  +
                                                   (!cause.empty() ?
@@ -94,7 +94,7 @@ namespace HAZE {
                         class cannot_load : public exception {
                         public:
                                 cannot_load(const path &        path,
-                                           const std::string & cause) :
+                                            const std::string & cause) :
                                         exception(std::string("Cannot load ") +
                                                   path.str()                  +
                                                   (!cause.empty() ?

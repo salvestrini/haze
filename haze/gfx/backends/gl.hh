@@ -22,9 +22,9 @@
 #include "haze/config.hh"
 
 #if OPENGL_FOUND
-  #include <GL/gl.h>
+#include <GL/gl.h>
 #else
-  #error I have no GL header to use ...
+#error I have no GL header to use ...
 #endif
 
 #include "haze/core/filesystem.hh"

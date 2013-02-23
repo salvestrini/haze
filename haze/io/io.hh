@@ -60,7 +60,7 @@ namespace HAZE {
                 class video_resize : public event {
                 public:
                         video_resize(HAZE::video::size_type width,
-                                    HAZE::video::size_type height) :
+                                     HAZE::video::size_type height) :
                                 width_(width),
                                 height_(height)
                         { }
@@ -136,9 +136,9 @@ namespace HAZE {
                 class mouse_motion : public event {
                 public:
                         mouse_motion(int          x,
-                                    int          y,
-                                    unsigned int rel_x,
-                                    unsigned int rel_y) :
+                                     int          y,
+                                     unsigned int rel_x,
+                                     unsigned int rel_y) :
                                 x_(x),
                                 y_(y),
                                 rel_x_(rel_x),

@@ -34,7 +34,7 @@ namespace HAZE {
                 class cannot_load : public exception {
                 public:
                         cannot_load(const path &        path,
-                                   const std::string & cause) :
+                                    const std::string & cause) :
                                 exception(std::string("Cannot load ") +
                                           path.str()                  +
                                           (!cause.empty() ? ", " + cause : ""))
@@ -58,7 +58,7 @@ namespace HAZE {
                 bool         hasAlpha() const;
                 const void * data() const;
                 image *      clip(const rectangle<size_t,
-                                                  size_t> & rect) const;
+                                  size_t> & rect) const;
 
         private:
                 SDL_Surface * surface_;

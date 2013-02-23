@@ -31,22 +31,22 @@
 std::vector<std::string> backtrace();
 
 #define BACKTRACE_DUMP()                                                \
-do {                                                                    \
-        std::vector<std::string> tmp(backtrace());                      \
+        do {                                                            \
+                std::vector<std::string> tmp(backtrace());              \
                                                                         \
-        ERR("");                                                        \
-        if (tmp.size() != 0) {                                          \
-                ERR("Backtrace (" << tmp.size() << " stack frames):");  \
-                for (std::vector<std::string>::const_iterator i =       \
-			tmp.begin();                                    \
-                     i != tmp.end();                                    \
-                     i++)                                               \
-                        ERR("  " << *i);                                \
-        } else {                                                        \
-                WRN("Backtrace is empty ...");                          \
-        }                                                               \
-        ERR("");                                                        \
-} while (false)
+                ERR("");                                                \
+                if (tmp.size() != 0) {                                  \
+                        ERR("Backtrace (" << tmp.size() << " stack frames):"); \
+                        for (std::vector<std::string>::const_iterator i = \
+                                     tmp.begin();                       \
+                             i != tmp.end();                            \
+                             i++)                                       \
+                                ERR("  " << *i);                        \
+                } else {                                                \
+                        WRN("Backtrace is empty ...");                  \
+                }                                                       \
+                ERR("");                                                \
+        } while (false)
 
 #define ABORT() std::abort()
 
@@ -64,9 +64,9 @@ do {                                                                    \
         do {                                                            \
                 if (!(X)) {                                             \
                         ERR("Assertion " << quote(_STR(X)) << " " <<    \
-			    "failed in "                          <<    \
-			    "'" <<  __PRETTY_FUNCTION__ << "' "   <<    \
-	                    "(" << __FILE__ << ":" << __LINE__ << ")"); \
+                            "failed in "                          <<    \
+                            "'" <<  __PRETTY_FUNCTION__ << "' "   <<    \
+                            "(" << __FILE__ << ":" << __LINE__ << ")"); \
                         BACKTRACE_DUMP();                               \
                         ABORT();                                        \
                 }                                                       \
@@ -74,11 +74,11 @@ do {                                                                    \
 #endif
 
 #define BUG()                                                           \
-	do {                                                            \
-		ERR("Got a bug in '" <<  __PRETTY_FUNCTION__ << "' " << \
-		     "(" << __FILE__ << ":" << __LINE__ << ")");        \
-		BACKTRACE_DUMP();                                       \
-	        ABORT();	                                        \
-	} while (false)
+        do {                                                            \
+                ERR("Got a bug in '" <<  __PRETTY_FUNCTION__ << "' " << \
+                    "(" << __FILE__ << ":" << __LINE__ << ")");         \
+                BACKTRACE_DUMP();                                       \
+                ABORT();                                                \
+        } while (false)
 
 #endif

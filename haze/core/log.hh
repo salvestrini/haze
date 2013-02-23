@@ -35,11 +35,11 @@ extern const char * logs_prefix_;
         } while (false)
 
 #define _LOG(STREAM, TXT)                               \
-	do {                                            \
-	        if (logs_prefix_)                       \
-		        STREAM << logs_prefix_ << ": "; \
-		STREAM << TXT << std::endl;             \
-	} while (false)
+        do {                                            \
+                if (logs_prefix_)                       \
+                        STREAM << logs_prefix_ << ": "; \
+                STREAM << TXT << std::endl;             \
+        } while (false)
 #else
 #define LOGS_PREFIX_SET(X) do { } while (false)
 #define _LOG(STREAM, TXT)  do { } while (false)

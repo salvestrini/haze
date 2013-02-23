@@ -45,7 +45,7 @@ event * event_manager::poll()
                             ", " << event_.resize.h     <<
                             ")");
                         tmp = new video_resize(event_.resize.w,
-                                              event_.resize.h);
+                                               event_.resize.h);
                         break;
 
                 case SDL_KEYUP:
@@ -88,9 +88,9 @@ event * event_manager::poll()
                             event_.motion.yrel  <<
                             ")");
                         tmp = new mouse_motion(event_.motion.x,
-                                              event_.motion.y,
-                                              event_.motion.xrel,
-                                              event_.motion.yrel);
+                                               event_.motion.y,
+                                               event_.motion.xrel,
+                                               event_.motion.yrel);
                 }
                 case SDL_MOUSEBUTTONDOWN:
                 case SDL_MOUSEBUTTONUP: {

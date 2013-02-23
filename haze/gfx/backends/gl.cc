@@ -33,36 +33,36 @@ namespace HAZE {
 #define DEBUG_GL 1
 
 #if DEBUG_GL
-#define ASSERT_GL_NO_ERROR() {                                            \
-                        GLenum err = glGetError();                        \
-                        if (err != GL_NO_ERROR) {                         \
-                                const char * e = 0;                       \
-                                switch (err) {                            \
-                                        case GL_INVALID_ENUM:             \
-                                                e = "Invalid enum";       \
-                                                break;                    \
-                                        case GL_INVALID_VALUE:            \
-                                                e = "Invalid value";      \
-                                                break;                    \
-                                        case GL_INVALID_OPERATION:        \
-                                                e = "Invalid operation";  \
-                                                break;                    \
-                                        case GL_STACK_OVERFLOW:           \
-                                                e = "Stack overflow";     \
-                                                break;                    \
-                                        case GL_OUT_OF_MEMORY:            \
-                                                e = "Out of memory";      \
-                                                break;                    \
-                                        case GL_TABLE_TOO_LARGE:          \
-                                                e = "Table too large";    \
-                                                break;                    \
-                                        default:                          \
-                                                e = "Unkwnon"; break;     \
-                                }                                         \
+#define ASSERT_GL_NO_ERROR() {                                          \
+                        GLenum err = glGetError();                      \
+                        if (err != GL_NO_ERROR) {                       \
+                                const char * e = 0;                     \
+                                switch (err) {                          \
+                                        case GL_INVALID_ENUM:           \
+                                                e = "Invalid enum";     \
+                                                break;                  \
+                                        case GL_INVALID_VALUE:          \
+                                                e = "Invalid value";    \
+                                                break;                  \
+                                        case GL_INVALID_OPERATION:      \
+                                                e = "Invalid operation"; \
+                                                break;                  \
+                                        case GL_STACK_OVERFLOW:         \
+                                                e = "Stack overflow";   \
+                                                break;                  \
+                                        case GL_OUT_OF_MEMORY:          \
+                                                e = "Out of memory";    \
+                                                break;                  \
+                                        case GL_TABLE_TOO_LARGE:        \
+                                                e = "Table too large";  \
+                                                break;                  \
+                                        default:                        \
+                                                e = "Unkwnon"; break;   \
+                                }                                       \
                                 ERR("Got GL error " << int(err) << " " << \
-                                    "(" << e << ")");                     \
-                                BUG();                                    \
-                        }                                                 \
+                                    "(" << e << ")");                   \
+                                BUG();                                  \
+                        }                                               \
                 }
 #else
 #define ASSERT_GL_NO_ERROR()

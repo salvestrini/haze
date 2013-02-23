@@ -63,7 +63,7 @@ namespace HAZE {
                         throw cannot_stat("Cannot stat path "         +
                                           quote(path_)                +
                                           " (" + strerror(errno) + ")");
-                
+
                 if (S_ISDIR(buf.st_mode)) return true;
                 return false;
         }

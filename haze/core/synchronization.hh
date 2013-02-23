@@ -38,29 +38,29 @@ namespace HAZE {
         };
 
         class mutex : public non_copyable {
-	public:
-		mutex();
-		virtual ~mutex();
+        public:
+                mutex();
+                virtual ~mutex();
 
-		void lock();
-		void unlock();
+                void lock();
+                void unlock();
 
-	private:
-		SDL_mutex * mutex_;
+        private:
+                SDL_mutex * mutex_;
         };
 
         class guard : public non_copyable {
-	public:
-		guard(mutex & mutex) : mutex_(mutex) {
-			mutex_.lock();
-		}
+        public:
+                guard(mutex & mutex) : mutex_(mutex) {
+                        mutex_.lock();
+                }
 
-		virtual ~guard() {
-			mutex_.unlock();
-		}
+                virtual ~guard() {
+                        mutex_.unlock();
+                }
 
-	private:
-		mutex & mutex_;
+        private:
+                mutex & mutex_;
         };
 
 }
