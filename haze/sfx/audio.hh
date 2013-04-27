@@ -24,8 +24,12 @@
 #include <string>
 #include <vector>
 
+#include "haze/config.hh"
+
 #include <SDL/SDL.h>
+#if HAVE_SDL_MIXER
 #include <SDL/SDL_mixer.h>
+#endif
 
 #include "haze/core/exception.hh"
 #include "haze/core/filesystem.hh"
@@ -86,7 +90,9 @@ namespace HAZE {
                         size_t volume();
 
                 private:
+#if HAVE_SDL_MIXER
                         Mix_Music * music_;
+#endif
                 };
 
                 class sample {
@@ -109,7 +115,9 @@ namespace HAZE {
                         size_t volume(size_t volume);
 
                 private:
+#if HAVE_SDL_MIXER
                         Mix_Chunk * sample_;
+#endif
                         size_t      volume_;
                 };
 

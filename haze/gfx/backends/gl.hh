@@ -21,7 +21,7 @@
 
 #include "haze/config.hh"
 
-#if OPENGL_FOUND
+#if HAVE_OPENGL
 #include <GL/gl.h>
 #else
 #error I have no GL header to use ...

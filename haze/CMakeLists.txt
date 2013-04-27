@@ -1,5 +1,7 @@
 enable_language(CXX)
 
+option(HAZE_DEBUG "HAZE Debugging" ON)
+
 include(CheckIncludeFile)
 include(CheckSymbolExists)
 
@@ -17,18 +19,49 @@ if(HAVE_REGEX_H)
   CHECK_SYMBOL_EXISTS(regfree  regex.h HAVE_REGFREE)
 endif()
 
-find_package(OpenGL    REQUIRED)
-find_package(OpenAL    REQUIRED)
+set(HAZE_LIBRARIES "")
 
-find_package(SDL       REQUIRED)
-find_package(SDL_image REQUIRED)
-find_package(SDL_mixer REQUIRED)
-
-configure_file(config.hh.in config.hh)
-
-if(CMAKE_COMPILER_IS_GNUCXX)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+find_package(OpenGL REQUIRED)
+if(OPENGL_FOUND)
+  set(HAVE_OPENGL ON)
+  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${OPENGL_LIBRARIES})
 endif()
+
+find_package(OpenAL REQUIRED)
+if(OPENAL_FOUND)
+  set(HAVE_OPENAL ON)
+  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${OPENAL_LIBRARY})
+endif()
+
+find_package(SDL REQUIRED)
+if(SDL_FOUND)
+  set(HAVE_SDL ON)
+  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDL_LIBRARY})
+endif()
+
+find_package(SDL_image)
+if(SDL_IMAGE_FOUND)
+  set(HAVE_SDL_IMAGE ON)
+  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDLIMAGE_LIBRARY})
+endif()
+
+find_package(SDL_mixer)
+if(SDL_MIXER_FOUND)
+  set(HAVE_SDL_MIXER ON)
+  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDLMIXER_LIBRARY})
+endif()
+
+configure_file(config.hh.in     config.hh)
+
+set(HAZE_VIEWPORT_WIDTH  "720" CACHE STRING "Viewport width")
+set(HAZE_VIEWPORT_HEIGHT "480" CACHE STRING "Viewport height")
+set(HAZE_VIEWPORT_BPP    "24"  CACHE STRING "Viewport depth (bit per pixel)")
+
+configure_file(gfx/config.hh.in gfx/config.hh)
+
+#if(CMAKE_COMPILER_IS_GNUCXX)
+#  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+#endif()
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR})
@@ -82,3 +115,5 @@ endif()
 if("${CXX_SUPPORTS_WUNDEF}")
   MACRO_ADD_COMPILE_FLAGS(haze "-Wundef")
 endif()
+
+target_link_libraries(haze ${HAZE_LIBRARIES})

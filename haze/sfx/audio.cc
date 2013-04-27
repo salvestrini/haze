@@ -48,9 +48,12 @@ size_t audio::frequency()
 size_t audio::channels()
 { return channels_; }
 
-music::music() :
-        music_(0)
-{ }
+music::music()
+{
+#if HAVE_SDL_MIXER
+        music_ = 0;
+#endif
+}
 
 music::~music()
 { stop(); }

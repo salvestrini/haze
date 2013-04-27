@@ -25,13 +25,10 @@
 
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
+#include "haze/gfx/config.hh"
 #include "haze/gfx/math.hh"
 
 namespace HAZE {
-
-#define VIDEO_DEFAULT_WIDTH  10000
-#define VIDEO_DEFAULT_HEIGHT 10000
-#define VIDEO_DEFAULT_BPP    10000
 
         class video :
                 public MATH::rectangle<size_t>,
@@ -49,9 +46,9 @@ namespace HAZE {
                                 exception(what) { }
                 };
 
-                video(size_t width  = VIDEO_DEFAULT_WIDTH,
-                      size_t height = VIDEO_DEFAULT_HEIGHT,
-                      size_t bpp    = VIDEO_DEFAULT_BPP);
+                video(size_t width  = HAZE_VIEWPORT_WIDTH,
+                      size_t height = HAZE_VIEWPORT_HEIGHT,
+                      size_t bpp    = HAZE_VIEWPORT_BPP);
                 virtual ~video();
 
                 typedef size_t size_type;
