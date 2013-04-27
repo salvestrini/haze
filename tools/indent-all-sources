@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for i in `find ./ -name "*.[ch][ch]"` ; do emacs -batch $i -l `pwd`/tools/format-source.el -f emacs-format-function ; done
