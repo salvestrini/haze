@@ -13,20 +13,8 @@ link_directories(${CMAKE_BINARY_DIR}/haze)
 
 add_executable(test test.cc)
 
-target_link_libraries(test
-  haze
-  ${SDL_LIBRARY}
-  ${SDLIMAGE_LIBRARY}
-  ${SDLMIXER_LIBRARY}
-  ${OPENGL_gl_LIBRARY}
-)
+target_link_libraries(test haze)
 
 add_executable(slideshow slideshow.cc)
 
-target_link_libraries(slideshow
-  haze
-  ${SDL_LIBRARY}
-  ${SDLIMAGE_LIBRARY}
-  ${SDLMIXER_LIBRARY}
-  ${OPENGL_gl_LIBRARY}
-)
+target_link_libraries(slideshow haze)
