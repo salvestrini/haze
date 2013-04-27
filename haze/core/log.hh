@@ -21,24 +21,24 @@
 
 #include "haze/settings.hh"
 
-#include <cstdio>
+//#include <cstdio>
 #include <iostream>
 
 #if WANT_LOGS
-extern const char * logs_prefix_;
+namespace HAZE {
+        extern const char * logs_prefix_;
+}
 
 #define LOGS_PREFIX_SET(X)                      \
         do {                                    \
-                if (X) {                        \
-                        logs_prefix_ = X;       \
-                }                               \
+                if (X)                          \
+			HAZE::logs_prefix_ = X; \
         } while (false)
-
-#define _LOG(STREAM, TXT)                               \
-        do {                                            \
-                if (logs_prefix_)                       \
-                        STREAM << logs_prefix_ << ": "; \
-                STREAM << TXT << std::endl;             \
+#define _LOG(STREAM, TXT)                                       \
+        do {                                                    \
+                if (HAZE::logs_prefix_)                         \
+                        STREAM << HAZE::logs_prefix_ << ": ";   \
+                STREAM << TXT << std::endl;                     \
         } while (false)
 #else
 #define LOGS_PREFIX_SET(X) do { } while (false)
