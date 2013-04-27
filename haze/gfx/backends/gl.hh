@@ -19,7 +19,9 @@
 #ifndef HAZE_GFX_BACKENDS_GL
 #define HAZE_GFX_BACKENDS_GL
 
-#include "haze/config.hh"
+#include "haze/core/filesystem.hh"
+
+#include "haze/gfx/config.hh"
 
 #if HAVE_OPENGL
 #include <GL/gl.h>
@@ -27,7 +29,6 @@
 #error I have no GL header to use ...
 #endif
 
-#include "haze/core/filesystem.hh"
 #include "haze/gfx/image.hh"
 #include "haze/gfx/geometry.hh"
 

@@ -23,6 +23,8 @@
 
 #include "haze/core/log.hh"
 #include "haze/core/debug.hh"
+
+#include "haze/gfx/config.hh"
 #include "haze/gfx/math.hh"
 #include "haze/gfx/backends/gl.hh"
 

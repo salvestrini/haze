@@ -16,9 +16,10 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CONFIG
-#define HAZE_CONFIG
+#ifndef HAZE_SFX_CONFIG
+#define HAZE_SFX_CONFIG
 
-#cmakedefine01 HAVE_SDL
+#cmakedefine01 HAVE_OPENAL
+#cmakedefine01 HAVE_SDL_MIXER
 
 #endif

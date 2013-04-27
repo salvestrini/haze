@@ -24,15 +24,15 @@
 #include <string>
 #include <vector>
 
-#include "haze/config.hh"
+#include "haze/core/exception.hh"
+#include "haze/core/filesystem.hh"
+
+#include "haze/sfx/config.hh"
 
 #include <SDL/SDL.h>
 #if HAVE_SDL_MIXER
 #include <SDL/SDL_mixer.h>
 #endif
-
-#include "haze/core/exception.hh"
-#include "haze/core/filesystem.hh"
 
 namespace HAZE {
         namespace SFX {
