@@ -22,7 +22,6 @@
 #include <execinfo.h>
 #endif
 
-#include "haze/settings.hh"
 #include "haze/core/log.hh"
 #include "haze/core/debug.hh"
 

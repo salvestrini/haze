@@ -32,9 +32,7 @@ namespace HAZE {
 
         namespace GL {
 
-#define DEBUG_GL 1
-
-#if DEBUG_GL
+#if WANT_DEBUG_GL
 #define ASSERT_GL_NO_ERROR() {                                          \
                         GLenum err = glGetError();                      \
                         if (err != GL_NO_ERROR) {                       \

@@ -19,6 +19,9 @@
 #ifndef HAZE_CORE_CONFIG
 #define HAZE_CORE_CONFIG
 
+#cmakedefine01 WANT_DEBUG
+#cmakedefine01 WANT_LOGS
+
 #cmakedefine01 HAVE_EXECINFO_H
 #cmakedefine01 HAVE_BACKTRACE
 #cmakedefine01 HAVE_BACKTRACE_SYMBOLS

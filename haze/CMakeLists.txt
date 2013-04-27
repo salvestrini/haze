@@ -1,7 +1,5 @@
 enable_language(CXX)
 
-option(HAZE_DEBUG "HAZE Debugging" ON)
-
 include(CheckIncludeFile)
 include(CheckSymbolExists)
 
@@ -52,7 +50,13 @@ if(SDL_MIXER_FOUND)
 endif()
 
 configure_file(config.hh.in     config.hh)
+
+option(WANT_DEBUG "Debugging" ON)
+option(WANT_LOGS  "Logs"      ON)
+
 configure_file(core/config.hh.in core/config.hh)
+
+option(WANT_DEBUG_GL "Debug GL code" ON)
 
 set(HAZE_VIEWPORT_WIDTH  "720" CACHE STRING "Viewport width")
 set(HAZE_VIEWPORT_HEIGHT "480" CACHE STRING "Viewport height")
