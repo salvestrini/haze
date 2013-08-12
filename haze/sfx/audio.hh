@@ -35,7 +35,7 @@
 #endif
 
 namespace haze {
-        namespace SFX {
+        namespace sfx {
 
                 class audio {
                 public:
