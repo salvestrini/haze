@@ -24,17 +24,17 @@ namespace haze {
 
         text::text(const std::string & message,
                    const font &        fnt,
-                   const GL::color &   color) :
+                   const gl::color &   color) :
                 color_(color)
         { set(fnt, message); }
 
-        text::text(const GL::color & color) :
+        text::text(const gl::color & color) :
                 color_(color)
         { }
 
         text::~text()
         {
-                for (std::vector<GL::texture *>::iterator i = chars_.begin();
+                for (std::vector<gl::texture *>::iterator i = chars_.begin();
                      i != chars_.end();
                      i++) {
                         delete *i;
@@ -47,7 +47,7 @@ namespace haze {
 
                 math::point<GLfloat> p(center_);
 
-                for (std::vector<GL::texture *>::const_iterator i =
+                for (std::vector<gl::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {
@@ -58,7 +58,7 @@ namespace haze {
 
         void text::draw() const
         {
-                for (std::vector<GL::texture *>::const_iterator i =
+                for (std::vector<gl::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {
@@ -75,15 +75,15 @@ namespace haze {
                 for (std::vector<image *>::const_iterator i = tmp.begin();
                      i != tmp.end();
                      i++) {
-                        chars_.push_back(new GL::texture(*(*i), color_));
+                        chars_.push_back(new gl::texture(*(*i), color_));
                 }
         }
 
-        void text::set(const GL::color & color)
+        void text::set(const gl::color & color)
         {
                 color_ = color;
 
-                for (std::vector<GL::texture *>::iterator i = chars_.begin();
+                for (std::vector<gl::texture *>::iterator i = chars_.begin();
                      i != chars_.end();
                      i++) {
                         (*i)->set(color_);
@@ -94,7 +94,7 @@ namespace haze {
         {
                 bounding_box<size_t> t;
 
-                for (std::vector<GL::texture *>::const_iterator i =
+                for (std::vector<gl::texture *>::const_iterator i =
                              chars_.begin();
                      i != chars_.end();
                      i++) {

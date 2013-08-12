@@ -112,7 +112,7 @@ namespace haze {
                 DBG("Video set to " <<
                     width() << " x " << height() << " @ " << bpp_);
 
-                haze::GL::init();
+                haze::gl::init();
 
                 resize(width(), height());
         }

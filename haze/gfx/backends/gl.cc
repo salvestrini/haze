@@ -30,7 +30,7 @@
 
 namespace haze {
 
-        namespace GL {
+        namespace gl {
 
 #if WANT_DEBUG_GL
 #define ASSERT_GL_NO_ERROR() {                                          \
@@ -162,7 +162,7 @@ namespace haze {
                         }
                 }
 
-                pen::pen(const GL::color & c,
+                pen::pen(const gl::color & c,
                          GLfloat           size) :
                         color_(c),
                         size_(size)
@@ -177,7 +177,7 @@ namespace haze {
                         glPointSize(size_);
                 }
 
-                void pen::color(const GL::color & c)
+                void pen::color(const gl::color & c)
                 { color_ = c; }
 
                 color pen::color() const

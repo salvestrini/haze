@@ -72,36 +72,36 @@ void test(const std::string & datadir)
 #endif
         image star_image(path(datadir + "star.bmp"));
 #if 1
-        GL::texture star1_texture(star_image);
-        GL::texture star2_texture(star_image);
-        GL::texture star3_texture(star_image);
+        gl::texture star1_texture(star_image);
+        gl::texture star2_texture(star_image);
+        gl::texture star3_texture(star_image);
 #endif
 
         haze::time t;
 
-        GL::pen pen_white (GL::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
-        GL::pen pen_red   (GL::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
-        GL::pen pen_green (GL::color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
-        GL::pen pen_blue  (GL::color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
+        gl::pen pen_white (gl::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
+        gl::pen pen_red   (gl::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
+        gl::pen pen_green (gl::color(0.0f, 1.0f, 0.0f, 0.5f),  1.0);
+        gl::pen pen_blue  (gl::color(0.0f, 0.0f, 1.0f, 0.5f),  1.0);
 
-        GL::point     point(pen_white);
-        GL::segment   segment(pen_blue,
+        gl::point     point(pen_white);
+        gl::segment   segment(pen_blue,
                               math::point<GLfloat>(0.0f, 0.0f),
                               math::point<GLfloat>(1.0f, 1.0f));
-        GL::rectangle rectangle_filled(pen_green,
+        gl::rectangle rectangle_filled(pen_green,
                                        math::point<GLfloat>(60, 60),
                                        math::point<GLfloat>(80, 80),
                                        true);
-        GL::rectangle rectangle_empty(pen_green,
+        gl::rectangle rectangle_empty(pen_green,
                                       math::point<GLfloat>(10, 10),
                                       math::point<GLfloat>(30, 30),
                                       false);
-        GL::circle    circle_filled(pen_green,
+        gl::circle    circle_filled(pen_green,
                                     math::point<GLfloat>(70, 15),
                                     180,
                                     8,
                                     true);
-        GL::circle    circle_empty(pen_blue,
+        gl::circle    circle_empty(pen_blue,
                                    math::point<GLfloat>(10, 75),
                                    220,
                                    8,

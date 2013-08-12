@@ -34,7 +34,7 @@
 
 namespace haze {
 
-        namespace GL {
+        namespace gl {
 
                 void init();
 
@@ -78,12 +78,12 @@ namespace haze {
 
                 class pen {
                 public:
-                        pen(const color & c    = GL::color(),
+                        pen(const color & c    = gl::color(),
                             GLfloat       size = 1.0f);
                         ~pen();
 
-                        void      color(const GL::color & c);
-                        GL::color color() const;
+                        void      color(const gl::color & c);
+                        gl::color color() const;
 
                         void      size(GLfloat value);
                         GLfloat   size() const;
@@ -91,7 +91,7 @@ namespace haze {
                         void      program() const;
 
                 private:
-                        GL::color color_;
+                        gl::color color_;
                         GLfloat   size_;
                 };
 

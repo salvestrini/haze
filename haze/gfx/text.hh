@@ -30,16 +30,16 @@ namespace haze {
 
         class text :
                 public non_copyable,
-                public GL::figure {
+                public gl::figure {
         public:
-                text(const GL::color & color = GL::color());
+                text(const gl::color & color = gl::color());
 
                 text(const std::string & message,
                      const font &        font,
-                     const GL::color &   color = GL::color());
+                     const gl::color &   color = gl::color());
                 ~text();
 
-                void         set(const GL::color & color);
+                void         set(const gl::color & color);
                 void         set(const font &        font,
                                  const std::string & message);
 
@@ -50,8 +50,8 @@ namespace haze {
                 virtual void move(const math::point<GLfloat> & where);
 
         private:
-                std::vector<GL::texture *> chars_;
-                GL::color                  color_;
+                std::vector<gl::texture *> chars_;
+                gl::color                  color_;
         };
 
 }
