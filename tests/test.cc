@@ -117,7 +117,7 @@ void test(const std::string & datadir)
         GLfloat y     = 0.0f;
         GLfloat angle = 0.0f;
 
-        IO::event_manager io;
+        io::event_manager io;
 
         VIEW::orthogonal view(video.width(), video.height());
 
@@ -190,23 +190,23 @@ void test(const std::string & datadir)
 
                 (void) fps.rate();
 
-                IO::event * e = io.poll();
+                io::event * e = io.poll();
                 if (e) {
                         DBG("Got event!");
                         switch (e->type()) {
-                                case IO::event::application_quit:
+                                case io::event::application_quit:
                                         delete e;
                                         return;
 
-                                case IO::event::video_resize: {
-                                        IO::video_resize * p =
-                                                dynamic_cast<IO::video_resize *>(e);
+                                case io::event::video_resize: {
+                                        io::video_resize * p =
+                                                dynamic_cast<io::video_resize *>(e);
 
                                         video.resize(p->width(), p->height());
                                         break;
                                 }
-                                case IO::event::key_down:
-                                case IO::event::key_up:
+                                case io::event::key_down:
+                                case io::event::key_up:
                                         break;
                                 default:
                                         break;

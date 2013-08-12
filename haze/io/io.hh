@@ -24,7 +24,7 @@
 #include <SDL/SDL_events.h>
 
 namespace haze {
-        namespace IO {
+        namespace io {
 
                 class event {
                 public:

@@ -19,7 +19,7 @@
 #include "haze/core/debug.hh"
 #include "haze/io/io.hh"
 
-using namespace haze::IO;
+using namespace haze::io;
 
 event * event_manager::poll()
 {
