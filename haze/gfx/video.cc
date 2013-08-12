@@ -41,7 +41,7 @@ namespace haze {
         video::video(size_t w,
                      size_t h,
                      size_t bpp) :
-                MATH::rectangle<size_t>(w, h),
+                math::rectangle<size_t>(w, h),
                 surface_(0),
                 flags_(0),
                 bpp_(0)
@@ -130,7 +130,7 @@ namespace haze {
                 if (!is_mode_ok(w, h, bpp_, flags_))
                         throw cannot_initialize("Video mode unsupported");
 
-                MATH::rectangle<size_t>::resize(w, h);
+                math::rectangle<size_t>::resize(w, h);
 
                 surface_ = SDL_SetVideoMode(width(),
                                             height(),

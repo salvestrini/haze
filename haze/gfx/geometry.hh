@@ -95,19 +95,19 @@ namespace haze {
 
         template<typename PTYPE = int,
                  typename STYPE = size_t> class rectangle :
-                public MATH::point<PTYPE>,
+                public math::point<PTYPE>,
                 public bounding_box<STYPE> {
         public:
                 rectangle() { }
 
                 rectangle(PTYPE x, PTYPE y, STYPE w, STYPE h) :
-                        MATH::point<PTYPE>(x, y),
+                        math::point<PTYPE>(x, y),
                         bounding_box<STYPE>(w, h)
                 { }
 
-                rectangle(const MATH::point<PTYPE> &  origin,
+                rectangle(const math::point<PTYPE> &  origin,
                           const bounding_box<STYPE> & bbox) :
-                        MATH::point<PTYPE>(origin),
+                        math::point<PTYPE>(origin),
                         bounding_box<STYPE>(bbox)
                 { }
 

@@ -98,29 +98,29 @@ namespace haze {
                 class point {
                 public:
                         point(const pen &                  pen,
-                              const MATH::point<GLfloat> & where =
-                              MATH::point<GLfloat>(0.0f, 0.0f));
+                              const math::point<GLfloat> & where =
+                              math::point<GLfloat>(0.0f, 0.0f));
                         ~point();
 
-                        void move(const MATH::point<GLfloat> & where);
+                        void move(const math::point<GLfloat> & where);
 
                         void draw() const;
 
                 private:
                         pen                  pen_;
-                        MATH::point<GLfloat> where_;
+                        math::point<GLfloat> where_;
                 };
 
                 class segment {
                 public:
                         segment(const pen &                  pen,
-                                const MATH::point<GLfloat> & from =
-                                MATH::point<GLfloat>(0.0f, 0.0f),
-                                const MATH::point<GLfloat> & to =
-                                MATH::point<GLfloat>(0.0f, 0.0f));
+                                const math::point<GLfloat> & from =
+                                math::point<GLfloat>(0.0f, 0.0f),
+                                const math::point<GLfloat> & to =
+                                math::point<GLfloat>(0.0f, 0.0f));
                         ~segment();
 
-                        void move(const MATH::point<GLfloat> & where);
+                        void move(const math::point<GLfloat> & where);
                         void rotate(GLfloat radians);
                         //void scale(GLfloat factor)
 
@@ -128,8 +128,8 @@ namespace haze {
 
                 private:
                         pen                  pen_;
-                        MATH::point<GLfloat> from_;
-                        MATH::point<GLfloat> to_;
+                        math::point<GLfloat> from_;
+                        math::point<GLfloat> to_;
                 };
 
                 class figure {
@@ -137,14 +137,14 @@ namespace haze {
                         figure();
                         virtual ~figure();
 
-                        virtual void move(const MATH::point<GLfloat> & where);
+                        virtual void move(const math::point<GLfloat> & where);
                         virtual void rotate(GLfloat radians);
                         virtual void scale(GLfloat factor);
 
                         virtual void draw() const = 0;
 
                 protected:
-                        MATH::point<GLfloat> center_;
+                        math::point<GLfloat> center_;
                         GLfloat              rotation_; // degrees
                         GLfloat              scale_;
                 };
@@ -152,9 +152,9 @@ namespace haze {
                 class triangle : public figure {
                 public:
                         triangle(const pen &                  pen,
-                                 const MATH::point<GLfloat> & a,
-                                 const MATH::point<GLfloat> & b,
-                                 const MATH::point<GLfloat> & c,
+                                 const math::point<GLfloat> & a,
+                                 const math::point<GLfloat> & b,
+                                 const math::point<GLfloat> & c,
                                  bool                         filled = false);
                         ~triangle();
 
@@ -162,17 +162,17 @@ namespace haze {
 
                 private:
                         pen                  pen_;
-                        MATH::point<GLfloat> a_;
-                        MATH::point<GLfloat> b_;
-                        MATH::point<GLfloat> c_;
+                        math::point<GLfloat> a_;
+                        math::point<GLfloat> b_;
+                        math::point<GLfloat> c_;
                         bool                 filled_;
                 };
 
                 class rectangle : public figure {
                 public:
                         rectangle(const pen &                  pen,
-                                  const MATH::point<GLfloat> & from,
-                                  const MATH::point<GLfloat> & to,
+                                  const math::point<GLfloat> & from,
+                                  const math::point<GLfloat> & to,
                                   bool                         filled = false);
                         ~rectangle();
 
@@ -180,15 +180,15 @@ namespace haze {
 
                 private:
                         pen                  pen_;
-                        MATH::point<GLfloat> from_;
-                        MATH::point<GLfloat> to_;
+                        math::point<GLfloat> from_;
+                        math::point<GLfloat> to_;
                         bool                 filled_;
                 };
 
                 class circle : public figure {
                 public:
                         circle(const pen &                  pen,
-                               const MATH::point<GLfloat> & center,
+                               const math::point<GLfloat> & center,
                                GLfloat                      radius,
                                size_t                       segments = 8,
                                bool                         filled   = false);
@@ -198,7 +198,7 @@ namespace haze {
 
                 private:
                         pen                  pen_;
-                        MATH::point<GLfloat> center_;
+                        math::point<GLfloat> center_;
                         GLfloat              radius_;
                         size_t               segments_;
                         bool                 filled_;
@@ -207,19 +207,19 @@ namespace haze {
                 class polygon : public figure {
                 public:
                         polygon(const pen &                        pen,
-                                std::list<MATH::point<GLfloat> >   points =
-                                std::list<MATH::point<GLfloat> >(),
+                                std::list<math::point<GLfloat> >   points =
+                                std::list<math::point<GLfloat> >(),
                                 bool                               filled =
                                 false);
 
                         void set(bool filled);
-                        void set(std::list<MATH::point<GLfloat> > points);
+                        void set(std::list<math::point<GLfloat> > points);
 
                         virtual void draw() const;
 
                 private:
                         pen                              pen_;
-                        std::list<MATH::point<GLfloat> > points_;
+                        std::list<math::point<GLfloat> > points_;
                         bool                             filled_;
                 };
 

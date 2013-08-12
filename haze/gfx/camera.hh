@@ -25,7 +25,7 @@
 
 namespace haze {
 
-        class camera : public MATH::point<GLfloat> {
+        class camera : public math::point<GLfloat> {
         public:
                 camera(GLfloat x = 0.0f,
                        GLfloat y = 0.0f,
@@ -33,7 +33,7 @@ namespace haze {
                        GLfloat p = 0.0f,
                        GLfloat h = 0.0f,
                        GLfloat r = 0.0f) :
-                        MATH::point<GLfloat>(x, y, z)
+                        math::point<GLfloat>(x, y, z)
                 {
                         heading_ = h;
                         pitch_   = p;

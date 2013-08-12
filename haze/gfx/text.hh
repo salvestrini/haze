@@ -47,7 +47,7 @@ namespace haze {
                 bounding_box<size_t> size() const;
 
                 virtual void draw() const;
-                virtual void move(const MATH::point<GLfloat> & where);
+                virtual void move(const math::point<GLfloat> & where);
 
         private:
                 std::vector<GL::texture *> chars_;

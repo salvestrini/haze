@@ -41,11 +41,11 @@ namespace haze {
                 }
         }
 
-        void text::move(const MATH::point<GLfloat> & where)
+        void text::move(const math::point<GLfloat> & where)
         {
                 center_ = where;
 
-                MATH::point<GLfloat> p(center_);
+                math::point<GLfloat> p(center_);
 
                 for (std::vector<GL::texture *>::const_iterator i =
                              chars_.begin();

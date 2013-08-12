@@ -86,23 +86,23 @@ void test(const std::string & datadir)
 
         GL::point     point(pen_white);
         GL::segment   segment(pen_blue,
-                              MATH::point<GLfloat>(0.0f, 0.0f),
-                              MATH::point<GLfloat>(1.0f, 1.0f));
+                              math::point<GLfloat>(0.0f, 0.0f),
+                              math::point<GLfloat>(1.0f, 1.0f));
         GL::rectangle rectangle_filled(pen_green,
-                                       MATH::point<GLfloat>(60, 60),
-                                       MATH::point<GLfloat>(80, 80),
+                                       math::point<GLfloat>(60, 60),
+                                       math::point<GLfloat>(80, 80),
                                        true);
         GL::rectangle rectangle_empty(pen_green,
-                                      MATH::point<GLfloat>(10, 10),
-                                      MATH::point<GLfloat>(30, 30),
+                                      math::point<GLfloat>(10, 10),
+                                      math::point<GLfloat>(30, 30),
                                       false);
         GL::circle    circle_filled(pen_green,
-                                    MATH::point<GLfloat>(70, 15),
+                                    math::point<GLfloat>(70, 15),
                                     180,
                                     8,
                                     true);
         GL::circle    circle_empty(pen_blue,
-                                   MATH::point<GLfloat>(10, 75),
+                                   math::point<GLfloat>(10, 75),
                                    220,
                                    8,
                                    false);
@@ -131,7 +131,7 @@ void test(const std::string & datadir)
                 for (int k = -1000;
                      k < 1000;
                      k += 5) {
-                        point.move(MATH::point<GLfloat>(k % 100, k));
+                        point.move(math::point<GLfloat>(k % 100, k));
                         point.draw();
                 }
 #endif
@@ -154,19 +154,19 @@ void test(const std::string & datadir)
 #if 0
                 for (int k = 0; k < 256; k++) {
                         text_chars[k]->
-                                move(MATH::point<GLfloat>(100 + k % 16 * 32,
+                                move(math::point<GLfloat>(100 + k % 16 * 32,
                                                           100 + k / 16 * 32));
                         text_chars[k]->draw();
                 }
 #endif
 #if 1
-                star1_texture.move(MATH::point<GLfloat>(x * 4, y * 4));
+                star1_texture.move(math::point<GLfloat>(x * 4, y * 4));
                 star1_texture.rotate(angle * 1);
 
-                star2_texture.move(MATH::point<GLfloat>(x * 8, y * 8));
+                star2_texture.move(math::point<GLfloat>(x * 8, y * 8));
                 star2_texture.rotate(angle * 4);
 
-                star3_texture.move(MATH::point<GLfloat>(video.width()  / 2,
+                star3_texture.move(math::point<GLfloat>(video.width()  / 2,
                                                         video.height() / 2));
                 star3_texture.rotate(angle * 8);
 
@@ -175,7 +175,7 @@ void test(const std::string & datadir)
                 star3_texture.draw();
 #endif
 #if 1
-                text_message.move(MATH::point<GLfloat>(video.width() / 2,
+                text_message.move(math::point<GLfloat>(video.width() / 2,
                                                        video.height() / 2));
                 text_message.draw();
 #endif

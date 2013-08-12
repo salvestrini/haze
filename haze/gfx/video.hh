@@ -31,7 +31,7 @@
 namespace haze {
 
         class video :
-                public MATH::rectangle<size_t>,
+                public math::rectangle<size_t>,
                 public non_copyable {
         public:
                 class cannot_initialize : public exception {

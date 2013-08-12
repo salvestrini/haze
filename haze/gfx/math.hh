@@ -22,7 +22,7 @@
 #include <cmath>
 
 namespace haze {
-        namespace MATH {
+        namespace math {
 
                 template<typename TYPE> TYPE radians2angle(TYPE radians)
                 { return radians * 180 / M_PI; }
