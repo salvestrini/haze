@@ -23,7 +23,7 @@
 #include "haze/gfx/math.hh"
 #include "haze/gfx/backends/backend.hh"
 
-namespace HAZE {
+namespace haze {
 
         class camera : public MATH::point<GLfloat> {
         public:

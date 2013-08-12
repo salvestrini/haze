@@ -24,7 +24,7 @@
 #include <functional>
 #include <algorithm>
 
-namespace HAZE {
+namespace haze {
 
         class non_copyable {
         public:

@@ -26,7 +26,7 @@
 #include "haze/gfx/view.hh"
 #include "haze/gfx/backends/backend.hh"
 
-namespace HAZE {
+namespace haze {
 
         bool video::is_mode_ok(size_t width,
                                size_t height,
@@ -112,7 +112,7 @@ namespace HAZE {
                 DBG("Video set to " <<
                     width() << " x " << height() << " @ " << bpp_);
 
-                HAZE::GL::init();
+                haze::GL::init();
 
                 resize(width(), height());
         }

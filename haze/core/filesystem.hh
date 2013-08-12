@@ -24,7 +24,7 @@
 
 #include "haze/core/exception.hh"
 
-namespace HAZE {
+namespace haze {
 
         class path {
         public:

@@ -26,7 +26,7 @@
 #include "haze/gfx/font.hh"
 #include "haze/gfx/backends/backend.hh"
 
-namespace HAZE {
+namespace haze {
 
         class text :
                 public non_copyable,

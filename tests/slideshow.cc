@@ -20,9 +20,9 @@
 
 #include "haze/haze.hh"
 
-bool core(const HAZE::directory & datadir)
+bool core(const haze::directory & datadir)
 {
-        using namespace HAZE;
+        using namespace haze;
 
         std::set<path *>      entries = datadir.entries();
         std::set<std::string> pictures;
@@ -45,7 +45,7 @@ bool core(const HAZE::directory & datadir)
                 DBG("  " << *iter);
 
         video  video;
-        HAZE::camera camera;
+        haze::camera camera;
 
 #if 0
         Image image(datadir + "font.png"));
@@ -248,14 +248,14 @@ int main(int argc, char * argv[])
                         return EXIT_FAILURE;
                 }
 
-                HAZE::path datadir(argv[1]);
+                haze::path datadir(argv[1]);
                 if (!datadir.is_directory()) {
                         ERR("path " << datadir.str() << " "
                             "is not a directory");
                         return EXIT_FAILURE;
                 }
 
-                HAZE::directory * dir = new HAZE::directory(datadir.str());
+                haze::directory * dir = new haze::directory(datadir.str());
                 retval = core(*dir) ? EXIT_SUCCESS : EXIT_FAILURE;
                 delete dir;
 

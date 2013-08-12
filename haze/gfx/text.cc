@@ -20,7 +20,7 @@
 
 #include "haze/gfx/text.hh"
 
-namespace HAZE {
+namespace haze {
 
         text::text(const std::string & message,
                    const font &        fnt,

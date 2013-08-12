@@ -28,7 +28,7 @@
 #include "haze/gfx/config.hh"
 #include "haze/gfx/math.hh"
 
-namespace HAZE {
+namespace haze {
 
         class video :
                 public MATH::rectangle<size_t>,

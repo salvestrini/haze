@@ -32,7 +32,7 @@
 #include "haze/gfx/image.hh"
 #include "haze/gfx/geometry.hh"
 
-namespace HAZE {
+namespace haze {
 
         namespace GL {
 

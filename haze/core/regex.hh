@@ -29,7 +29,7 @@
 #include <vector>
 #include <string>
 
-namespace HAZE {
+namespace haze {
 
         class regex {
         public:

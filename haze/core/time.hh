@@ -24,7 +24,7 @@
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
 
-namespace HAZE {
+namespace haze {
 
         class timer : public non_copyable {
         public:

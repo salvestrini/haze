@@ -16,6 +16,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/core/log.hh"
 #include "haze/gfx/config.hh"
 
 #if HAVE_SDL_IMAGE
@@ -24,24 +25,30 @@
 
 #include "haze/gfx/image.hh"
 
-namespace HAZE {
+namespace haze {
 
         int image::count_ = 0;
 
         image::image(SDL_Surface * surface)
         {
+                DBG("Initializing image from surface");
+
                 if (!surface) {
                         throw cannot_create();
                 }
 
                 surface_ = surface;
 
-                width(surface_->w);
-                height(surface_->h);
+                resize(surface_->w, surface_->h);
+
+                DBG("Image initialized from surface "
+                    << width() << "x" << height());
         }
 
         image::image(const path & file)
         {
+                DBG("Initializing image from file " << file.str());
+
 #if HAVE_SDL_IMAGE
                 if (count_ == 0) {
                         if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
@@ -55,8 +62,11 @@ namespace HAZE {
                         throw cannot_load(file, SDL_GetError());
                 }
 
-                width(surface_->w);
-                height(surface_->h);
+                resize(surface_->w, surface_->h);
+
+                DBG("Image initialized from file "
+                    << file.str() << " "
+                    << width() << "x" << height());
 #else
                 throw cannot_load(file, "unsupported format");
 #endif

@@ -22,7 +22,7 @@
 #include <string>
 #include <exception>
 
-namespace HAZE {
+namespace haze {
 
         // A common base for all our exceptions ...
         class exception : public std::exception {

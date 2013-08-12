@@ -22,14 +22,14 @@
 #include "haze/core/regex.hh"
 #include "haze/core/utils.hh"
 
-namespace HAZE {
+namespace haze {
 
 #if HAVE_REGEX_H
 #define ERROR_BUFFER_SIZE 512
 
         std::string tostring(regex_t * regex, int errcode)
         {
-                ASSERT(regex != 0);
+                ASSERT(regex   != 0);
                 ASSERT(errcode != 0);
 
                 char buffer[ERROR_BUFFER_SIZE];

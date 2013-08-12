@@ -34,7 +34,7 @@
 #include <SDL/SDL_mixer.h>
 #endif
 
-namespace HAZE {
+namespace haze {
         namespace SFX {
 
                 class audio {

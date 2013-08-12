@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-namespace HAZE {
+namespace haze {
         namespace MATH {
 
                 template<typename TYPE> TYPE radians2angle(TYPE radians)

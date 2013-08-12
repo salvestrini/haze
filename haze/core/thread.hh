@@ -25,7 +25,7 @@
 
 #include "haze/core/pattern.hh"
 
-namespace HAZE {
+namespace haze {
 
         class thread : public non_copyable {
         public:

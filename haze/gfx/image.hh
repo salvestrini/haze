@@ -27,7 +27,7 @@
 #include "haze/core/pattern.hh"
 #include "haze/gfx/geometry.hh"
 
-namespace HAZE {
+namespace haze {
 
         class image : public bounding_box<size_t>, public non_copyable {
         public:

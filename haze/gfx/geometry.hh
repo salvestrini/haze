@@ -25,7 +25,7 @@
 
 #include "haze/gfx/math.hh"
 
-namespace HAZE {
+namespace haze {
 
         template<typename TYPE = size_t> class bounding_box {
         public:
@@ -74,7 +74,7 @@ namespace HAZE {
                         width_ = height_ = 0;
                 }
 
-                HAZE::bounding_box<TYPE> size() const
+                haze::bounding_box<TYPE> size() const
                 { return *this; }
 
         private:

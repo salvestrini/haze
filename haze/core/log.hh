@@ -25,19 +25,19 @@
 #include <iostream>
 
 #if WANT_LOGS
-namespace HAZE {
+namespace haze {
         extern const char * logs_prefix_;
 }
 
 #define LOGS_PREFIX_SET(X)                      \
         do {                                    \
                 if (X)                          \
-			HAZE::logs_prefix_ = X; \
+                        haze::logs_prefix_ = X; \
         } while (false)
 #define _LOG(STREAM, TXT)                                       \
         do {                                                    \
-                if (HAZE::logs_prefix_)                         \
-                        STREAM << HAZE::logs_prefix_ << ": ";   \
+                if (haze::logs_prefix_)                         \
+                        STREAM << haze::logs_prefix_ << ": ";   \
                 STREAM << TXT << std::endl;                     \
         } while (false)
 #else

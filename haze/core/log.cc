@@ -19,7 +19,7 @@
 #include "haze/core/config.hh"
 #include "haze/core/log.hh"
 
-namespace HAZE {
+namespace haze {
 
 #if WANT_LOGS
         const char * logs_prefix_ = "NONE";

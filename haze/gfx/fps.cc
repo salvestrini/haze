@@ -20,7 +20,7 @@
 
 #include "haze/gfx/fps.hh"
 
-namespace HAZE {
+namespace haze {
 
         fps::fps(size_t fps)
         {

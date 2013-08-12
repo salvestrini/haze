@@ -18,7 +18,7 @@
 
 #include "haze/gfx/font.hh"
 
-namespace HAZE {
+namespace haze {
 
         glyphs::glyphs()
         { }
@@ -33,7 +33,7 @@ namespace HAZE {
         {
                 glyphs_[c] = i;
 
-                max_ = HAZE::max<image::size_type>(max_, *i);
+                max_ = haze::max<image::size_type>(max_, *i);
         }
 
         void glyphs::remove(char c)
@@ -43,7 +43,7 @@ namespace HAZE {
                 for (std::map<char, image *>::iterator i = glyphs_.begin();
                      i != glyphs_.end();
                      i++) {
-                        max_ = HAZE::max<image::size_type>(max_,
+                        max_ = haze::max<image::size_type>(max_,
                                                            (*i).second->
                                                            size());
                 }

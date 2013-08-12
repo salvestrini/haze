@@ -20,7 +20,7 @@
 #include "haze/core/synchronization.hh"
 #include "haze/core/exception.hh"
 
-namespace HAZE {
+namespace haze {
 
         semaphore::semaphore(int value)
         {

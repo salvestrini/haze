@@ -21,7 +21,7 @@
 #include "haze/core/log.hh"
 #include "haze/core/exception.hh"
 
-namespace HAZE {
+namespace haze {
 
         int thread::run(void * opaque)
         {

@@ -24,7 +24,7 @@
 #include "haze/gfx/config.hh"
 #include "haze/gfx/backends/backend.hh"
 
-namespace HAZE {
+namespace haze {
 
         namespace VIEW {
 

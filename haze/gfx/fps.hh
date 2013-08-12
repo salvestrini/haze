@@ -21,7 +21,7 @@
 
 #include <cstdlib>
 
-namespace HAZE {
+namespace haze {
 
 #define FPS_UPPER_LIMIT 100
 #define FPS_LOWER_LIMIT 1

@@ -28,7 +28,7 @@
 #include "haze/gfx/math.hh"
 #include "haze/gfx/backends/gl.hh"
 
-namespace HAZE {
+namespace haze {
 
         namespace GL {
 

@@ -24,27 +24,27 @@
 
 void test(const std::string & datadir)
 {
-        using namespace HAZE;
+        using namespace haze;
 
         //
         // Setup
         //
 
-        HAZE::video  video;
+        haze::video  video;
 
-        HAZE::camera camera;
+        haze::camera camera;
 
         image        glyphs(path(datadir + "font.png"));
 
         DBG("Glyphs image is " << glyphs.width() << " x " << glyphs.height());
 
         // Font image is 16x16 chars
-        HAZE::rectangle<size_t, size_t> rectangle(0,
+        haze::rectangle<size_t, size_t> rectangle(0,
                                                   0,
                                                   glyphs.width()  / 16,
                                                   glyphs.height() / 16);
 
-        HAZE::font font;
+        haze::font font;
 
         {
                 char c = 0;
@@ -77,7 +77,7 @@ void test(const std::string & datadir)
         GL::texture star3_texture(star_image);
 #endif
 
-        HAZE::time t;
+        haze::time t;
 
         GL::pen pen_white (GL::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
         GL::pen pen_red   (GL::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);
@@ -107,7 +107,7 @@ void test(const std::string & datadir)
                                    8,
                                    false);
 
-        HAZE::fps fps(30);
+        haze::fps fps(30);
 
         //
         // Main loop

@@ -23,7 +23,7 @@
 #include "haze/core/log.hh"
 #include "haze/sfx/audio.hh"
 
-using namespace HAZE::SFX;
+using namespace haze::SFX;
 
 audio::audio(size_t frequency,
              size_t channels)

@@ -21,7 +21,7 @@
 #include "haze/core/debug.hh"
 #include "haze/core/utils.hh"
 
-namespace HAZE {
+namespace haze {
 
         std::string quote(const std::string & s)
         { return std::string("`") + s + std::string("'"); }

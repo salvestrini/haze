@@ -21,7 +21,7 @@
 #include "haze/core/time.hh"
 #include "haze/core/debug.hh"
 
-namespace HAZE {
+namespace haze {
 
         static Uint32 timer_callback(Uint32 interval, void * param)
         {

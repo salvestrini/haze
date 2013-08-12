@@ -32,7 +32,7 @@
 #include "haze/core/utils.hh"
 #include "haze/core/filesystem.hh"
 
-namespace HAZE {
+namespace haze {
 
 #define PATH_SEPARATOR "/"
 

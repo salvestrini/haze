@@ -18,7 +18,7 @@
 
 #include "haze/core/exception.hh"
 
-namespace HAZE {
+namespace haze {
 
         exception::exception() :
                 message_()

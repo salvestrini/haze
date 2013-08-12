@@ -23,7 +23,7 @@
 
 #define _STR(X) #X
 
-namespace HAZE {
+namespace haze {
 
         std::string quote(const std::string & s);
         std::string quote(const char * s);

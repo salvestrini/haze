@@ -26,7 +26,7 @@
 #include "haze/core/exception.hh"
 #include "haze/gfx/image.hh"
 
-namespace HAZE {
+namespace haze {
 
         class glyphs {
         public:

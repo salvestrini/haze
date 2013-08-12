@@ -23,7 +23,7 @@
 
 #include "haze/core/pattern.hh"
 
-namespace HAZE {
+namespace haze {
 
         class semaphore : public non_copyable {
         public:

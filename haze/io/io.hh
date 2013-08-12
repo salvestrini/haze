@@ -23,7 +23,7 @@
 
 #include <SDL/SDL_events.h>
 
-namespace HAZE {
+namespace haze {
         namespace IO {
 
                 class event {
@@ -59,8 +59,8 @@ namespace HAZE {
 
                 class video_resize : public event {
                 public:
-                        video_resize(HAZE::video::size_type width,
-                                     HAZE::video::size_type height) :
+                        video_resize(haze::video::size_type width,
+                                     haze::video::size_type height) :
                                 width_(width),
                                 height_(height)
                         { }
@@ -71,15 +71,15 @@ namespace HAZE {
                         Type type() const
                         { return event::video_resize; }
 
-                        HAZE::video::size_type width() const
+                        haze::video::size_type width() const
                         { return width_; }
 
-                        HAZE::video::size_type height() const
+                        haze::video::size_type height() const
                         { return height_; }
 
                 private:
-                        HAZE::video::size_type width_;
-                        HAZE::video::size_type height_;
+                        haze::video::size_type width_;
+                        haze::video::size_type height_;
                 };
 
                 class key_press : public event {
