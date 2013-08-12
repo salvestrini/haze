@@ -119,7 +119,7 @@ void test(const std::string & datadir)
 
         io::event_manager io;
 
-        VIEW::orthogonal view(video.width(), video.height());
+        view::orthogonal view(video.width(), video.height());
 
         for (;;) {
                 video.clear();

@@ -133,7 +133,7 @@ GLfloat angle = 0.0f;
 
 io::event_manager io;
 
-VIEW::Orthogonal view(video.width(), video.height());
+view::Orthogonal view(video.width(), video.height());
 
 for (;;) {
         video.clear();

@@ -26,7 +26,7 @@
 
 namespace haze {
 
-        namespace VIEW {
+        namespace view {
 
                 class perspective {
                 public:
