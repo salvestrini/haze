@@ -40,12 +40,20 @@ namespace haze {
         public:
                 reference_counter() : count_(0) { }
 
-                void increment()   { count_++;        }
-                int  decrement()   { return --count_; }
-                int  count() const { return count_;   }
+                size_t count() const { return count_;   }
+
+                void   increment()   { count_++; }
+                size_t decrement()   {
+                        if (count_)
+                                count_--;
+                        return count_;
+                }
+
+                void operator++()    { (void) increment(); }
+                void operator--()    { (void) decrement(); }
 
         private:
-                int count_;
+                size_t count_;
         };
 
         template<typename TYPE> class smart_pointer {
