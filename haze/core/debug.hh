@@ -36,7 +36,8 @@ std::vector<std::string> backtrace();
                                                                         \
                 ERR("");                                                \
                 if (tmp.size() != 0) {                                  \
-                        ERR("Backtrace (" << tmp.size() << " stack frames):"); \
+                        ERR("Backtrace " <<                             \
+                            "(" << tmp.size() << " stack frames):");    \
                         for (std::vector<std::string>::const_iterator i = \
                                      tmp.begin();                       \
                              i != tmp.end();                            \
