@@ -83,11 +83,8 @@ namespace haze {
                         }
                 }
 
-                TYPE & operator* ()
-                { return *data_; }
-
-                TYPE * operator->()
-                { return data_; }
+                TYPE & operator* () const { return *data_; }
+                TYPE * operator->() const { return data_; }
 
                 smart_pointer<TYPE> &
                 operator = (const smart_pointer<TYPE> & sp) {
@@ -112,7 +109,7 @@ namespace haze {
 
         template<typename TYPE> class singleton : public non_copyable {
         public:
-                singleton() { }
+                singleton()  { }
                 ~singleton() {
                         if (instance_)
                                 delete instance_;
