@@ -19,7 +19,6 @@
 #ifndef HAZE_CORE_PATTERN
 #define HAZE_CORE_PATTERN
 
-#include <map>
 #include <list>
 #include <functional>
 #include <algorithm>
@@ -71,8 +70,7 @@ namespace haze {
                 }
 
                 smart_pointer(const smart_pointer<TYPE> & sp) :
-                        data_(sp.data_),
-                        reference_(sp.reference) {
+                        data_(sp.data_), reference_(sp.reference) {
                         reference_->increment();
                 }
 
@@ -116,9 +114,7 @@ namespace haze {
                 }
 
                 TYPE * operator->() {
-                        if (instance_ == 0) {
-                                instance_ = new TYPE();
-                        }
+                        if (instance_ == 0) instance_ = new TYPE();
                         return instance_;
                 }
 
@@ -128,24 +124,24 @@ namespace haze {
 
         template<typename TYPE> TYPE * singleton<TYPE>::instance_ = 0;
 
-        template<typename KEY, typename TYPE> class factory {
+        template<typename TYPE> class factory : public non_copyable {
         public:
                 typedef smart_pointer<TYPE> data;
 
-                data get(const KEY & key) {
-                        typename std::map<KEY, data>::iterator i;
-
-                        i = objects_.find(key);
-                        if (i == objects_.end()) {
-                                data tmp(new TYPE(key));
-                                objects_.insert(std::make_pair(key, tmp));
+                factory(size_t count) {
+                        for (; count; count--) {
+                                data tmp(new TYPE);
+                                objects_.insert(tmp);
                         }
-
-                        return (*i).second;
                 }
 
+                size_t count() const { return objects_.size(); }
+                void   put(data d)   { objects_.push_front(d); }
+                data   get()
+                { return (objects_.empty() ? 0 : objects_.pop_front()); }
+
         private:
-                std::map<KEY, data> objects_;
+                std::list<data> objects_;
         };
 
         template<typename TYPE> class observer {
