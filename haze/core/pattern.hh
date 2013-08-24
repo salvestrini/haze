@@ -36,11 +36,13 @@ namespace haze {
                 const non_copyable & operator =(const non_copyable &);
         };
 
-        class reference_counter {
+        class reference_counter : public non_copyable {
         public:
                 reference_counter() : count_(0) { }
-                void increment()                { count_++; }
-                int  decrement()                { return --count_; }
+
+                void increment()   { count_++;        }
+                int  decrement()   { return --count_; }
+                int  count() const { return count_;   }
 
         private:
                 int count_;
@@ -146,7 +148,7 @@ namespace haze {
                 virtual void update(const TYPE & parameters) = 0;
         };
 
-        template<typename TYPE> class Subject {
+        template<typename TYPE> class subject {
         public:
                 void attach(observer<TYPE> * observer) {
                         observers_.push_back(observer);
