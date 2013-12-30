@@ -31,12 +31,17 @@ if(OPENAL_FOUND)
   set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${OPENAL_LIBRARY})
 endif()
 
+set(HAZE_INCLUDES "" PARENT_SCOPE)
+
 set(SDL2_BUILDING_LIBRARY TRUE)
 find_package(SDL2 REQUIRED)
 if(SDL2_FOUND)
   set(HAVE_SDL2 ON)
   set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDL2_LIBRARY})
+
+  set(HAZE_INCLUDES ${HAZE_INCLUDES} ${SDL2_INCLUDE_DIR} PARENT_SCOPE)
   include_directories(${SDL2_INCLUDE_DIR})
+
   message(STATUS "Found SDL2: " ${SDL2_LIBRARY})
 else()
   message(STATUS "SDL2 NOT found!")
@@ -46,7 +51,10 @@ find_package(SDL2_image)
 if(SDL2IMAGE_FOUND)
   set(HAVE_SDL2_IMAGE ON)
   set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDL2IMAGE_LIBRARY})
+
+  set(HAZE_INCLUDES ${HAZE_INCLUDES} ${SDL2IMAGE_INCLUDE_DIR} PARENT_SCOPE)
   include_directories(${SDL2IMAGE_INCLUDE_DIR})
+
   message(STATUS "Found SDL2_image: " ${SDL2IMAGE_LIBRARY})
 else()
   message(STATUS "SDL2_image NOT found!")
@@ -56,11 +64,16 @@ find_package(SDL2_mixer)
 if(SDL2MIXER_FOUND)
   set(HAVE_SDL2_MIXER ON)
   set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDL2MIXER_LIBRARY})
+
+  set(HAZE_INCLUDES ${HAZE_INCLUDES} ${SDL2MIXER_INCLUDE_DIR} PARENT_SCOPE)
   include_directories(${SDL2MIXER_INCLUDE_DIR})
+
   message(STATUS "Found SDL2_mixer: " ${SDL2MIXER_LIBRARY})
 else()
   message(STATUS "SDL2_mixer NOT found!")
 endif()
+
+include_directories(${HAZE_INCLUDES})
 
 configure_file(config.hh.in config.hh)
 
@@ -104,7 +117,6 @@ add_library(haze SHARED
   gfx/view.cc
   gfx/camera.cc
   gfx/font.cc
-  gfx/fps.cc
   gfx/geometry.cc
   gfx/image.cc
   gfx/text.cc
