@@ -21,7 +21,7 @@
 
 #include <string>
 
-#include <SDL/SDL.h>
+#include "SDL.h"
 
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
@@ -62,14 +62,8 @@ namespace haze {
                 void   update();
 
         private:
-                bool   is_mode_ok(size_t width,
-                                  size_t height,
-                                  size_t bpp,
-                                  Uint32 flags);
-
+                SDL_Window *  window_;
                 SDL_Surface * surface_;
-                Uint32        flags_;
-                size_t        bpp_;
         };
 
 }

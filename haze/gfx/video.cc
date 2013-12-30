@@ -28,23 +28,11 @@
 
 namespace haze {
 
-        bool video::is_mode_ok(size_t width,
-                               size_t height,
-                               size_t bpp,
-                               Uint32 flags)
-        {
-                if (SDL_VideoModeOK(width, height, bpp, flags) <= 0)
-                        return false;
-                return true;
-        }
-
         video::video(size_t w,
                      size_t h,
                      size_t bpp) :
                 math::rectangle<size_t>(w, h),
-                surface_(0),
-                flags_(0),
-                bpp_(0)
+                surface_(0)
         {
                 if (!SDL_WasInit(SDL_INIT_VIDEO)) {
                         if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
@@ -55,64 +43,32 @@ namespace haze {
                 DBG("Initializing video to " <<
                     width() << " x " << height() << " @ "<< bpp);
 
-                const SDL_VideoInfo * info = SDL_GetVideoInfo();
-                if (!info) {
+                window_ = SDL_CreateWindow("Haze demo",
+                                           SDL_WINDOWPOS_CENTERED,
+                                           SDL_WINDOWPOS_CENTERED,
+                                           w, h,
+                                           SDL_WINDOW_OPENGL |
+                                           SDL_WINDOW_RESIZABLE);
+                if (!window_)
                         throw cannot_initialize(SDL_GetError());
-                }
 
-                DBG("Video infos:");
-                DBG("  hw_available = " << info->hw_available);
-                DBG("  wm_available = " << info->wm_available);
-                DBG("  blit_hw      = " << info->blit_hw     );
-                DBG("  blit_hw_CC   = " << info->blit_hw_CC  );
-                DBG("  blit_hw_A    = " << info->blit_hw_A   );
-                DBG("  blit_sw      = " << info->blit_sw     );
-                DBG("  blit_sw_CC   = " << info->blit_sw_CC  );
-                DBG("  blit_sw_A    = " << info->blit_sw_A   );
-                DBG("  blit_fill    = " << info->blit_fill   );
-                DBG("  video_mem    = " << info->video_mem   );
-                DBG("  current_w    = " << info->current_w   );
-                DBG("  current_h    = " << info->current_h   );
-                DBG("  bpp          = " << tostring(info->vfmt->BitsPerPixel));
-
-                Uint32 flags =
-                        SDL_OPENGL    |
-                        SDL_RESIZABLE |
-                        SDL_DOUBLEBUF |
-                        SDL_HWSURFACE |
-                        0;
-
-                {
-                        size_t wt = static_cast<size_t>(info->current_w);
-                        size_t ht = static_cast<size_t>(info->current_h);
-
-                        if (width() > wt)
-                                width(wt);
-                        if (height() > ht)
-                                height(ht);
-                        if (bpp > info->vfmt->BitsPerPixel)
-                                bpp = info->vfmt->BitsPerPixel;
-                }
-
-                if (!is_mode_ok(width(), height(), bpp, flags))
-                        throw cannot_initialize("Video mode unsupported");
+                if (!SDL_GL_CreateContext(window_))
+                        throw cannot_initialize(SDL_GetError());
 
                 // Set the GL attributes
-                SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+                // if (!
+                    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1)// )
+                        // throw cannot_initialize(SDL_GetError())
+                        ;
 
                 // Create the GL drawing context
-                surface_ = SDL_SetVideoMode(width(), height(), bpp, flags);
-                if (!surface_) {
+                surface_ = SDL_GetWindowSurface(window_);
+                if (!surface_)
                         throw cannot_initialize(SDL_GetError());
-                }
-
-                flags_ = flags;
-                bpp_   = bpp;
-
-                DBG("Video set to " <<
-                    width() << " x " << height() << " @ " << bpp_);
 
                 haze::gl::init();
+
+                DBG("Video initialized");
 
                 resize(width(), height());
         }
@@ -127,19 +83,9 @@ namespace haze {
                         throw cannot_resize("Wrong dimensions");
                 }
 
-                if (!is_mode_ok(w, h, bpp_, flags_))
-                        throw cannot_initialize("Video mode unsupported");
-
                 math::rectangle<size_t>::resize(w, h);
 
-                surface_ = SDL_SetVideoMode(width(),
-                                            height(),
-                                            bpp_,
-                                            flags_);
-                if (!surface_) {
-                        throw cannot_resize(SDL_GetError());
-                }
-
+                SDL_SetWindowSize(window_, w, h);
                 glViewport(0, 0,
                            static_cast<GLsizei>(width()),
                            static_cast<GLsizei>(height()));
@@ -160,6 +106,8 @@ namespace haze {
 
                 //camera->position(0.0f, 0.0f, 0.0f);
                 //camera->direction(0.0f, 0.0f);
+
+                DBG("Video resized to " << width() << "x" << height());
         }
 
         size_t video::bpp()
@@ -175,7 +123,7 @@ namespace haze {
         {
                 // DBG("Updating video");
                 glFlush();
-                SDL_GL_SwapBuffers();
+                SDL_GL_SwapWindow(window_);
         }
 
 }
