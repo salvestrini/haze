@@ -91,7 +91,7 @@ gl::texture star2_texture(star_image);
 gl::texture star3_texture(star_image);
 #endif
 
-time t;
+//time t;
 
 gl::Pen pen_white (gl::color(1.0f, 1.0f, 1.0f, 0.5f), 10.0);
 gl::Pen pen_red   (gl::color(1.0f, 0.0f, 0.0f, 0.5f),  1.0);

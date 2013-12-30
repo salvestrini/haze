@@ -9,6 +9,8 @@ configure_file(data.hh.in data.hh)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+include_directories(${HAZE_INCLUDES})
+
 link_directories(${CMAKE_BINARY_DIR}/haze)
 
 add_executable(test test.cc)
