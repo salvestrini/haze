@@ -19,8 +19,8 @@
 #include "haze/core/log.hh"
 #include "haze/gfx/config.hh"
 
-#if HAVE_SDL_IMAGE
-#include <SDL/SDL_image.h>
+#if HAVE_SDL2_IMAGE
+#include "SDL_image.h"
 #endif
 
 #include "haze/gfx/image.hh"
@@ -49,7 +49,7 @@ namespace haze {
         {
                 DBG("Initializing image from file " << file.str());
 
-#if HAVE_SDL_IMAGE
+#if HAVE_SDL2_IMAGE
                 if (count_ == 0) {
                         if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
                                 throw cannot_load(file, "unknown format");
@@ -77,7 +77,7 @@ namespace haze {
                 SDL_FreeSurface(surface_);
                 count_--;
                 if (count_ == 0) {
-#if HAVE_SDL_IMAGE
+#if HAVE_SDL2_IMAGE
                         IMG_Quit();
 #endif
                 }

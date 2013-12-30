@@ -20,7 +20,8 @@
 #define HAZE_GFX_IMAGE
 
 #include <string>
-#include <SDL/SDL.h>
+
+#include "SDL.h"
 
 #include "haze/core/exception.hh"
 #include "haze/core/filesystem.hh"
