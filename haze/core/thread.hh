@@ -21,7 +21,7 @@
 
 #include <string>
 
-#include <SDL/SDL.h>
+#include "SDL_thread.h"
 
 #include "haze/core/pattern.hh"
 

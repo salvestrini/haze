@@ -48,7 +48,7 @@ namespace haze {
 
                 DBG("Starting thread '" << name_ << "'");
 
-                thread_ = SDL_CreateThread(run, this);
+                thread_ = SDL_CreateThread(run, name_.c_str(), this);
                 if (thread_ == 0) {
                         throw exception(std::string("Unable to "
                                                     "create thread ") +
