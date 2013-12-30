@@ -19,9 +19,9 @@
 #ifndef HAZE_IO
 #define HAZE_IO
 
-#include <haze/gfx/video.hh>
+#include "SDL_events.h"
 
-#include <SDL/SDL_events.h>
+#include <haze/gfx/video.hh>
 
 namespace haze {
         namespace io {

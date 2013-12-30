@@ -38,7 +38,7 @@ event * event_manager::poll()
                         DBG("Got an application-quit event");
                         tmp = new application_quit();
                         break;
-
+#if 0
                 case SDL_VIDEORESIZE:
                         DBG("Got a video-resize event " <<
                             "("  << event_.resize.w     <<
@@ -47,7 +47,7 @@ event * event_manager::poll()
                         tmp = new video_resize(event_.resize.w,
                                                event_.resize.h);
                         break;
-
+#endif
                 case SDL_KEYUP:
                 case SDL_KEYDOWN: {
                         key_press::Key k;
