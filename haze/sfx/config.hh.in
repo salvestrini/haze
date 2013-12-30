@@ -20,6 +20,6 @@
 #define HAZE_SFX_CONFIG
 
 #cmakedefine01 HAVE_OPENAL
-#cmakedefine01 HAVE_SDL_MIXER
+#cmakedefine01 HAVE_SDL2_MIXER
 
 #endif

@@ -19,6 +19,6 @@
 #ifndef HAZE_CONFIG
 #define HAZE_CONFIG
 
-#cmakedefine01 HAVE_SDL
+#cmakedefine01 HAVE_SDL2
 
 #endif
