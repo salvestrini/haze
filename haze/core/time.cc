@@ -16,8 +16,6 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include <unistd.h>
-
 #include "haze/core/time.hh"
 #include "haze/core/debug.hh"
 
@@ -42,7 +40,7 @@ namespace haze {
 
         timer::timer(unsigned int period, // ms
                      type         mode) :
-                id_(NULL),
+                id_(0),
                 period_(period),
                 mode_(mode)
         { }
@@ -57,7 +55,7 @@ namespace haze {
         }
 
         bool timer::is_running()
-        { return (id_ != NULL) ? true : false; }
+        { return (id_ ? true : false); }
 
         timer::type timer::mode()
         { return mode_; }
@@ -69,20 +67,28 @@ namespace haze {
                         return;
                 }
 
-                id_ = SDL_AddTimer(period_,
-                                   timer_callback,
-                                   reinterpret_cast<void *>(this));
-                if (id_ == NULL)
+                id_ = new SDL_TimerID;
+                if (!id_)
+                        throw cannot_start();
+
+                *id_ = SDL_AddTimer(period_,
+                                    timer_callback,
+                                    reinterpret_cast<void *>(this));
+                if (!*id_)
                         throw cannot_start();
         }
 
         void timer::cancel()
         {
-                if (id_ == NULL)
+                if (id_ == 0)
                         return;
 
-                if (SDL_RemoveTimer(id_) != SDL_TRUE)
+                if (SDL_RemoveTimer(*id_) != SDL_TRUE)
                         throw cannot_cancel();
+
+                delete id_;
+
+                id_ = 0;
         }
 
         time::time()
@@ -96,5 +102,55 @@ namespace haze {
 
         size_t time::ticks() const
         { return SDL_GetTicks(); }
+
+
+        fps::fps(size_t fps)
+        {
+                framecount_ = 0;
+                rate_       = FPS_DEFAULT;
+                rateticks_  = (1000.0f / (float) FPS_DEFAULT);
+                lastticks_  = SDL_GetTicks();
+
+                rate(fps);
+        }
+
+        fps::~fps()
+        { }
+
+        void fps::rate(size_t value)
+        {
+                if (value < FPS_LOWER_LIMIT) {
+                        rate_ = FPS_LOWER_LIMIT;
+                } else if (value > FPS_UPPER_LIMIT) {
+                        rate_ = FPS_UPPER_LIMIT;
+                } else {
+                        rate_ = value;
+                }
+
+                framecount_ = 0;
+                rateticks_  = (1000.0f / (float) rate_);
+        }
+
+        size_t fps::rate(void)
+        { return rate_; }
+
+        void  fps::compensate()
+        {
+                Uint32 current_ticks;
+                Uint32 target_ticks;
+
+                framecount_++;
+
+                current_ticks = SDL_GetTicks();
+                target_ticks  = lastticks_ +
+                        (Uint32) ((float) framecount_ * rateticks_);
+
+                if (current_ticks <= target_ticks) {
+                        SDL_Delay(target_ticks - current_ticks);
+                } else {
+                        framecount_ = 0;
+                        lastticks_  = SDL_GetTicks();
+                }
+        }
 
 }

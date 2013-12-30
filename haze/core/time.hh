@@ -19,7 +19,7 @@
 #ifndef HAZE_CORE_TIME
 #define HAZE_CORE_TIME
 
-#include <SDL/SDL.h>
+#include "SDL_timer.h"
 
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
@@ -48,9 +48,9 @@ namespace haze {
                 type mode();
 
         private:
-                SDL_TimerID  id_;
-                unsigned int period_;
-                type         mode_;
+                SDL_TimerID * id_;
+                unsigned int  period_;
+                type          mode_;
         };
 
         class time {
@@ -61,6 +61,29 @@ namespace haze {
                 void   delay(size_t milliseconds) const;
                 size_t ticks() const;
         };
+
+
+#define FPS_UPPER_LIMIT 100
+#define FPS_LOWER_LIMIT 1
+#define FPS_DEFAULT     30
+
+        class fps {
+        public:
+                fps(size_t fps = FPS_DEFAULT);
+                ~fps();
+
+                void   rate(size_t value);
+                size_t rate(void);
+
+                void   compensate();
+
+        private:
+                Uint32 framecount_;
+                float  rateticks_;
+                Uint32 lastticks_;
+                Uint32 rate_;
+        };
+
 }
 
 #endif
