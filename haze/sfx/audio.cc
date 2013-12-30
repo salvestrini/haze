@@ -50,7 +50,7 @@ size_t audio::channels()
 
 music::music()
 {
-#if HAVE_SDL_MIXER
+#if HAVE_SDL2_MIXER
         music_ = 0;
 #endif
 }
