@@ -23,9 +23,9 @@
 
 #include "SDL.h"
 
+#include "haze/config.hh"
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
-#include "haze/gfx/config.hh"
 #include "haze/gfx/math.hh"
 
 namespace haze {

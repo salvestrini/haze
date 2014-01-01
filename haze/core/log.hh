@@ -19,7 +19,7 @@
 #ifndef HAZE_CORE_LOG
 #define HAZE_CORE_LOG
 
-#include "haze/core/config.hh"
+#include "haze/config.hh"
 
 //#include <cstdio>
 #include <iostream>

@@ -19,9 +19,9 @@
 #ifndef HAZE_GFX_BACKENDS_GL
 #define HAZE_GFX_BACKENDS_GL
 
-#include "haze/core/filesystem.hh"
+#include "haze/config.hh"
 
-#include "haze/gfx/config.hh"
+#include "haze/core/filesystem.hh"
 
 #if HAVE_OPENGL
 #include <GL/gl.h>

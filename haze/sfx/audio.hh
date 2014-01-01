@@ -1,6 +1,6 @@
 //
 // Copyright (C) 2012, 2013, 2014 Francesco Salvestrini
-//                    Alessandro Massignan
+//                                Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-#include "haze/sfx/config.hh"
+#include "haze/config.hh"
 
 #include "haze/core/exception.hh"
 #include "haze/core/filesystem.hh"

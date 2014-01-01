@@ -75,12 +75,8 @@ endif()
 
 include_directories(${HAZE_INCLUDES})
 
-configure_file(config.hh.in config.hh)
-
 option(WANT_DEBUG "Debugging" ON)
 option(WANT_LOGS  "Logs"      ON)
-
-configure_file(core/config.hh.in core/config.hh)
 
 option(WANT_DEBUG_GL "Debug GL code" ON)
 
@@ -88,9 +84,7 @@ set(HAZE_VIEWPORT_WIDTH  "720" CACHE STRING "Viewport width")
 set(HAZE_VIEWPORT_HEIGHT "480" CACHE STRING "Viewport height")
 set(HAZE_VIEWPORT_BPP    "24"  CACHE STRING "Viewport depth (bit per pixel)")
 
-configure_file(gfx/config.hh.in gfx/config.hh)
-configure_file(sfx/config.hh.in sfx/config.hh)
-configure_file(io/config.hh.in  io/config.hh)
+configure_file(config.hh.in config.hh)
 
 #if(CMAKE_COMPILER_IS_GNUCXX)
 #  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")

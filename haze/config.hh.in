@@ -19,6 +19,43 @@
 #ifndef HAZE_CONFIG
 #define HAZE_CONFIG
 
+//
+// CORE
+//
+
 #cmakedefine01 HAVE_SDL2
+
+#cmakedefine01 WANT_DEBUG
+#cmakedefine01 WANT_LOGS
+
+#cmakedefine01 HAVE_EXECINFO_H
+#cmakedefine01 HAVE_BACKTRACE
+#cmakedefine01 HAVE_BACKTRACE_SYMBOLS
+
+#cmakedefine01 HAVE_REGEX_H
+#cmakedefine01 HAVE_REGEXEC
+#cmakedefine01 HAVE_REGCOMP
+#cmakedefine01 HAVE_REGERROR
+#cmakedefine01 HAVE_REGFREE
+
+//
+// SFX
+//
+
+#cmakedefine01 HAVE_OPENAL
+#cmakedefine01 HAVE_SDL2_MIXER
+
+//
+// GFX
+//
+
+#cmakedefine01 HAVE_OPENGL
+#cmakedefine01 HAVE_SDL2_IMAGE
+
+#define HAZE_VIEWPORT_WIDTH  @HAZE_VIEWPORT_WIDTH@ 
+#define HAZE_VIEWPORT_HEIGHT @HAZE_VIEWPORT_HEIGHT@
+#define HAZE_VIEWPORT_BPP    @HAZE_VIEWPORT_BPP@
+
+#cmakedefine01 WANT_DEBUG_GL
 
 #endif
