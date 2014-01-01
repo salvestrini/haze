@@ -21,7 +21,7 @@
 
 #include "haze/config.hh"
 #include "haze/core/log.hh"
-#include "haze/gfx/backends/backend.hh"
+#include "haze/gfx/gl.hh"
 
 namespace haze {
 

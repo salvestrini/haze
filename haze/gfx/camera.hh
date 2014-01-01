@@ -21,7 +21,7 @@
 
 #include "haze/core/pattern.hh"
 #include "haze/gfx/math.hh"
-#include "haze/gfx/backends/backend.hh"
+#include "haze/gfx/gl.hh"
 
 namespace haze {
 

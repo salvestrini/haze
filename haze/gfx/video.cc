@@ -24,7 +24,7 @@
 #include "haze/gfx/video.hh"
 #include "haze/gfx/camera.hh"
 #include "haze/gfx/view.hh"
-#include "haze/gfx/backends/backend.hh"
+#include "haze/gfx/gl.hh"
 
 namespace haze {
 

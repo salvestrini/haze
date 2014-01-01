@@ -106,7 +106,7 @@ add_library(haze SHARED
   core/time.cc
   core/core.cc
 
-  gfx/backends/gl.cc
+  gfx/gl.cc
   gfx/math.cc
   gfx/view.cc
   gfx/camera.cc
