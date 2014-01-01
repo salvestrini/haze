@@ -45,8 +45,8 @@ namespace haze {
                                         exception(what) { }
                         };
 
-                        audio(size_t frequency = 44100,
-                              size_t channels  = 2)
+                        audio(size_t frequency = HAZE_MIXER_FREQUENCY,
+                              size_t channels  = HAZE_MIXER_CHANNELS)
                                 throw(cannot_initialize);
                         ~audio();
 

@@ -80,9 +80,12 @@ option(WANT_LOGS  "Logs"      ON)
 
 option(WANT_DEBUG_GL "Debug GL code" ON)
 
-set(HAZE_VIEWPORT_WIDTH  "720" CACHE STRING "Viewport width")
-set(HAZE_VIEWPORT_HEIGHT "480" CACHE STRING "Viewport height")
-set(HAZE_VIEWPORT_BPP    "24"  CACHE STRING "Viewport depth (bit per pixel)")
+set(HAZE_VIEWPORT_WIDTH  "720"   CACHE STRING "Viewport width")
+set(HAZE_VIEWPORT_HEIGHT "480"   CACHE STRING "Viewport height")
+set(HAZE_VIEWPORT_BPP    "24"    CACHE STRING "Viewport depth (bit per pixel)")
+
+set(HAZE_MIXER_FREQUENCY "44100" CACHE STRING "Frequency")
+set(HAZE_MIXER_CHANNELS  "2"     CACHE STRING "Channels")
 
 configure_file(config.hh.in config.hh)
 
