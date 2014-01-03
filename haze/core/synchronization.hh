@@ -51,13 +51,11 @@ namespace haze {
 
         class guard : public non_copyable {
         public:
-                guard(mutex & mutex) : mutex_(mutex) {
-                        mutex_.lock();
-                }
+                guard(mutex & mutex) : mutex_(mutex)
+                { mutex_.lock(); }
 
-                virtual ~guard() {
-                        mutex_.unlock();
-                }
+                virtual ~guard()
+                { mutex_.unlock(); }
 
         private:
                 mutex & mutex_;
