@@ -30,8 +30,8 @@ void test(const std::string & datadir)
         // Setup
         //
 
-        haze::video  video;
-        //haze::video  video2;
+        haze::gfx::video  video;
+        //haze::gfx::video  video2;
 
         haze::camera camera;
 

@@ -44,8 +44,8 @@ bool core(const haze::directory & datadir)
              iter++)
                 DBG("  " << *iter);
 
-        video  video;
-        haze::camera camera;
+        haze::gfx::video video;
+        haze::camera     camera;
 
 #if 0
         Image image(datadir + "font.png"));
