@@ -26,6 +26,12 @@
 namespace haze {
         namespace io {
 
+                class cant_init : public exception {
+                public:
+                        cant_init(const std::string & what) :
+                                exception(what) { }
+                };
+
                 class event {
                 public:
                         event()
@@ -59,8 +65,8 @@ namespace haze {
 
                 class video_resize : public event {
                 public:
-                        video_resize(haze::video::size_type width,
-                                     haze::video::size_type height) :
+                        video_resize(haze::gfx::video::size_type width,
+                                     haze::gfx::video::size_type height) :
                                 width_(width),
                                 height_(height)
                         { }
@@ -71,15 +77,15 @@ namespace haze {
                         Type type() const
                         { return event::video_resize; }
 
-                        haze::video::size_type width() const
+                        haze::gfx::video::size_type width() const
                         { return width_; }
 
-                        haze::video::size_type height() const
+                        haze::gfx::video::size_type height() const
                         { return height_; }
 
                 private:
-                        haze::video::size_type width_;
-                        haze::video::size_type height_;
+                        haze::gfx::video::size_type width_;
+                        haze::gfx::video::size_type height_;
                 };
 
                 class key_press : public event {
