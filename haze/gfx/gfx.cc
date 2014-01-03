@@ -23,10 +23,16 @@ namespace haze {
         namespace gfx {
 
                 void init()
-                { }
+                {
+                        if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+                                if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
+                                        throw cant_init(SDL_GetError());
+                                }
+                        }
+                }
 
                 void fini()
-                { }
+                { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
 
         }
 }
