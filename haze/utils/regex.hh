@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CORE_REGEX
-#define HAZE_CORE_REGEX
+#ifndef HAZE_UTILS_REGEX
+#define HAZE_UTILS_REGEX
 
 #include "haze/config.hh"
 

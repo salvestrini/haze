@@ -99,12 +99,12 @@ include_directories(${CMAKE_BINARY_DIR})
 
 add_library(haze SHARED
   utils/string.cc
+  utils/regex.cc
 
   core/debug.cc
   core/exception.cc
   core/filesystem.cc
   core/log.cc
-  core/regex.cc
   core/pattern.cc
   core/synchronization.cc
   core/thread.cc
