@@ -16,16 +16,32 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "SDL.h"
+
 #include "haze/core/core.hh"
 
 namespace haze {
         namespace core {
 
                 void init()
-                { }
+                {
+                        if (!SDL_WasInit(SDL_INIT_TIMER)) {
+                                if (SDL_InitSubSystem(SDL_INIT_TIMER) < 0) {
+                                        throw cant_init(SDL_GetError());
+                                }
+                        }
+                        if (!SDL_WasInit(SDL_INIT_EVENTS)) {
+                                if (SDL_InitSubSystem(SDL_INIT_EVENTS) < 0) {
+                                        throw cant_init(SDL_GetError());
+                                }
+                        }
+                }
 
                 void fini()
-                { }
+                {
+                        SDL_QuitSubSystem(SDL_INIT_EVENTS);
+                        SDL_QuitSubSystem(SDL_INIT_TIMER);
+                }
 
         }
 }
