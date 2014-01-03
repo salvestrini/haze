@@ -43,12 +43,11 @@ namespace haze {
                 DBG("Initializing video to " <<
                     width() << " x " << height() << " @ "<< bpp);
 
-                window_ = SDL_CreateWindow("Haze demo",
+                window_ = SDL_CreateWindow("Haze",
                                            SDL_WINDOWPOS_CENTERED,
                                            SDL_WINDOWPOS_CENTERED,
                                            w, h,
-                                           SDL_WINDOW_OPENGL |
-                                           SDL_WINDOW_RESIZABLE);
+                                           SDL_WINDOW_OPENGL);
                 if (!window_)
                         throw cannot_initialize(SDL_GetError());
 
@@ -122,9 +121,6 @@ namespace haze {
 
                 DBG("Video resized to " << width() << "x" << height());
         }
-
-        size_t video::bpp()
-        { return surface_->format->BitsPerPixel; }
 
         void video::clear()
         {

@@ -57,7 +57,6 @@ namespace haze {
                 void   resize(size_t width,
                               size_t height);
 
-                size_t bpp();
                 void   clear();
                 void   update();
 #if 0
