@@ -36,15 +36,15 @@ namespace haze {
                                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                                         throw cant_init(SDL_GetError());
                                 }
-
-                                DBG("Supported decoders ("              <<
-                                    tostring(Mix_GetNumChunkDecoders()) <<
-                                    "):");
-                                for (int i = 0;
-                                     i < Mix_GetNumChunkDecoders();
-                                     i++)
-                                        DBG("  " << Mix_GetChunkDecoder(i));
                         }
+
+                        DBG("Supported decoders ("              <<
+                            tostring(Mix_GetNumChunkDecoders()) <<
+                            "):");
+                        for (int i = 0;
+                             i < Mix_GetNumChunkDecoders();
+                             i++)
+                                DBG("  " << Mix_GetChunkDecoder(i));
                 }
 
                 void fini()
