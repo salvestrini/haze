@@ -16,4 +16,37 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/version.hh"
 #include "haze/haze.hh"
+
+namespace haze {
+
+        uint8_t version_major()
+        { return HAZE_VERSION_MAJOR; }
+
+        uint8_t version_minor()
+        { return HAZE_VERSION_MINOR; }
+
+        uint8_t version_micro()
+        { return HAZE_VERSION_MICRO; }
+
+        std::string version()
+        {
+                std::string tmp;
+
+                tmp += tostring(HAZE_VERSION_MAJOR);
+                tmp += ".";
+                tmp += tostring(HAZE_VERSION_MINOR);
+                tmp += ".";
+                tmp += tostring(HAZE_VERSION_MICRO);
+
+                return tmp.c_str();
+        }
+
+        void init()
+        { DBG("Version " << version() << " initializing"); }
+
+        void fini()
+        { }
+
+}

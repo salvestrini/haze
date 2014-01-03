@@ -19,11 +19,24 @@
 #ifndef HAZE_HAZE
 #define HAZE_HAZE
 
-#include "haze/version.hh"
+#include <stdint.h>
+#include <string>
 
 #include "haze/core/core.hh"
 #include "haze/gfx/gfx.hh"
 #include "haze/sfx/sfx.hh"
 #include "haze/io/io.hh"
+
+namespace haze {
+
+        uint8_t     version_major();
+        uint8_t     version_minor();
+        uint8_t     version_micro();
+        std::string version();
+
+        void init();
+        void fini();
+
+}
 
 #endif
