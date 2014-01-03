@@ -19,7 +19,7 @@
 #include "haze/core/core.hh"
 
 namespace haze {
-        namespace core{ 
+        namespace core {
 
                 void init()
                 { }

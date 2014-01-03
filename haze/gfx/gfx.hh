@@ -28,4 +28,13 @@
 #include "haze/gfx/text.hh"
 #include "haze/gfx/video.hh"
 
+namespace haze {
+        namespace gfx {
+
+                void init();
+                void fini();
+
+        }
+}
+
 #endif

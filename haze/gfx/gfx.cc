@@ -17,3 +17,16 @@
 //
 
 #include "haze/gfx/gfx.hh"
+
+
+namespace haze {
+        namespace gfx {
+
+                void init()
+                { }
+
+                void fini()
+                { }
+
+        }
+}

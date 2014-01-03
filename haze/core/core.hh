@@ -29,7 +29,6 @@
 #include "haze/core/time.hh"
 
 namespace haze {
-
         namespace core {
 
                 void init();
