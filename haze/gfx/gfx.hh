@@ -31,6 +31,12 @@
 namespace haze {
         namespace gfx {
 
+                class cant_init : public exception {
+                public:
+                        cant_init(const std::string & what) :
+                                exception(what) { }
+                };
+
                 void init();
                 void fini();
 
