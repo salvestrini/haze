@@ -18,8 +18,7 @@
 
 #include <sstream>
 
-#include "haze/core/debug.hh"
-#include "haze/core/utils.hh"
+#include "haze/utils/string.hh"
 
 namespace haze {
 
@@ -27,7 +26,7 @@ namespace haze {
         { return std::string("`") + s + std::string("'"); }
 
         std::string quote(const char * s)
-        { ASSERT(s != 0); return quote(std::string(s)); }
+        { return quote(std::string(SAFE_CSTR(s))); }
 
         std::string tostring(int i)
         {

@@ -16,12 +16,13 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CORE_UTILS
-#define HAZE_CORE_UTILS
+#ifndef HAZE_UTILS_STRING
+#define HAZE_UTILS_STRING
 
 #include <string>
 
 #define _STR(X) #X
+#define SAFE_CSTR(X) (X ? X : "")
 
 namespace haze {
 
