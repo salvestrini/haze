@@ -51,10 +51,14 @@ namespace haze {
 
                 core::init();
                 io::init();
+                sfx::init();
+                gfx::init();
         }
 
         void fini()
         {
+                gfx::fini();
+                sfx::fini();
                 io::fini();
                 core::fini();
         }
