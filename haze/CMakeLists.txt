@@ -75,9 +75,8 @@ endif()
 
 include_directories(${HAZE_INCLUDES})
 
-option(WANT_DEBUG "Debugging" ON)
-option(WANT_LOGS  "Logs"      ON)
-
+option(WANT_DEBUG    "Debugging"     ON)
+option(WANT_LOGS     "Logs"          ON)
 option(WANT_DEBUG_GL "Debug GL code" ON)
 
 set(HAZE_VIEWPORT_WIDTH  "720"   CACHE STRING "Viewport width")
@@ -86,6 +85,8 @@ set(HAZE_VIEWPORT_BPP    "24"    CACHE STRING "Viewport depth (bit per pixel)")
 
 set(HAZE_MIXER_FREQUENCY "44100" CACHE STRING "Frequency")
 set(HAZE_MIXER_CHANNELS  "2"     CACHE STRING "Channels")
+
+#configure_file("${CMAKE_CURRENT_SOURCE_DIR}/haze/version.hh.in" "${CMAKE_CURRENT_BINARY_DIR}/haze/version.hh")
 
 configure_file(config.hh.in config.hh)
 
@@ -97,12 +98,13 @@ include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR})
 
 add_library(haze SHARED
+  utils/string.cc
+
   core/debug.cc
   core/exception.cc
   core/filesystem.cc
   core/log.cc
   core/regex.cc
-  core/utils.cc
   core/pattern.cc
   core/synchronization.cc
   core/thread.cc
@@ -125,7 +127,6 @@ add_library(haze SHARED
 
   io/io.cc
 
-  version.cc
   haze.cc
 )
 
