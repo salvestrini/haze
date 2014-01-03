@@ -25,7 +25,7 @@ namespace haze {
         { }
 
         exception::exception(const char * what) :
-                message_(what)
+                message_(what ? what : "")
         { }
 
         exception::exception(const std::string & what) :
