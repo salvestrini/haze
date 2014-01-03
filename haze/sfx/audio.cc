@@ -1,6 +1,5 @@
 //
 // Copyright (C) 2012, 2013, 2014 Francesco Salvestrini
-//                                Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,34 +16,19 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-//#define __STDC_LIMIT_MACROS
-//#include <stdint.h>
-
 #include "haze/core/log.hh"
 #include "haze/sfx/audio.hh"
 
 using namespace haze::sfx;
 
 audio::audio(size_t frequency,
-             size_t channels)
-        throw(cannot_initialize) :
+             size_t channels) :
         frequency_(frequency),
         channels_(channels)
-{
-        if (!SDL_WasInit(SDL_INIT_AUDIO)) {
-
-                if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-                        throw cannot_initialize(SDL_GetError());
-                }
-
-                DBG("Supported decoders:");
-                for (int i = 0; i < Mix_GetNumChunkDecoders(); i++)
-                        DBG("  %s" << Mix_GetChunkDecoder(i));
-        }
-}
+{ }
 
 audio::~audio()
-{ SDL_QuitSubSystem(SDL_INIT_AUDIO); }
+{ }
 
 size_t audio::frequency()
 { return frequency_; }

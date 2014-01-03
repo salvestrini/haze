@@ -1,6 +1,5 @@
 //
 // Copyright (C) 2012, 2013, 2014 Francesco Salvestrini
-//                                Alessandro Massignan
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,9 +24,8 @@
 #include <vector>
 
 #include "haze/config.hh"
-
-#include "haze/core/exception.hh"
 #include "haze/core/filesystem.hh"
+#include "haze/sfx/sfx.hh"
 
 #include "SDL.h"
 #if HAVE_SDL2_MIXER
@@ -39,15 +37,8 @@ namespace haze {
 
                 class audio {
                 public:
-                        class cannot_initialize : public exception {
-                        public:
-                                cannot_initialize(const std::string & what) :
-                                        exception(what) { }
-                        };
-
                         audio(size_t frequency = HAZE_MIXER_FREQUENCY,
-                              size_t channels  = HAZE_MIXER_CHANNELS)
-                                throw(cannot_initialize);
+                              size_t channels  = HAZE_MIXER_CHANNELS);
                         ~audio();
 
                         size_t frequency();
@@ -167,9 +158,6 @@ namespace haze {
                         int    get_available(size_t index);
                         int    get_oldest(size_t index);
                         int    get_newest(size_t index);
-                private:
-                        std::map<size_t, std::vector<size_t> > relations;
-                        std::vector<size_t>                    reserved_;
                 };
         }
 }

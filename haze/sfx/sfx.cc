@@ -16,17 +16,39 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/sfx/sfx.hh"
+#include "haze/config.hh"
 
+#include "SDL.h"
+#if HAVE_SDL2_MIXER
+#include "SDL_mixer.h"
+#endif
+
+#include "haze/utils/string.hh"
+#include "haze/core/log.hh"
+#include "haze/sfx/sfx.hh"
 
 namespace haze {
         namespace sfx {
 
                 void init()
-                { }
+                {
+                        if (!SDL_WasInit(SDL_INIT_AUDIO)) {
+                                if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+                                        throw cant_init(SDL_GetError());
+                                }
+
+                                DBG("Supported decoders ("              <<
+                                    tostring(Mix_GetNumChunkDecoders()) <<
+                                    "):");
+                                for (int i = 0;
+                                     i < Mix_GetNumChunkDecoders();
+                                     i++)
+                                        DBG("  " << Mix_GetChunkDecoder(i));
+                        }
+                }
 
                 void fini()
-                { }
+                { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
         }
 }

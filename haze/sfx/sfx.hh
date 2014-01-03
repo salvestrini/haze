@@ -19,10 +19,17 @@
 #ifndef HAZE_SFX
 #define HAZE_SFX
 
+#include "haze/core/exception.hh"
 #include "haze/sfx/audio.hh"
 
 namespace haze {
         namespace sfx {
+
+                class cant_init : public exception {
+                public:
+                        cant_init(const std::string & what) :
+                                exception(what) { }
+                };
 
                 void init();
                 void fini();
