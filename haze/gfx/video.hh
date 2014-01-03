@@ -29,46 +29,43 @@
 #include "haze/gfx/math.hh"
 
 namespace haze {
+        namespace gfx {
 
-        class video :
-                public math::rectangle<size_t>,
-                public non_copyable {
-        public:
-                class cannot_initialize : public exception {
+                class video :
+                        public math::rectangle<size_t>,
+                        public non_copyable {
                 public:
-                        cannot_initialize(const std::string what) :
-                                exception(what) { }
-                };
+                        class cannot_resize : public exception {
+                        public:
+                                cannot_resize(const std::string what) :
+                                        exception(what) { }
+                        };
 
-                class cannot_resize : public exception {
-                public:
-                        cannot_resize(const std::string what) :
-                                exception(what) { }
-                };
+                        video(size_t width  = HAZE_VIEWPORT_WIDTH,
+                              size_t height = HAZE_VIEWPORT_HEIGHT,
+                              size_t bpp    = HAZE_VIEWPORT_BPP);
+                        virtual ~video();
 
-                video(size_t width  = HAZE_VIEWPORT_WIDTH,
-                      size_t height = HAZE_VIEWPORT_HEIGHT,
-                      size_t bpp    = HAZE_VIEWPORT_BPP);
-                virtual ~video();
+                        typedef size_t size_type;
 
-                typedef size_t size_type;
+                        // Width and height ... we should derive from a
+                        // rectangle ...
+                        void   resize(size_t width,
+                                      size_t height);
 
-                // Width and height ... we should derive from a rectangle ...
-                void   resize(size_t width,
-                              size_t height);
-
-                void   clear();
-                void   update();
+                        void   clear();
+                        void   update();
 #if 0
-                void   current();
+                        void   current();
 #endif
 
-        private:
-                SDL_Window *  window_;
-                SDL_GLContext context_;
-                SDL_Surface * surface_;
-        };
+                private:
+                        SDL_Window *  window_;
+                        SDL_GLContext context_;
+                        SDL_Surface * surface_;
+                };
 
+        }
 }
 
 #endif
