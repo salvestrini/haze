@@ -33,7 +33,6 @@
 #include "haze/gfx/geometry.hh"
 
 namespace haze {
-
         namespace gl {
 
                 void init();
@@ -246,8 +245,8 @@ namespace haze {
 
                         void init(const image & image);
                 };
-        }
 
+        }
 }
 
 #endif

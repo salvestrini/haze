@@ -30,7 +30,6 @@
 #include "haze/gfx/gl.hh"
 
 namespace haze {
-
         namespace gl {
 
 #if WANT_DEBUG_GL

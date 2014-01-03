@@ -24,7 +24,6 @@
 #include "haze/gfx/gl.hh"
 
 namespace haze {
-
         namespace view {
 
                 class perspective {
