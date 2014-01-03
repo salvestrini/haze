@@ -18,8 +18,8 @@
 
 #include <string>
 
+#include "haze/utils/string.hh"
 #include "haze/core/debug.hh"
-#include "haze/core/utils.hh"
 #include "haze/core/log.hh"
 #include "haze/gfx/video.hh"
 #include "haze/gfx/camera.hh"

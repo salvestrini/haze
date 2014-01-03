@@ -17,10 +17,10 @@
 //
 
 #include "haze/config.hh"
+#include "haze/utils/string.hh"
 #include "haze/core/debug.hh"
 #include "haze/core/log.hh"
 #include "haze/core/regex.hh"
-#include "haze/core/utils.hh"
 
 namespace haze {
 

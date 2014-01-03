@@ -26,7 +26,7 @@
 #include <cassert>
 
 #include "haze/core/log.hh"
-#include "haze/core/utils.hh"
+#include "haze/utils/string.hh"
 
 std::vector<std::string> backtrace();
 

@@ -16,6 +16,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#include "haze/utils/string.hh"
 #include "haze/core/exception.hh"
 
 namespace haze {
@@ -25,7 +26,7 @@ namespace haze {
         { }
 
         exception::exception(const char * what) :
-                message_(what ? what : "")
+                message_(SAFE_CSTR(what))
         { }
 
         exception::exception(const std::string & what) :
