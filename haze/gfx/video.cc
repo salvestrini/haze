@@ -52,7 +52,8 @@ namespace haze {
                 if (!window_)
                         throw cannot_initialize(SDL_GetError());
 
-                if (!SDL_GL_CreateContext(window_))
+                context_ = SDL_GL_CreateContext(window_);
+                if (!context_)
                         throw cannot_initialize(SDL_GetError());
 
                 // Set the GL attributes
@@ -73,8 +74,20 @@ namespace haze {
                 resize(width(), height());
         }
 
+#if 0
+        void video::current()
+        {
+                if (SDL_GL_MakeCurrent(window_, context_))
+                    throw(cannot_initialize(SDL_GetError()));
+        }
+#endif
+
         video::~video()
-        { SDL_QuitSubSystem(SDL_INIT_VIDEO); }
+        {
+                SDL_GL_DeleteContext(context_);
+
+                SDL_QuitSubSystem(SDL_INIT_VIDEO);
+        }
 
         void video::resize(size_t w,
                            size_t h)

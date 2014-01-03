@@ -60,9 +60,13 @@ namespace haze {
                 size_t bpp();
                 void   clear();
                 void   update();
+#if 0
+                void   current();
+#endif
 
         private:
                 SDL_Window *  window_;
+                SDL_GLContext context_;
                 SDL_Surface * surface_;
         };
 
