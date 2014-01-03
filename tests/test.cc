@@ -31,6 +31,7 @@ void test(const std::string & datadir)
         //
 
         haze::video  video;
+        //haze::video  video2;
 
         haze::camera camera;
 
