@@ -39,20 +39,23 @@ namespace haze {
         public:
                 reference_counter() : count_(0) { }
 
-                size_t count() const { return count_;   }
+                size_t count() const
+                { return count_;   }
 
-                void   increment()   { count_++; }
-                size_t decrement()   {
-                        if (count_)
-                                count_--;
-                        return count_;
-                }
+                void operator ++()
+                { increment(); }
 
-                void operator++()    { (void) increment(); }
-                void operator--()    { (void) decrement(); }
+                void operator --()
+                { decrement(); }
 
         private:
                 size_t count_;
+
+                void increment()
+                { count_++; }
+                
+                void decrement()
+                { if (count_) count_--; }
         };
 
         template<typename TYPE> class smart_pointer {
@@ -75,19 +78,21 @@ namespace haze {
                 }
 
                 ~smart_pointer() {
-                        if (reference_->decrement() == 0) {
+                        reference_->decrement();
+                        if (reference_->count() == 0) {
                                 delete data_;
                                 delete reference_;
                         }
                 }
 
-                TYPE & operator* () const { return *data_; }
-                TYPE * operator->() const { return data_; }
+                TYPE & operator *()  const { return *data_; }
+                TYPE * operator ->() const { return data_; }
 
                 smart_pointer<TYPE> &
-                operator = (const smart_pointer<TYPE> & sp) {
+                operator =(const smart_pointer<TYPE> & sp) {
                         if (this != &sp) {
-                                if (reference_->decrement() == 0) {
+                                reference_->decrement();
+                                if (reference_->count() == 0) {
                                         delete data_;
                                         delete reference_;
                                 }
@@ -113,7 +118,7 @@ namespace haze {
                                 delete instance_;
                 }
 
-                TYPE * operator->() {
+                TYPE * operator ->() {
                         if (instance_ == 0) instance_ = new TYPE();
                         return instance_;
                 }
