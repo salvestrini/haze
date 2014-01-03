@@ -225,6 +225,8 @@ int main(int argc, char * argv[])
 {
         LOGS_PREFIX_SET("test");
 
+        haze::init();
+
         std::string datadir(std::string(DATAPATH) + "/");
         if (argc > 1) {
                 datadir = std::string(argv[1]);
@@ -242,6 +244,8 @@ int main(int argc, char * argv[])
         }
 
         DBG("Completed with" <<  (retval ? "" : "out") << " errors");
+
+        haze::fini();
 
         return retval;
 }
