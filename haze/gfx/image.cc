@@ -17,12 +17,13 @@
 //
 
 #include "haze/config.hh"
-#include "haze/core/log.hh"
 
 #if HAVE_SDL2_IMAGE
 #include "SDL_image.h"
 #endif
 
+#include "haze/core/log.hh"
+#include "haze/utils/string.hh"
 #include "haze/gfx/image.hh"
 
 namespace haze {
@@ -31,7 +32,7 @@ namespace haze {
 
         image::image(SDL_Surface * surface)
         {
-                DBG("Initializing image from surface");
+                // DBG("Initializing image from surface");
 
                 if (!surface) {
                         throw cannot_create();
@@ -47,7 +48,7 @@ namespace haze {
 
         image::image(const path & file)
         {
-                DBG("Initializing image from file " << file.str());
+                // DBG("Initializing image from file " << quote(file.str()));
 
 #if HAVE_SDL2_IMAGE
                 if (count_ == 0) {
@@ -63,13 +64,12 @@ namespace haze {
                 }
 
                 resize(surface_->w, surface_->h);
-
-                DBG("Image initialized from file "
-                    << file.str() << " "
-                    << width() << "x" << height());
 #else
                 throw cannot_load(file, "unsupported format");
 #endif
+                DBG("Image initialized from file "
+                    << quote(file.str()) << " "
+                    << width() << "x" << height());
         }
 
         image::~image()
