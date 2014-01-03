@@ -36,6 +36,10 @@ audio::audio(size_t frequency,
                 if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
                         throw cannot_initialize(SDL_GetError());
                 }
+
+                DBG("Supported decoders:");
+                for (int i = 0; i < Mix_GetNumChunkDecoders(); i++)
+                        DBG("  %s" << Mix_GetChunkDecoder(i));
         }
 }
 
@@ -226,7 +230,7 @@ int groups::get_oldest(size_t index)
         return 0;
 }
 
-int groups::get_newer(size_t index)
+int groups::get_newest(size_t index)
 {
         (void) index;
 

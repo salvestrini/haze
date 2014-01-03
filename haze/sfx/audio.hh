@@ -166,7 +166,7 @@ namespace haze {
                         size_t get_count(size_t index);
                         int    get_available(size_t index);
                         int    get_oldest(size_t index);
-                        int    get_newer(size_t index);
+                        int    get_newest(size_t index);
                 private:
                         std::map<size_t, std::vector<size_t> > relations;
                         std::vector<size_t>                    reserved_;
