@@ -18,6 +18,8 @@
 
 #include "haze/version.hh"
 #include "haze/haze.hh"
+#include "haze/core/core.hh"
+#include "haze/io/io.hh"
 
 namespace haze {
 
@@ -44,9 +46,17 @@ namespace haze {
         }
 
         void init()
-        { DBG("Version " << version() << " initializing"); }
+        {
+                DBG("Version " << version() << " initializing");
+
+                core::init();
+                io::init();
+        }
 
         void fini()
-        { }
+        {
+                io::fini();
+                core::fini();
+        }
 
 }

@@ -28,4 +28,14 @@
 #include "haze/core/thread.hh"
 #include "haze/core/time.hh"
 
+namespace haze {
+
+        namespace core {
+
+                void init();
+                void fini();
+
+        }
+}
+
 #endif

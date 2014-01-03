@@ -19,40 +19,41 @@
 #include "haze/core/debug.hh"
 #include "haze/io/io.hh"
 
-using namespace haze::io;
+namespace haze {
+        namespace io {
 
-event * event_manager::poll()
-{
-        SDL_Event event_;
-        event *   tmp = 0;
+                event * event_manager::poll()
+                {
+                        SDL_Event event_;
+                        event *   tmp = 0;
 
-        if (!SDL_PollEvent(&event_)) {
-                // DBG("No event in queue");
-                return tmp;
-        }
+                        if (!SDL_PollEvent(&event_)) {
+                                // DBG("No event in queue");
+                                return tmp;
+                        }
 
-        // DBG("Got event type %d", event_.type);
+                        // DBG("Got event type %d", event_.type);
 
-        switch (event_.type) {
-                case SDL_QUIT:
-                        DBG("Got an application-quit event");
-                        tmp = new application_quit();
-                        break;
+                        switch (event_.type) {
+                        case SDL_QUIT:
+                                DBG("Got an application-quit event");
+                                tmp = new application_quit();
+                                break;
 #if 0
-                case SDL_VIDEORESIZE:
-                        DBG("Got a video-resize event " <<
-                            "("  << event_.resize.w     <<
-                            ", " << event_.resize.h     <<
-                            ")");
-                        tmp = new video_resize(event_.resize.w,
-                                               event_.resize.h);
-                        break;
+                        case SDL_VIDEORESIZE:
+                                DBG("Got a video-resize event " <<
+                                    "("  << event_.resize.w     <<
+                                    ", " << event_.resize.h     <<
+                                    ")");
+                                tmp = new video_resize(event_.resize.w,
+                                                       event_.resize.h);
+                                break;
 #endif
-                case SDL_KEYUP:
-                case SDL_KEYDOWN: {
-                        key_press::Key k;
+                        case SDL_KEYUP:
+                        case SDL_KEYDOWN: {
+                                key_press::Key k;
 
-                        switch (event_.key.keysym.sym) {
+                                switch (event_.key.keysym.sym) {
                                 case SDLK_UP:    k = key_press::ARROW_UP;
                                         break;
                                 case SDLK_DOWN:  k = key_press::ARROW_DOWN;
@@ -65,55 +66,64 @@ event * event_manager::poll()
                                         break;
                                 default:
                                         return tmp;
-                        }
+                                }
 
-                        if (event_.type == SDL_KEYUP) {
-                                DBG("Got a key-up");
-                                tmp = new key_up(k);
-                        } else {
-                                DBG("Got a key-down");
-                                tmp = new key_down(k);
+                                if (event_.type == SDL_KEYUP) {
+                                        DBG("Got a key-up");
+                                        tmp = new key_up(k);
+                                } else {
+                                        DBG("Got a key-down");
+                                        tmp = new key_down(k);
+                                }
+                                break;
                         }
-                        break;
-                }
-                case SDL_MOUSEMOTION: {
-                        DBG("Got mouse-motion " <<
-                            "("                 <<
-                            event_.motion.x     <<
-                            ", "                <<
-                            event_.motion.y     <<
-                            ", "                <<
-                            event_.motion.xrel  <<
-                            ", "                <<
-                            event_.motion.yrel  <<
-                            ")");
-                        tmp = new mouse_motion(event_.motion.x,
-                                               event_.motion.y,
-                                               event_.motion.xrel,
-                                               event_.motion.yrel);
-                }
-                case SDL_MOUSEBUTTONDOWN:
-                case SDL_MOUSEBUTTONUP: {
-                        if (event_.button.button == SDL_BUTTON_LEFT) {
-                                DBG("Unhandled mouse-press");
-                                return tmp;
+                        case SDL_MOUSEMOTION: {
+                                DBG("Got mouse-motion " <<
+                                    "("                 <<
+                                    event_.motion.x     <<
+                                    ", "                <<
+                                    event_.motion.y     <<
+                                    ", "                <<
+                                    event_.motion.xrel  <<
+                                    ", "                <<
+                                    event_.motion.yrel  <<
+                                    ")");
+                                tmp = new mouse_motion(event_.motion.x,
+                                                       event_.motion.y,
+                                                       event_.motion.xrel,
+                                                       event_.motion.yrel);
                         }
+                        case SDL_MOUSEBUTTONDOWN:
+                        case SDL_MOUSEBUTTONUP: {
+                                if (event_.button.button == SDL_BUTTON_LEFT) {
+                                        DBG("Unhandled mouse-press");
+                                        return tmp;
+                                }
 
-                        switch (event_.button.button) {
+                                switch (event_.button.button) {
                                 case SDL_PRESSED:
                                         DBG("Got a mouse-down");
                                         break;
                                 case SDL_RELEASED:
                                         DBG("Got a mouse-up");
                                         break;
+                                }
                         }
-                }
-                default:
-                        DBG("Unhandled event " <<
-                            int(event_.type)   <<
-                            " in queue");
-                        break;
-        }
+                        default:
+                                DBG("Unhandled event " <<
+                                    int(event_.type)   <<
+                                    " in queue");
+                                break;
+                        }
 
-        return tmp;
+                        return tmp;
+                }
+
+                void init()
+                { }
+
+                void fini()
+                { }
+
+        }
 }

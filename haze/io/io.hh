@@ -21,7 +21,7 @@
 
 #include "SDL_events.h"
 
-#include <haze/gfx/video.hh>
+#include "haze/gfx/video.hh"
 
 namespace haze {
         namespace io {
@@ -187,6 +187,9 @@ namespace haze {
                 private:
                         SDL_Event event_;
                 };
+
+                void init();
+                void fini();
 
         }
 }

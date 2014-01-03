@@ -17,3 +17,16 @@
 //
 
 #include "haze/core/core.hh"
+
+namespace haze {
+        namespace core{ 
+
+                void init()
+                { }
+
+                void fini()
+                { }
+
+        }
+}
+
