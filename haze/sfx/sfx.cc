@@ -17,3 +17,16 @@
 //
 
 #include "haze/sfx/sfx.hh"
+
+
+namespace haze {
+        namespace sfx {
+
+                void init()
+                { }
+
+                void fini()
+                { }
+
+        }
+}

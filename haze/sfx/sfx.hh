@@ -21,4 +21,13 @@
 
 #include "haze/sfx/audio.hh"
 
+namespace haze {
+        namespace sfx {
+
+                void init();
+                void fini();
+
+        }
+}
+
 #endif
