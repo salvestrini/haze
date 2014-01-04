@@ -48,6 +48,7 @@ namespace haze {
                 DBG("Version " << version() << " initializing");
 
                 utils::init();
+                fs::init();
                 core::init();
                 io::init();
                 sfx::init();
@@ -60,6 +61,7 @@ namespace haze {
                 sfx::fini();
                 io::fini();
                 core::fini();
+                fs::fini();
                 utils::fini();
         }
 
