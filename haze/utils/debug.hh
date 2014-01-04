@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_CORE_DEBUG
-#define HAZE_CORE_DEBUG
+#ifndef HAZE_UTILS_DEBUG
+#define HAZE_UTILS_DEBUG
 
 #include <cstdlib>
 #include <iostream>
@@ -25,7 +25,7 @@
 #include <vector>
 #include <cassert>
 
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 #include "haze/utils/string.hh"
 
 std::vector<std::string> backtrace();

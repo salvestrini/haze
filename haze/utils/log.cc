@@ -17,7 +17,7 @@
 //
 
 #include "haze/config.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 
 namespace haze {
 
