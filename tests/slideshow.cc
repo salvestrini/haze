@@ -20,15 +20,15 @@
 
 #include "haze/haze.hh"
 
-bool core(const haze::directory & datadir)
+bool core(const haze::fs::directory & datadir)
 {
         using namespace haze;
 
-        std::set<path *>      entries = datadir.entries();
+        std::set<fs::path *>  entries = datadir.entries();
         std::set<std::string> pictures;
 
         DBG("Got the following entries:");
-        for (std::set<path *>::iterator iter = entries.begin();
+        for (std::set<fs::path *>::iterator iter = entries.begin();
              iter != entries.end();
              iter++) {
                 DBG("  " << (*iter)->str() << " " <<
@@ -84,7 +84,7 @@ for (int i = 0; i < 256; i++) {
                                  font);
  }
 #endif
-Image       star_image(path(datadir + "star.bmp"));
+Image       star_image(haze::fs::path(datadir + "star.bmp"));
 #if 1
 gl::texture star1_texture(star_image);
 gl::texture star2_texture(star_image);
@@ -248,14 +248,15 @@ int main(int argc, char * argv[])
                         return EXIT_FAILURE;
                 }
 
-                haze::path datadir(argv[1]);
+                haze::fs::path datadir(argv[1]);
                 if (!datadir.is_directory()) {
                         ERR("path " << datadir.str() << " "
                             "is not a directory");
                         return EXIT_FAILURE;
                 }
 
-                haze::directory * dir = new haze::directory(datadir.str());
+                haze::fs::directory * dir =
+                        new haze::fs::directory(datadir.str());
                 retval = core(*dir) ? EXIT_SUCCESS : EXIT_FAILURE;
                 delete dir;
 

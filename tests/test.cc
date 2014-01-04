@@ -35,7 +35,7 @@ void test(const std::string & datadir)
 
         haze::camera camera;
 
-        image        glyphs(path(datadir + "font.png"));
+        image        glyphs(fs::path(datadir + "font.png"));
 
         DBG("Glyphs image is " << glyphs.width() << " x " << glyphs.height());
 
@@ -71,7 +71,7 @@ void test(const std::string & datadir)
                                          font);
         }
 #endif
-        image star_image(path(datadir + "star.bmp"));
+        image star_image(fs::path(datadir + "star.bmp"));
 #if 1
         gl::texture star1_texture(star_image);
         gl::texture star2_texture(star_image);
