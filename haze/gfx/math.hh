@@ -24,44 +24,48 @@
 namespace haze {
         namespace math {
 
-                template <typename T> class vector2 {
+                //
+                // vector2
+                //
+
+                template <typename TYPE> class vector2 {
                 public :
                         vector2();
-                        vector2(T X, T Y);
+                        vector2(TYPE X, TYPE Y);
                         
                         template <typename U>
                         explicit vector2(const vector2<U>& vector);
                         
-                        T x;
-                        T y;
+                        typedef TYPE size_type;
+
+                        TYPE x;
+                        TYPE y;
                 };
                 
-                template <typename T>
-                inline vector2<T>::vector2() :
-                        x(0),
-                        y(0)
+                template <typename TYPE>
+                inline vector2<TYPE>::vector2() :
+                        x(0), y(0)
                 { }
 
-                template <typename T>
-                inline vector2<T>::vector2(T X, T Y) :
-                        x(X),
-                        y(Y)
+                template <typename TYPE>
+                inline vector2<TYPE>::vector2(TYPE X, TYPE Y) :
+                        x(X), y(Y)
                 { }
 
-                template <typename T>
+                template <typename TYPE>
                 template <typename U>
-                inline vector2<T>::vector2(const vector2<U>& vector) :
-                        x(static_cast<T>(vector.x)),
-                        y(static_cast<T>(vector.y))
+                inline vector2<TYPE>::vector2(const vector2<U>& vector) :
+                        x(static_cast<TYPE>(vector.x)),
+                        y(static_cast<TYPE>(vector.y))
                 { }
 
-                template <typename T>
-                inline vector2<T> operator -(const vector2<T>& rhs)
-                { return vector2<T>(-rhs.x, -rhs.y); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator -(const vector2<TYPE>& rhs)
+                { return vector2<TYPE>(-rhs.x, -rhs.y); }
 
-                template <typename T>
-                inline vector2<T>& operator +=(vector2<T>&       lhs,
-                                               const vector2<T>& rhs)
+                template <typename TYPE>
+                inline vector2<TYPE>& operator +=(vector2<TYPE>&       lhs,
+                                                  const vector2<TYPE>& rhs)
                 {
                         lhs.x += rhs.x;
                         lhs.y += rhs.y;
@@ -69,9 +73,9 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector2<T>& operator -=(vector2<T>&       lhs,
-                                               const vector2<T>& rhs)
+                template <typename TYPE>
+                inline vector2<TYPE>& operator -=(vector2<TYPE>&       lhs,
+                                                  const vector2<TYPE>& rhs)
                 {
                         lhs.x -= rhs.x;
                         lhs.y -= rhs.y;
@@ -79,29 +83,29 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector2<T> operator +(const vector2<T>& lhs,
-                                             const vector2<T>& rhs)
-                { return vector2<T>(lhs.x + rhs.x, lhs.y + rhs.y); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator +(const vector2<TYPE>& lhs,
+                                                const vector2<TYPE>& rhs)
+                { return vector2<TYPE>(lhs.x + rhs.x, lhs.y + rhs.y); }
 
-                template <typename T>
-                inline vector2<T> operator -(const vector2<T>& lhs,
-                                             const vector2<T>& rhs)
-                { return vector2<T>(lhs.x - rhs.x, lhs.y - rhs.y); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator -(const vector2<TYPE>& lhs,
+                                                const vector2<TYPE>& rhs)
+                { return vector2<TYPE>(lhs.x - rhs.x, lhs.y - rhs.y); }
 
-                template <typename T>
-                inline vector2<T> operator *(const vector2<T>& lhs,
-                                             T                 rhs)
-                { return vector2<T>(lhs.x * rhs, lhs.y * rhs); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator *(const vector2<TYPE>& lhs,
+                                                TYPE                 rhs)
+                { return vector2<TYPE>(lhs.x * rhs, lhs.y * rhs); }
 
-                template <typename T>
-                inline vector2<T> operator *(T                 lhs,
-                                             const vector2<T>& rhs)
-                { return vector2<T>(rhs.x * lhs, rhs.y * lhs); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator *(TYPE                 lhs,
+                                                const vector2<TYPE>& rhs)
+                { return vector2<TYPE>(rhs.x * lhs, rhs.y * lhs); }
 
-                template <typename T>
-                inline vector2<T>& operator *=(vector2<T>& lhs,
-                                               T           rhs)
+                template <typename TYPE>
+                inline vector2<TYPE>& operator *=(vector2<TYPE>& lhs,
+                                                  TYPE           rhs)
                 {
                         lhs.x *= rhs;
                         lhs.y *= rhs;
@@ -109,14 +113,14 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector2<T> operator /(const vector2<T>& lhs,
-                                             T                 rhs)
-                { return vector2<T>(lhs.x / rhs, lhs.y / rhs); }
+                template <typename TYPE>
+                inline vector2<TYPE> operator /(const vector2<TYPE>& lhs,
+                                                TYPE                 rhs)
+                { return vector2<TYPE>(lhs.x / rhs, lhs.y / rhs); }
 
-                template <typename T>
-                inline vector2<T>& operator /=(vector2<T>& lhs,
-                                               T           rhs)
+                template <typename TYPE>
+                inline vector2<TYPE>& operator /=(vector2<TYPE>& lhs,
+                                                  TYPE           rhs)
                 {
                         lhs.x /= rhs;
                         lhs.y /= rhs;
@@ -124,58 +128,64 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline bool operator ==(const vector2<T>& lhs,
-                                        const vector2<T>& rhs)
+                template <typename TYPE>
+                inline bool operator ==(const vector2<TYPE>& lhs,
+                                        const vector2<TYPE>& rhs)
                 { return (lhs.x == rhs.x) && (lhs.y == rhs.y); }
 
-                template <typename T>
-                inline bool operator !=(const vector2<T>& lhs,
-                                        const vector2<T>& rhs)
+                template <typename TYPE>
+                inline bool operator !=(const vector2<TYPE>& lhs,
+                                        const vector2<TYPE>& rhs)
                 { return (lhs.x != rhs.x) || (lhs.y != rhs.y); }
 
                 typedef vector2<int>          vector2i;
                 typedef vector2<unsigned int> vector2u;
                 typedef vector2<float>        vector2f;
 
-                template <typename T> class vector3 {
+                //
+                // vector3
+                //
+
+                template <typename TYPE> class vector3 {
                 public :
                         vector3();
-                        vector3(T X, T Y, T Z);
+                        vector3(TYPE X, TYPE Y, TYPE Z);
                         
                         template <typename U>
                         explicit vector3(const vector3<U>& vector);
                         
-                        T x;
-                        T y;
-                        T z;
+                        typedef TYPE size_type;
+
+                        TYPE x;
+                        TYPE y;
+                        TYPE z;
                 };
 
-                template <typename T>
-                inline vector3<T>::vector3() :
+                template <typename TYPE>
+                inline vector3<TYPE>::vector3() :
                         x(0), y(0), z(0)
                 { }
 
-                template <typename T>
-                inline vector3<T>::vector3(T X, T Y, T Z) :
+                template <typename TYPE>
+                inline vector3<TYPE>::vector3(TYPE X, TYPE Y, TYPE Z) :
                         x(X), y(Y), z(Z)
                 { }
 
-                template <typename T>
+                template <typename TYPE>
                 template <typename U>
-                inline vector3<T>::vector3(const vector3<U>& vector) :
-                        x(static_cast<T>(vector.x)),
-                        y(static_cast<T>(vector.y)),
-                        z(static_cast<T>(vector.z))
+                inline vector3<TYPE>::vector3(const vector3<U>& vector) :
+                        x(static_cast<TYPE>(vector.x)),
+                        y(static_cast<TYPE>(vector.y)),
+                        z(static_cast<TYPE>(vector.z))
                 { }
 
-                template <typename T>
-                inline vector3<T> operator -(const vector3<T>& lhs)
-                { return vector3<T>(-lhs.x, -lhs.y, -lhs.z); }
+                template <typename TYPE>
+                inline vector3<TYPE> operator -(const vector3<TYPE>& lhs)
+                { return vector3<TYPE>(-lhs.x, -lhs.y, -lhs.z); }
 
-                template <typename T>
-                inline vector3<T>& operator +=(vector3<T>&       lhs,
-                                               const vector3<T>& rhs)
+                template <typename TYPE>
+                inline vector3<TYPE>& operator +=(vector3<TYPE>&       lhs,
+                                                  const vector3<TYPE>& rhs)
                 {
                         lhs.x += rhs.x;
                         lhs.y += rhs.y;
@@ -184,9 +194,9 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector3<T>& operator -=(vector3<T>&       lhs,
-                                               const vector3<T>& rhs)
+                template <typename TYPE>
+                inline vector3<TYPE>& operator -=(vector3<TYPE>&       lhs,
+                                                  const vector3<TYPE>& rhs)
                 {
                         lhs.x -= rhs.x;
                         lhs.y -= rhs.y;
@@ -195,45 +205,45 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector3<T> operator +(const vector3<T>& lhs,
-                                             const vector3<T>& rhs)
+                template <typename TYPE>
+                inline vector3<TYPE> operator +(const vector3<TYPE>& lhs,
+                                                const vector3<TYPE>& rhs)
                 {
-                        return vector3<T>(lhs.x + rhs.x,
-                                          lhs.y + rhs.y,
-                                          lhs.z + rhs.z);
+                        return vector3<TYPE>(lhs.x + rhs.x,
+                                             lhs.y + rhs.y,
+                                             lhs.z + rhs.z);
                 }
 
-                template <typename T>
-                inline vector3<T> operator -(const vector3<T>& lhs,
-                                             const vector3<T>& rhs)
+                template <typename TYPE>
+                inline vector3<TYPE> operator -(const vector3<TYPE>& lhs,
+                                                const vector3<TYPE>& rhs)
                 {
-                        return vector3<T>(lhs.x - rhs.x,
-                                          lhs.y - rhs.y,
-                                          lhs.z - rhs.z);
+                        return vector3<TYPE>(lhs.x - rhs.x,
+                                             lhs.y - rhs.y,
+                                             lhs.z - rhs.z);
                 }
 
-                template <typename T>
-                inline vector3<T> operator *(const vector3<T>& lhs,
-                                             T                 rhs)
+                template <typename TYPE>
+                inline vector3<TYPE> operator *(const vector3<TYPE>& lhs,
+                                                TYPE                 rhs)
                 {
-                        return vector3<T>(lhs.x * rhs,
-                                          lhs.y * rhs,
-                                          lhs.z * rhs);
+                        return vector3<TYPE>(lhs.x * rhs,
+                                             lhs.y * rhs,
+                                             lhs.z * rhs);
                 }
 
-                template <typename T>
-                inline vector3<T> operator *(T                 lhs,
-                                             const vector3<T>& rhs)
+                template <typename TYPE>
+                inline vector3<TYPE> operator *(TYPE                 lhs,
+                                                const vector3<TYPE>& rhs)
                 {
-                        return vector3<T>(rhs.x * lhs,
-                                          rhs.y * lhs,
-                                          rhs.z * lhs);
+                        return vector3<TYPE>(rhs.x * lhs,
+                                             rhs.y * lhs,
+                                             rhs.z * lhs);
                 }
 
-                template <typename T>
-                inline vector3<T>& operator *=(vector3<T>& lhs,
-                                               T           rhs)
+                template <typename TYPE>
+                inline vector3<TYPE>& operator *=(vector3<TYPE>& lhs,
+                                                  TYPE           rhs)
                 {
                         lhs.x *= rhs;
                         lhs.y *= rhs;
@@ -242,18 +252,18 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline vector3<T> operator /(const vector3<T>& lhs,
-                                             T                 rhs)
+                template <typename TYPE>
+                inline vector3<TYPE> operator /(const vector3<TYPE>& lhs,
+                                                TYPE                 rhs)
                 {
-                        return vector3<T>(lhs.x / rhs,
-                                          lhs.y / rhs,
-                                          lhs.z / rhs);
+                        return vector3<TYPE>(lhs.x / rhs,
+                                             lhs.y / rhs,
+                                             lhs.z / rhs);
                 }
 
-                template <typename T>
-                inline vector3<T>& operator /=(vector3<T>& lhs,
-                                               T           rhs)
+                template <typename TYPE>
+                inline vector3<TYPE>& operator /=(vector3<TYPE>& lhs,
+                                                  TYPE           rhs)
                 {
                         lhs.x /= rhs;
                         lhs.y /= rhs;
@@ -262,18 +272,18 @@ namespace haze {
                         return lhs;
                 }
 
-                template <typename T>
-                inline bool operator ==(const vector3<T>& lhs,
-                                        const vector3<T>& rhs)
+                template <typename TYPE>
+                inline bool operator ==(const vector3<TYPE>& lhs,
+                                        const vector3<TYPE>& rhs)
                 {
                         return ((lhs.x == rhs.x) &&
                                 (lhs.y == rhs.y) &&
                                 (lhs.z == rhs.z));
                 }
 
-                template <typename T>
-                inline bool operator !=(const vector3<T>& lhs,
-                                        const vector3<T>& rhs)
+                template <typename TYPE>
+                inline bool operator !=(const vector3<TYPE>& lhs,
+                                        const vector3<TYPE>& rhs)
                 {
                         return ((lhs.x != rhs.x) ||
                                 (lhs.y != rhs.y) ||
@@ -282,6 +292,10 @@ namespace haze {
 
                 typedef vector3<int>   vector3i;
                 typedef vector3<float> vector3f;
+
+                //
+                // point
+                //
 
                 template<typename TYPE> TYPE radians2angle(TYPE radians)
                 { return radians * 180 / M_PI; }
@@ -328,6 +342,10 @@ namespace haze {
                         TYPE y_;
                         TYPE z_;
                 };
+
+                //
+                // rectangle
+                //
 
                 template<typename TYPE = int> class rectangle {
                 public:
@@ -380,58 +398,6 @@ namespace haze {
                 private:
                         point<TYPE> from_;
                         point<TYPE> to_;
-                };
-
-                template<typename TYPE = float> class Vector {
-                public:
-                        Vector(TYPE xv = 0, TYPE yv = 0, TYPE zv = 0) :
-                                x(xv), y(yv), z(zv)
-                        { }
-
-                        Vector(const Vector & other) :
-                                x(other.x), y(other.y), z(other.z)
-                        { }
-
-                        virtual ~Vector()
-                        { }
-
-                        typedef TYPE size_type;
-
-                        inline Vector operator + (const Vector & v)
-                        { return Vector(v.x + x, v.y + y, v.z + z); }
-
-                        inline Vector operator - (const Vector &v)
-                        { return Vector(x - v.x, y - v.y, z - v.z); }
-
-                        inline Vector operator * (TYPE value)
-                        { return Vector(x * value, y * value, z * value); }
-
-                        inline Vector operator / (TYPE value)
-                        { return Vector(x / value, y / value, z / value); }
-
-                        TYPE x;
-                        TYPE y;
-                        TYPE z;
-                };
-
-                template<typename TYPE = float> class Vertex {
-                public:
-                        Vertex(const Vertex & other) :
-                                x(other.x), y(other.y), z(other.z)
-                        { }
-
-                        Vertex(TYPE xv = 0, TYPE yv = 0, TYPE zv = 0) :
-                                x(xv), y(yv), z(zv)
-                        { }
-
-                        virtual ~Vertex()
-                        { }
-
-                        typedef TYPE size_type;
-
-                        TYPE x;
-                        TYPE y;
-                        TYPE z;
                 };
 
         }
