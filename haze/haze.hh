@@ -24,6 +24,7 @@
 
 #include "haze/utils/utils.hh"
 #include "haze/core/core.hh"
+#include "haze/fs/fs.hh"
 #include "haze/gfx/gfx.hh"
 #include "haze/sfx/sfx.hh"
 #include "haze/io/io.hh"
