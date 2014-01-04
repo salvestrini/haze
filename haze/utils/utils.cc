@@ -17,3 +17,16 @@
 //
 
 #include "haze/utils/utils.hh"
+
+
+namespace haze {
+        namespace utils {
+
+                void init()
+                { }
+
+                void fini()
+                { }
+
+        }
+}

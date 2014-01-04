@@ -24,4 +24,13 @@
 #include "haze/utils/regex.hh"
 #include "haze/utils/string.hh"
 
+namespace haze {
+        namespace utils {
+
+                void init();
+                void fini();
+
+        }
+}
+
 #endif

@@ -18,9 +18,6 @@
 
 #include "haze/version.hh"
 #include "haze/haze.hh"
-#include "haze/utils/string.hh"
-#include "haze/core/core.hh"
-#include "haze/io/io.hh"
 
 namespace haze {
 
@@ -50,6 +47,7 @@ namespace haze {
         {
                 DBG("Version " << version() << " initializing");
 
+                utils::init();
                 core::init();
                 io::init();
                 sfx::init();
@@ -62,6 +60,7 @@ namespace haze {
                 sfx::fini();
                 io::fini();
                 core::fini();
+                utils::fini();
         }
 
 }
