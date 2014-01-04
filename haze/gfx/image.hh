@@ -23,8 +23,8 @@
 
 #include "SDL.h"
 
+#include "haze/fs/filesystem.hh"
 #include "haze/core/exception.hh"
-#include "haze/core/filesystem.hh"
 #include "haze/core/pattern.hh"
 #include "haze/gfx/geometry.hh"
 
@@ -34,7 +34,7 @@ namespace haze {
         public:
                 class cannot_load : public exception {
                 public:
-                        cannot_load(const path &        path,
+                        cannot_load(const fs::path &    path,
                                     const std::string & cause) :
                                 exception(std::string("Cannot load ") +
                                           path.str()                  +
@@ -52,7 +52,7 @@ namespace haze {
                       Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
 #endif
                 image(SDL_Surface * surface);
-                image(const path & file);
+                image(const fs::path & file);
                 virtual ~image();
 
                 size_t       bpp() const;

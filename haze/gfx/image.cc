@@ -46,7 +46,7 @@ namespace haze {
                     << width() << "x" << height());
         }
 
-        image::image(const path & file)
+        image::image(const fs::path & file)
         {
                 // DBG("Initializing image from file " << quote(file.str()));
 
