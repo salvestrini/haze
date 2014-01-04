@@ -19,10 +19,8 @@
 #ifndef HAZE_CORE
 #define HAZE_CORE
 
-#include "haze/core/debug.hh"
 #include "haze/core/exception.hh"
 #include "haze/core/filesystem.hh"
-#include "haze/core/log.hh"
 #include "haze/core/pattern.hh"
 #include "haze/core/synchronization.hh"
 #include "haze/core/thread.hh"

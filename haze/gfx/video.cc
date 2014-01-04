@@ -19,8 +19,8 @@
 #include <string>
 
 #include "haze/utils/string.hh"
-#include "haze/core/debug.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/debug.hh"
+#include "haze/utils/log.hh"
 #include "haze/gfx/video.hh"
 #include "haze/gfx/camera.hh"
 #include "haze/gfx/view.hh"

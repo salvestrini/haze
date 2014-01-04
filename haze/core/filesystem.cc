@@ -29,7 +29,7 @@
 #include <unistd.h>
 
 #include "haze/utils/string.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 #include "haze/core/filesystem.hh"
 
 namespace haze {

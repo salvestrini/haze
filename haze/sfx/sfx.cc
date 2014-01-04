@@ -24,7 +24,7 @@
 #endif
 
 #include "haze/utils/string.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 #include "haze/sfx/sfx.hh"
 
 namespace haze {

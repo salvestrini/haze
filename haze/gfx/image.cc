@@ -22,7 +22,7 @@
 #include "SDL_image.h"
 #endif
 
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 #include "haze/utils/string.hh"
 #include "haze/gfx/image.hh"
 

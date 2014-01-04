@@ -19,8 +19,7 @@
 #ifndef HAZE_GFX_VIEW
 #define HAZE_GFX_VIEW
 
-#include "haze/config.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/log.hh"
 #include "haze/gfx/gl.hh"
 
 namespace haze {

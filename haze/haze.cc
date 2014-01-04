@@ -18,6 +18,7 @@
 
 #include "haze/version.hh"
 #include "haze/haze.hh"
+#include "haze/utils/string.hh"
 #include "haze/core/core.hh"
 #include "haze/io/io.hh"
 

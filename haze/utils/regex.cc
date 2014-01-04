@@ -17,8 +17,8 @@
 //
 
 #include "haze/config.hh"
-#include "haze/core/debug.hh"
-#include "haze/core/log.hh"
+#include "haze/utils/debug.hh"
+#include "haze/utils/log.hh"
 #include "haze/utils/string.hh"
 #include "haze/utils/regex.hh"
 
