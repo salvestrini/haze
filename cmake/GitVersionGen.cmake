@@ -3,7 +3,10 @@ macro(GIT_VERSION_GEN _default_version)
 include(FindGit)
 
 find_program(_sort "sort")
+mark_as_advanced(_sort)
+
 find_program(_tail "tail")
+mark_as_advanced(_tail)
 
 if(GIT_FOUND AND _sort AND _tail)
   execute_process(
