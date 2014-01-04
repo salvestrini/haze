@@ -104,8 +104,9 @@ add_library(haze SHARED
   utils/log.cc
   utils/utils.cc
 
+  fs/filesystem.cc
+
   core/exception.cc
-  core/filesystem.cc
   core/pattern.cc
   core/synchronization.cc
   core/thread.cc
