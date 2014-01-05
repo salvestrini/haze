@@ -117,13 +117,13 @@ add_library(haze SHARED
   gfx/math.cc
   gfx/view.cc
   gfx/camera.cc
-  gfx/font.cc
   gfx/geometry.cc
   gfx/image.cc
-  gfx/text.cc
   gfx/video.cc
   gfx/gfx.cc
 
+  ui/font.cc
+  ui/text.cc
   ui/ui.cc
 
   sfx/audio.cc

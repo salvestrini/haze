@@ -19,6 +19,9 @@
 #ifndef HAZE_UI
 #define HAZE_UI
 
+#include "haze/ui/font.hh"
+#include "haze/ui/text.hh"
+
 namespace haze {
         namespace ui {
 

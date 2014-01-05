@@ -22,10 +22,8 @@
 #include "haze/gfx/math.hh"
 #include "haze/gfx/camera.hh"
 #include "haze/gfx/view.hh"
-#include "haze/gfx/font.hh"
 #include "haze/gfx/geometry.hh"
 #include "haze/gfx/image.hh"
-#include "haze/gfx/text.hh"
 #include "haze/gfx/video.hh"
 
 namespace haze {

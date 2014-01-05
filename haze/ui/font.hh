@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_GFX_FONT
-#define HAZE_GFX_FONT
+#ifndef HAZE_UI_FONT
+#define HAZE_UI_FONT
 
 #include <string>
 #include <map>

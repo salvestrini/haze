@@ -18,7 +18,7 @@
 
 #include <utility>
 
-#include "haze/gfx/text.hh"
+#include "haze/ui/text.hh"
 
 namespace haze {
 
