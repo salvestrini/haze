@@ -1,0 +1,12 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib@LIB_SUFFIX@
+includedir=${prefix}/include
+
+Name: HAZE-gfx
+Description: The HAZE library, gfx module.
+URL: @PACKAGE_URL@
+Version: @PACKAGE_VERSION_MAJOR@.@PACKAGE_VERSION_MINOR@.@PACKAGE_VERSION_MICRO@
+Requires: haze-core
+Libs: -L${libdir} -lhaze-gfx
+Cflags: -I${includedir}
