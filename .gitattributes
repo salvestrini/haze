@@ -1,8 +1,5 @@
-*.ac    crlf
-*.in    crlf
-*.am    crlf
-
-*.m4    crlf
+*.cmake crlf
+*.pc.in crlf
 
 *.h     crlf
 *.c     crlf
@@ -10,3 +7,5 @@
 *.cxx   crlf
 *.h++   crlf
 *.c++   crlf
+*.hh    crlf
+*.cc    crlf
