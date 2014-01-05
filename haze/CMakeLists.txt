@@ -104,14 +104,14 @@ add_library(haze SHARED
   utils/log.cc
   utils/utils.cc
 
-  fs/filesystem.cc
-
   core/exception.cc
   core/pattern.cc
   core/synchronization.cc
   core/thread.cc
   core/time.cc
   core/core.cc
+
+  fs/filesystem.cc
 
   gfx/gl.cc
   gfx/math.cc
@@ -123,6 +123,8 @@ add_library(haze SHARED
   gfx/text.cc
   gfx/video.cc
   gfx/gfx.cc
+
+  ui/ui.cc
 
   sfx/audio.cc
   sfx/sfx.cc
