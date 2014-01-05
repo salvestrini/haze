@@ -113,6 +113,10 @@ add_library(haze SHARED
 
   fs/filesystem.cc
 
+  io/io.cc
+
+  net/net.cc
+
   gfx/gl.cc
   gfx/math.cc
   gfx/view.cc
@@ -128,8 +132,6 @@ add_library(haze SHARED
 
   sfx/audio.cc
   sfx/sfx.cc
-
-  io/io.cc
 
   haze.cc
 )
