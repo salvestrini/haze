@@ -2,17 +2,17 @@ macro(GIT_VERSION_GEN _default_version)
 
 include(FindGit)
 
-find_program(_sort "sort")
-mark_as_advanced(_sort)
+find_program(SORT "sort")
+mark_as_advanced(SORT)
 
-find_program(_tail "tail")
-mark_as_advanced(_tail)
+find_program(TAIL "tail")
+mark_as_advanced(TAIL)
 
-if(GIT_FOUND AND _sort AND _tail)
+if(GIT_FOUND AND SORT AND TAIL)
   execute_process(
     COMMAND ${GIT_EXECUTABLE} tag -l -n0
-    COMMAND ${_sort} -V
-    COMMAND ${_tail} -n 1
+    COMMAND ${SORT} -V
+    COMMAND ${TAIL} -n 1
     OUTPUT_VARIABLE _git_tag
     RESULT_VARIABLE _git_result
     OUTPUT_STRIP_TRAILING_WHITESPACE)
