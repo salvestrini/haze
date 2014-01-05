@@ -2,6 +2,7 @@ enable_language(CXX)
 
 include(CheckIncludeFile)
 include(CheckSymbolExists)
+include(GNUInstallDirs)
 
 CHECK_INCLUDE_FILE(execinfo.h HAVE_EXECINFO_H)
 if(HAVE_EXECINFO_H)
@@ -153,3 +154,5 @@ if("${CXX_SUPPORTS_WUNDEF}")
 endif()
 
 target_link_libraries(haze ${HAZE_LIBRARIES})
+
+install(TARGETS haze DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
