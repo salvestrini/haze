@@ -27,6 +27,7 @@ set(CPACK_PACKAGE_VERSION_PATCH       ${PACKAGE_VERSION_MICRO})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY   "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 include(CPack)
 
+include(GNUInstallDirs)
 include(MacroSetOption)
 haze_set_option(
   HAZE_BUILD_SHARED_LIBS
