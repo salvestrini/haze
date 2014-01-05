@@ -25,10 +25,11 @@
 #include "haze/utils/utils.hh"
 #include "haze/core/core.hh"
 #include "haze/fs/fs.hh"
+#include "haze/io/io.hh"
+#include "haze/net/net.hh"
 #include "haze/gfx/gfx.hh"
 #include "haze/ui/ui.hh"
 #include "haze/sfx/sfx.hh"
-#include "haze/io/io.hh"
 
 namespace haze {
 

@@ -51,6 +51,7 @@ namespace haze {
                 fs::init();
                 core::init();
                 io::init();
+                net::init();
                 sfx::init();
                 gfx::init();
         }
@@ -59,6 +60,7 @@ namespace haze {
         {
                 gfx::fini();
                 sfx::fini();
+                net::fini();
                 io::fini();
                 core::fini();
                 fs::fini();
