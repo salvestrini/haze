@@ -19,7 +19,7 @@ if(GIT_FOUND AND SORT AND TAIL)
   if(NOT ${_git_result} EQUAL 0)
     message(FATAL_ERROR "Cannot fetch repository tag")
   endif()
-  message(STATUS "Repository tag is: ${_git_tag}")
+  #message(STATUS "Repository tag is: ${_git_tag}")
 
 else(GIT_FOUND)
   set(_git_tag "${_default_version}")
