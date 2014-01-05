@@ -5,13 +5,14 @@ set(CMAKE_MODULE_PATH      "${CMAKE_SOURCE_DIR}/cmake")
 
 project(Haze)
 
-add_subdirectory(haze)
-add_subdirectory(tests)
-
 include(GitVersionGen)
 GIT_VERSION_GEN("0.0.0")
+set(PACKAGE_URL       "http://an-url-here.org" CACHE STRING "Package URL")              
+set(PACKAGE_BUGREPORT "an-email-address-here"  CACHE STRING "Packaged bug-report email")
 
-message(STATUS "Package version is: ${PACKAGE_VERSION_MAJOR}.${PACKAGE_VERSION_MINOR}.${PACKAGE_VERSION_MICRO}")
+message(STATUS "Package version is:         ${PACKAGE_VERSION_MAJOR}.${PACKAGE_VERSION_MINOR}.${PACKAGE_VERSION_MICRO}")
+message(STATUS "Package URL is:             ${PACKAGE_URL}")
+message(STATUS "Package bug-report address: ${PACKAGE_BUGREPORT}")
 
 configure_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/haze/version.hh.in"
@@ -27,34 +28,11 @@ set(CPACK_PACKAGE_VERSION_PATCH       ${PACKAGE_VERSION_MICRO})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY   "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 include(CPack)
 
-include(GNUInstallDirs)
-include(MacroSetOption)
-haze_set_option(
-  HAZE_BUILD_SHARED_LIBS
-  TRUE BOOL
-  "TRUE to build shared libraries")
-
-if(HAZE_BUILD_SHARED_LIBS)
-  haze_set_option(
-    HAZE_INSTALL_PKGCONFIG_FILES TRUE BOOL
-    "TRUE to automatically install pkg-config files")
-  if(HAZE_INSTALL_PKGCONFIG_FILES)
-    foreach(haze_module IN ITEMS all core fs gfx io net sfx ui)
-      configure_file(
-        "${CMAKE_CURRENT_SOURCE_DIR}/pkg-config/haze-${haze_module}.pc.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/pkg-config/haze-${haze_module}.pc"
-        @ONLY)
-      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/pkg-config/haze-${haze_module}.pc"
-        DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig")
-    endforeach()
-  endif()
-else()
-  if(HAZE_INSTALL_PKGCONFIG_FILES)
-    message(WARNING "No pkg-config files are provided for the static libraries (HAZE_INSTALL_PKGCONFIG_FILES will be ignored).")
-  endif()
-endif()
-
 #include(CMakePrintSystemInformation)
 
 include(FeatureSummary)
 print_enabled_features()
+
+add_subdirectory(haze)
+add_subdirectory(pkg-config)
+add_subdirectory(tests)

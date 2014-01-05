@@ -1,0 +1,37 @@
+include(GNUInstallDirs)
+include(MacroSetOption)
+haze_set_option(
+  HAZE_BUILD_SHARED_LIBS
+  TRUE BOOL
+  "TRUE to build shared libraries")
+
+if(HAZE_BUILD_SHARED_LIBS)
+  haze_set_option(
+    HAZE_INSTALL_PKGCONFIG_FILES TRUE BOOL
+    "TRUE to automatically install pkg-config files")
+  if(HAZE_INSTALL_PKGCONFIG_FILES)
+
+      configure_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/haze.pc.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/haze.pc"
+        @ONLY)
+      install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/haze.pc"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig")
+
+#    foreach(haze_module IN ITEMS all core fs gfx io net sfx ui)
+#      configure_file(
+#        "${CMAKE_CURRENT_SOURCE_DIR}/haze-${haze_module}.pc.in"
+#        "${CMAKE_CURRENT_BINARY_DIR}/haze-${haze_module}.pc"
+#        @ONLY)
+#      install(FILES
+#        "${CMAKE_CURRENT_BINARY_DIR}/haze-${haze_module}.pc"
+#        DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig")
+#    endforeach()
+
+  endif()
+else()
+  if(HAZE_INSTALL_PKGCONFIG_FILES)
+    message(WARNING "No pkg-config files are provided for static linking (HAZE_INSTALL_PKGCONFIG_FILES will be ignored).")
+  endif()
+endif()
