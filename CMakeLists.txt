@@ -13,6 +13,7 @@ set(PACKAGE_BUGREPORT "an-email-address-here"  CACHE STRING "Packaged bug-report
 message(STATUS "Package version is:         ${PACKAGE_VERSION_MAJOR}.${PACKAGE_VERSION_MINOR}.${PACKAGE_VERSION_MICRO}")
 message(STATUS "Package URL is:             ${PACKAGE_URL}")
 message(STATUS "Package bug-report address: ${PACKAGE_BUGREPORT}")
+message(STATUS "Package install prefix:     ${CMAKE_INSTALL_PREFIX}")
 
 configure_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/haze/version.hh.in"
