@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH      "${CMAKE_SOURCE_DIR}/cmake")
 project(Haze)
 
 include(GitVersionGen)
-GIT_VERSION_GEN("0.0.0")
+GIT_VERSION_GEN()
 set(PACKAGE_URL       "http://an-url-here.org" CACHE STRING "Package URL")              
 set(PACKAGE_BUGREPORT "an-email-address-here"  CACHE STRING "Packaged bug-report email")
 
