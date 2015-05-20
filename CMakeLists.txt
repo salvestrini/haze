@@ -7,8 +7,10 @@ project(Haze)
 
 include(GitVersionGen)
 GIT_VERSION_GEN()
-set(PACKAGE_URL       "http://an-url-here.org" CACHE STRING "Package URL")              
-set(PACKAGE_BUGREPORT "an-email-address-here"  CACHE STRING "Packaged bug-report email")
+set(PACKAGE_URL  "https://github.com/salvestrini/haze"
+    CACHE STRING "Package URL")
+set(PACKAGE_BUGREPORT "salvestrini@gmail.com"
+    CACHE STRING "Packaged bug-report email")
 
 message(STATUS "Package version is:         ${PACKAGE_VERSION_MAJOR}.${PACKAGE_VERSION_MINOR}.${PACKAGE_VERSION_MICRO}")
 message(STATUS "Package URL is:             ${PACKAGE_URL}")
