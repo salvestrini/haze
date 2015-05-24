@@ -6,7 +6,7 @@ includedir=${prefix}/include
 Name: HAZE
 Description: The HAZE library.
 URL: @PACKAGE_URL@
-Version: @PACKAGE_VERSION_MAJOR@.@PACKAGE_VERSION_MINOR@.@PACKAGE_VERSION_MICRO@
-# Requires:
+Version: @PACKAGE_VERSION@
+
 Libs: -L${libdir} -lhaze
 Cflags: -I${includedir}
