@@ -13,10 +13,10 @@ include_directories(${HAZE_INCLUDES})
 
 link_directories(${CMAKE_BINARY_DIR}/haze)
 
-add_executable(test test.cc)
+add_executable(test-01 test-01.cc)
 
-target_link_libraries(test haze)
+target_link_libraries(test-01 haze)
 
-add_executable(slideshow slideshow.cc)
+add_executable(test-slideshow slideshow.cc)
 
-target_link_libraries(slideshow haze)
+target_link_libraries(test-slideshow haze)
