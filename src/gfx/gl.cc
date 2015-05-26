@@ -21,7 +21,7 @@
 #include <vector>
 #include <sstream>
 
-#include "haze/config.hh"
+#include "config.hh"
 
 #include "haze/utils/log.hh"
 #include "haze/utils/debug.hh"

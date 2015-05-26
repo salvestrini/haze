@@ -4,18 +4,14 @@ include(CheckIncludeFile)
 include(CheckSymbolExists)
 include(GNUInstallDirs)
 
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/version.hh.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/version.hh")
+
 CHECK_INCLUDE_FILE(execinfo.h HAVE_EXECINFO_H)
 if(HAVE_EXECINFO_H)
   CHECK_SYMBOL_EXISTS(backtrace         execinfo.h HAVE_BACKTRACE)
   CHECK_SYMBOL_EXISTS(backtrace_symbols execinfo.h HAVE_BACKTRACE_SYMBOLS)
-endif()
-
-CHECK_INCLUDE_FILE(regex.h HAVE_REGEX_H)
-if(HAVE_REGEX_H)
-  CHECK_SYMBOL_EXISTS(regexec  regex.h HAVE_REGEXEC)
-  CHECK_SYMBOL_EXISTS(regcomp  regex.h HAVE_REGCOMP)
-  CHECK_SYMBOL_EXISTS(regerror regex.h HAVE_REGERROR)
-  CHECK_SYMBOL_EXISTS(regfree  regex.h HAVE_REGFREE)
 endif()
 
 set(HAZE_LIBRARIES "")
@@ -61,19 +57,6 @@ else()
   message(STATUS "SDL2_image NOT found!")
 endif()
 
-find_package(SDL2_mixer)
-if(SDL2MIXER_FOUND)
-  set(HAVE_SDL2_MIXER ON)
-  set(HAZE_LIBRARIES ${HAZE_LIBRARIES} ${SDL2MIXER_LIBRARY})
-
-  set(HAZE_INCLUDES ${HAZE_INCLUDES} ${SDL2MIXER_INCLUDE_DIR} PARENT_SCOPE)
-  include_directories(${SDL2MIXER_INCLUDE_DIR})
-
-  message(STATUS "Found SDL2_mixer: " ${SDL2MIXER_LIBRARY})
-else()
-  message(STATUS "SDL2_mixer NOT found!")
-endif()
-
 include_directories(${HAZE_INCLUDES})
 
 option(WANT_DEBUG    "Debugging"     ON)
@@ -84,9 +67,6 @@ set(HAZE_VIEWPORT_WIDTH  "720"   CACHE STRING "Viewport width")
 set(HAZE_VIEWPORT_HEIGHT "480"   CACHE STRING "Viewport height")
 set(HAZE_VIEWPORT_BPP    "24"    CACHE STRING "Viewport depth (bit per pixel)")
 
-set(HAZE_MIXER_FREQUENCY "44100" CACHE STRING "Frequency")
-set(HAZE_MIXER_CHANNELS  "2"     CACHE STRING "Channels")
-
 #configure_file("${CMAKE_CURRENT_SOURCE_DIR}/haze/version.hh.in" "${CMAKE_CURRENT_BINARY_DIR}/haze/version.hh")
 
 configure_file(config.hh.in config.hh)
@@ -95,12 +75,12 @@ configure_file(config.hh.in config.hh)
 #  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 #endif()
 
-include_directories(${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 add_library(haze SHARED
   utils/string.cc
-  utils/regex.cc
   utils/debug.cc
   utils/log.cc
   utils/utils.cc
@@ -116,8 +96,6 @@ add_library(haze SHARED
 
   io/io.cc
 
-  net/net.cc
-
   gfx/gl.cc
   gfx/math.cc
   gfx/view.cc
@@ -130,9 +108,6 @@ add_library(haze SHARED
   ui/font.cc
   ui/text.cc
   ui/ui.cc
-
-  sfx/audio.cc
-  sfx/sfx.cc
 
   haze.cc
 )
@@ -154,6 +129,11 @@ if("${CXX_SUPPORTS_WUNDEF}")
 endif()
 
 target_link_libraries(haze ${HAZE_LIBRARIES})
+
+#set(HAZE_LIBRARIES_PRIVATE "")
+#foreach(LIB ${HAZE_LIBRARIES})
+#  set(HAZE_LIBRARIES_PRIVATE "${HAZE_LIBRARIES_PRIVATE} -l${LIB}")
+#endforeach()
 
 install(TARGETS haze DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
 

@@ -16,7 +16,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/version.hh"
+#include "version.hh"
 #include "haze/haze.hh"
 
 namespace haze {
@@ -51,16 +51,12 @@ namespace haze {
                 fs::init();
                 core::init();
                 io::init();
-                net::init();
-                sfx::init();
                 gfx::init();
         }
 
         void fini()
         {
                 gfx::fini();
-                sfx::fini();
-                net::fini();
                 io::fini();
                 core::fini();
                 fs::fini();

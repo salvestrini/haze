@@ -23,7 +23,6 @@
 
 #include "SDL.h"
 
-#include "haze/config.hh"
 #include "haze/core/pattern.hh"
 #include "haze/core/exception.hh"
 #include "haze/gfx/math.hh"
@@ -41,9 +40,9 @@ namespace haze {
                                         exception(what) { }
                         };
 
-                        video(size_t width  = HAZE_VIEWPORT_WIDTH,
-                              size_t height = HAZE_VIEWPORT_HEIGHT,
-                              size_t bpp    = HAZE_VIEWPORT_BPP);
+                        video(size_t width,
+                              size_t height,
+                              size_t bpp);
                         virtual ~video();
 
                         typedef size_t size_type;

@@ -44,7 +44,7 @@ bool core(const haze::fs::directory & datadir)
              iter++)
                 DBG("  " << *iter);
 
-        haze::gfx::video video;
+        haze::gfx::video video(640, 480, 16);
         haze::camera     camera;
 
 #if 0

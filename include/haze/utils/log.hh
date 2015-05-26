@@ -19,12 +19,8 @@
 #ifndef HAZE_UTILS_LOG
 #define HAZE_UTILS_LOG
 
-#include "haze/config.hh"
-
-//#include <cstdio>
 #include <iostream>
 
-#if WANT_LOGS
 namespace haze {
         extern const char * logs_prefix_;
 }
@@ -40,16 +36,14 @@ namespace haze {
                         STREAM << haze::logs_prefix_ << ": ";   \
                 STREAM << TXT << std::endl;                     \
         } while (false)
-#else
-#define LOGS_PREFIX_SET(X) do { } while (false)
-#define _LOG(STREAM, TXT)  do { } while (false)
-#endif
 
-#if WANT_DEBUG
-#define DBG(TXT) _LOG(std::cout, TXT)
-#else
-#define DBG(TXT)
-#endif
+namespace haze {
+        extern bool logs_debug_;
+}
+
+#define DBG(TXT) do {                                   \
+	if (haze::logs_debug_) _LOG(std::cout, TXT);    \
+} while (0)
 #define MSG(TXT) _LOG(std::cout, TXT)
 #define WRN(TXT) _LOG(std::cout, TXT)
 #define ERR(TXT) _LOG(std::cout, TXT)

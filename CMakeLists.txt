@@ -19,10 +19,6 @@ message(STATUS "Package URL:                ${PACKAGE_URL}")
 message(STATUS "Package bug-report address: ${PACKAGE_BUGREPORT}")
 message(STATUS "Package install prefix:     ${CMAKE_INSTALL_PREFIX}")
 
-configure_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/haze/version.hh.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/haze/version.hh")
-
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "The HAZE library")
 set(CPACK_PACKAGE_VENDOR              "Francesco Salvestrini")
 set(CPACK_PACKAGE_DESCRIPTION_FILE    "${CMAKE_CURRENT_SOURCE_DIR}/README")
@@ -38,5 +34,6 @@ include(CPack)
 include(FeatureSummary)
 print_enabled_features()
 
-add_subdirectory(haze)
+add_subdirectory(include)
+add_subdirectory(src)
 add_subdirectory(tests)

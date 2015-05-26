@@ -16,37 +16,29 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#include "haze/config.hh"
+#ifndef HAZE_HAZE
+#define HAZE_HAZE
 
-#if HAVE_EXECINFO_H
-#include <execinfo.h>
-#endif
+#include <stdint.h>
+#include <string>
 
-#include "haze/utils/log.hh"
-#include "haze/utils/debug.hh"
+#include "haze/utils/utils.hh"
+#include "haze/core/core.hh"
+#include "haze/fs/fs.hh"
+#include "haze/io/io.hh"
+#include "haze/gfx/gfx.hh"
+#include "haze/ui/ui.hh"
 
-#define MAX_BACKTRACE_FRAMES 200
+namespace haze {
 
-std::vector<std::string> backtrace()
-{
-        std::vector<std::string> tmp;
+        uint8_t     version_major();
+        uint8_t     version_minor();
+        uint8_t     version_micro();
+        std::string version();
 
-#if HAVE_BACKTRACE && HAVE_BACKTRACE_SYMBOLS
-        void *  array[MAX_BACKTRACE_FRAMES];
-        size_t  size;
-        char ** strings;
-        size_t  i;
+        void init();
+        void fini();
 
-        size    = backtrace(array, MAX_BACKTRACE_FRAMES);
-        strings = backtrace_symbols(array, size);
-
-        if (strings) {
-                for (i = 0; i < size; i++)
-                        tmp.push_back(strings[i]);
-
-                free(strings);
-        }
-#endif
-
-        return tmp;
 }
+
+#endif

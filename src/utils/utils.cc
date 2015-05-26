@@ -16,16 +16,16 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_NET
-#define HAZE_NET
+#include "haze/utils/utils.hh"
 
 namespace haze {
-        namespace net {
+        namespace utils {
 
-                void init();
-                void fini();
+                void init()
+                { }
+
+                void fini()
+                { }
 
         }
 }
-
-#endif

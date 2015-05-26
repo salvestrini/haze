@@ -9,4 +9,5 @@ URL: @PACKAGE_URL@
 Version: @PACKAGE_VERSION@
 
 Libs: -L${libdir} -lhaze
+#Libs.private: @HAZE_LIBRARIES_PRIVATE@
 Cflags: -I${includedir}

@@ -16,38 +16,20 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_UTILS_REGEX
-#define HAZE_UTILS_REGEX
+#ifndef HAZE_UTILS
+#define HAZE_UTILS
 
-#include "haze/config.hh"
-
-#if HAVE_REGEX_H
-#include <sys/types.h>
-#include <regex.h>
-#endif
-
-#include <vector>
-#include <string>
+#include "haze/utils/debug.hh"
+#include "haze/utils/log.hh"
+#include "haze/utils/string.hh"
 
 namespace haze {
+        namespace utils {
 
-        class regex {
-        public:
-                regex(const char *);
-                regex(const std::string & expression);
-                virtual ~regex();
+                void init();
+                void fini();
 
-                std::vector<std::string> matches(const std::string & input,
-                                                 size_t              mcount);
-
-        private:
-                void compile(const char * expression);
-
-#if HAVE_REGEX_H
-                regex_t buffer_;
-#endif
-        };
-
+        }
 }
 
 #endif

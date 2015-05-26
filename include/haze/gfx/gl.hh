@@ -19,15 +19,15 @@
 #ifndef HAZE_GFX_BACKENDS_GL
 #define HAZE_GFX_BACKENDS_GL
 
-#include "haze/config.hh"
+//#include "config.hh"
 
 #include "haze/core/filesystem.hh"
 
-#if HAVE_OPENGL
+//#if HAVE_OPENGL
 #include <GL/gl.h>
-#else
-#error I have no GL header to use ...
-#endif
+//#else
+//#error I have no GL header to use ...
+//#endif
 
 #include "haze/gfx/image.hh"
 #include "haze/gfx/geometry.hh"

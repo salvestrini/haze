@@ -16,25 +16,17 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef HAZE_SFX
-#define HAZE_SFX
-
-#include "haze/core/exception.hh"
-#include "haze/sfx/audio.hh"
+#include "config.hh"
+#include "haze/utils/log.hh"
 
 namespace haze {
-        namespace sfx {
 
-                class cant_init : public exception {
-                public:
-                        cant_init(const std::string & what) :
-                                exception(what) { }
-                };
+        const char * logs_prefix_ = "NONE";
 
-                void init();
-                void fini();
-
-        }
-}
-
+#if WANT_DEBUG
+        bool         logs_debug_ = true;
+#else
+        bool         logs_debug_ = false;        
 #endif
+
+}
